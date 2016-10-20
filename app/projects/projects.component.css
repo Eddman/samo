@@ -1,0 +1,34 @@
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    flex-grow: 1;
+    max-width: 250px;
+    box-sizing: border-box;
+
+    padding: 5px;
+}
+.thumbnail img {
+    transition: opacity 300ms;
+    width: 100%;
+}
+
+.thumbnail .title {
+    opacity: 0;
+    transition: opacity 300ms;
+
+    position: absolute;
+    font-weight: bold;
+    margin: 10px;
+    z-index: 1;
+}
+
+.thumbnail:hover img {
+    opacity: 0.2;
+}
+
+.thumbnail:hover .title {
+    opacity: 1;
+}

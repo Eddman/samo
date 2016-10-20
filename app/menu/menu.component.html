@@ -1,0 +1,21 @@
+<div class="menu">
+    <div *ngIf="localeService.getSelectedLang() != 'sk'" class="menu-block">
+        <a routerLink="/projects/sk" routerLinkActive="active">/SK/ Poprad-Tatry</a>
+    </div>
+    <div *ngIf="localeService.getSelectedLang() == 'sk'" class="menu-block">
+        <a routerLink="/projects/sk" routerLinkActive="active">Práce</a>
+        <a routerLink="/media/sk" routerLinkActive="active">Media</a>
+        <a routerLink="/cv/sk" routerLinkActive="active">CV</a>
+        <a routerLink="/contact/sk" routerLinkActive="active">Kontakt</a>
+    </div>
+    <div *ngIf="localeService.getSelectedLang() != 'at'" class="menu-block">
+        <a routerLink="/projects/at" routerLinkActive="active">/AT/ Wien</a>
+    </div>
+    <div *ngIf="localeService.getSelectedLang() == 'at'" class="menu-block">
+        <a routerLink="/projects/at" routerLinkActive="active">Arbeit</a>
+        <a routerLink="/media/at" routerLinkActive="active">Media</a>
+        <a routerLink="/cv/at" routerLinkActive="active">CV</a>
+        <a routerLink="/contact/at" routerLinkActive="active">Kontakt</a>
+    </div>
+</div>
+

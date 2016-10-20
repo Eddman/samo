@@ -1,17 +1,16 @@
 define(['exports',
         '@angular/core',
         '@angular/router',
-        './dashboard.component',
-        './hero-detail.component',
-        './heroes.component'],
-    function (exports, ngCore, ngRouter, dashboard,
-              heroDetail, heroesComponent) {
+        './slider/slider.component',
+        './projects/projects.component'],
+    function (exports, ngCore, ngRouter, sliderComponent, projectsComponent) {
 
         var routes = [
-            {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-            {path: 'dashboard', component: dashboard.DashboardComponent},
-            {path: 'detail/:id', component: heroDetail.HeroDetailComponent},
-            {path: 'heroes', component: heroesComponent.HeroesComponent}
+            {path: '', component: sliderComponent.SliderComponent},
+            {path: 'projects/:lang', component: projectsComponent.ProjectsComponent},
+            {path: 'media/:lang', component: sliderComponent.SliderComponent},
+            {path: 'cv/:lang', component: sliderComponent.SliderComponent},
+            {path: 'contact/:lang', component: sliderComponent.SliderComponent}
         ];
 
         function AppRoutingModule() {

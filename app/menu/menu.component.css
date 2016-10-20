@@ -1,0 +1,17 @@
+.menu {
+    display: flex;
+}
+
+.menu-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.active {
+    color: #039be5;
+}
