@@ -2,12 +2,13 @@ define(['exports',
         '@angular/core',
         '@angular/platform-browser',
         './locale.service',
-        './app-routing.module',
+        './routing/routing.service',
+        './routing/app-routing.module',
         './app.component',
         './menu/menu.component',
         './slider/slider.component',
         './projects/projects.module'],
-    function (exports, ngCore, ngBrowser, localeService, appRouting, appComponent, menuComponent,
+    function (exports, ngCore, ngBrowser, localeService, routingService, appRouting, appComponent, menuComponent,
               sliderComponent, projectsModule) {
         function AppModule() {
         }
@@ -24,7 +25,7 @@ define(['exports',
                     menuComponent.MenuComponent,
                     sliderComponent.SliderComponent
                 ],
-                providers: [localeService.LocaleService],
+                providers: [localeService.LocaleService, routingService.RoutingService],
                 bootstrap: [appComponent.AppComponent]
             })
         ];

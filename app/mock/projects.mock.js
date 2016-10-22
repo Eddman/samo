@@ -51,7 +51,7 @@ define(['exports'],
             }
         ];
 
-        exports.porjectsAt = [
+        exports.projectsAt = [
             {
                 thumbUrl: 'https://4.bp.blogspot.com/-cURG2W35e44/V_tVxvCf3MI/AAAAAAAAB28/0SBPYW2TeCU19jgB9Lijm1rh-xNVeCzFgCPcB/s320-p/Samuel%2BNetocny_Kaplnka_Okt_Blog_02.jpg',
                 title: 'Kaplna vzkriesenia, Poprad - Kvetnica',

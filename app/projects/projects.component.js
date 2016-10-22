@@ -15,13 +15,16 @@ define(['module', 'exports',
             this.route.params.forEach(
                 function (params) {
                     self.localeService.setSelectedLang(params['lang']);
-                    self.projects = self.projectService.getProjects();
+                    self.projectService.getProjects().then(function (projects) {
+                        self.projects = projects;
+                    });
                 });
         };
 
         ProjectsComponent.annotations = [
             new ngCore.Component({
                 moduleId: module.id,
+                selector: 'projects-view',
                 templateUrl: 'projects.component.html',
                 styleUrls: ['projects.component.css']
             })

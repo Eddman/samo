@@ -10,6 +10,7 @@
 
     padding: 5px;
 }
+
 .thumbnail img {
     transition: opacity 300ms;
     width: 100%;

@@ -1,10 +1,21 @@
 define(['module', 'exports',
         '@angular/core',
-    '../locale.service'],
-    function (module, exports, ngCore, localeService) {
-        function MenuComponent(localeService) {
+        '../locale.service',
+        '../routing/routing.service'],
+    function (module, exports, ngCore, localeService, routingService) {
+        function MenuComponent(localeService, routingService) {
             this.localeService = localeService;
+            this.routingService = routingService;
         }
+
+        MenuComponent.prototype.ngOnInit = function () {
+            this.routingService.getMenuRoutes().then(function (menuLocales) {
+                this.menuLocales = menuLocales;
+            }.bind(this), function (error) {
+                this.error = error;
+                delete this.menuLocales;
+            }.bind(this));
+        };
 
         MenuComponent.annotations = [
             new ngCore.Component({
@@ -15,7 +26,8 @@ define(['module', 'exports',
             })
         ];
         MenuComponent.parameters = [
-            localeService.LocaleService
+            localeService.LocaleService,
+            routingService.RoutingService
         ];
 
         exports.MenuComponent = MenuComponent;
