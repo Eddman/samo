@@ -2,6 +2,8 @@ define(['exports'],
     function (exports) {
         exports.routes = [
             {
+                type: 'group',
+                redirect: '',
                 routes: [
                     {
                         url: '',
@@ -15,6 +17,8 @@ define(['exports'],
             {
                 title: '/SK/ Poprad-Tatry',
                 locale: 'sk',
+                type: 'group',
+                redirect: 'projects',
                 routes: [
                     {
                         title: 'Práce',
@@ -25,10 +29,12 @@ define(['exports'],
                         }
                     },
                     {
-                        title: 'Média',
+                        title: 'Médiá',
                         url: 'media',
                         type: 'projectsView',
-                        config: {}
+                        config: {
+                            type: 'media'
+                        }
                     },
                     {
                         title: 'CV',
@@ -47,6 +53,8 @@ define(['exports'],
             {
                 title: '/AT/ Wien',
                 locale: 'at',
+                type: 'group',
+                redirect: 'projects',
                 routes: [
                     {
                         title: 'Arbeit',
@@ -55,6 +63,25 @@ define(['exports'],
                         config: {
                             type: 'projects'
                         }
+                    }, {
+                        title: 'Medien',
+                        url: 'media',
+                        type: 'projectsView',
+                        config: {
+                            type: 'media'
+                        }
+                    },
+                    {
+                        title: 'CV',
+                        url: 'cv',
+                        type: 'detail',
+                        config: {}
+                    },
+                    {
+                        title: 'Kontakt',
+                        url: 'contact',
+                        type: 'detail',
+                        config: {}
                     }
                 ]
             }

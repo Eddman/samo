@@ -6,7 +6,8 @@ define([
         './routing.service'
     ],
     function (module, exports, ngCore, ngRouter, localeService, routingService) {
-        function RouterComponent(route, localeService, routingService) {
+        function RouterComponent(router, route, localeService, routingService) {
+            this.router = router;
             this.route = route;
             this.localeService = localeService;
             this.routingService = routingService;
@@ -25,6 +26,9 @@ define([
                 function (config) {
                     this.localeService.setSelectedLang(config.locale);
                     this.config = config;
+                    if (config.redirected) {
+                        this.router.navigate(config.routePath);
+                    }
                     delete this.error;
                 }.bind(this),
                 function (error) {
@@ -41,6 +45,7 @@ define([
         ];
 
         RouterComponent.parameters = [
+            ngRouter.Router,
             ngRouter.ActivatedRoute,
             localeService.LocaleService,
             routingService.RoutingService

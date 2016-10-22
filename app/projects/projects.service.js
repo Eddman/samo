@@ -5,16 +5,11 @@ define(['exports',
     function (exports, ngCore, mockProjects, localeService) {
         function ProjectsService(localeService) {
             this.localeService = localeService;
-            this.projectsSk = mockProjects.projectsSk;
-            this.projectsAt = mockProjects.projectsAt;
+            this.projects = mockProjects.projects;
         }
 
-        ProjectsService.prototype.getProjects = function () {
-            if (this.localeService.getSelectedLang() == 'sk') {
-                return Promise.resolve(this.projectsSk);
-            } else {
-                return Promise.resolve(this.projectsAt);
-            }
+        ProjectsService.prototype.getProjects = function (config) {
+            return Promise.resolve(this.projects[config.type][config.locale]);
         };
         ProjectsService.parameters = [[localeService.LocaleService]];
 

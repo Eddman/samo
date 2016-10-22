@@ -1,24 +1,20 @@
 define(['module', 'exports',
         '@angular/core',
-        '@angular/router',
         '../locale.service',
         './projects.service'],
-    function (module, exports, ngCore, ngRouter, localeService, projectService) {
-        function ProjectsComponent(route, localeService, projectService) {
-            this.route = route;
+    function (module, exports, ngCore, localeService, projectService) {
+        function ProjectsComponent(localeService, projectService) {
             this.localeService = localeService;
             this.projectService = projectService;
         }
 
-        ProjectsComponent.prototype.ngOnInit = function () {
-            var self = this;
-            this.route.params.forEach(
-                function (params) {
-                    self.localeService.setSelectedLang(params['lang']);
-                    self.projectService.getProjects().then(function (projects) {
-                        self.projects = projects;
-                    });
-                });
+        ProjectsComponent.prototype.ngOnChanges = function () {
+            this.projectService.getProjects({
+                locale: this.route.locale,
+                type: this.route.config.type
+            }).then(function (projects) {
+                this.projects = projects;
+            }.bind(this));
         };
 
         ProjectsComponent.annotations = [
@@ -26,12 +22,12 @@ define(['module', 'exports',
                 moduleId: module.id,
                 selector: 'projects-view',
                 templateUrl: 'projects.component.html',
-                styleUrls: ['projects.component.css']
+                styleUrls: ['projects.component.css'],
+                inputs: ['route']
             })
         ];
 
         ProjectsComponent.parameters = [
-            ngRouter.ActivatedRoute,
             localeService.LocaleService,
             projectService.ProjectsService
         ];

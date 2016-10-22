@@ -1,1 +1,7 @@
 <div *ngIf="error" class="err404">{{error}}</div>
+
+<projects-view *ngIf="config && config.type === 'projectsView'" [route]="config"></projects-view>
+
+<slider-view *ngIf="config && config.type === 'slider'" [route]="config"></slider-view>
+
+<detail-view *ngIf="config && config.type === 'detail'" [route]="config"></detail-view>

@@ -21,7 +21,7 @@ define(['exports',
         RoutingService.prototype.getRouteConfig = function (routeParams) {
             return new Promise(function (resolve, reject) {
                 this.getRoutes().then(function (routes) {
-                    var locale, route, config;
+                    var locale, route, config, routePath = [];
                     if (routeParams && routeParams.length) {
                         locale = routeParams[0];
                     }
@@ -29,6 +29,9 @@ define(['exports',
                     for (route in routes) {
                         if (routes[route].locale === locale) {
                             config = routes[route];
+                            if (locale) {
+                                routePath.push(locale);
+                            }
                             break;
                         }
                     }
@@ -51,14 +54,50 @@ define(['exports',
                             }
 
                             routes = config.routes;
+                            delete config;
                             for (route in routes) {
                                 if (routes[route].url === routeParams[i]) {
                                     config = routes[route];
+                                    if (config.url) {
+                                        routePath.push(config.url);
+                                    }
                                     break;
                                 }
                             }
                         }
                     }
+
+                    if (config.type === 'group' && (config.redirect || config.redirect === '')) {
+                        if (!config.routes) {
+                            reject(errors.NOT_FOUND);
+                        }
+
+                        routes = config.routes;
+                        delete config;
+                        for (route in routes) {
+                            if (routes[route].url === config.redirect) {
+                                config = routes[route];
+                                if (config.url) {
+                                    routePath.push(config.url);
+                                }
+                                break;
+                            }
+                        }
+
+                        if (!config) {
+                            reject(errors.NOT_FOUND);
+                            return;
+                        }
+                        config.redirected = true;
+                    } else {
+                        config.redirected = false;
+                    }
+
+                    if (!config.type || config.type === 'group') {
+                        reject(errors.NOT_FOUND);
+                    }
+
+                    config.routePath = routePath;
                     config.locale = locale;
                     resolve(config);
                 }).catch(function (error) {

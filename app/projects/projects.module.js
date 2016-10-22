@@ -12,6 +12,9 @@ define(['exports',
                 imports: [
                     ngBrowser.BrowserModule
                 ],
+                exports: [
+                    projectsComponent.ProjectsComponent
+                ],
                 declarations: [
                     projectsComponent.ProjectsComponent
                 ],

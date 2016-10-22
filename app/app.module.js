@@ -3,13 +3,10 @@ define(['exports',
         '@angular/platform-browser',
         './locale.service',
         './routing/routing.service',
-        './routing/app-routing.module',
+        './routing/routing.module',
         './app.component',
-        './menu/menu.component',
-        './slider/slider.component',
-        './projects/projects.module'],
-    function (exports, ngCore, ngBrowser, localeService, routingService, appRouting, appComponent, menuComponent,
-              sliderComponent, projectsModule) {
+        './menu/menu.component'],
+    function (exports, ngCore, ngBrowser, localeService, routingService, appRouting, appComponent, menuComponent) {
         function AppModule() {
         }
 
@@ -17,13 +14,11 @@ define(['exports',
             new ngCore.NgModule({
                 imports: [
                     ngBrowser.BrowserModule,
-                    appRouting.AppRoutingModule,
-                    projectsModule.ProjectsModule
+                    appRouting.AppRoutingModule
                 ],
                 declarations: [
                     appComponent.AppComponent,
-                    menuComponent.MenuComponent,
-                    sliderComponent.SliderComponent
+                    menuComponent.MenuComponent
                 ],
                 providers: [localeService.LocaleService, routingService.RoutingService],
                 bootstrap: [appComponent.AppComponent]
