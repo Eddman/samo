@@ -13,6 +13,7 @@ define([
             this.routingService = routingService;
         }
 
+        //noinspection JSUnusedGlobalSymbols
         RouterComponent.prototype.ngOnInit = function () {
             this.route.params.forEach(this.processRoute.bind(this));
         };
@@ -20,19 +21,20 @@ define([
         RouterComponent.prototype.processRoute = function (pathParams) {
             var p, params = [];
             for (p in pathParams) {
-                params.push(pathParams[p]);
+                if (pathParams.hasOwnProperty(p)) {
+                    params.push(pathParams[p]);
+                }
             }
             this.routingService.getRouteConfig(params).then(
-                function (config) {
-                    this.localeService.setSelectedLang(config.locale);
-                    this.config = config;
-                    if (config.redirected) {
-                        this.router.navigate(config.routePath);
+                function (route) {
+                    this.localeService.setSelectedLang(route.locale);
+                    this.config = route;
+                    if (route.redirectPath) {
+                        this.router.navigate(route.redirectPath);
                     }
-                    delete this.error;
                 }.bind(this),
-                function (error) {
-                    this.error = error;
+                function () {
+                    this.router.navigate(['/']);
                 }.bind(this)
             )
         };

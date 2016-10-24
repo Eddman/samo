@@ -1,7 +1,6 @@
 define(['exports'],
-    function (exports, mockProjects) {
+    function (exports) {
         function LocaleService() {
-            this.selectedLang;
         }
 
         LocaleService.prototype.getSelectedLang = function () {

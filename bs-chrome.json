@@ -1,3 +1,6 @@
 {
-  "browser": ["chrome", "google chrome"]
+  "browser": [
+    "chrome",
+    "google chrome"
+  ]
 }

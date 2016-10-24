@@ -1,6 +1,9 @@
-<div class="grid">
-    <div *ngFor="let project of projects" class="thumbnail">
-        <div class="title">{{project.title}}</div>
-        <img [src]="project.thumbUrl">
+<div *ngIf="!route.parameters" class="grid">
+    <div *ngFor="let project of projects; let i = index" class="thumbnail">
+        <a [routerLink]="i + 1">
+            <div class="title">{{project.title}}</div>
+            <img [src]="project.thumbUrl">
+        </a>
     </div>
 </div>
+<detail-view *ngIf="route.parameters" [route]="route.getParametrisedRoute()"></detail-view>

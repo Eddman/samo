@@ -8,12 +8,13 @@ define(['module', 'exports',
             this.routingService = routingService;
         }
 
+        //noinspection JSUnusedGlobalSymbols
         MenuComponent.prototype.ngOnInit = function () {
-            this.routingService.getMenuRoutes().then(function (menuLocales) {
-                this.menuLocales = menuLocales;
+            this.routingService.getMenuRoutes().then(function (rootItem) {
+                this.rootItem = rootItem;
             }.bind(this), function (error) {
                 this.error = error;
-                delete this.menuLocales;
+                delete this.rootItem;
             }.bind(this));
         };
 

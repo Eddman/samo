@@ -2,7 +2,8 @@
  * System configuration for Angular samples
  * Adjust as necessary for your application needs.
  */
-(function (global) {
+(function () {
+    //noinspection ES6ModulesDependencies
     System.config({
         paths: {
             // paths serve as alias
@@ -22,7 +23,7 @@
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             // other libraries
-            'rxjs':                      'npm:rxjs'
+            'rxjs': 'npm:rxjs'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -35,4 +36,4 @@
             }
         }
     });
-})(this);
+})();

@@ -3,18 +3,19 @@ define(['exports',
         '@angular/platform-browser',
         '@angular/router',
         './router.component',
-        '../projects/projects.module',
         '../slider/slider.module',
-        '../detail/detail.module'],
-    function (exports, ngCore, ngBrowser, ngRouter, routerComponent,
-              projectsModule, sliderModule, detailModule) {
+        '../projects/projects.module',
+        '../detail/detail.module',
+        '../list/list.module'],
+    function (exports, ngCore, ngBrowser, ngRouter, routerComponent, sliderModule,
+              projectsModule, detailModule, listModule) {
 
         var i, routes = [], path = '';
         routes.push({
             path: path,
             component: routerComponent.RouterComponent
         });
-        for (i = 0; i <= 100; i++) {
+        for (i = 0; i <= 10; i++) {
             path += ':p' + i;
             routes.push({
                 path: path,
@@ -31,9 +32,10 @@ define(['exports',
                 imports: [
                     ngBrowser.BrowserModule,
                     ngRouter.RouterModule.forRoot(routes),
-                    projectsModule.ProjectsModule,
                     sliderModule.SliderModule,
-                    detailModule.DetailModule
+                    projectsModule.ProjectsModule,
+                    detailModule.DetailModule,
+                    listModule.ListModule
                 ],
                 exports: [ngRouter.RouterModule],
                 declarations: [routerComponent.RouterComponent]

@@ -8,10 +8,11 @@ define(['module', 'exports',
             this.projectService = projectService;
         }
 
+        //noinspection JSUnusedGlobalSymbols
         ProjectsComponent.prototype.ngOnChanges = function () {
             this.projectService.getProjects({
                 locale: this.route.locale,
-                type: this.route.config.type
+                type: this.route.configuration.type
             }).then(function (projects) {
                 this.projects = projects;
             }.bind(this));

@@ -18,6 +18,7 @@ a {
     text-decoration: none;
 }
 
+/*noinspection CssUnusedSymbol*/
 a.active {
     color: #039be5;
 }

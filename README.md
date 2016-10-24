@@ -1,4 +1,4 @@
-# samuel.netocny.eu
+# samuelnetocny.eu
 
 Install [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm) first.
 
