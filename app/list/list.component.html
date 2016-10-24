@@ -1,1 +1,4 @@
-<img src="https://4.bp.blogspot.com/-cURG2W35e44/V_tVxvCf3MI/AAAAAAAAB28/0SBPYW2TeCU19jgB9Lijm1rh-xNVeCzFgCPcB/s1600/Samuel%2BNetocny_Kaplnka_Okt_Blog_02.jpg"/>
+<div *ngFor="let listItem of listItems">
+    <h2><a [href]="listItem.externalURL">{{listItem.title}}</a></h2>
+    <p><content-part *ngFor="let contentPart of listItem.content" [contentPart]="contentPart"></content-part></p>
+</div>

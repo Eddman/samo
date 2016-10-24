@@ -24,13 +24,25 @@
 
 
 * {
-    font-family: HelveticaNeue, Helvetica;
+    font-family: HelveticaNeue, Helvetica, sans-serif;
     font-weight: 300;
     color: black;
 }
 
+router-outlet { display: none }
+
+/*noinspection CssInvalidHtmlTagReference*/
+ng-component, slider-view, projects-view, detail-view,list-view {
+      display: block;
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+content-part {
+    display: inline;
+}
+
 body {
-    margin: 30px 15px;
+    margin: 40px 15px 0;
     display: flex;
 }
 
@@ -40,10 +52,10 @@ body {
 
 samuel-netocny {
     flex: 2;
-    min-width: 500px;
+    min-width: 900px;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 900px) {
     .sizer {
         display: none;
     }

@@ -1,10 +1,8 @@
 define(['module', 'exports',
         '@angular/core',
-        '../locale.service',
         './projects.service'],
-    function (module, exports, ngCore, localeService, projectService) {
-        function ProjectsComponent(localeService, projectService) {
-            this.localeService = localeService;
+    function (module, exports, ngCore, projectService) {
+        function ProjectsComponent(projectService) {
             this.projectService = projectService;
         }
 
@@ -29,7 +27,6 @@ define(['module', 'exports',
         ];
 
         ProjectsComponent.parameters = [
-            localeService.LocaleService,
             projectService.ProjectsService
         ];
 

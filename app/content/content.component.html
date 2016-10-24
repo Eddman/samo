@@ -1,0 +1,6 @@
+<span *ngIf="isString()">{{contentPart}}</span>
+<span *ngIf="isColumnsText()" class="columns" [style.columnCount]="contentPart.columns">{{contentPart.text}}</span>
+<a *ngIf="isExternalLink()" [href]="contentPart.url">{{contentPart.text}}</a>
+<a *ngIf="isInternalLink()" [routerLink]="contentPart.routeLink">{{contentPart.text}}</a>
+<img *ngIf="isImage()" [src]="contentPart.imageSrc">
+<br *ngIf="isLineBreak()">

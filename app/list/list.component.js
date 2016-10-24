@@ -1,16 +1,34 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
-    function ListComponent() {
-    }
+define(['module', 'exports',
+        '@angular/core',
+        './list.service'],
+    function (module, exports, ngCore, listService) {
+        function ListComponent(listService) {
+            this.listService = listService;
+        }
 
-    ListComponent.annotations = [
-        new ngCore.Component({
-            moduleId: module.id,
-            selector: 'list-view',
-            templateUrl: 'list.component.html',
-            styleUrls: ['list.component.css'],
-            inputs: ['route']
-        })
-    ];
+        //noinspection JSUnusedGlobalSymbols
+        ListComponent.prototype.ngOnChanges = function () {
+            this.listService.getListItems({
+                locale: this.route.locale,
+                type: this.route.configuration.type
+            }).then(function (listItems) {
+                this.listItems = listItems;
+            }.bind(this));
+        };
 
-    exports.ListComponent = ListComponent;
-});
+        ListComponent.annotations = [
+            new ngCore.Component({
+                moduleId: module.id,
+                selector: 'list-view',
+                templateUrl: 'list.component.html',
+                styleUrls: ['list.component.css'],
+                inputs: ['route']
+            })
+        ];
+
+        ListComponent.parameters = [
+            listService.ListService
+        ];
+
+        exports.ListComponent = ListComponent;
+    });

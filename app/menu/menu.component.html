@@ -1,15 +1,20 @@
-<div *ngIf="rootItem">
-    <h1><a [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
-</div>
-<div class="menu" *ngIf="rootItem">
-    <div *ngFor="let menuLocale of rootItem.subItems" class="menu-block">
-        <a *ngIf="localeService.getSelectedLang() !== menuLocale.locale"
-           [routerLink]="menuLocale.routeLink"
-           routerLinkActive="active">{{menuLocale.title}}</a>
-        <div *ngIf="localeService.getSelectedLang() === menuLocale.locale" class="menu-block">
-            <a *ngFor="let menuItem of menuLocale.subItems"
-               [routerLink]="menuItem.routeLink"
-               routerLinkActive="active">{{menuItem.title}}</a>
+<div class="appMenu">
+    <div *ngIf="rootItem">
+        <h1><a [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
+    </div>
+    <div class="sizer"></div>
+    <div class="menu" *ngIf="rootItem">
+        <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.locale" class="menu-block">
+            <div class="sizer"></div>
+            <a *ngIf="localeService.getSelectedLang() !== menuLocale.locale"
+               [routerLink]="menuLocale.routeLink"
+               routerLinkActive="active">{{menuLocale.title}}</a>
+            <div *ngIf="localeService.getSelectedLang() === menuLocale.locale" class="menu-block">
+                <div class="sizer"></div>
+                <a *ngFor="let menuItem of menuLocale.subItems"
+                   [routerLink]="menuItem.routeLink"
+                   routerLinkActive="active">{{menuItem.title}}</a>
+            </div>
         </div>
     </div>
 </div>
