@@ -3,7 +3,8 @@ define(['exports'],
         var praceSK = {
             title: 'Práce',
             url: 'projects',
-            type: 'projectsView',
+            type: 'projects',
+            paramsSize: 1,
             config: {
                 type: 'projects'
             }
@@ -12,7 +13,7 @@ define(['exports'],
         var mediaSK = {
             title: 'Médiá',
             url: 'media',
-            type: 'projectsView',
+            type: 'list',
             config: {
                 type: 'media'
             }
@@ -52,7 +53,8 @@ define(['exports'],
         var praceAT = {
             title: 'Arbeit',
             url: 'projects',
-            type: 'projectsView',
+            type: 'projects',
+            paramsSize: 1,
             config: {
                 type: 'projects'
             }
@@ -61,7 +63,7 @@ define(['exports'],
         var mediaAT = {
             title: 'Medien',
             url: 'media',
-            type: 'projectsView',
+            type: 'list',
             config: {
                 type: 'media'
             }

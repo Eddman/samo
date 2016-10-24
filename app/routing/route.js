@@ -23,6 +23,7 @@ define(['exports'], function (exports) {
     };
 
     Route.prototype.getParametrisedRoute = function () {
+        this.parameters.parent = this;
         return new Route(this.type, this.locale, this.parameters);
     };
 
