@@ -1,16 +1,32 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
-    function DetailComponent() {
-    }
+define(['module',
+        'exports',
+        '@angular/core',
+        './detail.service'],
+    function (module, exports, ngCore, detailService) {
+        function DetailComponent(detailService) {
+            this.detailService = detailService
+        }
 
-    DetailComponent.annotations = [
-        new ngCore.Component({
-            moduleId: module.id,
-            selector: 'detail-view',
-            templateUrl: 'detail.component.html',
-            styleUrls: ['detail.component.css'],
-            inputs: ['route']
-        })
-    ];
+        //noinspection JSUnusedGlobalSymbols
+        DetailComponent.prototype.ngOnInit = function () {
+            this.detailService.getDetail({
+                locale: this.route.locale,
+                type: this.route.configuration.type
+            }).then(function (detail) {
+                this.detail = detail;
+            }.bind(this));
+        };
 
-    exports.DetailComponent = DetailComponent;
-});
+        DetailComponent.annotations = [
+            new ngCore.Component({
+                moduleId: module.id,
+                selector: 'detail-view',
+                templateUrl: 'detail.component.html',
+                inputs: ['route']
+            })
+        ];
+
+        DetailComponent.parameters = [[detailService.DetailService]];
+
+        exports.DetailComponent = DetailComponent;
+    });

@@ -6,3 +6,4 @@
 .idea/typescript-compiler.xml
 .idea/workspace.xml
 node_modules/
+*.css

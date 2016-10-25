@@ -1,8 +1,9 @@
 define(['exports',
         '@angular/core',
         '@angular/platform-browser',
-        './detail.component'],
-    function (exports, ngCore, ngBrowser, detailComponent) {
+        './detail.component',
+        './detail.service'],
+    function (exports, ngCore, ngBrowser, detailComponent, detailService) {
         function DetailModule() {
         }
 
@@ -16,7 +17,8 @@ define(['exports',
                 ],
                 declarations: [
                     detailComponent.DetailComponent
-                ]
+                ],
+                providers: [detailService.DetailService]
             })
         ];
 

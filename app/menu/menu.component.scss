@@ -3,45 +3,44 @@
     display: flex;
     flex-direction: column;
     padding: 0 95px 20px;
-}
 
-h1 {
-    font-size: 14pt;
-    font-weight: normal;
-    margin: 0;
-}
+    h1 {
+        font-size: 14pt;
+        font-weight: normal;
+        margin: 0;
+    }
 
-a {
-    text-decoration: none;
-}
+    a {
+        text-decoration: none;
+    }
 
-.menu {
-    display: flex;
-    flex-grow: 1;
-    flex-wrap: wrap;
-}
+    .sizer {
+        flex-grow: 1;
+    }
 
-.sizer {
-    flex-grow: 1;
-}
+    .menu {
+        display: flex;
+        flex-grow: 1;
+        flex-wrap: wrap;
 
-.menu-block {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
+        .menu-block {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
 
-.menu-block.at {
-    text-align: right;
-}
+            &.at {
+                text-align: right;
+            }
 
-.menu-block a {
-    text-decoration: none;
-    font-size: 10pt;
-    line-height: 15pt;
-}
+            a {
+                font-size: 10pt;
+                line-height: 15pt;
 
-/*noinspection CssUnusedSymbol*/
-a.active {
-    font-weight: bold;
+                /*noinspection CssUnusedSymbol*/
+                &.active {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
 }

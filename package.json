@@ -2,9 +2,12 @@
   "name": "samuel-netocny",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm run lite",
+    "start": "npm run watch",
     "lite": "lite-server",
-    "lite:c": "lite-server --c bs-chrome.json"
+    "lite:c": "lite-server --c bs-chrome.json",
+    "build:sass": "node-sass --output-style expanded ./styles.scss -r -o ./ & node-sass ./app -r -o ./app",
+    "watch:sass": "node-sass --output-style expanded ./ -wr -o ./",
+    "watch": "npm run build:sass & concurrently \"npm run watch:sass\" \"npm run lite:c\""
   },
   "dependencies": {
     "@angular/common": "~2.1.0",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.0.0",
-    "lite-server": "^2.2.2"
+    "lite-server": "^2.2.2",
+    "node-sass": "^3.10.1"
   }
 }

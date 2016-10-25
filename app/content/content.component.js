@@ -8,35 +8,35 @@ define(['module', 'exports', '@angular/core'], function (module, exports, ngCore
     };
 
     ContentComponent.prototype.isColumnsText = function () {
-        if(typeof this.contentPart === 'object') {
+        if (typeof this.contentPart === 'object') {
             return this.contentPart.columns;
         }
         return false;
     };
 
     ContentComponent.prototype.isExternalLink = function () {
-        if(typeof this.contentPart === 'object') {
+        if (typeof this.contentPart === 'object') {
             return this.contentPart.url;
         }
         return false;
     };
 
     ContentComponent.prototype.isInternalLink = function () {
-        if(typeof this.contentPart === 'object') {
+        if (typeof this.contentPart === 'object') {
             return this.contentPart.routeLink;
         }
         return false;
     };
 
     ContentComponent.prototype.isImage = function () {
-        if(typeof this.contentPart === 'object') {
+        if (typeof this.contentPart === 'object') {
             return this.contentPart.imageSrc;
         }
         return false;
     };
 
     ContentComponent.prototype.isLineBreak = function () {
-        if(typeof this.contentPart === 'object') {
+        if (typeof this.contentPart === 'object') {
             return this.contentPart.lineBreak;
         }
         return false;

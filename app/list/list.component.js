@@ -21,7 +21,6 @@ define(['module', 'exports',
                 moduleId: module.id,
                 selector: 'list-view',
                 templateUrl: 'list.component.html',
-                styleUrls: ['list.component.css'],
                 inputs: ['route']
             })
         ];

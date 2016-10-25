@@ -31,7 +31,7 @@ define(['exports',
                         for (i = 0; i < routeParams.length; i++) {
                             if (!config.routes) {
                                 params = routeParams.slice(i);
-                                if(config.paramsSize === params.length) {
+                                if (config.paramsSize === params.length) {
                                     resolve(routeClass.Route.forParameters(config.type, locale,
                                         config.config, params));
                                     return;

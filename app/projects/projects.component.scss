@@ -1,35 +1,40 @@
 .grid {
     display: flex;
     flex-wrap: wrap;
-}
 
-.thumbnail {
-    flex-grow: 1;
-    max-width: 250px;
-    box-sizing: border-box;
+    .thumbnail {
+        flex-grow: 1;
+        max-width: 250px;
+        box-sizing: border-box;
 
-    padding: 5px;
-}
+        padding: 5px;
 
-.thumbnail img {
-    transition: opacity 300ms;
-    width: 100%;
-}
+        img, .title {
+            transition: opacity 300ms;
+        }
 
-.thumbnail .title {
-    opacity: 0;
-    transition: opacity 300ms;
+        img {
 
-    position: absolute;
-    font-weight: bold;
-    margin: 10px;
-    z-index: 1;
-}
+            width: 100%;
+        }
 
-.thumbnail:hover img {
-    opacity: 0.2;
-}
+        .title {
+            opacity: 0;
 
-.thumbnail:hover .title {
-    opacity: 1;
+            position: absolute;
+            font-weight: bold;
+            margin: 10px;
+            z-index: 1;
+        }
+
+        &:hover {
+            img {
+                opacity: 0.2;
+            }
+
+            .title {
+                opacity: 1;
+            }
+        }
+    }
 }
