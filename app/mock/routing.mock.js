@@ -11,11 +11,11 @@ define(['exports'],
         };
 
         var mediaSK = {
-            title: 'Médiá',
-            url: 'media',
+            title: 'News',
+            url: 'news',
             type: 'list',
             config: {
-                type: 'media'
+                type: 'news'
             }
         };
 
@@ -61,11 +61,11 @@ define(['exports'],
         };
 
         var mediaAT = {
-            title: 'Medien',
-            url: 'media',
+            title: 'News',
+            url: 'news',
             type: 'list',
             config: {
-                type: 'media'
+                type: 'news'
             }
         };
 

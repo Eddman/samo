@@ -1,7 +1,7 @@
 define(['exports'],
     function (exports) {
         exports.listItems = {
-            'media': {
+            'news': {
                 'sk': [
                     {
                         title: 'SME.sk',
