@@ -1,1 +1,16 @@
-<img src="https://4.bp.blogspot.com/-cURG2W35e44/V_tVxvCf3MI/AAAAAAAAB28/0SBPYW2TeCU19jgB9Lijm1rh-xNVeCzFgCPcB/s1600/Samuel%2BNetocny_Kaplnka_Okt_Blog_02.jpg"/>
+<kb-page-slider [overlayIndicator]="true" dotColor="black"
+                [(page)]="pageNumber">
+
+    <!-- Pages -->
+    <div *kbPages="let page of pages" [style.background]="page.image"></div>
+
+    <!-- Navigation Buttons -->
+    <kb-nav-button backward [showBackground]="false"
+                   [(page)]="pageNumber" [pageCount]="pageCount">
+    </kb-nav-button>
+
+    <kb-nav-button forward [showBackground]="false"
+                   [(page)]="pageNumber" [pageCount]="pageCount">
+    </kb-nav-button>
+
+</kb-page-slider>

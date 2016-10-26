@@ -38,13 +38,8 @@ body {
     }
 
     /*noinspection CssInvalidHtmlTagReference*/
-    ng-component, slider-view, projects-view, detail-view, list-view {
+    ng-component, slider-view, projects-view, detail-view, list-view, content {
         display: block;
-    }
-
-    /*noinspection CssInvalidHtmlTagReference*/
-    content-part {
-        display: inline;
     }
 
     .sizer {

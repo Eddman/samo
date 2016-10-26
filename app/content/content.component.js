@@ -1,54 +1,16 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
+define(['module', 'exports', '@angular/core', './content'], function (module, exports, ngCore, content) {
     function ContentComponent() {
-        this.contentPart = undefined;
+        this.contentParts = undefined;
+        this.types = content.contentPartsTypes;
     }
-
-    ContentComponent.prototype.isString = function () {
-        return typeof this.contentPart === 'string';
-    };
-
-    ContentComponent.prototype.isColumnsText = function () {
-        if (typeof this.contentPart === 'object') {
-            return this.contentPart.columns;
-        }
-        return false;
-    };
-
-    ContentComponent.prototype.isExternalLink = function () {
-        if (typeof this.contentPart === 'object') {
-            return this.contentPart.url;
-        }
-        return false;
-    };
-
-    ContentComponent.prototype.isInternalLink = function () {
-        if (typeof this.contentPart === 'object') {
-            return this.contentPart.routeLink;
-        }
-        return false;
-    };
-
-    ContentComponent.prototype.isImage = function () {
-        if (typeof this.contentPart === 'object') {
-            return this.contentPart.imageSrc;
-        }
-        return false;
-    };
-
-    ContentComponent.prototype.isLineBreak = function () {
-        if (typeof this.contentPart === 'object') {
-            return this.contentPart.lineBreak;
-        }
-        return false;
-    };
 
     ContentComponent.annotations = [
         new ngCore.Component({
             moduleId: module.id,
-            selector: 'content-part',
+            selector: 'content',
             templateUrl: 'content.component.html',
             styleUrls: ['content.component.css'],
-            inputs: ['contentPart']
+            inputs: ['contentParts']
         })
     ];
 

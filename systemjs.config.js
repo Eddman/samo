@@ -3,6 +3,8 @@
  * Adjust as necessary for your application needs.
  */
 (function () {
+    System.import('node_modules/ng2-page-slider/ng2-page-slider.js');
+
     //noinspection ES6ModulesDependencies
     System.config({
         paths: {

@@ -1,6 +1,4 @@
 <div *ngFor="let listItem of listItems">
     <h2><a [href]="listItem.externalURL">{{listItem.title}}</a></h2>
-    <p>
-        <content-part *ngFor="let contentPart of listItem.content" [contentPart]="contentPart"></content-part>
-    </p>
+    <content [contentParts]="listItem.content"></content>
 </div>

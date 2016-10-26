@@ -2,15 +2,17 @@ define(['exports',
         '@angular/core',
         '@angular/platform-browser',
         './detail.component',
-        './detail.service'],
-    function (exports, ngCore, ngBrowser, detailComponent, detailService) {
+        './detail.service',
+        '../content/content.module'],
+    function (exports, ngCore, ngBrowser, detailComponent, detailService, contentModule) {
         function DetailModule() {
         }
 
         DetailModule.annotations = [
             new ngCore.NgModule({
                 imports: [
-                    ngBrowser.BrowserModule
+                    ngBrowser.BrowserModule,
+                    contentModule.ContentComponent
                 ],
                 exports: [
                     detailComponent.DetailComponent

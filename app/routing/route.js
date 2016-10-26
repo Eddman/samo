@@ -6,13 +6,8 @@ define(['exports'], function (exports) {
     }
 
     Route.forParameters = function (type, locale, configuration, parameters) {
-        var route = new Route(type, locale, configuration), params = {pathParams: parameters}, conf;
-        for (conf in configuration) {
-            if (configuration.hasOwnProperty(conf)) {
-                params[conf] = configuration[conf];
-            }
-        }
-        route.parameters = params;
+        var route = new Route(type, locale, configuration);
+        route.parameters = parameters;
         return route;
     };
 
@@ -20,11 +15,6 @@ define(['exports'], function (exports) {
         var redirection = new Route();
         redirection.redirectPath = redirectPath;
         return redirection;
-    };
-
-    Route.prototype.getParametrisedRoute = function () {
-        this.parameters.parent = this;
-        return new Route(this.type, this.locale, this.parameters);
     };
 
     exports.Route = Route;

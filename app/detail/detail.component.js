@@ -8,10 +8,11 @@ define(['module',
         }
 
         //noinspection JSUnusedGlobalSymbols
-        DetailComponent.prototype.ngOnInit = function () {
+        DetailComponent.prototype.ngOnChanges = function () {
             this.detailService.getDetail({
                 locale: this.route.locale,
-                type: this.route.configuration.type
+                type: this.route.configuration.type,
+                parameters: this.route.parameters
             }).then(function (detail) {
                 this.detail = detail;
             }.bind(this));
