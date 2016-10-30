@@ -12,12 +12,17 @@ define(['module',
 
         //noinspection JSUnusedGlobalSymbols
         SliderComponent.prototype.ngOnChanges = function () {
+            clearInterval(this.timeout);
             this.sliderService.getSlides({
                 images: this.route.configuration.images
             }).then(function (slides) {
                 this.pages = slides;
                 this.pageNumber = 0;
                 this.pageCount = this.pages.length;
+
+                this.timeout = setInterval(function () {
+                    this.pageNumber = (this.pageNumber + 1 ) % this.pageCount;
+                }.bind(this), 3000);
             }.bind(this));
         };
 
