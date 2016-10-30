@@ -1,7 +1,6 @@
 define(['exports',
-        '@angular/core',
         '../mock/details.mock'],
-    function (exports, ngCore, mockDetails) {
+    function (exports, mockDetails) {
         function DetailService() {
             this.details = mockDetails.details;
         }
@@ -10,7 +9,7 @@ define(['exports',
             var k, detailsTree = this.details[config.type][config.locale];
             if (config.parameters) {
                 for (k in config.parameters) {
-                    if(config.parameters.hasOwnProperty(k)) {
+                    if (config.parameters.hasOwnProperty(k)) {
                         detailsTree = detailsTree[config.parameters[k]];
                     }
                 }

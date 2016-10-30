@@ -1,8 +1,11 @@
-<kb-page-slider [overlayIndicator]="true" dotColor="black"
+<kb-page-slider *ngIf="pages"
+                [overlayIndicator]="true" dotColor="black"
                 [(page)]="pageNumber">
 
     <!-- Pages -->
-    <div *kbPages="let page of pages" [style.background]="page.image"></div>
+    <div *kbPages="let page of pages">
+        <img [src]="page.url">
+    </div>
 
     <!-- Navigation Buttons -->
     <kb-nav-button backward [showBackground]="false"

@@ -3,18 +3,22 @@ define(['module',
         '@angular/core',
         'src/components/render.component',
         'src/components/pageslider.component',
-        'src/components/navbutton.component'],
-    function (module, exports, ngCore, ngSliderRender, ngSliderComponent, ngSliderButtons) {
-        function SliderComponent() {
+        'src/components/navbutton.component',
+        './slider.service'],
+    function (module, exports, ngCore, ngSliderRender, ngSliderComponent, ngSliderButtons, sliderService) {
+        function SliderComponent(sliderService) {
+            this.sliderService = sliderService;
         }
 
-        SliderComponent.prototype.ngOnChanges = function() {
-            this.pages = [
-                {image: "black"},
-                {image: "red"}
-            ];
-            this.pageNumber = 0;
-            this.pageCount = this.pages.length;
+        //noinspection JSUnusedGlobalSymbols
+        SliderComponent.prototype.ngOnChanges = function () {
+            this.sliderService.getSlides({
+                images: this.route.configuration.images
+            }).then(function (slides) {
+                this.pages = slides;
+                this.pageNumber = 0;
+                this.pageCount = this.pages.length;
+            }.bind(this));
         };
 
         SliderComponent.annotations = [
@@ -30,6 +34,7 @@ define(['module',
                 inputs: ['route']
             })
         ];
+        SliderComponent.parameters = [[sliderService.SliderService]];
 
         exports.SliderComponent = SliderComponent;
     });

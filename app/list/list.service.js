@@ -1,7 +1,6 @@
 define(['exports',
-        '@angular/core',
         '../mock/lists.mock'],
-    function (exports, ngCore, mockLists) {
+    function (exports, mockLists) {
         function ListService() {
             this.listItems = mockLists.listItems;
         }

@@ -2,8 +2,9 @@ define(['exports',
         '@angular/core',
         '@angular/platform-browser',
         'index',
-        './slider.component'],
-    function (exports, ngCore, ngBrowser, ngSlider, sliderComponent) {
+        './slider.component',
+        './slider.service'],
+    function (exports, ngCore, ngBrowser, ngSlider, sliderComponent, sliderService) {
         function SliderModule() {
         }
 
@@ -18,6 +19,9 @@ define(['exports',
                 ],
                 declarations: [
                     sliderComponent.SliderComponent
+                ],
+                providers: [
+                    sliderService.SliderService
                 ]
             })
         ];

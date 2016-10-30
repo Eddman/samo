@@ -1,3 +1,17 @@
 kb-page-slider {
+
     height: 600px;
+
+    div {
+        width: 100%;
+        img {
+            width: 100%;
+        }
+    }
+
+    kb-dot-indicator {
+        .dot {
+            background: white;
+        }
+    }
 }

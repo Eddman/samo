@@ -1,7 +1,6 @@
 define(['exports',
-        '@angular/core',
         '../mock/projects.mock'],
-    function (exports, ngCore, mockProjects) {
+    function (exports, mockProjects) {
         function ProjectsService() {
             this.projects = mockProjects.projects;
         }
