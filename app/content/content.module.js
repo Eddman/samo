@@ -2,8 +2,10 @@ define(['exports',
         '@angular/core',
         '@angular/platform-browser',
         '@angular/router',
-        './content.component'],
-    function (exports, ngCore, ngBrowser, ngRouter, contentComponent) {
+        './content.component',
+        './img.directive',
+        './columns.directive'],
+    function (exports, ngCore, ngBrowser, ngRouter, contentComponent, imgDirective, columnsDirective) {
         function ContentComponent() {
         }
 
@@ -17,7 +19,7 @@ define(['exports',
                     contentComponent.ContentComponent
                 ],
                 declarations: [
-                    contentComponent.ContentComponent
+                    contentComponent.ContentComponent, imgDirective.ImageDirective, columnsDirective.ColumnsDirective
                 ]
             })
         ];

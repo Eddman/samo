@@ -6,6 +6,46 @@ define(['module',
         'src/components/navbutton.component',
         './slider.service'],
     function (module, exports, ngCore, ngSliderRender, ngSliderComponent, ngSliderButtons, sliderService) {
+
+        Object.defineProperty(ngSliderComponent.KBPageSliderComponent.prototype, "page", {
+            get: function () {
+                return (this.renderer) ? this.renderer.page : 0;
+            },
+            // PUBLIC INTERFACE =====================================================================
+            set: function (pn) {
+                if (pn < 0 || pn >= this.pageCount)
+                    return;
+                if (pn == this.renderer.page)
+                    return;
+                if (this.renderer) {
+                    if (pn == this.renderer.page + 1) {
+                        if (this.blockInteraction) {
+                            this.pageChange.emit(this.page);
+                            return;
+                        }
+                        this.AnimateToNextPage();
+                    }
+                    else if (pn == this.renderer.page - 1) {
+                        if (this.blockInteraction) {
+                            this.pageChange.emit(this.page);
+                            return;
+                        }
+                        this.AnimateToPreviousPage();
+                    }
+                    else {
+                        if (this.blockInteraction) {
+                            this.pageChange.emit(this.page);
+                            return;
+                        }
+
+                        this.renderer.page = pn;
+                        this.pageChange.emit(pn);
+                    }
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
         function SliderComponent(sliderService) {
             this.sliderService = sliderService;
         }
@@ -51,14 +91,16 @@ define(['module',
 
                 // Speedup transitions
                 this.transitionDuration = this.transitionDuration / 10;
-            }
 
-            this.pageNumber--;
-            if (this.pageNumber != 0) {
                 setTimeout(this.moveToFirst.bind(this), this.transitionDuration * 1.5);
             } else {
-                // Restart auto-slide
-                this.startAutoSlide();
+                this.pageNumber--;
+                if (this.pageNumber != 0) {
+                    setTimeout(this.moveToFirst.bind(this), this.transitionDuration * 1.5);
+                } else {
+                    // Restart auto-slide
+                    this.startAutoSlide();
+                }
             }
         };
 
@@ -72,6 +114,11 @@ define(['module',
                     delete this.interval;
                 }
             }
+        };
+
+        SliderComponent.prototype.ngOnDestroy = function () {
+            // Pause sliding
+            this.startAutoSlide(false);
         };
 
         SliderComponent.annotations = [

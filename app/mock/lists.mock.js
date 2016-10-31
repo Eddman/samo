@@ -27,7 +27,6 @@ define(['exports', '../content/content'],
                             'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
                             ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
                             ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus ' +
                             'nulla, vestibulum in elit a, eleifend imperdiet enim. Duis scelerisque justo ac ligula ' +
                             'dignissim, ut varius purus rutrum. Donec vel felis sed nulla euismod mollis. Phasellus ' +
@@ -35,7 +34,6 @@ define(['exports', '../content/content'],
                             ' erat et mi efficitur venenatis. Praesent laoreet commodo erat eget lobortis. Donec id ' +
                             'cursus nisi.',
                             2),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Aliquam in malesuada sapien, et venenatis eros. Phasellus ut sem sit amet ' +
                             'dui facilisis pharetra. Duis scelerisque nec sapien id malesuada. Nulla tortor urna, ' +
                             'fringilla at eros eget, pulvinar gravida ante. Pellentesque ut eleifend urna. Sed venenatis,' +
@@ -46,7 +44,6 @@ define(['exports', '../content/content'],
                             'vitae viverra et, fringilla condimentum lectus. Duis ut quam sit amet eros gravida vehicula ' +
                             'a nec ligula.',
                             3),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Praesent quam ipsum, interdum a aliquet et, tincidunt eget tellus. ' +
                             'Aliquam molestie ex ac neque tristique, vel mattis elit sollicitudin. Integer imperdiet' +
                             ' libero vel lacus lobortis, vel laoreet leo pretium. Duis imperdiet dictum neque quis ' +
@@ -55,7 +52,6 @@ define(['exports', '../content/content'],
                             'porttitor ut eget nisl. Praesent quis tellus lacinia, ullamcorper velit non, viverra dui. ' +
                             'Morbi tempus neque sit amet pellentesque porta.',
                             2),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Nam nulla eros, suscipit quis pretium et, elementum in ante. Sed tincidunt' +
                             ' id erat in pretium. Sed molestie at velit nec auctor. Curabitur a risus at justo consequat' +
                             ' congue. Donec finibus, magna nec euismod rutrum, ante dui laoreet lectus, a sollicitudin ' +
@@ -66,7 +62,6 @@ define(['exports', '../content/content'],
                             'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
                             ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
                             ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Morbi convallis, augue vitae dapibus pellentesque, velit mauris vehicula' +
                             ' metus, vel dignissim dui lacus et elit. Suspendisse potenti. Cras nec justo et metus feugiat' +
                             ' cursus sed sed velit. Nunc pulvinar justo sed vulputate rhoncus. Cras varius sit amet ' +
@@ -97,10 +92,9 @@ define(['exports', '../content/content'],
                             'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
                             ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
                             ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forLineBreak(),
                         ContentPart.forImage('https://3.bp.blogspot.com/-qptznv7BBbM/Vx0y98Fo3_I/AAAAAAAABok/ciFbTYuTOBgp' +
-                            'Gkfg6RxyhPjPEmbQMFChwCKgB/s320-p/Samuel%2BNetocny_dom%2Bspisska%2Bnova%2Bves06.jpg'),
-                        ContentPart.forLineBreak(),
+                            'Gkfg6RxyhPjPEmbQMFChwCKgB/s320-p/Samuel%2BNetocny_dom%2Bspisska%2Bnova%2Bves06.jpg',
+                            '', 'right'),
                         ContentPart.forText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus ' +
                             'nulla, vestibulum in elit a, eleifend imperdiet enim. Duis scelerisque justo ac ligula ' +
                             'dignissim, ut varius purus rutrum. Donec vel felis sed nulla euismod mollis. Phasellus ' +
@@ -108,7 +102,6 @@ define(['exports', '../content/content'],
                             ' erat et mi efficitur venenatis. Praesent laoreet commodo erat eget lobortis. Donec id ' +
                             'cursus nisi.',
                             2),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Aliquam in malesuada sapien, et venenatis eros. Phasellus ut sem sit amet ' +
                             'dui facilisis pharetra. Duis scelerisque nec sapien id malesuada. Nulla tortor urna, ' +
                             'fringilla at eros eget, pulvinar gravida ante. Pellentesque ut eleifend urna. Sed venenatis,' +
@@ -119,7 +112,6 @@ define(['exports', '../content/content'],
                             'vitae viverra et, fringilla condimentum lectus. Duis ut quam sit amet eros gravida vehicula ' +
                             'a nec ligula.',
                             3),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Praesent quam ipsum, interdum a aliquet et, tincidunt eget tellus. ' +
                             'Aliquam molestie ex ac neque tristique, vel mattis elit sollicitudin. Integer imperdiet' +
                             ' libero vel lacus lobortis, vel laoreet leo pretium. Duis imperdiet dictum neque quis ' +
@@ -128,7 +120,6 @@ define(['exports', '../content/content'],
                             'porttitor ut eget nisl. Praesent quis tellus lacinia, ullamcorper velit non, viverra dui. ' +
                             'Morbi tempus neque sit amet pellentesque porta.',
                             2),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Nam nulla eros, suscipit quis pretium et, elementum in ante. Sed tincidunt' +
                             ' id erat in pretium. Sed molestie at velit nec auctor. Curabitur a risus at justo consequat' +
                             ' congue. Donec finibus, magna nec euismod rutrum, ante dui laoreet lectus, a sollicitudin ' +
@@ -139,7 +130,6 @@ define(['exports', '../content/content'],
                             'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
                             ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
                             ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                         ContentPart.forText('Morbi convallis, augue vitae dapibus pellentesque, velit mauris vehicula' +
                             ' metus, vel dignissim dui lacus et elit. Suspendisse potenti. Cras nec justo et metus feugiat' +
                             ' cursus sed sed velit. Nunc pulvinar justo sed vulputate rhoncus. Cras varius sit amet ' +

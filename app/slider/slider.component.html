@@ -1,8 +1,7 @@
 <kb-page-slider *ngIf="pages"
                 [overlayIndicator]="true" dotColor="white"
                 [(page)]="pageNumber"
-                [transitionDuration]="transitionDuration"
-                (scrollState)="pauseAutoSlide($event)">
+                [transitionDuration]="transitionDuration">
 
     <!-- Pages -->
     <div *kbPages="let page of pages">

@@ -26,9 +26,7 @@ define(['module', 'exports',
             })
         ];
 
-        ProjectsComponent.parameters = [
-            projectService.ProjectsService
-        ];
+        ProjectsComponent.parameters = [[projectService.ProjectsService]];
 
         exports.ProjectsComponent = ProjectsComponent;
     });

@@ -1,9 +1,14 @@
-.columns {
-    display: block;
-}
-
 img {
-    margin: 10px;
+
+    &.floatLeft {
+        float: left;
+        margin-right: 10px;
+    }
+
+    &.floatRight {
+        float: right;
+        margin-left: 10px;
+    }
 }
 
 * {
