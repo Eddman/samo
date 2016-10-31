@@ -105,7 +105,9 @@ define(['exports'],
             title: 'SAMUEL NETOČNÝ, architekt',
             type: 'slider',
             config: {
-                images: 'home'
+                images: 'home',
+                duration: 2000,
+                autoSlide: 3000
             },
             routes: [
                 sk,
