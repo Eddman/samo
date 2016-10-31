@@ -106,8 +106,8 @@ define(['exports'],
             type: 'slider',
             config: {
                 images: 'home',
-                duration: 2000,
-                autoSlide: 3000
+                duration: 500,
+                autoSlide: 5000
             },
             routes: [
                 sk,
