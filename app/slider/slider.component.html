@@ -1,7 +1,9 @@
+<img *ngIf="pages" [src]="pages[0].url" #pageHeightDetector style="visibility: hidden">
 <kb-page-slider *ngIf="pages"
                 [(page)]="pageNumber"
                 (pageChange)="startAutoSlide(false); startAutoSlide()"
-                [transitionDuration]="transitionDuration">
+                [transitionDuration]="transitionDuration"
+                [style.height]="pageHeightDetector.scrollHeight">
 
     <!-- Pages -->
     <div *kbPages="let page of pages">
@@ -16,5 +18,4 @@
     <kb-nav-button forward [showBackground]="false"
                    [(page)]="pageNumber" [pageCount]="pageCount">
     </kb-nav-button>
-
 </kb-page-slider>
