@@ -1,6 +1,6 @@
 <kb-page-slider *ngIf="pages"
-                [overlayIndicator]="true" dotColor="white"
                 [(page)]="pageNumber"
+                (pageChange)="startAutoSlide(false); startAutoSlide()"
                 [transitionDuration]="transitionDuration">
 
     <!-- Pages -->
