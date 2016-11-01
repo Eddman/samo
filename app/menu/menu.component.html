@@ -9,12 +9,11 @@
             <a *ngIf="localeService.getSelectedLang() !== menuLocale.locale"
                [routerLink]="menuLocale.routeLink"
                routerLinkActive="active">{{menuLocale.title}}</a>
-            <div *ngIf="localeService.getSelectedLang() === menuLocale.locale" class="menu-block">
-                <div class="sizer"></div>
+            <template [ngIf]="localeService.getSelectedLang() === menuLocale.locale">
                 <a *ngFor="let menuItem of menuLocale.subItems"
                    [routerLink]="menuItem.routeLink"
                    routerLinkActive="active">{{menuItem.title}}</a>
-            </div>
+            </template>
         </div>
     </div>
 </div>
