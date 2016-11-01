@@ -52,6 +52,30 @@ define(['exports',
             configurable: true
         });
 
+        // Auto size heigth
+        Object.defineProperty(ngSliderComponent.KBPageSliderComponent.prototype, "pageHeight", {
+            get: function () {
+                var fullHeight = this.element.nativeElement.offsetHeight;
+                var chin = (this.showIndicator && !this.overlayIndicator) ? 20 : 0;
+                if(!this.firstImage && this.renderer.collection) {
+                    this.firstImage = new Image();
+                    this.firstImage.onload = function() {
+                        this.Resize();
+                        this.renderer.Resize(this.pageWidth, this.pageHeight);
+                    }.bind(this);
+                    this.firstImage.src = this.renderer.collection[0].url;
+
+                } else if(this.firstImage) {
+                    this.element.nativeElement.style.height = (this.firstImage.height
+                        * this.element.nativeElement.offsetWidth) / this.firstImage.width + 'px';
+                    fullHeight = this.element.nativeElement.offsetHeight;
+                }
+                return fullHeight - chin;
+            },
+            enumerable: true,
+            configurable: true
+        });
+
         function SliderModule() {
         }
 

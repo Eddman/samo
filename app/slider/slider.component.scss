@@ -1,11 +1,51 @@
-kb-page-slider {
+@import "../../global";
 
-    //height: 600px;
+@mixin definition($dot_size, $title_size, $title_offset) {
 
-    div {
-        width: 100%;
-        img {
-            width: 100%;
+    kb-page-slider {
+        div.page {
+            img {
+                width: 100%;
+            }
+
+            .title {
+                font-size: $title_size;
+                color: white;
+                position: absolute;
+                bottom: $title_offset;
+                left: $title_offset;
+            }
+        }
+
+        /deep/ {
+            kb-dot-indicator {
+                bottom: 1vmax !important;
+
+                .dot {
+                    width: $dot_size;
+                    height: $dot_size;
+                    border-radius: $dot_size / 2;
+                    margin: 0 $dot_size / 3;
+                }
+            }
         }
     }
+}
+
+$dot_size_original: 6px;
+$title_size_original: 16px;
+
+@include definition($dot_size_original, $title_size_original,
+        $dot_size_original / 3 + $title_size_original);
+
+$screen_width: ($optimal_width + ($page_margin_side * 2));
+@media only screen and (max-width: $screen_width) {
+    $dot_size: ($dot_size_original / $screen_width) * 100;
+    $title_size: ($title_size_original / $screen_width) * 100;
+
+    @include definition(
+                    $dot_size + vw,
+                    $title_size + vw,
+                    $dot_size / 3 + $title_size + vw
+    );
 }

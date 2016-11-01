@@ -1,3 +1,5 @@
+@import "global";
+
 @font-face {
     font-family: 'HelveticaNeue';
     src: url('fonts/HelveticaNeueBold.eot');
@@ -23,7 +25,7 @@
 }
 
 body {
-    margin: 40px 15px 0;
+    margin: $page_margin_top $page_margin_side $page_margin_bottom;
     display: flex;
 
     * {
@@ -45,15 +47,15 @@ body {
     .sizer {
         flex: 1;
 
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: $optimal_width + ($page_margin_side * 2)) {
             display: none;
         }
     }
 
     samuel-netocny {
         flex: 2;
-        min-width: 900px;
-        @media only screen and (max-width: 900px) {
+        min-width: $optimal_width;
+        @media only screen and (max-width: $optimal_width + ($page_margin_side * 2)) {
             min-width: 0;
         }
     }
