@@ -1,8 +1,6 @@
 .idea/compiler.xml
 .idea/copyright/
-.idea/jsLibraryMappings.xml
 .idea/misc.xml
-.idea/typescript-compiler.xml
 .idea/workspace.xml
 node_modules/
 *.css
