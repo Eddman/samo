@@ -1,6 +1,8 @@
 define(['module', 'exports', '@angular/core', './content'], function (module, exports, ngCore, content) {
+    'use strict';
+
     function ContentComponent() {
-        this.contentParts = undefined;
+        //noinspection JSUnusedGlobalSymbols
         this.types = content.contentPartsTypes;
     }
 

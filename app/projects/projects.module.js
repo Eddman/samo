@@ -1,19 +1,17 @@
 define(['exports',
         '@angular/core',
-        '@angular/platform-browser',
-        '@angular/router',
         './projects.component',
         './projects.service',
         '../detail/detail.module'],
-    function (exports, ngCore, ngBrowser, ngRouter, projectsComponent, projectsService, detailModule) {
+    function (exports, ngCore, projectsComponent, projectsService, detailModule) {
+        'use strict';
+
         function ProjectsModule() {
         }
 
         ProjectsModule.annotations = [
             new ngCore.NgModule({
                 imports: [
-                    ngBrowser.BrowserModule,
-                    ngRouter.RouterModule,
                     detailModule.DetailModule
                 ],
                 exports: [

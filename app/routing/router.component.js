@@ -6,6 +6,8 @@ define([
         './routing.service'
     ],
     function (module, exports, ngCore, ngRouter, localeService, routingService) {
+        'use strict';
+
         function RouterComponent(router, route, localeService, routingService) {
             this.router = router;
             this.route = route;
@@ -19,12 +21,10 @@ define([
         };
 
         RouterComponent.prototype.processRoute = function (pathParams) {
-            var p, params = [];
-            for (p in pathParams) {
-                if (pathParams.hasOwnProperty(p)) {
-                    params.push(pathParams[p]);
-                }
-            }
+            var params = [];
+            Object.keys(pathParams).forEach(function (p) {
+                params.push(pathParams[p]);
+            });
             this.routingService.getRouteConfig(params).then(
                 function (route) {
                     this.localeService.setSelectedLang(route.locale);
@@ -36,7 +36,7 @@ define([
                 function () {
                     this.router.navigate(['/']);
                 }.bind(this)
-            )
+            );
         };
 
         RouterComponent.annotations = [

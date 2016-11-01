@@ -1,5 +1,7 @@
 define(['exports', '../content/content'],
     function (exports, content) {
+        'use strict';
+
         var ContentPart = content.ContentPart,
             news = [
                 {
@@ -144,5 +146,5 @@ define(['exports', '../content/content'],
                 'sk': news,
                 'at': news
             }
-        }
+        };
     });

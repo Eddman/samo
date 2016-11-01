@@ -1,8 +1,11 @@
 define(['exports'],
     function (exports) {
+        'use strict';
+
         function LocaleService() {
         }
 
+        //noinspection JSUnusedGlobalSymbols
         LocaleService.prototype.getSelectedLang = function () {
             return this.selectedLang;
         };

@@ -1,19 +1,20 @@
 define(['exports',
         '../mock/details.mock'],
     function (exports, mockDetails) {
+        'use strict';
+
         function DetailService() {
             this.details = mockDetails.details;
         }
 
         DetailService.prototype.getDetail = function (config) {
-            var k, detailsTree = this.details[config.type][config.locale];
+            var detailsTree = this.details[config.type][config.locale];
             if (config.parameters) {
-                for (k in config.parameters) {
-                    if (config.parameters.hasOwnProperty(k)) {
-                        detailsTree = detailsTree[config.parameters[k]];
-                    }
-                }
+                Object.keys(config.parameters).forEach(function (k) {
+                    detailsTree = detailsTree[config.parameters[k]];
+                });
             }
+            //noinspection AmdModulesDependencies
             return Promise.resolve(detailsTree);
         };
 

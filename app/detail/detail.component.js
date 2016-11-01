@@ -3,8 +3,10 @@ define(['module',
         '@angular/core',
         './detail.service'],
     function (module, exports, ngCore, detailService) {
+        'use strict';
+
         function DetailComponent(detailService) {
-            this.detailService = detailService
+            this.detailService = detailService;
         }
 
         //noinspection JSUnusedGlobalSymbols

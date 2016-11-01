@@ -3,6 +3,8 @@ define(['module', 'exports',
         '../locale.service',
         '../routing/routing.service'],
     function (module, exports, ngCore, localeService, routingService) {
+        'use strict';
+
         function MenuComponent(localeService, routingService) {
             this.localeService = localeService;
             this.routingService = routingService;

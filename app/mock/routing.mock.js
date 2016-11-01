@@ -1,5 +1,7 @@
 define(['exports'],
     function (exports) {
+        'use strict';
+
         var praceSK = {
             title: 'Práce',
             url: 'projects',

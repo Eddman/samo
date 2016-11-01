@@ -7,6 +7,8 @@ define(['exports',
         './app.component',
         './menu/menu.component'],
     function (exports, ngCore, ngBrowser, localeService, routingService, appRouting, appComponent, menuComponent) {
+        'use strict';
+
         function AppModule() {
         }
 

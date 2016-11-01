@@ -1,5 +1,7 @@
 define(['exports', '../content/content'],
     function (exports, content) {
+        'use strict';
+
         var ContentPart = content.ContentPart,
             dummyContent = [
                 ContentPart.forImage('https://3.bp.blogspot.com/-qptznv7BBbM/Vx0y98Fo3_I/AAAAAAAABok/ciFbTYuTOBgp' +
@@ -117,5 +119,5 @@ define(['exports', '../content/content'],
                     content: dummyContent
                 }
             }
-        }
+        };
     });

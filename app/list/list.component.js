@@ -2,6 +2,8 @@ define(['module', 'exports',
         '@angular/core',
         './list.service'],
     function (module, exports, ngCore, listService) {
+        'use strict';
+
         function ListComponent(listService) {
             this.listService = listService;
         }

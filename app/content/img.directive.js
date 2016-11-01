@@ -1,13 +1,17 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
+define(['exports', '@angular/core'], function (exports, ngCore) {
+    'use strict';
+
     function ImageDirective() {
     }
 
+    //noinspection JSUnusedGlobalSymbols
     ImageDirective.prototype.ngOnInit = function () {
         //noinspection JSUnresolvedVariable
-        if(this.img) {
+        if (this.img) {
             this.floatLeft = false;
             this.floatRight = false;
             if (this.img.float) {
+                //noinspection SwitchStatementWithNoDefaultBranchJS
                 switch (this.img.float) {
                     case 'left':
                         this.floatLeft = true;
@@ -34,7 +38,7 @@ define(['module', 'exports', '@angular/core'], function (module, exports, ngCore
                 '[src]': 'url',
                 '[style.width]': 'width'
             }
-        }),
+        })
     ];
 
     exports.ImageDirective = ImageDirective;

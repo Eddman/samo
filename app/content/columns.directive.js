@@ -1,10 +1,13 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
+define(['exports', '@angular/core'], function (exports, ngCore) {
+    'use strict';
+
     function ColumnsDirective() {
     }
 
+    //noinspection JSUnusedGlobalSymbols
     ColumnsDirective.prototype.ngOnInit = function () {
         //noinspection JSUnresolvedVariable
-        if(this.columns) {
+        if (this.columns) {
             this.columnsCount = this.columns.columns;
         }
     };
@@ -17,7 +20,7 @@ define(['module', 'exports', '@angular/core'], function (module, exports, ngCore
                 '[class.columns]': 'true',
                 '[style.columnCount]': 'columnsCount'
             }
-        }),
+        })
     ];
 
     exports.ColumnsDirective = ColumnsDirective;

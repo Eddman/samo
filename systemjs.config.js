@@ -1,8 +1,9 @@
 /**
- * System configuration for Angular samples
- * Adjust as necessary for your application needs.
+ * System configuration for Angular.
  */
-(function () {
+function initApp() {
+    'use strict';
+
     System.import('node_modules/ng2-page-slider/ng2-page-slider.js');
 
     //noinspection ES6ModulesDependencies
@@ -38,4 +39,5 @@
             }
         }
     });
-})();
+}
+initApp();

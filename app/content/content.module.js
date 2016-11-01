@@ -6,6 +6,8 @@ define(['exports',
         './img.directive',
         './columns.directive'],
     function (exports, ngCore, ngBrowser, ngRouter, contentComponent, imgDirective, columnsDirective) {
+        'use strict';
+
         function ContentComponent() {
         }
 
@@ -16,7 +18,9 @@ define(['exports',
                     ngRouter.RouterModule
                 ],
                 exports: [
-                    contentComponent.ContentComponent
+                    contentComponent.ContentComponent,
+                    ngBrowser.BrowserModule,
+                    ngRouter.RouterModule
                 ],
                 declarations: [
                     contentComponent.ContentComponent, imgDirective.ImageDirective, columnsDirective.ColumnsDirective

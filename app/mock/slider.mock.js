@@ -1,6 +1,6 @@
 define(['exports', '../slider/slide'],
     function (exports, slide) {
-
+        'use strict';
 
         exports.slides = {
             'home': [
@@ -16,5 +16,5 @@ define(['exports', '../slider/slide'],
                 new slide.Slide('http://3.bp.blogspot.com/-LlagJ1So__s/TzGc6zezFWI/AAAAAAAAAmM/jN0b49uFCPs/s1600/' +
                     'netocny_political+satire+09.jpg', 'Politická satira / Political Satire')
             ]
-        }
+        };
     });

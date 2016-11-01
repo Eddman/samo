@@ -1,5 +1,7 @@
 define(['exports'],
     function (exports) {
+        'use strict';
+
         exports.projects = {
             'projects': {
                 'sk': [
@@ -103,5 +105,5 @@ define(['exports'],
                     }
                 ]
             }
-        }
+        };
     });

@@ -1,4 +1,6 @@
 define(['exports'], function (exports) {
+    'use strict';
+
     exports.contentPartsTypes = {
         TEXT: 'text',
         IMAGE: 'image',
@@ -39,7 +41,7 @@ define(['exports'], function (exports) {
 
     ContentPart.forLinkInternal = function (text, pathParts) {
         var contentPart = new ContentPart(exports.contentPartsTypes.LINK_INTERNAL, text);
-        contentPart.routeLink = '/' + [].concat( pathParts ).join('/');
+        contentPart.routeLink = '/' + [].concat(pathParts).join('/');
         return contentPart;
     };
 

@@ -1,21 +1,21 @@
 define(['exports',
         '@angular/core',
-        '@angular/platform-browser',
         '@angular/router',
         './router.component',
         '../slider/slider.module',
         '../projects/projects.module',
         '../detail/detail.module',
         '../list/list.module'],
-    function (exports, ngCore, ngBrowser, ngRouter, routerComponent, sliderModule,
+    function (exports, ngCore, ngRouter, routerComponent, sliderModule,
               projectsModule, detailModule, listModule) {
+        'use strict';
 
         var i, routes = [], path = '';
         routes.push({
             path: path,
             component: routerComponent.RouterComponent
         });
-        for (i = 0; i <= 10; i++) {
+        for (i = 0; i <= 10; i += 1) {
             path += ':p' + i;
             routes.push({
                 path: path,
@@ -30,7 +30,6 @@ define(['exports',
         AppRoutingModule.annotations = [
             new ngCore.NgModule({
                 imports: [
-                    ngBrowser.BrowserModule,
                     ngRouter.RouterModule.forRoot(routes),
                     sliderModule.SliderModule,
                     projectsModule.ProjectsModule,

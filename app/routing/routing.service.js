@@ -3,6 +3,7 @@ define(['exports',
         './menu',
         '../mock/routing.mock'],
     function (exports, routeClass, menuClass, routingMock) {
+        'use strict';
 
         var errors = {
             NOT_FOUND: 'Route not found for given path!'
@@ -14,54 +15,66 @@ define(['exports',
 
         RoutingService.prototype.getRootConfiguration = function () {
             if (this.routes) {
+                //noinspection AmdModulesDependencies
                 return Promise.resolve(this.routes);
             }
+            //noinspection AmdModulesDependencies
+            return Promise.resolve({});
         };
 
         RoutingService.prototype.getRouteConfig = function (routeParams) {
+            //noinspection AmdModulesDependencies
             return new Promise(function (resolve, reject) {
                 this.getRootConfiguration().then(function (rootConfiguration) {
-                    var locale, prop, childRoutes, i, params,
-                        config = rootConfiguration;
+                    var locale, childRoutes, params,
+                        config = rootConfiguration,
+                        breakResolve = false;
                     if (routeParams && routeParams.length) {
                         locale = routeParams[0];
                     }
 
                     if (routeParams && routeParams.length > 0) {
-                        for (i = 0; i < routeParams.length; i++) {
+                        Object.keys(routeParams).some(function (i) {
                             if (!config.routes) {
                                 params = routeParams.slice(i);
                                 if (config.paramsSize === params.length) {
                                     resolve(routeClass.Route.forParameters(config.type, locale,
                                         config.config, params));
-                                    return;
-                                } else {
-                                    reject(errors.NOT_FOUND);
+                                    breakResolve = true;
+                                    return breakResolve;
                                 }
+                                reject(errors.NOT_FOUND);
+                                breakResolve = true;
+                                return breakResolve;
                             }
 
                             childRoutes = config.routes;
                             config = undefined;
-                            for (prop in childRoutes) {
-                                if (childRoutes.hasOwnProperty(prop)
-                                    && childRoutes[prop].url === routeParams[i]) {
+                            Object.keys(childRoutes).some(function (prop) {
+                                if (childRoutes[prop].url === routeParams[i]) {
                                     config = childRoutes[prop];
-                                    break;
+                                    return true;
                                 }
-                            }
+                                return false;
+                            });
 
                             if (!config) {
                                 reject(errors.NOT_FOUND);
-                                return;
+                                breakResolve = true;
+                                return breakResolve;
                             }
-
+                            return false;
+                        });
+                        if (breakResolve) {
+                            return;
                         }
                     }
 
                     if (config.redirect) {
                         resolve(routeClass.Route.forRedirect(config.redirect));
                         return;
-                    } else if (!config || !config.type) {
+                    }
+                    if (!config || !config.type) {
                         reject(errors.NOT_FOUND);
                         return;
                     }
@@ -74,29 +87,25 @@ define(['exports',
         };
 
         RoutingService.prototype.getMenuRoutes = function () {
+            //noinspection AmdModulesDependencies
             return new Promise(function (resolve, reject) {
                 this.getRootConfiguration().then(function (rootConfiguration) {
-                    var i, route, menuRoutes,
-                        config, menuLocales = [];
-                    for (route in rootConfiguration.routes) {
-                        if (rootConfiguration.routes.hasOwnProperty(route)) {
-                            config = rootConfiguration.routes[route];
-                            if (config.url) {
-                                menuRoutes = [];
-                                if (config.routes && config.routes.length) {
-                                    for (i in config.routes) {
-                                        if (config.routes.hasOwnProperty(i)) {
-                                            menuRoutes.push(new menuClass.MenuItem(config.routes[i].title,
-                                                '/' + config.url + '/' + config.routes[i].url));
-                                        }
-                                    }
-                                    menuLocales.push(new menuClass.MenuItem(config.title,
-                                        '/' + config.url + '/' + config.routes[0].url,
-                                        menuRoutes, config.url));
-                                }
+                    var menuRoutes, config, menuLocales = [];
+                    Object.keys(rootConfiguration.routes).forEach(function (route) {
+                        config = rootConfiguration.routes[route];
+                        if (config.url) {
+                            menuRoutes = [];
+                            if (config.routes && config.routes.length) {
+                                Object.keys(config.routes).forEach(function (i) {
+                                    menuRoutes.push(new menuClass.MenuItem(config.routes[i].title,
+                                        '/' + config.url + '/' + config.routes[i].url));
+                                });
+                                menuLocales.push(new menuClass.MenuItem(config.title,
+                                    '/' + config.url + '/' + config.routes[0].url,
+                                    menuRoutes, config.url));
                             }
                         }
-                    }
+                    });
                     resolve(new menuClass.MenuItem(rootConfiguration.title, '/', menuLocales));
                 }).catch(function (error) {
                     reject(error);

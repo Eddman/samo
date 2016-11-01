@@ -1,4 +1,6 @@
 define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
+    'use strict';
+
     function AppComponent() {
     }
 

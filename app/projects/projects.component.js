@@ -2,6 +2,8 @@ define(['module', 'exports',
         '@angular/core',
         './projects.service'],
     function (module, exports, ngCore, projectService) {
+        'use strict';
+
         function ProjectsComponent(projectService) {
             this.projectService = projectService;
         }

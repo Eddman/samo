@@ -1,4 +1,6 @@
 define(['exports'], function (exports) {
+    'use strict';
+
     function Route(type, locale, configuration) {
         this.type = type;
         this.locale = locale;
