@@ -9,31 +9,38 @@
 
         padding: 5px;
 
-        img, .title {
-            transition: opacity 300ms;
-        }
+        a {
+            display: block;
+            position: relative;
 
-        img {
+            img, .title {
+                transition: opacity 300ms;
+            }
 
-            width: 100%;
-        }
-
-        .title {
-            opacity: 0;
-
-            position: absolute;
-            font-weight: bold;
-            margin: 10px;
-            z-index: 1;
-        }
-
-        &:hover {
             img {
-                opacity: 0.2;
+
+                width: 100%;
             }
 
             .title {
-                opacity: 1;
+                position: absolute;
+                bottom: 5px;
+
+                font-weight: bold;
+                margin: 10px;
+
+                opacity: 0;
+                z-index: 1;
+            }
+
+            &:hover {
+                img {
+                    opacity: 0.2;
+                }
+
+                .title {
+                    opacity: 1;
+                }
             }
         }
     }
