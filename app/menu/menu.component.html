@@ -6,9 +6,13 @@
     <div class="menu" *ngIf="rootItem">
         <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.locale" class="menu-block">
             <div class="sizer"></div>
-            <a *ngIf="localeService.getSelectedLang() !== menuLocale.locale"
-               [routerLink]="menuLocale.routeLink"
-               routerLinkActive="active">{{menuLocale.title}}</a>
+            <template [ngIf]="localeService.getSelectedLang() !== menuLocale.locale">
+                <a *ngIf="!isHomeButtonVisible()"
+                   [routerLink]="menuLocale.routeLink"
+                   routerLinkActive="active">{{menuLocale.title}}</a>
+                <a *ngIf="isHomeButtonVisible()"
+                   [routerLink]="getHomeLink()">Home</a>
+            </template>
             <template [ngIf]="localeService.getSelectedLang() === menuLocale.locale">
                 <a *ngFor="let menuItem of menuLocale.subItems"
                    [routerLink]="menuItem.routeLink"

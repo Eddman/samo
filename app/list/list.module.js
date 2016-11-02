@@ -12,7 +12,7 @@ define(['exports',
         ListModule.annotations = [
             new ngCore.NgModule({
                 imports: [
-                    contentModule.ContentComponent
+                    contentModule.ContentModule
                 ],
                 exports: [
                     listComponent.ListComponent

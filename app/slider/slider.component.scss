@@ -1,6 +1,10 @@
 @import "../../global";
 
-@mixin definition($dot_size, $title_size, $title_offset) {
+$arrow_size_original: 44px;
+$dot_size_original: 6px;
+$title_size_original: 16px;
+
+@mixin definition($arrow_size, $dot_size, $title_size, $title_offset) {
 
     kb-page-slider {
         div.page {
@@ -18,32 +22,41 @@
         }
 
         /deep/ {
+            kb-nav-button {
+                &[forward] a, &[backward] a {
+                    font-size: $arrow_size !important;
+                    width: $arrow_size !important;
+                    height: $arrow_size !important;
+                    line-height: 1 * $arrow_size;
+                    border-radius: 0.5 * $arrow_size !important;
+                }
+            }
+
             kb-dot-indicator {
-                bottom: 1vmax !important;
+                bottom: 0.5 * $title_offset !important;
 
                 .dot {
                     width: $dot_size;
                     height: $dot_size;
-                    border-radius: $dot_size / 2;
-                    margin: 0 $dot_size / 3;
+                    border-radius: 0.5 * $dot_size;
+                    margin: 0.33 * $dot_size;
                 }
             }
         }
     }
 }
 
-$dot_size_original: 6px;
-$title_size_original: 16px;
-
-@include definition($dot_size_original, $title_size_original,
+@include definition($arrow_size_original, $dot_size_original, $title_size_original,
         $dot_size_original / 3 + $title_size_original);
 
-$screen_width: ($optimal_width + ($page_margin_side * 2));
+$screen_width: $optimal_width + ($page_margin_side * 2);
 @media only screen and (max-width: $screen_width) {
-    $dot_size: ($dot_size_original / $screen_width) * 100;
-    $title_size: ($title_size_original / $screen_width) * 100;
+    $arrow_size: $arrow_size_original / $screen_width * 100;
+    $dot_size: $dot_size_original / $screen_width * 100;
+    $title_size: $title_size_original / $screen_width * 100;
 
     @include definition(
+                    $arrow_size + vw,
                     $dot_size + vw,
                     $title_size + vw,
                     $dot_size / 3 + $title_size + vw

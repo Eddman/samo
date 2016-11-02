@@ -8,10 +8,10 @@ define(['exports',
     function (exports, ngCore, ngBrowser, ngRouter, contentComponent, imgDirective, columnsDirective) {
         'use strict';
 
-        function ContentComponent() {
+        function ContentModule() {
         }
 
-        ContentComponent.annotations = [
+        ContentModule.annotations = [
             new ngCore.NgModule({
                 imports: [
                     ngBrowser.BrowserModule,
@@ -28,5 +28,5 @@ define(['exports',
             })
         ];
 
-        exports.ContentComponent = ContentComponent;
+        exports.ContentModule = ContentModule;
     });

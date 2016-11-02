@@ -20,6 +20,16 @@ define(['module', 'exports',
             }.bind(this));
         };
 
+        MenuComponent.prototype.isHomeButtonVisible = function () {
+            var selected = this.routingService.selectedRoute;
+            return selected && selected.parameters;
+        };
+
+        MenuComponent.prototype.getHomeLink = function () {
+            var selected = this.routingService.selectedRouteParams;
+            return selected ? '/' + selected.slice(0, selected.length - 1).join('/') : '/';
+        };
+
         MenuComponent.annotations = [
             new ngCore.Component({
                 moduleId: module.id,

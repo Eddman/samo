@@ -12,10 +12,10 @@ define(['exports',
         DetailModule.annotations = [
             new ngCore.NgModule({
                 imports: [
-                    contentModule.ContentComponent
+                    contentModule.ContentModule
                 ],
                 exports: [
-                    contentModule.ContentComponent,
+                    contentModule.ContentModule,
                     detailComponent.DetailComponent
                 ],
                 declarations: [

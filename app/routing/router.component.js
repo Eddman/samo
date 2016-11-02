@@ -29,6 +29,9 @@ define([
                 function (route) {
                     this.localeService.setSelectedLang(route.locale);
                     this.config = route;
+                    this.routingService.selectedRoute = route;
+                    this.routingService.selectedRouteParams = params;
+
                     if (route.redirectPath) {
                         this.router.navigate(route.redirectPath);
                     }
