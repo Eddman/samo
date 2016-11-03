@@ -1,24 +1,22 @@
-<div class="appMenu">
-    <div *ngIf="rootItem">
-        <h1><a [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
-    </div>
-    <div class="sizer"></div>
-    <div class="menu" *ngIf="rootItem">
-        <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.locale" class="menu-block">
-            <div class="sizer"></div>
-            <template [ngIf]="localeService.getSelectedLang() !== menuLocale.locale">
-                <a *ngIf="!isHomeButtonVisible()"
-                   [routerLink]="menuLocale.routeLink"
-                   routerLinkActive="active">{{menuLocale.title}}</a>
-                <a *ngIf="isHomeButtonVisible()"
-                   [routerLink]="getHomeLink()">Home</a>
-            </template>
-            <template [ngIf]="localeService.getSelectedLang() === menuLocale.locale">
-                <a *ngFor="let menuItem of menuLocale.subItems"
-                   [routerLink]="menuItem.routeLink"
-                   routerLinkActive="active">{{menuItem.title}}</a>
-            </template>
-        </div>
+<div *ngIf="rootItem">
+    <h1><a [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
+</div>
+<div class="sizer"></div>
+<div class="menu" *ngIf="rootItem">
+    <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.locale" class="menu-block">
+        <div class="sizer"></div>
+        <template [ngIf]="localeService.getSelectedLang() !== menuLocale.locale">
+            <a *ngIf="!isHomeButtonVisible()"
+               [routerLink]="menuLocale.routeLink"
+               routerLinkActive="active">{{menuLocale.title}}</a>
+            <a *ngIf="isHomeButtonVisible()"
+               [routerLink]="getHomeLink()">Home</a>
+        </template>
+        <template [ngIf]="localeService.getSelectedLang() === menuLocale.locale">
+            <a *ngFor="let menuItem of menuLocale.subItems"
+               [routerLink]="menuItem.routeLink"
+               routerLinkActive="active">{{menuItem.title}}</a>
+        </template>
     </div>
 </div>
 

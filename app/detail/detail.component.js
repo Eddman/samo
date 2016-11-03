@@ -25,6 +25,7 @@ define(['module',
                 moduleId: module.id,
                 selector: 'detail-view',
                 templateUrl: 'detail.component.html',
+                styleUrls: ['detail.component.css'],
                 inputs: ['route']
             })
         ];

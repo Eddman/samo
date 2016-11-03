@@ -45,7 +45,8 @@ define([
         RouterComponent.annotations = [
             new ngCore.Component({
                 moduleId: module.id,
-                templateUrl: 'router.component.html'
+                templateUrl: 'router.component.html',
+                styleUrls: ['router.component.css']
             })
         ];
 

@@ -2,3 +2,35 @@ $optimal_width: 900px;
 $page_margin_top: 40px;
 $page_margin_side: 15px;
 $page_margin_bottom: 15px;
+
+@mixin box-sizing($box-model) {
+    -webkit-box-sizing: $box-model; // Safari <= 5
+    -moz-box-sizing: $box-model; // Firefox <= 19
+    box-sizing: $box-model;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+    background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+@mixin opacity($opacity) {
+    -moz-opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity-ie + ")";
+    filter: alpha(opacity=$opacity-ie); //IE8
+    opacity: $opacity;
+}
+
+@mixin font-size($sizeValue: 12 ) {
+    font-size: $sizeValue + px; //fallback for old browsers
+    font-size: ((1/16) * $sizeValue) + rem;
+}
+
+@mixin line-height($heightValue: 12 ) {
+    line-height: $heightValue + px; //fallback for old browsers
+    line-height: ((1/16) * $heightValue) + rem;
+}

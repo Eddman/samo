@@ -1,4 +1,5 @@
 @import "../../global";
+@import "../../component";
 
 $arrow_size_original: 44px;
 $dot_size_original: 6px;
@@ -28,7 +29,7 @@ $title_size_original: 16px;
                     width: $arrow_size !important;
                     height: $arrow_size !important;
                     line-height: 1 * $arrow_size;
-                    border-radius: 0.5 * $arrow_size !important;
+                    @include border-radius(0.5 * $arrow_size !important);
                 }
             }
 
@@ -38,8 +39,8 @@ $title_size_original: 16px;
                 .dot {
                     width: $dot_size;
                     height: $dot_size;
-                    border-radius: 0.5 * $dot_size;
                     margin: 0.33 * $dot_size;
+                    @include border-radius(0.5 * $dot_size);
                 }
             }
         }

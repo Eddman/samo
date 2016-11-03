@@ -1,17 +1,38 @@
-.appMenu {
-    height: 160px;
+@import "../../global";
+@import "../../component";
+
+$padding_side: 95px;
+$padding_bottom: 20px;
+$height: 160px;
+
+$header_font_size: 20;
+$link_font_size: 14;
+$link_line_height: 15;
+
+:host {
+    height: $height - $padding_bottom;
     display: flex;
     flex-direction: column;
-    padding: 0 95px 20px;
+    padding: 0 $padding_side $padding_bottom;
 
-    h1 {
-        font-size: 14pt;
-        font-weight: normal;
-        margin: 0;
+    @media only screen and (max-width: $optimal_width) {
+        height: auto;
+        padding-bottom: 0.5 * $padding_bottom;
     }
 
-    a {
-        text-decoration: none;
+    @media only screen and (max-width: 500px - (2 * $page_margin_side)) {
+        padding: 0 0 0.5 * $padding_bottom;
+    }
+
+    h1 {
+        font-weight: normal;
+        margin: 0;
+        padding-bottom: 0.5 * $padding_bottom;
+
+        a {
+            @include font-size($header_font_size);
+            text-decoration: none;
+        }
     }
 
     .sizer {
@@ -34,8 +55,10 @@
             }
 
             a {
-                font-size: 10pt;
-                line-height: 15pt;
+                @include font-size($link_font_size);
+                @include line-height($link_line_height);
+
+                text-decoration: none;
 
                 /*noinspection CssUnusedSymbol*/
                 &.active {

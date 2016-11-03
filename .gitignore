@@ -4,3 +4,4 @@
 .idea/workspace.xml
 node_modules/
 *.css
+npm-debug.log
