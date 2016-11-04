@@ -1,6 +1,6 @@
 # Angular2 based simple CMS for Samuel Netocny (samuelnetocny.eu)
 
-## Instalation
+## Installation
 
 Install [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm) first.
 
