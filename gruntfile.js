@@ -135,6 +135,8 @@ module.exports = function (grunt) {
 
 
     // register at least this one task
-    grunt.registerTask('dev', ['clean', 'sass', 'browserSync', 'watch']);
+    grunt.registerTask('clean', ['clean']);
+    grunt.registerTask('cleanBuild', ['clean', 'sass']);
+    grunt.registerTask('dev', ['sass', 'browserSync', 'watch']);
     grunt.registerTask('dist', ['clean', 'uglify', 'copy', 'sass', 'cssmin']);
 };

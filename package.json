@@ -2,9 +2,11 @@
   "name": "samuel-netocny",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm run watch",
-    "watch": "grunt dev",
-    "build:dist": "grunt dist"
+    "start": "npm run dev",
+    "dev": "grunt dev",
+    "clean": "grunt clean",
+    "build": "grunt cleanBuild",
+    "dist": "grunt dist"
   },
   "dependencies": {
     "@angular/common": "~2.1.0",
