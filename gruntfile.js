@@ -116,6 +116,10 @@ module.exports = function (grunt) {
                             })
                         ]
                     },
+                    browser: [
+                        'chrome',
+                        'google chrome'
+                    ],
                     watchTask: true
                 }
             }
