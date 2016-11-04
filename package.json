@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "npm run watch",
-    "lite": "lite-server",
-    "lite:c": "lite-server --c bs-chrome.json",
-    "build:sass": "node-sass --output-style expanded ./styles.scss -r -o ./ & node-sass ./app -r -o ./app",
-    "watch:sass": "node-sass --output-style expanded ./ -wr -o ./",
-    "watch": "npm run build:sass & concurrently \"npm run watch:sass\" \"npm run lite:c\""
+    "watch": "grunt dev",
+    "build:dist": "grunt dist"
   },
   "dependencies": {
     "@angular/common": "~2.1.0",
@@ -27,13 +24,14 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
-    "concurrently": "^3.0.0",
-    "lite-server": "^2.2.2",
-    "node-sass": "^3.10.1",
     "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^1.0.2"
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-sass": "^1.2.1",
+    "grunt-browser-sync": "^2.2.0",
+    "connect-logger": "0.0.1"
   }
 }
