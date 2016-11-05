@@ -14,6 +14,7 @@ define(['module', 'exports',
         MenuComponent.prototype.ngOnInit = function () {
             this.routingService.getMenuRoutes().then(function (rootItem) {
                 this.rootItem = rootItem;
+                document.title = rootItem.title;
             }.bind(this), function (error) {
                 this.error = error;
                 delete this.rootItem;
