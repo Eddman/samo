@@ -7,6 +7,7 @@ define(['module',
 
         function DetailComponent(detailService) {
             this.detailService = detailService;
+            this.headerChange = new ngCore.EventEmitter();
         }
 
         //noinspection JSUnusedGlobalSymbols
@@ -17,6 +18,7 @@ define(['module',
                 parameters: this.route.parameters
             }).then(function (detail) {
                 this.detail = detail;
+                this.headerChange.emit(this.detail.header);
             }.bind(this));
         };
 
@@ -26,7 +28,8 @@ define(['module',
                 selector: 'detail-view',
                 templateUrl: 'detail.component.html',
                 styleUrls: ['detail.component.css'],
-                inputs: ['route']
+                inputs: ['route'],
+                outputs: ['headerChange']
             })
         ];
 

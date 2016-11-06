@@ -30,7 +30,7 @@ define([
                     this.localeService.setSelectedLang(route.locale);
                     this.config = route;
                     this.routingService.selectedRoute = route;
-                    this.routingService.selectedRouteParams = params;
+                    this.routingService.selectedRoutePathParams = params;
 
                     if (route.redirectPath) {
                         this.router.navigate(route.redirectPath);
@@ -40,6 +40,10 @@ define([
                     this.router.navigate(['/']);
                 }.bind(this)
             );
+        };
+
+        RouterComponent.prototype.processHeader = function (header) {
+            this.config.additionalHeader = header;
         };
 
         RouterComponent.annotations = [

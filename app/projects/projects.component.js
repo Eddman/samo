@@ -6,6 +6,7 @@ define(['module', 'exports',
 
         function ProjectsComponent(projectService) {
             this.projectService = projectService;
+            this.headerChange = new ngCore.EventEmitter();
         }
 
         //noinspection JSUnusedGlobalSymbols
@@ -24,7 +25,8 @@ define(['module', 'exports',
                 selector: 'projects-view',
                 templateUrl: 'projects.component.html',
                 styleUrls: ['projects.component.css'],
-                inputs: ['route']
+                inputs: ['route'],
+                outputs: ['headerChange']
             })
         ];
 

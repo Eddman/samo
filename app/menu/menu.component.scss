@@ -50,11 +50,7 @@ $link_line_height: 15;
             flex-grow: 1;
             flex-direction: column;
 
-            &.at {
-                text-align: right;
-            }
-
-            a {
+            * {
                 @include font-size($link_font_size);
                 @include line-height($link_line_height);
 
@@ -64,6 +60,15 @@ $link_line_height: 15;
                 &.active {
                     font-weight: bold;
                 }
+                margin: 0;
+            }
+
+            &.at, &.right {
+                text-align: right;
+            }
+
+            h2 {
+                font-weight: bold;
             }
         }
     }

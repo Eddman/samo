@@ -21,14 +21,18 @@ define(['module', 'exports',
             }.bind(this));
         };
 
-        MenuComponent.prototype.isHomeButtonVisible = function () {
+        MenuComponent.prototype.isMenuHidden = function () {
             var selected = this.routingService.selectedRoute;
-            return selected && selected.parameters;
+            return selected && (selected.parameters || selected.additionalHeader);
         };
 
         MenuComponent.prototype.getHomeLink = function () {
-            var selected = this.routingService.selectedRouteParams;
+            var selected = this.routingService.selectedRoutePathParams;
             return selected ? '/' + selected.slice(0, selected.length - 1).join('/') : '/';
+        };
+
+        MenuComponent.prototype.getPageHeader = function () {
+            return this.routingService.selectedRoute.additionalHeader;
         };
 
         MenuComponent.annotations = [

@@ -6,4 +6,4 @@
         </a>
     </div>
 </div>
-<detail-view *ngIf="route.parameters" [route]="route"></detail-view>
+<detail-view *ngIf="route.parameters" (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>

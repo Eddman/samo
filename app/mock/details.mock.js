@@ -72,7 +72,11 @@ define(['exports', '../content/content'],
             'projects': {
                 'sk': {
                     "1": {
-                        content: dummyContent
+                        content: dummyContent,
+                        header: {
+                            pageTitle: 'Title',
+                            content: 'asdasd\nasdasd\nasdasd'
+                        }
                     },
                     "2": {
                         content: dummyContent
