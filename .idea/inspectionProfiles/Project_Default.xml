@@ -98,7 +98,11 @@
     <inspection_tool class="DataProviderReturnType" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DebuggerStatementJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DefaultAnnotationParam" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="DefaultFileTemplate" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="DefaultFileTemplate" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="CHECK_FILE_HEADER" value="true" />
+      <option name="CHECK_TRY_CATCH_SECTION" value="true" />
+      <option name="CHECK_METHOD_BODY" value="true" />
+    </inspection_tool>
     <inspection_tool class="DefaultNotLastCaseInSwitchJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DelegatesTo" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Dependency" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -222,7 +226,11 @@
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
-    <inspection_tool class="IfCanBeSwitch" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="IfCanBeSwitch" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="minimumBranches" value="3" />
+      <option name="suggestIntSwitches" value="false" />
+      <option name="suggestEnumSwitches" value="false" />
+    </inspection_tool>
     <inspection_tool class="IfNullToElvis" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="IfStatementWithIdenticalBranchesJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="IfStatementWithTooManyBranchesJS" enabled="true" level="WARNING" enabled_by_default="true">
@@ -232,7 +240,11 @@
     <inspection_tool class="IfThenToSafeAccess" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="IgnoreResultOfCall" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ImplicitArrayToString" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="ImplicitTypeConversion" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ImplicitTypeConversion" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="BITS" value="1720" />
+      <option name="FLAG_EXPLICIT_CONVERSION" value="true" />
+      <option name="IGNORE_NODESET_TO_BOOLEAN_VIA_STRING" value="true" />
+    </inspection_tool>
     <inspection_tool class="IncompatibleMask" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="IncompleteProperty" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="InconsistentResourceBundle" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -352,7 +364,9 @@
     <inspection_tool class="PluginXmlValidity" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="PointlessArithmeticExpression" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="PointlessBinding" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="PointlessBitwiseExpression" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PointlessBitwiseExpression" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="m_ignoreExpressionsContainingConstants" value="false" />
+    </inspection_tool>
     <inspection_tool class="PointlessBooleanExpression" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="PostfixTemplateDescriptionNotFound" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="PrimitiveArrayArgumentToVariableArgMethod" enabled="false" level="WARNING" enabled_by_default="false" />

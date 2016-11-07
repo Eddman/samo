@@ -96,7 +96,11 @@ module.exports = function (grunt) {
         },
         watch: {
             files: sassPattern,
-            tasks: ['sass']
+            tasks: ['sass'],
+            options: {
+                interrupt: true,
+                spawn: false
+            }
         },
         browserSync: {
             dev: {
