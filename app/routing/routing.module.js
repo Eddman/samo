@@ -15,10 +15,11 @@ define(['exports',
             path: path,
             component: routerComponent.RouterComponent
         });
-        for (i = 0; i <= 10; i += 1) {
+        for (i = 0; i <= 3; i += 1) {
             path += ':p' + i;
             routes.push({
                 path: path,
+                pathMatch: 'full',
                 component: routerComponent.RouterComponent
             });
             path += '/';
@@ -30,7 +31,7 @@ define(['exports',
         AppRoutingModule.annotations = [
             new ngCore.NgModule({
                 imports: [
-                    ngRouter.RouterModule.forRoot(routes),
+                    ngRouter.RouterModule.forChild(routes),
                     sliderModule.SliderModule,
                     projectsModule.ProjectsModule,
                     detailModule.DetailModule,

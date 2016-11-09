@@ -16,6 +16,7 @@ function initApp() {
         map: {
             // our app is within the app folder
             app: 'app',
+            admin: 'admin',
             // angular bundles
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -32,6 +33,9 @@ function initApp() {
         packages: {
             app: {
                 main: './main.js',
+                defaultExtension: 'js'
+            },
+            admin: {
                 defaultExtension: 'js'
             },
             rxjs: {

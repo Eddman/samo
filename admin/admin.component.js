@@ -1,16 +1,25 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
+define(['module', 'exports',
+    '@angular/core',
+    '../app/routing/routing.service'], function (module, exports, ngCore, routingService) {
     'use strict';
 
-    function AdminComponent() {
+    function AdminComponent(routingService) {
+        this.routingService = routingService;
     }
+
+    AdminComponent.prototype.ngOnInit = function () {
+        this.routingService.getRootConfiguration().then(function(root) {
+            this.root = root;
+        }.bind(this));
+    };
 
     AdminComponent.annotations = [
         new ngCore.Component({
             moduleId: module.id,
-            selector: 'samuel-netocny',
             templateUrl: 'admin.component.html'
         })
     ];
+    AdminComponent.parameters = [[routingService.RoutingService]];
 
     exports.AdminComponent = AdminComponent;
 });

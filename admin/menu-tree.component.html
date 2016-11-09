@@ -1,0 +1,22 @@
+<div *ngIf="config" style="padding-top: 10px">
+    <div class="btn-group">
+        <a class="btn btn-primary" [routerLink]="[config.type, parentConfig ? parentConfig.url ? parentConfig.url : config.url : config.url, config.config ? config.config : config.redirect]">Configure</a>
+    </div>
+    <div class="input-group input-group-sm">
+        <span class="input-group-addon">Title:</span>
+        <input type="text" class="form-control" [(ngModel)]="config.title">
+    </div>
+    <div *ngIf="parentConfig" class="input-group input-group-sm">
+        <span class="input-group-addon">Url:</span>
+        <input type="text" class="form-control" [(ngModel)]="config.url">
+    </div>
+    <div class="input-group input-group-sm">
+        <span class="input-group-addon">Type:</span>
+        <select class="form-control" [(ngModel)]="config.type" required>
+            <option *ngFor="let p of types" [value]="p">{{p}}</option>
+        </select>
+    </div>
+    <div style="padding-left: 20px">
+        <menu-tree *ngFor="let childConfig of config.routes" [config]="childConfig" [parentConfig]="config"></menu-tree>
+    </div>
+</div>
