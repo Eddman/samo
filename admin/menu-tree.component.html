@@ -1,6 +1,6 @@
 <div *ngIf="config" style="padding-top: 10px">
     <div class="btn-group">
-        <a class="btn btn-primary" [routerLink]="[config.type, parentConfig ? parentConfig.url ? parentConfig.url : config.url : config.url, config.config ? config.config : config.redirect]">Configure</a>
+        <a class="btn btn-primary" (click)="setRoute(config)" [routerLink]="[config.type]">Configure</a>
     </div>
     <div class="input-group input-group-sm">
         <span class="input-group-addon">Title:</span>

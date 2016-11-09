@@ -1,23 +1,18 @@
 define(['module', 'exports',
         '@angular/core',
-        '@angular/router'],
-    function (module, exports, ngCore, ngRouter) {
+        '@angular/router',
+        './menu.service'],
+    function (module, exports, ngCore, ngRouter, menuService) {
         'use strict';
 
-        function DetailComponent(route) {
-            this.route = route;
+        function DetailComponent(menuService, router) {
+            this.menuService = menuService;
+            this.router = router;
         }
 
-        DetailComponent.prototype.ngOnInit = function () {
-            this.route.params.forEach(this.processRoute.bind(this));
-        };
-
-        DetailComponent.prototype.processRoute = function (pathParams) {
-            if(!this.config) {
-                this.config = {};
-                Object.keys(pathParams).forEach(function (p) {
-                    this.config[p] = pathParams[p];
-                }.bind(this));
+        DetailComponent.prototype.ngOnInit = function() {
+            if(!this.menuService.selectedMenuRoute) {
+                this.router.navigate(['admin']);
             }
         };
 
@@ -25,12 +20,14 @@ define(['module', 'exports',
             new ngCore.Component({
                 moduleId: module.id,
                 selector: 'detail',
-                inputs: ['config'],
                 templateUrl: 'detail.component.html'
             })
         ];
 
-        DetailComponent.parameters = [[ngRouter.ActivatedRoute]];
+        DetailComponent.parameters = [
+            menuService.MenuService,
+            ngRouter.Router
+        ];
 
         exports.DetailComponent = DetailComponent;
     });

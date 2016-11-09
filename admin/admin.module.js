@@ -9,9 +9,10 @@ define(['exports',
         './group.component',
         './list.component',
         './project.component',
-        './slider.component'],
+        './slider.component',
+        './menu.service'],
     function (exports, ngCore, ngBrowser, ngRouter, ngForms, adminComponent, menuTree,
-              detail, group, list, project, slider) {
+              detail, group, list, project, slider, menuService) {
         'use strict';
 
         function AdminModule() {
@@ -28,23 +29,23 @@ define(['exports',
                             component: adminComponent.AdminComponent
                         },
                         {
-                            path: 'admin/detail/:lang',
+                            path: 'admin/detail',
                             component: detail.DetailComponent
                         },
                         {
-                            path: 'admin/group/:lang',
+                            path: 'admin/group',
                             component: group.GroupComponent
                         },
                         {
-                            path: 'admin/list/:lang',
+                            path: 'admin/list',
                             component: list.ListComponent
                         },
                         {
-                            path: 'admin/projects/:lang',
+                            path: 'admin/projects',
                             component: project.ProjectsComponent
                         },
                         {
-                            path: 'admin/slider/:lang',
+                            path: 'admin/slider',
                             component: slider.SliderComponent
                         }
                     ])
@@ -58,6 +59,9 @@ define(['exports',
                     list.ListComponent,
                     project.ProjectsComponent,
                     slider.SliderComponent
+                ],
+                providers: [
+                    menuService.MenuService
                 ]
             })
         ];

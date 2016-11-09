@@ -11,7 +11,6 @@ define(['module', 'exports',
         //noinspection JSUnusedGlobalSymbols
         ListComponent.prototype.ngOnChanges = function () {
             this.listService.getListItems({
-                locale: this.route.locale,
                 type: this.route.configuration.type
             }).then(function (listItems) {
                 this.listItems = listItems;

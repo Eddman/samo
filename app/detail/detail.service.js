@@ -8,7 +8,10 @@ define(['exports',
         }
 
         DetailService.prototype.getDetail = function (config) {
-            var detailsTree = this.details[config.type][config.locale];
+            var detailsTree = this.details;
+            Object.keys(config.type).forEach(function (i) {
+                detailsTree = detailsTree[config.type[i]];
+            });
             if (config.parameters) {
                 Object.keys(config.parameters).forEach(function (k) {
                     detailsTree = detailsTree[config.parameters[k]];

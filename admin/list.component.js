@@ -1,22 +1,19 @@
 define(['module', 'exports',
         '@angular/core',
-        '@angular/router'],
-    function (module, exports, ngCore, ngRouter) {
+        '@angular/router',
+        './menu.service'],
+    function (module, exports, ngCore, ngRouter, menuService) {
         'use strict';
 
-        function ListComponent(route) {
-            this.route = route;
+        function ListComponent(menuService, router) {
+            this.menuService = menuService;
+            this.router = router;
         }
 
-        ListComponent.prototype.ngOnInit = function () {
-            this.route.params.forEach(this.processRoute.bind(this));
-        };
-
-        ListComponent.prototype.processRoute = function (pathParams) {
-            this.config = {};
-            Object.keys(pathParams).forEach(function (p) {
-                this.config[p] = pathParams[p];
-            }.bind(this));
+        ListComponent.prototype.ngOnInit = function() {
+            if(!this.menuService.selectedMenuRoute) {
+                this.router.navigate(['admin']);
+            }
         };
 
         ListComponent.annotations = [
@@ -27,7 +24,10 @@ define(['module', 'exports',
             })
         ];
 
-        ListComponent.parameters = [[ngRouter.ActivatedRoute]];
+        ListComponent.parameters = [
+            menuService.MenuService,
+            ngRouter.Router
+        ];
 
         exports.ListComponent = ListComponent;
     });

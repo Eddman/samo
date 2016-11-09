@@ -13,7 +13,6 @@ define(['module',
         //noinspection JSUnusedGlobalSymbols
         DetailComponent.prototype.ngOnChanges = function () {
             this.detailService.getDetail({
-                locale: this.route.locale,
                 type: this.route.configuration.type,
                 parameters: this.route.parameters
             }).then(function (detail) {

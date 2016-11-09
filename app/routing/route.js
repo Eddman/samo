@@ -1,14 +1,13 @@
 define(['exports'], function (exports) {
     'use strict';
 
-    function Route(type, locale, configuration) {
+    function Route(type, configuration) {
         this.type = type;
-        this.locale = locale;
         this.configuration = configuration;
     }
 
-    Route.forParameters = function (type, locale, configuration, parameters) {
-        var route = new Route(type, locale, configuration);
+    Route.forParameters = function (type, configuration, parameters) {
+        var route = new Route(type, configuration);
         route.parameters = parameters;
         return route;
     };

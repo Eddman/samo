@@ -5,12 +5,12 @@
 
 <div class="menu" *ngIf="rootItem">
     <template [ngIf]="!isMenuHidden()">
-        <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.locale" class="menu-block">
+        <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
             <div class="sizer"></div>
-            <a *ngIf="localeService.getSelectedLang() !== menuLocale.locale"
+            <a *ngIf="!isRootExpanded(menuLocale)"
                [routerLink]="menuLocale.routeLink"
                routerLinkActive="active">{{menuLocale.title}}</a>
-            <template [ngIf]="localeService.getSelectedLang() === menuLocale.locale">
+            <template [ngIf]="isRootExpanded(menuLocale)">
                 <a *ngFor="let menuItem of menuLocale.subItems"
                    [routerLink]="menuItem.routeLink"
                    routerLinkActive="active">{{menuItem.title}}</a>

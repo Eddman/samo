@@ -1,22 +1,19 @@
 define(['module', 'exports',
         '@angular/core',
-        '@angular/router'],
-    function (module, exports, ngCore, ngRouter) {
+        '@angular/router',
+        './menu.service'],
+    function (module, exports, ngCore, ngRouter, menuService) {
         'use strict';
 
-        function GroupComponent(route) {
-            this.route = route;
+        function GroupComponent(menuService, router) {
+            this.menuService = menuService;
+            this.router = router;
         }
 
-        GroupComponent.prototype.ngOnInit = function () {
-            this.route.params.forEach(this.processRoute.bind(this));
-        };
-
-        GroupComponent.prototype.processRoute = function (pathParams) {
-            this.config = {};
-            Object.keys(pathParams).forEach(function (p) {
-                this.config[p] = pathParams[p];
-            }.bind(this));
+        GroupComponent.prototype.ngOnInit = function() {
+            if(!this.menuService.selectedMenuRoute) {
+                this.router.navigate(['admin']);
+            }
         };
 
         GroupComponent.annotations = [
@@ -27,7 +24,10 @@ define(['module', 'exports',
             })
         ];
 
-        GroupComponent.parameters = [[ngRouter.ActivatedRoute]];
+        GroupComponent.parameters = [
+            menuService.MenuService,
+            ngRouter.Router
+        ];
 
         exports.GroupComponent = GroupComponent;
     });

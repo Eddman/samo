@@ -26,19 +26,16 @@ define(['exports',
             //noinspection AmdModulesDependencies
             return new Promise(function (resolve, reject) {
                 this.getRootConfiguration().then(function (rootConfiguration) {
-                    var locale, childRoutes, params,
+                    var childRoutes, params,
                         config = rootConfiguration,
                         breakResolve = false;
-                    if (routeParams && routeParams.length) {
-                        locale = routeParams[0];
-                    }
 
                     if (routeParams && routeParams.length > 0) {
                         Object.keys(routeParams).some(function (i) {
                             if (!config.routes) {
                                 params = routeParams.slice(i);
                                 if (config.paramsSize === params.length) {
-                                    resolve(routeClass.Route.forParameters(config.type, locale,
+                                    resolve(routeClass.Route.forParameters(config.type,
                                         config.config, params));
                                     breakResolve = true;
                                     return breakResolve;
@@ -79,7 +76,7 @@ define(['exports',
                         return;
                     }
 
-                    resolve(new routeClass.Route(config.type, locale, config.config));
+                    resolve(new routeClass.Route(config.type, config.config));
                 }).catch(function (error) {
                     reject(error);
                 });

@@ -1,12 +1,10 @@
 define(['module', 'exports',
         '@angular/core',
-        '../locale.service',
         '../routing/routing.service'],
-    function (module, exports, ngCore, localeService, routingService) {
+    function (module, exports, ngCore, routingService) {
         'use strict';
 
-        function MenuComponent(localeService, routingService) {
-            this.localeService = localeService;
+        function MenuComponent(routingService) {
             this.routingService = routingService;
         }
 
@@ -19,6 +17,11 @@ define(['module', 'exports',
                 this.error = error;
                 delete this.rootItem;
             }.bind(this));
+        };
+
+        MenuComponent.prototype.isRootExpanded = function (menuLocale) {
+            var selected = this.routingService.selectedRoutePathParams;
+            return selected && selected.length && selected[0] === menuLocale.realURL;
         };
 
         MenuComponent.prototype.isMenuHidden = function () {
@@ -44,7 +47,6 @@ define(['module', 'exports',
             })
         ];
         MenuComponent.parameters = [
-            localeService.LocaleService,
             routingService.RoutingService
         ];
 

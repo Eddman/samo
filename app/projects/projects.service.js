@@ -9,7 +9,11 @@ define(['exports',
 
         ProjectsService.prototype.getProjects = function (config) {
             //noinspection AmdModulesDependencies
-            return Promise.resolve(this.projects[config.type][config.locale]);
+            var projectsTree = this.projects;
+            Object.keys(config.type).forEach(function (i) {
+                projectsTree = projectsTree[config.type[i]];
+            });
+            return Promise.resolve(projectsTree);
         };
 
         exports.ProjectsService = ProjectsService;

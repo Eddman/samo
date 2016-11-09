@@ -8,7 +8,7 @@ define(['exports'],
             type: 'projects',
             paramsSize: 1,
             config: {
-                type: 'projects'
+                type: ['projects', 'sk']
             }
         };
 
@@ -17,7 +17,7 @@ define(['exports'],
             url: 'news',
             type: 'list',
             config: {
-                type: 'news'
+                type: ['news', 'sk']
             }
         };
 
@@ -26,7 +26,7 @@ define(['exports'],
             url: 'cv',
             type: 'detail',
             config: {
-                type: 'cv'
+                type: ['cv', 'sk']
             }
         };
 
@@ -35,7 +35,7 @@ define(['exports'],
             url: 'contact',
             type: 'detail',
             config: {
-                type: 'contact'
+                type: ['contact', 'sk']
             }
         };
 
@@ -58,7 +58,7 @@ define(['exports'],
             type: 'projects',
             paramsSize: 1,
             config: {
-                type: 'projects'
+                type: ['projects', 'at']
             }
         };
 
@@ -67,7 +67,7 @@ define(['exports'],
             url: 'news',
             type: 'list',
             config: {
-                type: 'news'
+                type: ['news', 'at']
             }
         };
 
@@ -76,7 +76,7 @@ define(['exports'],
             url: 'cv',
             type: 'detail',
             config: {
-                type: 'cv'
+                type: ['cv', 'at']
             }
         };
 
@@ -85,7 +85,7 @@ define(['exports'],
             url: 'contact',
             type: 'detail',
             config: {
-                type: 'contact'
+                type: ['contact', 'at']
             }
         };
 

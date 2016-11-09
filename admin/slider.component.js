@@ -1,22 +1,19 @@
 define(['module', 'exports',
         '@angular/core',
-        '@angular/router'],
-    function (module, exports, ngCore, ngRouter) {
+        '@angular/router',
+        './menu.service'],
+    function (module, exports, ngCore, ngRouter, menuService) {
         'use strict';
 
-        function SliderComponent(route) {
-            this.route = route;
+        function SliderComponent(menuService, router) {
+            this.menuService = menuService;
+            this.router = router;
         }
 
-        SliderComponent.prototype.ngOnInit = function () {
-            this.route.params.forEach(this.processRoute.bind(this));
-        };
-
-        SliderComponent.prototype.processRoute = function (pathParams) {
-            this.config = {};
-            Object.keys(pathParams).forEach(function (p) {
-                this.config[p] = pathParams[p];
-            }.bind(this));
+        SliderComponent.prototype.ngOnInit = function() {
+            if(!this.menuService.selectedMenuRoute) {
+                this.router.navigate(['admin']);
+            }
         };
 
         SliderComponent.annotations = [
@@ -27,7 +24,10 @@ define(['module', 'exports',
             })
         ];
 
-        SliderComponent.parameters = [[ngRouter.ActivatedRoute]];
+        SliderComponent.parameters = [
+            menuService.MenuService,
+            ngRouter.Router
+        ];
 
         exports.SliderComponent = SliderComponent;
     });

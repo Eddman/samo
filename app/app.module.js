@@ -2,13 +2,12 @@ define(['exports',
         '@angular/core',
         '@angular/platform-browser',
         '@angular/router',
-        './locale.service',
         './routing/routing.service',
         './routing/routing.module',
         './app.component',
         './menu/menu.component',
         '../admin/admin.module'],
-    function (exports, ngCore, ngBrowser, ngRouter, localeService, routingService, appRouting, appComponent,
+    function (exports, ngCore, ngBrowser, ngRouter, routingService, appRouting, appComponent,
               menuComponent, adminModule) {
         'use strict';
 
@@ -27,7 +26,7 @@ define(['exports',
                     appComponent.AppComponent,
                     menuComponent.MenuComponent
                 ],
-                providers: [localeService.LocaleService, routingService.RoutingService],
+                providers: [routingService.RoutingService],
                 bootstrap: [appComponent.AppComponent]
             })
         ];
