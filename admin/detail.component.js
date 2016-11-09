@@ -13,16 +13,19 @@ define(['module', 'exports',
         };
 
         DetailComponent.prototype.processRoute = function (pathParams) {
-            this.config = {};
-            Object.keys(pathParams).forEach(function (p) {
-                this.config[p] = pathParams[p];
-            }.bind(this));
+            if(!this.config) {
+                this.config = {};
+                Object.keys(pathParams).forEach(function (p) {
+                    this.config[p] = pathParams[p];
+                }.bind(this));
+            }
         };
 
         DetailComponent.annotations = [
             new ngCore.Component({
                 moduleId: module.id,
                 selector: 'detail',
+                inputs: ['config'],
                 templateUrl: 'detail.component.html'
             })
         ];
