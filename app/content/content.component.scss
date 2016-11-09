@@ -5,14 +5,26 @@
     text-align: justify;
 
     img {
+        max-width: 100%;
+        display: block;
+        margin: auto;
+
         &.floatLeft {
             float: left;
             margin-right: 10px;
+            width: 33%;
+            @include box-sizing(border-box)
         }
 
         &.floatRight {
             float: right;
             margin-left: 10px;
+            width: 33%;
+            @include box-sizing(border-box)
         }
+    }
+
+    .columns {
+        white-space: pre-wrap;
     }
 }

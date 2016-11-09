@@ -5,7 +5,8 @@ module.exports = function (grunt) {
         sassPattern = ['**/*.scss', '!node_modules/**'],
         cssPattern = ['**/*.css', '!node_modules/**'],
         htmlPattern = ['**/*.html', '!node_modules/**'],
-        jsPattern = ['**/*.js', '!node_modules/**'];
+        jsPattern = ['**/*.js', '!node_modules/**'],
+        images = ['images/**'];
 
     function providedJS(file) {
         return [file, file + ".map"];
@@ -68,6 +69,10 @@ module.exports = function (grunt) {
             },
             html: {
                 src: htmlPattern,
+                dest: destination
+            },
+            images: {
+                src: images,
                 dest: destination
             }
         },

@@ -5,6 +5,7 @@ define(['module', 'exports',
 
     function AdminComponent(routingService) {
         this.routingService = routingService;
+        this.test = { value: 'test;'};
     }
 
     AdminComponent.prototype.ngOnInit = function () {

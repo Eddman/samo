@@ -143,7 +143,7 @@ define(['exports', '../content/content'],
             ];
         exports.listItems = {
             'news': {
-                'sk': news,
+                'sk': [], //news,
                 'at': news
             }
         };
