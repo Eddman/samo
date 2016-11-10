@@ -66,8 +66,12 @@ define(['exports',
                     this.firstImage.src = this.renderer.collection[0].url;
 
                 } else if (this.firstImage) {
-                    this.element.nativeElement.style.height = (this.firstImage.height
-                        * this.element.nativeElement.offsetWidth) / this.firstImage.width + 'px';
+                    if(this.firstImage.width > this.element.nativeElement.offsetWidth) {
+                        this.element.nativeElement.style.height = (this.firstImage.height
+                            * this.element.nativeElement.offsetWidth) / this.firstImage.width + 'px';
+                    } else {
+                        this.element.nativeElement.style.height = this.firstImage.height + 'px';
+                    }
                     fullHeight = this.element.nativeElement.offsetHeight;
                 }
                 return fullHeight - chin;

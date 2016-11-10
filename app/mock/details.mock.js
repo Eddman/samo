@@ -75,7 +75,10 @@ define(['exports', '../content/content'],
                     },
                     "5": {
                         content: [
-                            ContentPart.forImage('/images/mudra_stena/foto/Netocny Interier B1.jpg', 'Múdra stena'),
+                            ContentPart.forSlider({
+                                images: 'mudra_stena',
+                                duration: 700
+                            }),
                             ContentPart.forText('\tPotom, čo mladá rodina vyskúšala všetky možnosti rozloženia nábytku v ich obývačke s asi najlepším výhľadom na Tatry v Poprade, nás oslovili, či im s tým pomôžeme. Program nebol zložitý: veľká skriňa pre sezónne oblečenie, knižnica, miesto pre jedálensky stôl a pracovný kút.\n\tJediným problémom bol už existujúci krb a nová kuchyňa na mieru, s ktorou sme nechceli hýbať. To nám naše možnosti dosť ohraničilo.\n\tNávrh spočíva na jasnejšom rozdelení jednotlivých plôch miestnosti na sedaciu časť, pracovňu, jedáleň a kuchyňu. Samotný priestor je veľkorysý dosť, ale nezmyselné niky ho trieštia. Rozhodli sme sa zceliť priestor novou vstavanou multifunkčnou stenou, ktorá v sebe skrýva všetko čo mladá rodina potrebovala. Tým, že skriňa vystupuje do priestoru, útulne rámuje miesto pre nedeľné obedy.\n\tPoužitý materiál je drevotriesková platňa s bielenou bukovou dýhou, ktorá ladí k stolu a stoličkám od firmy Ton.', 3),
                             ContentPart.forImage('/images/mudra_stena/vykresy/netocny interier poprad_web_Page_3.jpg', 'Múdra stena')
                         ],
@@ -86,13 +89,19 @@ define(['exports', '../content/content'],
                     },
                     "6": {
                         content: [
-                            ContentPart.forImage('/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_10_WEB.jpg', 'Kríž ticha'),
+                            ContentPart.forSlider({
+                                images: 'kriz_ticha_foto',
+                                duration: 700
+                            }),
                             ContentPart.forLineBreak(), ContentPart.forLineBreak(),
                             ContentPart.forText('Zabudnutým generáciam, ktoré nám zanechali túto krásnu kultúrnu krajinu.'),
                             ContentPart.forText('\tJe to asi 25 km od Bytče, ale z Bratislavy sa tam cestuje skoro 6 hodín. Je to pekne pánu Bohu za chrbtom. Lazy sa volajú Zlámaná a narodil sa tam už môj pradedo a aj dedo. Ten tam potom postavil drevenicu a až do 1973 tam žili. Potom ju žiaľ predali a odsťahovali sa do dediny. Dnes by to bolo najlepšie dovolenkové miesto na svete. Na lúkach nad Zlamanou bola vždy lavička, ktorá pred pár rokmi odhnila. Tak sme si vraveli, že spravíme novú. A keď už sme sa do toho dali, tak sme pridali aj novú vrstvu - kríž. Je to kríž ticha a stíšenia. Nechceli sme robit taký ten "manifestačný" čo vidíš cez pol krajiny... K tomuto musíš prísť až na krok, aby sa ti zjavilo jeho tajomstvo; tajomstvo umučenia Krista a jeho piatich rán. Najkrajšie je, že svojou prítomnosťou dokázal ovládnuť všetky tie lúky naokolo. Zároveň však nepôsobí arogantne a len si tam tak stojí.', 3),
                             ContentPart.forText('Spolupráca: Vojtěch Jemelka'),
                             ContentPart.forLineBreak(), ContentPart.forLineBreak(),
-                            ContentPart.forImage('/images/kriz_ticha/vykresy/KKKD_Kriz ticha_6MP_02_WEB.jpg', 'Kríž ticha')
+                            ContentPart.forSlider({
+                                images: 'kriz_ticha_vykresy',
+                                duration: 700
+                            })
                         ],
                         header: {
                             pageTitle: 'KRÍŽ TICHA',
@@ -101,7 +110,10 @@ define(['exports', '../content/content'],
                     },
                     "7": {
                         content: [
-                            ContentPart.forImage('/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_1.jpg', 'Pamätník židovským študentom')
+                            ContentPart.forSlider({
+                                images: 'pamatnik_zidovskym_studentom',
+                                duration: 700
+                            })
                         ],
                         header: {
                             pageTitle: 'PAMÄTNÍK ŽIDOVSKÝM ŠTUDENTOM',
@@ -110,15 +122,27 @@ define(['exports', '../content/content'],
                     },
                     "8": {
                         content: [
-                            ContentPart.forImage('/images/holandsky_kriz/foto/KKKD Samuel Netocny_Bozia muka Hodolany_05.jpg', 'Hodolanský kríž'),
-                            ContentPart.forImage('/images/holandsky_kriz/vykresy/KKKD Samuel Netocny_Bozia muka Hodolany_01.JPG', 'Hodolanský kríž')
+                            ContentPart.forSlider({
+                                images: 'holandsky_kriz_foto',
+                                duration: 700
+                            }),
+                            ContentPart.forSlider({
+                                images: 'holandsky_kriz_vykresy',
+                                duration: 700
+                            })
                         ]
                     },
                     "9": {
                         content: [
-                            ContentPart.forImage('/images/kaplnka_sv_jakuba/foto/18_netocny_povraznik_kaplnka_lucivna.jpg', 'Kaplnka sv. Jakuba'),
+                            ContentPart.forSlider({
+                                images: 'kaplnka_sv_jakuba_foto',
+                                duration: 700
+                            }),
                             ContentPart.forText('\tDobrý boj je hlavná a najpodstatnejšia vec, ktorú kaplnka ztelesňuje. Zápas človeka o prežitie v drsnom kraji pod Tatrami, zápas aj napriek ťažkému životu vytvárať veci Krásne a (z dnešného vnímania konzumenta všetkého) večné. Zápas formy a živlov prírody. Vztýčená hmota pred nekonečnosťou času vzdáva hold Zápasu a navždy bude pripomínať podstatu života, Dobrý boj.\n\tStrohá archetypálna forma stojí ako Pamäť miesta. Pamäť ktorá stelesňuje bohatú históriu Spiša a jeho obyvateľov. Vzdáva im vďaku za dedičstvo, ktoré nám zanechali. Vzdáva im obdiv za ich zápas. \n\tMetaforou zápasu v živote je na prvý pohľad nesúlad medzi vonkajšou formou a vnútorným priestorom . Ohraničený a obmedzený tmavý priestor existuje len vďaka nekonečnému a krásnemu svetu ktorý ho obklopuje. Jediné čim sa stelesňuje je svetlo. Svetlo, ktoré  prechádza cez steny a nepotrebuje okná. Svetlo ktoré sa nás dotýka, ale my svojou uzavretosťou a tvrdohlavosťou ho ignorujeme a nechceme sa ho dotknúť. „Oko, ktoré nevidí.“ \n\tJediný element spájajúci oba svety je kríž, skrze ktorý vedie jediná cesta do sveta krásneho a nekonečného. Spoločné ideálne proporcie obálky a interiéru kaplnky zvýrazňujú neoddeliteľnosť oboch svetov.\n\tOrientácia kaplnky uznáva tradíciu osadzovania sakrálnych stavieb v na Spiši. Nekompromisné natočenie oltáru na východ povyšuje Božský princíp nad všetko svetské. Podstata je Jedna.', 3),
-                            ContentPart.forImage('/images/kaplnka_sv_jakuba/vykresy/03_netocny_povraznik_kaplnka_lucivna1.jpg', 'Kaplnka sv. Jakuba')
+                            ContentPart.forSlider({
+                                images: 'kaplnka_sv_jakuba_vykresy',
+                                duration: 700
+                            })
                         ],
                         header: {
                             pageTitle: 'KAPLNKA SV. JAKUBA',
@@ -127,7 +151,10 @@ define(['exports', '../content/content'],
                     },
                     "10": {
                         content: [
-                            ContentPart.forImage('/images/slnecne_hodiny/foto/netocny_slnecne hodiny_spisska bela_01.jpg', 'Slnečné hodiny')
+                            ContentPart.forSlider({
+                                images: 'slnecne_hodiny',
+                                duration: 700
+                            })
                         ],
                         header: {
                             pageTitle: 'SLNEČNÉ HODINY',
@@ -136,7 +163,10 @@ define(['exports', '../content/content'],
                     },
                     "11": {
                         content: [
-                            ContentPart.forImage('/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_01.jpg', 'Plážová kaplnka'),
+                            ContentPart.forSlider({
+                                images: 'plazova_kaplnka',
+                                duration: 700
+                            }),
                             ContentPart.forText('\tPri mohutnej zimnej búrke na mori sa potopila loď prevážajúca náklad dreva. Brightonská pláž v dĺžke piatich kilometrov bola lemovaná vyplavenými doskami. Spolu s priateľmi Vojtěchom Jemelkom a Vavrincom Kenderom sme za pár hodín vyplietli hniezdo pre modlitbu. Vznikol chvíľový intímny priestor na nekonečnej pláži. Miesto organu v nôm burázalo more, miesto kňaza znel v ušiach vietor.', 3)
                         ],
                         header: {
