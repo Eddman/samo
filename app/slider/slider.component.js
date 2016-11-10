@@ -87,7 +87,7 @@ define(['module',
                 selector: 'slider-view',
                 templateUrl: 'slider.component.html',
                 styleUrls: ['slider.component.css'],
-                inputs: ['route']
+                inputs: ['route', 'keysEnabled']
             })
         ];
         SliderComponent.parameters = [[sliderService.SliderService]];

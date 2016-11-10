@@ -6,7 +6,8 @@ define(['exports'], function (exports) {
         IMAGE: 'image',
         LINK_EXTERNAL: 'external-link',
         LINK_INTERNAL: 'internal-link',
-        LINE_BREAK: 'break'
+        LINE_BREAK: 'break',
+        SLIDER: 'slider'
     };
 
     function ContentPart(type, text) {
@@ -42,6 +43,12 @@ define(['exports'], function (exports) {
     ContentPart.forLinkInternal = function (text, pathParts) {
         var contentPart = new ContentPart(exports.contentPartsTypes.LINK_INTERNAL, text);
         contentPart.routeLink = '/' + [].concat(pathParts).join('/');
+        return contentPart;
+    };
+
+    ContentPart.forSlider = function (config) {
+        var contentPart = new ContentPart(exports.contentPartsTypes.SLIDER);
+        contentPart.configuration = config;
         return contentPart;
     };
 

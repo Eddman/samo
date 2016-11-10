@@ -1,5 +1,5 @@
 <slider-view *ngIf="config && config.type === 'slider'"
-             [route]="config"
+             [route]="config" [keysEnabled]="true"
              (headerChange)="processHeader($event)"></slider-view>
 <projects-view *ngIf="config && config.type === 'projects'"
                [route]="config"

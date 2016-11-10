@@ -6,4 +6,6 @@
     <a *ngIf="contentPart.type === types.LINK_INTERNAL" [routerLink]="contentPart.routeLink">{{contentPart.text}}</a>
     <img *ngIf="contentPart.type === types.IMAGE" [img]="contentPart">
     <br *ngIf="contentPart.type === types.LINE_BREAK">
+    <slider-view *ngIf="contentPart.type === types.SLIDER"
+                 [route]="contentPart" [keysEnabled]="false"></slider-view>
 </template>

@@ -2,15 +2,18 @@
 @import "../../component";
 
 $arrow_size_original: 44px;
+$arrow_line_height_original: 37px;
 $dot_size_original: 6px;
 $title_size_original: 16px;
 
-@mixin definition($arrow_size, $dot_size, $title_size, $title_offset) {
+@mixin definition($arrow_size, $arrow_line_height, $dot_size, $title_size, $title_offset) {
 
     kb-page-slider {
         div.page {
             img {
-                width: 100%;
+                height: 100%;
+                margin: auto;
+                display: block;
             }
 
             .title {
@@ -28,8 +31,9 @@ $title_size_original: 16px;
                     font-size: $arrow_size !important;
                     width: $arrow_size !important;
                     height: $arrow_size !important;
-                    line-height: 1 * $arrow_size;
+                    line-height: 1* $arrow_line_height;
                     @include border-radius(0.5 * $arrow_size !important);
+                    background-color: rgba(125, 125, 125, 0.4);
                 }
             }
 
@@ -47,17 +51,19 @@ $title_size_original: 16px;
     }
 }
 
-@include definition($arrow_size_original, $dot_size_original, $title_size_original,
+@include definition($arrow_size_original, $arrow_line_height_original, $dot_size_original, $title_size_original,
         $dot_size_original / 3 + $title_size_original);
 
 $screen_width: $optimal_width + ($page_margin_side * 2);
 @media only screen and (max-width: $screen_width) {
     $arrow_size: $arrow_size_original / $screen_width * 100;
+    $arrow_line_height: $arrow_line_height_original / $screen_width * 100;
     $dot_size: $dot_size_original / $screen_width * 100;
     $title_size: $title_size_original / $screen_width * 100;
 
     @include definition(
                     $arrow_size + vw,
+                    $arrow_line_height + vw,
                     $dot_size + vw,
                     $title_size + vw,
                     $dot_size / 3 + $title_size + vw

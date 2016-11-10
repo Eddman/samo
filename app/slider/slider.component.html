@@ -1,4 +1,4 @@
-<kb-page-slider *ngIf="pages"
+<kb-page-slider *ngIf="pages" [enableArrowKeys]="keysEnabled"
                 [(page)]="pageNumber"
                 (pageChange)="startAutoSlide(false); startAutoSlide()"
                 [transitionDuration]="transitionDuration">
