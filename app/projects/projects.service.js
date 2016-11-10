@@ -13,6 +13,7 @@ define(['exports',
             Object.keys(config.type).forEach(function (i) {
                 projectsTree = projectsTree[config.type[i]];
             });
+            //noinspection AmdModulesDependencies
             return Promise.resolve(projectsTree);
         };
 

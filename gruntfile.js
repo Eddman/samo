@@ -1,4 +1,6 @@
 module.exports = function (grunt) {
+    'use strict';
+
     var fallback = require('connect-history-api-fallback'),
         log = require('connect-logger'),
         destination = 'dist/',
@@ -12,12 +14,12 @@ module.exports = function (grunt) {
     }
 
     function addAppFolders(pattern) {
-        var paths = [];
+        var i, paths = [];
         appFolders.forEach(function (item) {
             paths.push(item + '/' + pattern);
         });
         if (arguments.length > 1) {
-            for (i = 1; i < arguments.length; i++) {
+            for (i = 1; i < arguments.length; i += 1) {
                 paths.push(arguments[i]);
             }
         }
