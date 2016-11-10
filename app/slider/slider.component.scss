@@ -56,7 +56,7 @@ $title_size_original: 16px;
 @include definition($arrow_size_original, $arrow_line_height_original, $dot_size_original, $title_size_original,
         $dot_size_original / 3 + $title_size_original);
 
-$screen_width: $optimal_width + ($page_margin_side * 2);
+$screen_width: $optimal_width + ($page_margin * 2);
 @media only screen and (max-width: $screen_width) {
     $arrow_size: $arrow_size_original / $screen_width * 100;
     $arrow_line_height: $arrow_line_height_original / $screen_width * 100;

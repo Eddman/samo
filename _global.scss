@@ -1,7 +1,5 @@
 $optimal_width: 900px;
-$page_margin_top: 40px;
-$page_margin_side: 15px;
-$page_margin_bottom: 15px;
+$page_margin: 15px;
 
 @mixin box-sizing($box-model) {
     -webkit-box-sizing: $box-model; // Safari <= 5
@@ -37,7 +35,7 @@ $page_margin_bottom: 15px;
 
 
 @mixin bp-large {
-    @media only screen and (max-width: $optimal_width + ($page_margin_side * 2)) {
+    @media only screen and (max-width: $optimal_width + ($page_margin * 2)) {
         @content;
     }
 }

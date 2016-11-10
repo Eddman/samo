@@ -18,7 +18,7 @@ define(['exports',
             new ngCore.NgModule({
                 imports: [
                     ngBrowser.BrowserModule,
-                    ngRouter.RouterModule.forRoot({ }),
+                    ngRouter.RouterModule.forRoot({}),
                     adminModule.AdminModule,
                     appRouting.AppRoutingModule
                 ],

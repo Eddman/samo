@@ -3,6 +3,7 @@
 
 $padding_side: 95px;
 $padding_bottom: 20px;
+$padding_top: 25px;
 $height: 160px;
 
 $header_font_size: 14;
@@ -15,19 +16,23 @@ $link_line_height: 15;
     flex-direction: column;
     padding: 0 $padding_side $padding_bottom;
 
-    @include bp-medium{
+    @include bp-large {
         height: auto;
         padding-bottom: 0.5 * $padding_bottom;
     }
 
-    @include bp-small {
+    @include bp-medium {
         padding: 0 0 0.5 * $padding_bottom;
     }
 
     h1 {
         font-weight: normal;
         margin: 0;
-        padding-bottom: 0.5 * $padding_bottom;
+        padding: $padding_top 0 0.5 * $padding_bottom;
+
+        @include bp-large {
+            padding-top: 0;
+        }
 
         a {
             @include font-size($header_font_size);

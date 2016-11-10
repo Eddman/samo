@@ -1,10 +1,17 @@
 @import "../../global";
 @import "../../component";
 
+$space_between: 5px;
+
+$thumb_title_margin: 10px;
+$thumb_title_position: 5px;
+
 .grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    margin: -$space_between;
 
     .thumbnail {
         flex: 1 25%;
@@ -22,7 +29,7 @@
             flex-basis: 100%;
         }
 
-        padding: 5px;
+        padding: $space_between;
 
         a {
             display: block;
@@ -38,10 +45,10 @@
 
             .title {
                 position: absolute;
-                bottom: 5px;
+                bottom: $thumb_title_position;
 
                 font-weight: bold;
-                margin: 10px;
+                margin: $thumb_title_margin;
 
                 z-index: 1;
                 @include opacity(0);

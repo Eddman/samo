@@ -66,7 +66,7 @@ define(['exports',
                     this.firstImage.src = this.renderer.collection[0].url;
 
                 } else if (this.firstImage) {
-                    if(this.firstImage.width > this.element.nativeElement.offsetWidth) {
+                    if (this.firstImage.width > this.element.nativeElement.offsetWidth) {
                         this.element.nativeElement.style.height = (this.firstImage.height
                             * this.element.nativeElement.offsetWidth) / this.firstImage.width + 'px';
                     } else {
