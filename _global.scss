@@ -14,6 +14,11 @@ $page_margin: 15px;
     border-radius: $radius;
     background-clip: padding-box; /* stops bg color from leaking outside the border: */
 }
+@mixin column-count($count) {
+    -webkit-column-count: $count;
+    -moz-column-count: $count;
+    column-count: $count;
+}
 
 @mixin opacity($opacity) {
     -moz-opacity: $opacity;
