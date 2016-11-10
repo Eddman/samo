@@ -50,7 +50,7 @@ $thumb_title_position: 5px;
                 @include opacity(0);
             }
 
-            &:hover, &:focus {
+            &:hover, &:active {
                 img {
                     @include opacity(0.2);
                 }
