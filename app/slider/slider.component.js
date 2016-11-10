@@ -72,6 +72,8 @@ define(['module',
                     clearInterval(this.interval);
                     delete this.interval;
                 }
+            } else {
+                this.transitionDuration = this.route.configuration.duration || 500;
             }
         };
 
