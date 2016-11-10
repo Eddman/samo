@@ -14,12 +14,8 @@ $thumb_title_position: 5px;
     margin: -$space_between;
 
     .thumbnail {
-        flex: 1 25%;
+        flex: 1 33%;
         @include box-sizing(border-box);
-
-        @include bp-large {
-            flex-basis: 33%;
-        }
 
         @include bp-medium {
             flex-basis: 50%;
