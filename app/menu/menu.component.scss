@@ -15,12 +15,12 @@ $link_line_height: 15;
     flex-direction: column;
     padding: 0 $padding_side $padding_bottom;
 
-    @media only screen and (max-width: $optimal_width) {
+    @include bp-medium{
         height: auto;
         padding-bottom: 0.5 * $padding_bottom;
     }
 
-    @media only screen and (max-width: 500px - (2 * $page_margin_side)) {
+    @include bp-small {
         padding: 0 0 0.5 * $padding_bottom;
     }
 

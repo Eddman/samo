@@ -17,8 +17,9 @@ define(['exports', '@angular/core'], function (exports, ngCore) {
             selector: '[columns]',
             inputs: ['columns'],
             host: {
-                '[class.columns]': 'true',
-                '[style.columnCount]': 'columnsCount'
+                '[class.text]': 'true',
+                '[class.column2]': 'columnsCount == 2',
+                '[class.column3]': 'columnsCount == 3'
             }
         })
     ];

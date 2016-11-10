@@ -43,7 +43,7 @@ body {
     .sizer {
         flex: 1;
 
-        @media only screen and (max-width: $optimal_width + ($page_margin_side * 2)) {
+        @include bp-large {
             display: none;
         }
     }
@@ -51,7 +51,7 @@ body {
     samuel-netocny {
         flex: 2;
         min-width: $optimal_width;
-        @media only screen and (max-width: $optimal_width + ($page_margin_side * 2)) {
+        @include bp-large {
             min-width: 0;
         }
 

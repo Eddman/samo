@@ -1,6 +1,5 @@
 <template ngFor let-contentPart [ngForOf]="contentParts">
-    <template [ngIf]="contentPart.type === types.TEXT && !contentPart.columns">{{contentPart.text}}</template>
-    <p *ngIf="contentPart.type === types.TEXT && contentPart.columns"
+    <p *ngIf="contentPart.type === types.TEXT"
        [columns]="contentPart">{{contentPart.text}}</p>
     <a *ngIf="contentPart.type === types.LINK_EXTERNAL" [href]="contentPart.url">{{contentPart.text}}</a>
     <a *ngIf="contentPart.type === types.LINK_INTERNAL" [routerLink]="contentPart.routeLink">{{contentPart.text}}</a>

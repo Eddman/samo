@@ -2,15 +2,33 @@ module.exports = function (grunt) {
     var fallback = require('connect-history-api-fallback'),
         log = require('connect-logger'),
         destination = 'dist/',
-        sassPattern = ['**/*.scss', '!node_modules/**'],
-        cssPattern = ['**/*.css', '!node_modules/**'],
-        htmlPattern = ['**/*.html', '!node_modules/**'],
-        jsPattern = ['**/*.js', '!node_modules/**'],
-        images = ['images/**'];
+        sassPattern, sassPatternWatch,
+        cssPattern, htmlPattern, jsPattern,
+        images = ['images/**'],
+        appFolders = ['app', 'admin'];
 
     function providedJS(file) {
         return [file, file + ".map"];
     }
+
+    function addAppFolders(pattern) {
+        var paths = [];
+        appFolders.forEach(function (item) {
+            paths.push(item + '/' + pattern);
+        });
+        if (arguments.length > 1) {
+            for (i = 1; i < arguments.length; i++) {
+                paths.push(arguments[i]);
+            }
+        }
+        return paths;
+    }
+
+    sassPattern = addAppFolders('**/*.scss', 'styles.scss');
+    sassPatternWatch = sassPattern.concat(['_global.scss', '_component.scss']);
+    cssPattern = addAppFolders('**/*.css', 'styles.css');
+    htmlPattern = addAppFolders('**/*.html', 'index.html');
+    jsPattern = addAppFolders('**/*.js', 'systemjs.config.js');
 
     grunt.initConfig({
         clean: {
@@ -100,17 +118,19 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: sassPattern,
-            tasks: ['sass'],
-            options: {
-                interrupt: true,
-                spawn: false
+            sass: {
+                files: sassPatternWatch,
+                tasks: ['sass'],
+                options: {
+                    interrupt: true,
+                    spawn: false
+                }
             }
         },
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: cssPattern.concat(htmlPattern).concat(jsPattern)
+                    src: cssPattern.concat(htmlPattern).concat(jsPattern).concat(images)
                 },
                 options: {
                     injectChanges: false, // workaround for Angular 2 styleUrls loading

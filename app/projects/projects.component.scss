@@ -7,14 +7,18 @@
     flex-wrap: wrap;
 
     .thumbnail {
-        flex: 1 33%;
+        flex: 1 25%;
         @include box-sizing(border-box);
 
-        @media only screen and (max-width: 570px) {
+        @include bp-large {
+            flex-basis: 33%;
+        }
+
+        @include bp-medium {
             flex-basis: 50%;
         }
 
-        @media only screen and (max-width: 390px) {
+        @include bp-small {
             flex-basis: 100%;
         }
 
@@ -43,7 +47,7 @@
                 @include opacity(0);
             }
 
-            &:hover {
+            &:hover, &:focus {
                 img {
                     @include opacity(0.2);
                 }

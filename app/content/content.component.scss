@@ -24,7 +24,27 @@
         }
     }
 
-    .columns {
+    .text {
         white-space: pre-wrap;
+
+        &.column2 {
+            column-count: 2;
+
+            @include bp-small {
+                column-count: 1;
+            }
+        }
+
+        &.column3 {
+            column-count: 3;
+
+            @include bp-medium {
+                column-count: 2;
+            }
+
+            @include bp-small {
+                column-count: 1;
+            }
+        }
     }
 }
