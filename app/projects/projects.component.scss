@@ -13,7 +13,7 @@ $thumb_title_position: 5px;
 
     margin: -$space_between;
 
-    .thumbnail {
+    .thumbnail, thumbnail {
         flex: 1 33%;
         @include box-sizing(border-box);
 
@@ -27,7 +27,7 @@ $thumb_title_position: 5px;
 
         padding: $space_between;
 
-        a {
+        /deep/ a {
             display: block;
             position: relative;
 

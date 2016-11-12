@@ -1,0 +1,4 @@
+<a [@state]="state" [routerLink]="thumbnail.index + 1">
+    <div class="title">{{thumbnail.title}}</div>
+    <img (load)="state='loaded'" [src]="thumbnail.thumbUrl">
+</a>

@@ -10,10 +10,13 @@ define(['module', 'exports',
         }
 
         //noinspection JSUnusedGlobalSymbols
-        ProjectsComponent.prototype.ngOnChanges = function () {
+        ProjectsComponent.prototype.ngOnInit = function () {
             this.projectService.getProjects({
                 type: this.route.configuration.type
             }).then(function (projects) {
+                Object.keys(projects).forEach(function (i) {
+                    projects[i].index = +i;
+                });
                 this.projects = projects;
             }.bind(this));
         };

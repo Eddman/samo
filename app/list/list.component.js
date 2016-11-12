@@ -9,7 +9,7 @@ define(['module', 'exports',
         }
 
         //noinspection JSUnusedGlobalSymbols
-        ListComponent.prototype.ngOnChanges = function () {
+        ListComponent.prototype.ngOnInit = function () {
             this.listService.getListItems({
                 type: this.route.configuration.type
             }).then(function (listItems) {

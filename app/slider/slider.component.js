@@ -10,7 +10,7 @@ define(['module',
         }
 
         //noinspection JSUnusedGlobalSymbols
-        SliderComponent.prototype.ngOnChanges = function () {
+        SliderComponent.prototype.ngOnInit = function () {
             // Check if auto-slide is available
             if (this.route.configuration.autoSlide) {
                 this.autoSlide = this.route.configuration.autoSlide;

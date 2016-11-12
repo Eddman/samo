@@ -11,7 +11,7 @@ define(['module',
         }
 
         //noinspection JSUnusedGlobalSymbols
-        DetailComponent.prototype.ngOnChanges = function () {
+        DetailComponent.prototype.ngOnInit = function () {
             this.detailService.getDetail({
                 type: this.route.configuration.type,
                 parameters: this.route.parameters

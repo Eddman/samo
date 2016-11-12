@@ -1,9 +1,10 @@
 define(['exports',
         '@angular/core',
         './projects.component',
+        './thumbnail.component',
         './projects.service',
         '../detail/detail.module'],
-    function (exports, ngCore, projectsComponent, projectsService, detailModule) {
+    function (exports, ngCore, projectsComponent, thumbnailComponent, projectsService, detailModule) {
         'use strict';
 
         function ProjectsModule() {
@@ -18,7 +19,8 @@ define(['exports',
                     projectsComponent.ProjectsComponent
                 ],
                 declarations: [
-                    projectsComponent.ProjectsComponent
+                    projectsComponent.ProjectsComponent,
+                    thumbnailComponent.ThumbnailComponent
                 ],
                 providers: [projectsService.ProjectsService]
             })

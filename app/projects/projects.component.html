@@ -1,10 +1,5 @@
 <div *ngIf="!route.parameters" class="grid">
-    <div *ngFor="let project of projects; let i = index" class="thumbnail">
-        <a [routerLink]="i + 1">
-            <div class="title">{{project.title}}</div>
-            <img [src]="project.thumbUrl">
-        </a>
-    </div>
+    <thumbnail *ngFor="let project of projects; let i = index" [thumbnail]="project"></thumbnail>
     <div class="thumbnail"></div>
     <div class="thumbnail"></div>
     <div class="thumbnail"></div>
