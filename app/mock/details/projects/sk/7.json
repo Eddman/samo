@@ -1,0 +1,17 @@
+{
+    "data": {
+        "content": [
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "pamatnik_zidovskym_studentom",
+                    "duration": 700
+                }
+            }
+        ],
+        "header": {
+            "pageTitle": "PAMÄTNÍK ŽIDOVSKÝM ŠTUDENTOM",
+            "content": "Kampus Ekonomickej univerzity, Viedeň, Rakúsko\nSúťaž, spoluautorka Lucie Najvarová\n2013"
+        }
+    }
+}

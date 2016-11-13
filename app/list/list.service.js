@@ -1,20 +1,16 @@
 define(['exports',
-        '../mock/lists.mock'],
-    function (exports, mockLists) {
+        '../abstract.http.service'],
+    function (exports, httpService) {
         'use strict';
 
-        function ListService() {
-            this.listItems = mockLists.listItems;
+        function ListService(http) {
+            httpService.AbstractHttpService.call(this, http);
         }
 
+        httpService.inherit(ListService);
+
         ListService.prototype.getListItems = function (config) {
-            //noinspection AmdModulesDependencies
-            var listItemsTree = this.listItems;
-            Object.keys(config.type).forEach(function (i) {
-                listItemsTree = listItemsTree[config.type[i]];
-            });
-            //noinspection AmdModulesDependencies
-            return Promise.resolve(listItemsTree);
+            return this.getWithCache('/app/mock/list/:0/:1.json', config.type);
         };
 
         exports.ListService = ListService;

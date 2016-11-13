@@ -10,8 +10,8 @@ define(['module', 'exports',
             this.router = router;
         }
 
-        DetailComponent.prototype.ngOnInit = function() {
-            if(!this.menuService.selectedMenuRoute) {
+        DetailComponent.prototype.ngOnInit = function () {
+            if (!this.menuService.selectedMenuRoute) {
                 this.router.navigate(['admin']);
             }
         };

@@ -1,15 +1,16 @@
 define(['exports',
-        '../mock/slider.mock'],
-    function (exports, mockSlides) {
+        '../abstract.http.service'],
+    function (exports, httpService) {
         'use strict';
 
-        function SliderService() {
-            this.slides = mockSlides.slides;
+        function SliderService(http) {
+            httpService.AbstractHttpService.call(this, http);
         }
 
+        httpService.inherit(SliderService);
+
         SliderService.prototype.getSlides = function (config) {
-            //noinspection AmdModulesDependencies
-            return Promise.resolve(this.slides[config.images]);
+            return this.getWithCache('/app/mock/slides/:0.json', [config.images]);
         };
 
         exports.SliderService = SliderService;

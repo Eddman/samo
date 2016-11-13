@@ -1,25 +1,30 @@
 define(['exports',
-        '../mock/details.mock'],
-    function (exports, mockDetails) {
+        '../abstract.http.service'],
+    function (exports, httpService) {
         'use strict';
 
-        function DetailService() {
-            this.details = mockDetails.details;
+        function DetailService(http) {
+            httpService.AbstractHttpService.call(this, http);
         }
 
+        httpService.inherit(DetailService);
+
         DetailService.prototype.getDetail = function (config) {
-            var detailsTree = this.details;
-            Object.keys(config.type).forEach(function (i) {
-                detailsTree = detailsTree[config.type[i]];
-            });
+            var detailParams;
             if (config.parameters) {
-                Object.keys(config.parameters).forEach(function (k) {
-                    detailsTree = detailsTree[config.parameters[k]];
+                detailParams = [];
+                Object.keys(config.type).forEach(function (i) {
+                    detailParams.push(config.type[i]);
                 });
+                Object.keys(config.parameters).forEach(function (i) {
+                    detailParams.push(config.parameters[i]);
+                });
+                return this.getWithCache('/app/mock/details/:0.json', [detailParams.join('/')]);
+            } else {
+                return this.getWithCache('/app/mock/details/:0/:1.json', config.type);
             }
-            //noinspection AmdModulesDependencies
-            return Promise.resolve(detailsTree);
         };
 
         exports.DetailService = DetailService;
     });
+

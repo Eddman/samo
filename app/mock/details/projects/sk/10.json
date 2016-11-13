@@ -1,0 +1,17 @@
+{
+    "data": {
+        "content": [
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "slnecne_hodiny",
+                    "duration": 700
+                }
+            }
+        ],
+        "header": {
+            "pageTitle": "SLNEČNÉ HODINY",
+            "content": "Spišská Belá, Slovensko\nRealizácia\n2009"
+        }
+    }
+}

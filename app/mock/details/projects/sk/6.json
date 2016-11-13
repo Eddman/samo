@@ -1,0 +1,49 @@
+{
+    "data": {
+        "content": [
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "kriz_ticha_foto",
+                    "duration": 700
+                }
+            },
+            {
+                "type": "break"
+            },
+            {
+                "type": "break"
+            },
+            {
+                "type": "text",
+                "text": "Zabudnutým generáciam, ktoré nám zanechali túto krásnu kultúrnu krajinu."
+            },
+            {
+                "type": "text",
+                "text": "\tJe to asi 25 km od Bytče, ale z Bratislavy sa tam cestuje skoro 6 hodín. Je to pekne pánu Bohu za chrbtom. Lazy sa volajú Zlámaná a narodil sa tam už môj pradedo a aj dedo. Ten tam potom postavil drevenicu a až do 1973 tam žili. Potom ju žiaľ predali a odsťahovali sa do dediny. Dnes by to bolo najlepšie dovolenkové miesto na svete. Na lúkach nad Zlamanou bola vždy lavička, ktorá pred pár rokmi odhnila. Tak sme si vraveli, že spravíme novú. A keď už sme sa do toho dali, tak sme pridali aj novú vrstvu - kríž. Je to kríž ticha a stíšenia. Nechceli sme robit taký ten \"manifestačný\" čo vidíš cez pol krajiny... K tomuto musíš prísť až na krok, aby sa ti zjavilo jeho tajomstvo; tajomstvo umučenia Krista a jeho piatich rán. Najkrajšie je, že svojou prítomnosťou dokázal ovládnuť všetky tie lúky naokolo. Zároveň však nepôsobí arogantne a len si tam tak stojí.",
+                "columns": 3
+            },
+            {
+                "type": "text",
+                "text": "Spolupráca: Vojtěch Jemelka"
+            },
+            {
+                "type": "break"
+            },
+            {
+                "type": "break"
+            },
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "kriz_ticha_vykresy",
+                    "duration": 700
+                }
+            }
+        ],
+        "header": {
+            "pageTitle": "KRÍŽ TICHA",
+            "content": "Zlámaná, Vysoká nad Kysucou, Slovensko\nRealizácia\n2013"
+        }
+    }
+}

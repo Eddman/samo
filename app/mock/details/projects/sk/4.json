@@ -1,0 +1,47 @@
+{
+    "data": {
+        "content": [
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "kezmarska_chata_foto",
+                    "duration": 700
+                }
+            },
+            {
+                "type": "text",
+                "text": "\tV dnešnej dobe, keď technológia umožňuje stavať energeticky úsporne budovy takmer bez obmedzení, prestáva byť otázkou nízkoenergetický, pasívny alebo nulový štandard. Všetky tieto méty sú dosiahnuteľné. Novými výzvami sú teda úmernosť a ekologická stopa stavby. Ďalším dôležitýmaspektom je kultúrna zakorenenosť stavby v regióne.\n\tPo dôkladnej analýze Ždiarského dvorca navrhujeme jasný a štruktúrovaný dom, ktorý podobne ako jeho lokálna predloha dokáže efektívne organizovať program, vytvárať príjemnú klímu pre jeho používateľov, je kultúre spätý s regiónom a jeho dopady na prírodu v lokálnom, ale aj globálnom merítku su minimálne.",
+                "columns": 3
+            },
+            {
+                "type": "text",
+                "text": "Ždiarsky dvorec"
+            },
+            {
+                "type": "text",
+                "text": "\tStavanie v tak krásnom a tak drsnom prostredí, ako je okolie Bieleho plesa si vyžaduje citlivý a skoro až lokálny prístup. Pár kilometrov východne sa nachádza goralská dedina Ždiar, ktorej hlavným zdrojo obživy bolo pasenie oviec na svahoch Belianských Tatier. Je to jedna z najvyššie položených a najchladnejších obcí na Slovensku. To  malo za následok vznik špecifíckej typológie Ždiarkeho dvorca. Jedná sa o dom s átriom, kde na južnej strane je umiestnená obytná časť s oknami smerom k slnku a na severe umiestnená stodola s ovčínom a bojiskom chráni dvorec pred nepríjemným severným vetrom. Zo západu sú umiestnené chlievy, ktoré odrážajú prevládajúce západné vetry. Smerom na východ býva väčšinou vysoký plot s bránou. \n\tToto usporiadanie vytvára malý ekosystém a vlastnú miroklímu vo vzťahu k okolitej krajine. Keďže budúca Kežmarská chata sa nachádza v podobnom stavebno-kultúrnom a klimatickom regióne, rozhodli sme sa na tento typ domu pozrieť bližšie a poznatky využiť (neromanticky) pri návrhu novej chaty.\n\tĎalším dôležitým prvkom dvorca je konštrukcia. Tá pozostáva z masívnych hranených stien, ktoré sú v pozdĺžnom smere nosné a v priečnom stužujúce. To dávalo aj napriek obmedzeným dĺžkam trámom značnú slobodu pri rozvrhu pôdorysu. Vzdialenosti pozdĺžnych stien boli dané obmedzenou dĺžkou priečnych prvkov  a boli viac menej konštantné. Priečne steny mohli byť kladené na ľubovolnom mieste a tým definovali potrebný priestor a počet miestností pre danú funkciu. Dvorec je efektívna typologická matrica, ktorá možňuje logické rozmiestnenie programu v priestore a zároveň vytvára už spomýnané mikroklíma.",
+                "columns": 3
+            },
+            {
+                "type": "text",
+                "text": "Hlavná idea návrhu, prevádzkovo – dispozičné a konštrukčné riešenie"
+            },
+            {
+                "type": "text",
+                "text": "\tNa základe týchto zistení sa koštrukcia a organizácia stala hlavým bodom návrhu. Vztýčenie štyroch hlavných nosných stien v západo-východnom smere definovalo základný rámec funkčného členenia pôdorysu. Na sever sú umiestné sklady a obslužné miestnosti, v strednom poli sú komunikácie, schodisko, šachty, kuchyňa a sprchy ako zdroj tepla a v južnom poli obrátenom k slnku je jedáleň a jednotlivé izby. Samotný dvorec sa transformoval do veľkorysej vstupnej haly so schodiskom. To na seba preberá aj funciu vytvárania spráne temperovaného prostredia. Po jeho stranách sú umiestnené hlavné šachty, ktoré rozvádzajú čerstvý vzduch do celého domu.\n\tPri bližšej analýze programu zistíme veľkú plošnú rôznorodoť. Konštrukčný princíp nosných pozdĺžnych stien dokáže na túto skutočnosť dobre reagovať. Ľahké priečne steny môžu byť postavené tak, aby precízne definovali potrebný priestor pre sklad, kuchyňu, alebo konfenečnú miestnosť. Dominanciou pozdĺžnych stien nevzniká chaos, ale jednotlivé miestnosti sú logický integrované do celkovej štruktúry domu.\n\tKým v prízemí sa členitosť pôdorysu smerom na juh upokojuje, na prvom poschodí je to presne opačne. Smerom k slnku sú orientované jednotlivé izby. Tie sú vybavené poschodovými posteľami, aby sa ich priestorový nárok (tým aj potreba tepla na vykurovanie) dal minimalizovať. V strednom poli v blízkostí šácht sú toalety a sprchy. V severnom poli je nocľaháreň, členená na dve časti. \n\tSlobodný systém pozdĺžnych nosných stien umožnil umiestnenie hotelových izieb do podkrovia. Tie majú zároveň vďaka strešným plocham zaujímavý priezer a dávajú izbám pridanú hodnotu.\n\tV reze sa ukazuje druhý potenciál pozdĺžnych nosných stien. Keďže sú stropné panely kladené od steny k stene, možme ich vertikálne v rámci jednotlivých polí posúvať. Tým sme zredukovali výšku skladov a toaliet v prízemí, čo ušetrlilo dobrých pár kubíkov vzduchu na vetranie a vykurovanie. Naopak, v kuchynskom a jedálenskom trakte zvýšený strom umožnuje viesť rozvody v podhľade. Vyšia svetlá výška umožnuje hlbšiemu prieniku slnečných lúčov do jedálne hlavne v zime. \n\tPosúvanie strešných rovín smerom nadol efektítne reguluje veľkosť obostavaného priestoru a navznikajú zbytočné podkrovné priestory.",
+                "columns": 3
+            },
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "kezmarska_chata_vykresy",
+                    "duration": 700
+                }
+            }
+        ],
+        "header": {
+            "pageTitle": "NOVÁ KEŽMARSKÁ CHATA",
+            "content": "Vysoké Tatry, Slovensko\nSúťaž\n2014"
+        }
+    }
+}

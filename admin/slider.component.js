@@ -10,8 +10,8 @@ define(['module', 'exports',
             this.router = router;
         }
 
-        SliderComponent.prototype.ngOnInit = function() {
-            if(!this.menuService.selectedMenuRoute) {
+        SliderComponent.prototype.ngOnInit = function () {
+            if (!this.menuService.selectedMenuRoute) {
                 this.router.navigate(['admin']);
             }
         };

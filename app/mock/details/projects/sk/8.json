@@ -1,0 +1,20 @@
+{
+    "data": {
+        "content": [
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "holandsky_kriz_foto",
+                    "duration": 700
+                }
+            },
+            {
+                "type": "slider",
+                "configuration": {
+                    "images": "holandsky_kriz_vykresy",
+                    "duration": 700
+                }
+            }
+        ]
+    }
+}

@@ -10,8 +10,8 @@ define(['module', 'exports',
             this.router = router;
         }
 
-        ListComponent.prototype.ngOnInit = function() {
-            if(!this.menuService.selectedMenuRoute) {
+        ListComponent.prototype.ngOnInit = function () {
+            if (!this.menuService.selectedMenuRoute) {
                 this.router.navigate(['admin']);
             }
         };

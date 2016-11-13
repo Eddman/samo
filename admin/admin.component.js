@@ -5,11 +5,11 @@ define(['module', 'exports',
 
     function AdminComponent(routingService) {
         this.routingService = routingService;
-        this.test = { value: 'test;'};
+        this.test = {value: 'test;'};
     }
 
     AdminComponent.prototype.ngOnInit = function () {
-        this.routingService.getRootConfiguration().then(function(root) {
+        this.routingService.getRootConfiguration().then(function (root) {
             this.root = root;
         }.bind(this));
     };

@@ -9,7 +9,7 @@ define(['module', 'exports',
             this.menuService = menuService;
         }
 
-        MenuTreeComponent.prototype.setRoute = function(route) {
+        MenuTreeComponent.prototype.setRoute = function (route) {
             this.menuService.setSelectedMenuRoute(route);
         };
 
