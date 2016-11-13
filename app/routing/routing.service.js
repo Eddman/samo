@@ -1,25 +1,21 @@
 define(['exports',
+        '../abstract.http.service',
         './route',
-        './menu',
-        '../mock/routing.mock'],
-    function (exports, routeClass, menuClass, routingMock) {
+        './menu'],
+    function (exports, httpService, routeClass, menuClass) {
         'use strict';
 
         var errors = {
             NOT_FOUND: 'Route not found for given path!'
         };
 
-        function RoutingService() {
-            this.routes = routingMock.routes;
+        function RoutingService(http) {
+            httpService.AbstractHttpService.call(this, http);
         }
+        httpService.inherit(RoutingService);
 
-        RoutingService.prototype.getRootConfiguration = function () {
-            if (this.routes) {
-                //noinspection AmdModulesDependencies
-                return Promise.resolve(this.routes);
-            }
-            //noinspection AmdModulesDependencies
-            return Promise.resolve({});
+        RoutingService.prototype.getRootConfiguration = function () { // override
+            return this.getWithCache("/app/mock/routing.mock.json");
         };
 
         RoutingService.prototype.getRouteConfig = function (routeParams) {
@@ -77,9 +73,7 @@ define(['exports',
                     }
 
                     resolve(new routeClass.Route(config.type, config.config));
-                }).catch(function (error) {
-                    reject(error);
-                });
+                }).catch(reject);
             }.bind(this));
         };
 
@@ -104,9 +98,7 @@ define(['exports',
                         }
                     });
                     resolve(new menuClass.MenuItem(rootConfiguration.title, '/', menuLocales));
-                }).catch(function (error) {
-                    reject(error);
-                });
+                }).catch(reject);
             }.bind(this));
         };
 

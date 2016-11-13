@@ -2,12 +2,13 @@ define(['exports',
         '@angular/core',
         '@angular/platform-browser',
         '@angular/router',
+    '@angular/http',
         './routing/routing.service',
         './routing/routing.module',
         './app.component',
         './menu/menu.component',
         '../admin/admin.module'],
-    function (exports, ngCore, ngBrowser, ngRouter, routingService, appRouting, appComponent,
+    function (exports, ngCore, ngBrowser, ngRouter, ngHttp, routingService, appRouting, appComponent,
               menuComponent, adminModule) {
         'use strict';
 
@@ -20,7 +21,9 @@ define(['exports',
                     ngBrowser.BrowserModule,
                     ngRouter.RouterModule.forRoot({}),
                     adminModule.AdminModule,
-                    appRouting.AppRoutingModule
+                    appRouting.AppRoutingModule,
+                    ngHttp.HttpModule,
+                    ngHttp.JsonpModule
                 ],
                 declarations: [
                     appComponent.AppComponent,

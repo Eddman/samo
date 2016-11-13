@@ -2,149 +2,66 @@ define(['exports', '../content/content'],
     function (exports, content) {
         'use strict';
 
-        var ContentPart = content.ContentPart,
-            news = [
-                {
-                    title: 'SME.sk',
-                    content: [
-                        ContentPart.forImage('https://3.bp.blogspot.com/-qptznv7BBbM/Vx0y98Fo3_I/AAAAAAAABok/ciFbTYuTOBgp' +
-                            'Gkfg6RxyhPjPEmbQMFChwCKgB/s320-p/Samuel%2BNetocny_dom%2Bspisska%2Bnova%2Bves06.jpg',
-                            'Dom', 'left', '200px'),
-                        ContentPart.forText('Praesent quam ipsum, interdum a aliquet et, tincidunt eget tellus. ' +
-                            'Aliquam molestie ex ac neque tristique, vel mattis elit sollicitudin. Integer imperdiet' +
-                            ' libero vel lacus lobortis, vel laoreet leo pretium. Duis imperdiet dictum neque quis ' +
-                            'varius. Morbi non justo sapien. Curabitur ornare tincidunt ipsum, at gravida turpis viverra' +
-                            ' id. Suspendisse aliquet est ut mi eleifend egestas. Aenean nec nulla eget nisl eleifend ' +
-                            'porttitor ut eget nisl. Praesent quis tellus lacinia, ullamcorper velit non, viverra dui. ' +
-                            'Morbi tempus neque sit amet pellentesque porta.'),
-                        ContentPart.forLinkExternal('test external link ', 'http://sme.sk'),
-                        ContentPart.forLinkInternal('test intenrnal link', ['sk', 'projects', '1']),
-                        ContentPart.forText('Nam nulla eros, suscipit quis pretium et, elementum in ante. Sed tincidunt' +
-                            ' id erat in pretium. Sed molestie at velit nec auctor. Curabitur a risus at justo consequat' +
-                            ' congue. Donec finibus, magna nec euismod rutrum, ante dui laoreet lectus, a sollicitudin ' +
-                            'enim arcu eu orci. Donec elementum scelerisque nunc ut laoreet. In vulputate odio vel augue ' +
-                            'blandit, vitae fermentum odio laoreet. In commodo felis ex, at aliquam dolor efficitur in. ' +
-                            'Nullam eget mauris eu nibh imperdiet porta. Phasellus vulputate lorem sem, aliquet pellentesque ' +
-                            'velit posuere ut. Mauris ac luctus eros, eget rutrum odio. Morbi quam purus, venenatis vel ' +
-                            'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
-                            ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
-                            ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus ' +
-                            'nulla, vestibulum in elit a, eleifend imperdiet enim. Duis scelerisque justo ac ligula ' +
-                            'dignissim, ut varius purus rutrum. Donec vel felis sed nulla euismod mollis. Phasellus ' +
-                            'porttitor pretium vestibulum. Phasellus aliquam venenatis velit vel ultrices. Duis sagittis' +
-                            ' erat et mi efficitur venenatis. Praesent laoreet commodo erat eget lobortis. Donec id ' +
-                            'cursus nisi.',
-                            2),
-                        ContentPart.forText('Aliquam in malesuada sapien, et venenatis eros. Phasellus ut sem sit amet ' +
-                            'dui facilisis pharetra. Duis scelerisque nec sapien id malesuada. Nulla tortor urna, ' +
-                            'fringilla at eros eget, pulvinar gravida ante. Pellentesque ut eleifend urna. Sed venenatis,' +
-                            ' nisl a vestibulum volutpat, erat felis condimentum neque, eget rutrum augue lacus sagittis' +
-                            ' purus. Pellentesque finibus sem eget eleifend dapibus. Pellentesque ac leo non justo sodales' +
-                            ' interdum. In fermentum sapien non enim laoreet volutpat. Vestibulum elementum purus risus,' +
-                            ' ac tempor risus interdum et. Nulla eu neque eu ante congue placerat. Duis leo est, varius ' +
-                            'vitae viverra et, fringilla condimentum lectus. Duis ut quam sit amet eros gravida vehicula ' +
-                            'a nec ligula.',
-                            3),
-                        ContentPart.forText('Praesent quam ipsum, interdum a aliquet et, tincidunt eget tellus. ' +
-                            'Aliquam molestie ex ac neque tristique, vel mattis elit sollicitudin. Integer imperdiet' +
-                            ' libero vel lacus lobortis, vel laoreet leo pretium. Duis imperdiet dictum neque quis ' +
-                            'varius. Morbi non justo sapien. Curabitur ornare tincidunt ipsum, at gravida turpis viverra' +
-                            ' id. Suspendisse aliquet est ut mi eleifend egestas. Aenean nec nulla eget nisl eleifend ' +
-                            'porttitor ut eget nisl. Praesent quis tellus lacinia, ullamcorper velit non, viverra dui. ' +
-                            'Morbi tempus neque sit amet pellentesque porta.',
-                            2),
-                        ContentPart.forText('Nam nulla eros, suscipit quis pretium et, elementum in ante. Sed tincidunt' +
-                            ' id erat in pretium. Sed molestie at velit nec auctor. Curabitur a risus at justo consequat' +
-                            ' congue. Donec finibus, magna nec euismod rutrum, ante dui laoreet lectus, a sollicitudin ' +
-                            'enim arcu eu orci. Donec elementum scelerisque nunc ut laoreet. In vulputate odio vel augue ' +
-                            'blandit, vitae fermentum odio laoreet. In commodo felis ex, at aliquam dolor efficitur in. ' +
-                            'Nullam eget mauris eu nibh imperdiet porta. Phasellus vulputate lorem sem, aliquet pellentesque ' +
-                            'velit posuere ut. Mauris ac luctus eros, eget rutrum odio. Morbi quam purus, venenatis vel ' +
-                            'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
-                            ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
-                            ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forText('Morbi convallis, augue vitae dapibus pellentesque, velit mauris vehicula' +
-                            ' metus, vel dignissim dui lacus et elit. Suspendisse potenti. Cras nec justo et metus feugiat' +
-                            ' cursus sed sed velit. Nunc pulvinar justo sed vulputate rhoncus. Cras varius sit amet ' +
-                            'felis eu malesuada. Nunc id congue felis. Ut ac felis velit.',
-                            2)
-                    ],
-                    externalURL: 'http://sme.sk'
-                },
-                {
-                    title: 'SME.sk',
-                    content: [
-                        ContentPart.forText('Praesent quam ipsum, interdum a aliquet et, tincidunt eget tellus. ' +
-                            'Aliquam molestie ex ac neque tristique, vel mattis elit sollicitudin. Integer imperdiet' +
-                            ' libero vel lacus lobortis, vel laoreet leo pretium. Duis imperdiet dictum neque quis ' +
-                            'varius. Morbi non justo sapien. Curabitur ornare tincidunt ipsum, at gravida turpis viverra' +
-                            ' id. Suspendisse aliquet est ut mi eleifend egestas. Aenean nec nulla eget nisl eleifend ' +
-                            'porttitor ut eget nisl. Praesent quis tellus lacinia, ullamcorper velit non, viverra dui. ' +
-                            'Morbi tempus neque sit amet pellentesque porta.'),
-                        ContentPart.forLinkExternal('test external link ', 'http://sme.sk'),
-                        ContentPart.forLinkInternal('test intenrnal link', ['sk', 'projects', '1']),
-                        ContentPart.forText('Nam nulla eros, suscipit quis pretium et, elementum in ante. Sed tincidunt' +
-                            ' id erat in pretium. Sed molestie at velit nec auctor. Curabitur a risus at justo consequat' +
-                            ' congue. Donec finibus, magna nec euismod rutrum, ante dui laoreet lectus, a sollicitudin ' +
-                            'enim arcu eu orci. Donec elementum scelerisque nunc ut laoreet. In vulputate odio vel augue ' +
-                            'blandit, vitae fermentum odio laoreet. In commodo felis ex, at aliquam dolor efficitur in. ' +
-                            'Nullam eget mauris eu nibh imperdiet porta. Phasellus vulputate lorem sem, aliquet pellentesque ' +
-                            'velit posuere ut. Mauris ac luctus eros, eget rutrum odio. Morbi quam purus, venenatis vel ' +
-                            'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
-                            ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
-                            ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forImage('https://3.bp.blogspot.com/-qptznv7BBbM/Vx0y98Fo3_I/AAAAAAAABok/ciFbTYuTOBgp' +
-                            'Gkfg6RxyhPjPEmbQMFChwCKgB/s320-p/Samuel%2BNetocny_dom%2Bspisska%2Bnova%2Bves06.jpg',
-                            '', 'right'),
-                        ContentPart.forText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus ' +
-                            'nulla, vestibulum in elit a, eleifend imperdiet enim. Duis scelerisque justo ac ligula ' +
-                            'dignissim, ut varius purus rutrum. Donec vel felis sed nulla euismod mollis. Phasellus ' +
-                            'porttitor pretium vestibulum. Phasellus aliquam venenatis velit vel ultrices. Duis sagittis' +
-                            ' erat et mi efficitur venenatis. Praesent laoreet commodo erat eget lobortis. Donec id ' +
-                            'cursus nisi.',
-                            2),
-                        ContentPart.forText('Aliquam in malesuada sapien, et venenatis eros. Phasellus ut sem sit amet ' +
-                            'dui facilisis pharetra. Duis scelerisque nec sapien id malesuada. Nulla tortor urna, ' +
-                            'fringilla at eros eget, pulvinar gravida ante. Pellentesque ut eleifend urna. Sed venenatis,' +
-                            ' nisl a vestibulum volutpat, erat felis condimentum neque, eget rutrum augue lacus sagittis' +
-                            ' purus. Pellentesque finibus sem eget eleifend dapibus. Pellentesque ac leo non justo sodales' +
-                            ' interdum. In fermentum sapien non enim laoreet volutpat. Vestibulum elementum purus risus,' +
-                            ' ac tempor risus interdum et. Nulla eu neque eu ante congue placerat. Duis leo est, varius ' +
-                            'vitae viverra et, fringilla condimentum lectus. Duis ut quam sit amet eros gravida vehicula ' +
-                            'a nec ligula.',
-                            3),
-                        ContentPart.forText('Praesent quam ipsum, interdum a aliquet et, tincidunt eget tellus. ' +
-                            'Aliquam molestie ex ac neque tristique, vel mattis elit sollicitudin. Integer imperdiet' +
-                            ' libero vel lacus lobortis, vel laoreet leo pretium. Duis imperdiet dictum neque quis ' +
-                            'varius. Morbi non justo sapien. Curabitur ornare tincidunt ipsum, at gravida turpis viverra' +
-                            ' id. Suspendisse aliquet est ut mi eleifend egestas. Aenean nec nulla eget nisl eleifend ' +
-                            'porttitor ut eget nisl. Praesent quis tellus lacinia, ullamcorper velit non, viverra dui. ' +
-                            'Morbi tempus neque sit amet pellentesque porta.',
-                            2),
-                        ContentPart.forText('Nam nulla eros, suscipit quis pretium et, elementum in ante. Sed tincidunt' +
-                            ' id erat in pretium. Sed molestie at velit nec auctor. Curabitur a risus at justo consequat' +
-                            ' congue. Donec finibus, magna nec euismod rutrum, ante dui laoreet lectus, a sollicitudin ' +
-                            'enim arcu eu orci. Donec elementum scelerisque nunc ut laoreet. In vulputate odio vel augue ' +
-                            'blandit, vitae fermentum odio laoreet. In commodo felis ex, at aliquam dolor efficitur in. ' +
-                            'Nullam eget mauris eu nibh imperdiet porta. Phasellus vulputate lorem sem, aliquet pellentesque ' +
-                            'velit posuere ut. Mauris ac luctus eros, eget rutrum odio. Morbi quam purus, venenatis vel ' +
-                            'interdum id, consectetur id sapien. Pellentesque augue justo, sagittis vitae ullamcorper nec,' +
-                            ' accumsan eu massa. In cursus ex molestie congue consectetur. Maecenas placerat dictum turpis' +
-                            ' in posuere. Nulla id velit quis ipsum eleifend semper.'),
-                        ContentPart.forText('Morbi convallis, augue vitae dapibus pellentesque, velit mauris vehicula' +
-                            ' metus, vel dignissim dui lacus et elit. Suspendisse potenti. Cras nec justo et metus feugiat' +
-                            ' cursus sed sed velit. Nunc pulvinar justo sed vulputate rhoncus. Cras varius sit amet ' +
-                            'felis eu malesuada. Nunc id congue felis. Ut ac felis velit.',
-                            2)
-                    ],
-                    externalURL: 'http://sme.sk'
-                }
-            ];
+        var ContentPart = content.ContentPart;
+
         exports.listItems = {
             'news': {
-                'sk': [], //news,
-                'at': news
+                'sk': [
+                    {
+                        title: 'OCENENIA',
+                        content: [
+                            ContentPart.forText('10/2016 - Kaplnka vzkriesenia nominovaná na prestížnu Cenu Dušana Jurkoviča 2016'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('09/2016 - Kaplnka vzkriesenia nominovaná na medzinárodnu cenu Piranesi 2016'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('09/2016 – Kaplnka získala Cenu časopisu Moderní obec v rámci súťaže Young Architect Awardc')
+                        ]
+                    },
+                    {
+                        title: 'PREDNÁŠKY',
+                        content: [
+                            ContentPart.forText('06/2016 Bratislava\nPrednáška a diskusia o sakrálnom priestore v rámci Dlhej noci kostolov'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('03/2012 Bratislava\nPrezentujem svoju diplomku o Petržalke na Pecha Kucha Night 18'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('12/2010 Brno\nPrednáška o Akadémii vo Viedni v rámci cyklu Format 400')
+                        ]
+                    },
+                    {
+                        title: 'MÉDIA',
+                        content: [
+                            ContentPart.forText('11/2016 Časopis ASB\nČlánok o kaplnke'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('10/2016 Časopis ARCH\nVeľký rozhovor a článok o kaplnke.'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('07/2016 Drevársky magazin\nČlánok o kaplnke'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('06/2016 Ročenka architektúry 2014/15\nKaplnka sa dostala do výberu 19 najlepších stavieb za posledné dva roky.'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('01/2015 Časopis Tatry\nTatry lákali turistov krásnymi hotelmi\nProfilový rozhovor'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('04/2012 etrend.sk\nKaplnka otvára sériu článkov o kreatívnych ľuďoch na Slovensku'),
+                            ContentPart.forLinkExternal('http://podnikanie.etrend.sk/kreativne/ako-na-betonove-aleluja.html', 'http://podnikanie.etrend.sk/kreativne/ako-na-betonove-aleluja.html'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('05/2011 www.urbanismusbrno.cz\nO projekte Splnený sen napísal web urbanismusbrno.cz')
+                        ]
+                    },
+                    {
+                        title: 'VÝSTAVY',
+                        content: [
+                            ContentPart.forText('10/2011 Viedeň\nProjekt Neutralita všemohúca je  súčasťou výstavy  Big Bad Modern II'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('07/2011 Bratislava\nBetónová kaplnka v centre výstavy ARCHITECTURE.SK.05/10 – III. úroda'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('06/2011 Viedeň\nProjekt Neutralita všemohúca je ukázaný na kolektívnej výstave Akadémie s názvom Big Bad Modern I'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('05/2011 Brno\nNáš projekt Splnený sen nájdete na výstave Mestských zásahov v Brne'),
+                            ContentPart.forLineBreak(),
+                            ContentPart.forText('12/2008 Brno\nVýstava fotografií The London Diary')
+                        ]
+                    }
+                ]
             }
         };
     });

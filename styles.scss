@@ -31,7 +31,7 @@ body {
     * {
         font-family: HelveticaNeue, Helvetica, sans-serif;
         font-weight: 300;
-        @include font-size(10);
+        @include font-size(12);
         color: black;
     }
 
@@ -67,6 +67,7 @@ body {
             margin-left: -2.7em;
             width: 5.4em;
             height: 5.4em;
+            transform: scale(0.7);
 
             .hill {
                 position: absolute;

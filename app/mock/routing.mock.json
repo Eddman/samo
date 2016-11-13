@@ -1,0 +1,71 @@
+{
+    "data": {
+        "title": "SAMUEL NETOČNÝ, architekt",
+        "type": "slider",
+        "config": {
+            "images": "home",
+            "duration": 700,
+            "autoSlide": 10000
+        },
+        "routes": [
+            {
+                "title": "/SK/ Poprad-Tatry",
+                "url": "sk",
+                "type": "group",
+                "redirect": [
+                    "sk",
+                    "projects"
+                ],
+                "routes": [
+                    {
+                        "title": "Práce",
+                        "url": "projects",
+                        "type": "projects",
+                        "paramsSize": 1,
+                        "config": {
+                            "type": [
+                                "projects",
+                                "sk"
+                            ]
+                        }
+                    },
+                    {
+                        "title": "News",
+                        "url": "news",
+                        "type": "list",
+                        "config": {
+                            "type": [
+                                "news",
+                                "sk"
+                            ]
+                        }
+                    },
+                    {
+                        "title": "Profil",
+                        "url": "cv",
+                        "type": "detail",
+                        "config": {
+                            "type": [
+                                "cv",
+                                "sk"
+                            ]
+                        }
+                    },
+                    {
+                        "title": "Kontakt",
+                        "url": "contact",
+                        "type": "detail",
+                        "config": {
+                            "type": [
+                                "contact",
+                                "sk"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+

@@ -14,6 +14,7 @@ $page_margin: 15px;
     border-radius: $radius;
     background-clip: padding-box; /* stops bg color from leaking outside the border: */
 }
+
 @mixin column-count($count) {
     -webkit-column-count: $count;
     -moz-column-count: $count;
@@ -38,6 +39,13 @@ $page_margin: 15px;
     line-height: ((1/16) * $heightValue) + rem;
 }
 
+@mixin transform($trans) {
+    -webkit-transform: $trans;
+    -moz-transform: $trans;
+    -ms-transform: $trans;
+    -o-transform: $trans;
+    transform: $trans;
+}
 
 @mixin bp-large {
     @media only screen and (max-width: $optimal_width + ($page_margin * 2)) {

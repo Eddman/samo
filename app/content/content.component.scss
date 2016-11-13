@@ -26,6 +26,8 @@
 
     .text {
         white-space: pre-wrap;
+        margin: 0;
+        padding: 0;
 
         &.column2 {
             @include column-count(2);

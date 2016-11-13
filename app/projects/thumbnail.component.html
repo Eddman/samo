@@ -1,4 +1,4 @@
-<a [@state]="state" [routerLink]="thumbnail.index + 1">
+<a [@state]="state" (click)="navigate()" (mouseenter)="setHover()" (mouseleave)="unsetHover()">
     <div class="title">{{thumbnail.title}}</div>
     <img (load)="state='loaded'" [src]="thumbnail.thumbUrl">
 </a>

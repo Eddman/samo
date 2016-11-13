@@ -1,4 +1,7 @@
 <div *ngFor="let listItem of listItems">
-    <h2><a [href]="listItem.externalURL">{{listItem.title}}</a></h2>
+    <h2 *ngIf="listItem.title">
+        <template [ngIf]="!listItem.externalURL">{{listItem.title}}</template>
+        <a *ngIf="listItem.externalURL" [href]="listItem.externalURL">{{listItem.title}}</a>
+    </h2>
     <content [contentParts]="listItem.content"></content>
 </div>

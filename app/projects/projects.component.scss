@@ -6,6 +6,8 @@ $space_between: 5px;
 $thumb_title_margin: 10px;
 $thumb_title_position: 5px;
 
+$hover_scale: 1.04;
+
 .grid {
     display: flex;
     flex-direction: row;
@@ -16,6 +18,7 @@ $thumb_title_position: 5px;
     .thumbnail, thumbnail {
         flex: 1 33%;
         @include box-sizing(border-box);
+        display: block;
 
         @include bp-medium {
             flex-basis: 50%;
@@ -27,12 +30,24 @@ $thumb_title_position: 5px;
 
         padding: $space_between;
 
+        %hover_effect {
+            img {
+                @include opacity(0.2);
+                @include transform(scale($hover_scale));
+            }
+
+            .title {
+                @include opacity(1);
+                @include transform(scale($hover_scale));
+            }
+        }
+
         /deep/ a {
             display: block;
             position: relative;
 
             img, .title {
-                transition: opacity 300ms;
+                transition: opacity 300ms, transform 300ms;
             }
 
             img {
@@ -51,14 +66,15 @@ $thumb_title_position: 5px;
             }
 
             &:hover, &:active {
-                img {
-                    @include opacity(0.2);
-                }
-
-                .title {
-                    @include opacity(1);
-                }
+                @extend %hover_effect;
             }
         }
+
+        &.hover a {
+            @extend %hover_effect;
+        }
+    }
+    div.thumbnail {
+        padding: 0;
     }
 }
