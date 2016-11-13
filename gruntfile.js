@@ -88,10 +88,6 @@ module.exports = function (grunt) {
                 src: providedJS('node_modules/ng2-page-slider/ng2-page-slider.js'),
                 dest: destination
             },
-            fonts: {
-                src: ['fonts/*'],
-                dest: destination
-            },
             html: {
                 src: htmlPattern,
                 dest: destination

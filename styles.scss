@@ -1,35 +1,11 @@
 @import "global";
 
-@font-face {
-    font-family: 'HelveticaNeue';
-    src: url('fonts/HelveticaNeueBold.eot');
-    src: url('fonts/HelveticaNeueBold.eot?#iefix') format('embedded-opentype'),
-    url('fonts/HelveticaNeueBold.woff2') format('woff2'),
-    url('fonts/HelveticaNeueBold.woff') format('woff'),
-    url('fonts/HelveticaNeueBold.ttf') format('truetype'),
-    url('fonts/HelveticaNeueBold.svg#HelveticaNeueBold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'HelveticaNeue';
-    src: url('fonts/HelveticaNeueLight.eot');
-    src: url('fonts/HelveticaNeueLight.eot?#iefix') format('embedded-opentype'),
-    url('fonts/HelveticaNeueLight.woff2') format('woff2'),
-    url('fonts/HelveticaNeueLight.woff') format('woff'),
-    url('fonts/HelveticaNeueLight.ttf') format('truetype'),
-    url('fonts/HelveticaNeueLight.svg#HelveticaNeueLight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
-
 body {
     margin: $page_margin;
     display: flex;
 
     * {
-        font-family: HelveticaNeue, Helvetica, sans-serif;
+        font-family: Helvetica, sans-serif;
         font-weight: 300;
         @include font-size(12);
         color: black;

@@ -4,11 +4,11 @@
 $padding_side: 95px;
 $padding_bottom: 20px;
 $padding_top: 25px;
-$height: 160px;
+$height: 210px;
 
 $header_font_size: 16;
 $link_font_size: 12;
-$link_line_height: 15;
+$link_line_height: 18;
 
 :host {
     height: $height - $padding_bottom;
@@ -42,7 +42,7 @@ $link_line_height: 15;
 
     .sizer {
         flex-grow: 1;
-        display: block;
+        display: flex;
     }
 
     .menu {
