@@ -9,9 +9,15 @@
                 }
             },
             {
+                "type": "break"
+            },
+            {
                 "type": "text",
                 "text": "\tDobrý boj je hlavná a najpodstatnejšia vec, ktorú kaplnka ztelesňuje. Zápas človeka o prežitie v drsnom kraji pod Tatrami, zápas aj napriek ťažkému životu vytvárať veci Krásne a (z dnešného vnímania konzumenta všetkého) večné. Zápas formy a živlov prírody. Vztýčená hmota pred nekonečnosťou času vzdáva hold Zápasu a navždy bude pripomínať podstatu života, Dobrý boj.\n\tStrohá archetypálna forma stojí ako Pamäť miesta. Pamäť ktorá stelesňuje bohatú históriu Spiša a jeho obyvateľov. Vzdáva im vďaku za dedičstvo, ktoré nám zanechali. Vzdáva im obdiv za ich zápas. \n\tMetaforou zápasu v živote je na prvý pohľad nesúlad medzi vonkajšou formou a vnútorným priestorom . Ohraničený a obmedzený tmavý priestor existuje len vďaka nekonečnému a krásnemu svetu ktorý ho obklopuje. Jediné čim sa stelesňuje je svetlo. Svetlo, ktoré  prechádza cez steny a nepotrebuje okná. Svetlo ktoré sa nás dotýka, ale my svojou uzavretosťou a tvrdohlavosťou ho ignorujeme a nechceme sa ho dotknúť. „Oko, ktoré nevidí.“ \n\tJediný element spájajúci oba svety je kríž, skrze ktorý vedie jediná cesta do sveta krásneho a nekonečného. Spoločné ideálne proporcie obálky a interiéru kaplnky zvýrazňujú neoddeliteľnosť oboch svetov.\n\tOrientácia kaplnky uznáva tradíciu osadzovania sakrálnych stavieb v na Spiši. Nekompromisné natočenie oltáru na východ povyšuje Božský princíp nad všetko svetské. Podstata je Jedna.",
                 "columns": 3
+            },
+            {
+                "type": "break"
             },
             {
                 "type": "slider",

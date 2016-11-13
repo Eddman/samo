@@ -12,11 +12,11 @@
                 "type": "break"
             },
             {
-                "type": "break"
-            },
-            {
                 "type": "text",
                 "text": "Zabudnutým generáciam, ktoré nám zanechali túto krásnu kultúrnu krajinu."
+            },
+            {
+                "type": "break"
             },
             {
                 "type": "text",
@@ -26,9 +26,6 @@
             {
                 "type": "text",
                 "text": "Spolupráca: Vojtěch Jemelka"
-            },
-            {
-                "type": "break"
             },
             {
                 "type": "break"

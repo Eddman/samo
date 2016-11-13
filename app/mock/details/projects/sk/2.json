@@ -9,9 +9,15 @@
                 }
             },
             {
+                "type": "break"
+            },
+            {
                 "type": "text",
                 "text": "\tPrvých 11 zastavení má rovnakú formu a odlíšené sú len číslovaním. Forma zastavení, kedy pán Ježiš padá pod ťarchou kríža je jemne odlišná, aby putujúcemu pripomenula oddanosť Krista Otcovi a jeho silu niesť svoj kríž až do konca. Zdvojenie jednoduchého krížu vytvára kríž v tvare Stromu poznania, ktorý má na Spiši tradíciu od stredoveku. Takisto je to krásny symbol Kristovej obety za naše hriechy. Jednoduchý tvar ticho zadadá do rozbujnelej prírody a vytvára priestor pre modlitbu.\n\tDvanáste zastavenie je kríž ako nástroj utrpenia vo svojej „najčistejšej“ forme. Obetu - Ježišovu smrť, aby následne mohol z mŕtvych vstať, dáva na vrchol našej cesty. Posledné dve zastavenia sa odohrávajú v imtímnej atmosfére kaplnky.",
                 "columns": 3
+            },
+            {
+                "type": "break"
             },
             {
                 "type": "image",

@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         log = require('connect-logger'),
         destination = 'dist/',
         sassPattern, sassPatternWatch,
-        cssPattern, htmlPattern, jsPattern,
+        cssPattern, htmlPattern, jsPattern, mockFiles,
         images = ['images/**'],
         appFolders = ['app', 'admin'];
 
@@ -31,6 +31,7 @@ module.exports = function (grunt) {
     cssPattern = addAppFolders('**/*.css', 'styles.css');
     htmlPattern = addAppFolders('**/*.html', 'index.html');
     jsPattern = addAppFolders('**/*.js', 'systemjs.config.js');
+    mockFiles = addAppFolders('**/*.json');
 
     grunt.initConfig({
         clean: {
@@ -101,6 +102,10 @@ module.exports = function (grunt) {
             },
             favicon: {
                 src: 'favicon.ico',
+                dest: destination
+            },
+            mock: {
+                src: mockFiles,
                 dest: destination
             }
         },

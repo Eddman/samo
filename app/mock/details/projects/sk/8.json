@@ -9,6 +9,12 @@
                 }
             },
             {
+                "type": "break"
+            },
+            {
+                "type": "break"
+            },
+            {
                 "type": "slider",
                 "configuration": {
                     "images": "holandsky_kriz_vykresy",

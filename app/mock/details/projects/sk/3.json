@@ -9,9 +9,15 @@
                 }
             },
             {
+                "type": "break"
+            },
+            {
                 "type": "text",
                 "text": "\tDom stojí v jednej z nových štvrtí Veľkej v Poprade na relatívne úzkej a malej parcele. Aj napriek tejto skutočnosti dom ponúka priestranú obývaciu miestnosť s jedálňou a kuchyňou. \n\tSrdce domu je krb s navezujúcim barovým pultom. Jeho umiestnenie v strede pôdorysu vizuálne rozčleňuje priestor, ale nebráni voľnému pohybu. Smerom k ulici sú orientované vedľajsie funkcie. Touto \"izolačnou\" zónou sa podporilo otvorenie interiéru do záhrady a zabezpečilo dostatok súkromia jeho užívateľom.\n\tNa poschodí sú tri izby, kúpelňa s oddeleným WC a priestor chodby je využitý ako pracovňa. Okná schodiska rámujú na severe výhľad na Vysoké Tatry a na juhu Kráľovú hoľu.\n\tNízkoenergetický štandard dosiahnutý premyslenými technickými detailami eliminujúcimi tepelné mosty, nadštandardným zateplením (20cm) a trojitým zasklením minimalizuje náklady na vykurovanie.",
                 "columns": 3
+            },
+            {
+                "type": "break"
             },
             {
                 "type": "image",
