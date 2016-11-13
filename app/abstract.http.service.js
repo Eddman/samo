@@ -13,7 +13,12 @@ define(['exports',
             this.cache = {};
         }
 
-        AbstractHttpService.prototype.getWithCache = function (resourceURL) {
+        AbstractHttpService.prototype.getWithCache = function (resourceURL, params) {
+            if (params) {
+                Object.keys(params).forEach(function (i) {
+                    resourceURL = resourceURL.replace(':' + i, params[i]);
+                });
+            }
             if (!this.cache[resourceURL]) {
                 //noinspection AmdModulesDependencies
                 return new Promise(function (resolve, reject) {

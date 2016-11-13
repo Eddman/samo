@@ -1,20 +1,16 @@
 define(['exports',
-        '../mock/projects.mock'],
-    function (exports, mockProjects) {
+        '../abstract.http.service'],
+    function (exports, httpService) {
         'use strict';
 
-        function ProjectsService() {
-            this.projects = mockProjects.projects;
+        function ProjectsService(http) {
+            httpService.AbstractHttpService.call(this, http);
         }
 
+        httpService.inherit(ProjectsService);
+
         ProjectsService.prototype.getProjects = function (config) {
-            //noinspection AmdModulesDependencies
-            var projectsTree = this.projects;
-            Object.keys(config.type).forEach(function (i) {
-                projectsTree = projectsTree[config.type[i]];
-            });
-            //noinspection AmdModulesDependencies
-            return Promise.resolve(projectsTree);
+            return this.getWithCache('/app/mock/:0/:1.json', config.type);
         };
 
         exports.ProjectsService = ProjectsService;

@@ -12,6 +12,7 @@ define(['exports',
         function RoutingService(http) {
             httpService.AbstractHttpService.call(this, http);
         }
+
         httpService.inherit(RoutingService);
 
         RoutingService.prototype.getRootConfiguration = function () { // override
