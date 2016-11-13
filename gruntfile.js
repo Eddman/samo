@@ -145,7 +145,7 @@ module.exports = function (grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: cssPattern.concat(htmlPattern).concat(jsPattern).concat(images)
+                    src: cssPattern.concat(htmlPattern).concat(jsPattern).concat(images).concat(mockFiles)
                 },
                 options: {
                     injectChanges: false, // workaround for Angular 2 styleUrls loading
