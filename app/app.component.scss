@@ -3,6 +3,7 @@
 
 .copyright {
     $margin: 20px;
-    margin: $margin 0 $margin - $page_margin;
+    padding: $margin 0 $margin - $page_margin;
     text-align: center;
+    clear: both;
 }

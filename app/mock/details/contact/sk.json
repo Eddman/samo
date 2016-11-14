@@ -1,5 +1,16 @@
 {
     "data": {
-        "content": []
+        "content": [
+            {
+                "type": "image",
+                "url": "/images/contact/mapa.png",
+                "float": "left"
+            },
+            {
+                "type": "text",
+                "text": "Tvoríme pod Tatrami, vo Viedni a na ceste medzi nimi.\n\nsamuel@netocny.com\n+43 699 105 09430",
+                "columns": 1
+            }
+        ]
     }
 }

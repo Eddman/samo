@@ -1,7 +1,7 @@
-define(['module', 'exports', '@angular/core'], function (module, exports, ngCore) {
+define(['module', 'exports', '@angular/core', '@angular/meta/index'], function (module, exports, ngCore, ngMeta) {
     'use strict';
 
-    function AppComponent() {
+    function AppComponent(metaService) {
     }
 
     AppComponent.annotations = [
@@ -12,6 +12,7 @@ define(['module', 'exports', '@angular/core'], function (module, exports, ngCore
             styleUrls: ['app.component.css']
         })
     ];
+    AppComponent.parameters = [ngMeta.MetaService];
 
     exports.AppComponent = AppComponent;
 });

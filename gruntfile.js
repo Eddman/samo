@@ -88,6 +88,10 @@ module.exports = function (grunt) {
                 src: providedJS('node_modules/ng2-page-slider/ng2-page-slider.js'),
                 dest: destination
             },
+            'ng2-meta': {
+                src: providedJS('node_modules/ng2-meta/dist/*.js'),
+                dest: destination
+            },
             html: {
                 src: htmlPattern,
                 dest: destination

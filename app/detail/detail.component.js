@@ -1,23 +1,34 @@
 define(['module',
         'exports',
         '@angular/core',
+        '@angular/meta/index',
         './detail.service'],
-    function (module, exports, ngCore, detailService) {
+    function (module, exports, ngCore, ngMeta, detailService) {
         'use strict';
 
-        function DetailComponent(detailService) {
+        function DetailComponent(detailService, metaService) {
             this.detailService = detailService;
+            this.metaService = metaService;
             this.headerChange = new ngCore.EventEmitter();
         }
 
         //noinspection JSUnusedGlobalSymbols
-        DetailComponent.prototype.ngOnInit = function () {
+        DetailComponent.prototype.ngOnChanges = function () {
             this.detailService.getDetail({
                 type: this.route.configuration.type,
                 parameters: this.route.parameters
             }).then(function (detail) {
                 this.detail = detail;
-                this.headerChange.emit(this.detail.header);
+                if (detail) {
+                    if (detail.title) {
+                        this.metaService.setTag('description', detail.title);
+                    }
+                    if (detail.header) {
+                        this.metaService.setTag('description', detail.header.pageTitle + '\n' + detail.header.content);
+                    }
+
+                    this.headerChange.emit(this.detail.header);
+                }
             }.bind(this));
         };
 
@@ -32,7 +43,7 @@ define(['module',
             })
         ];
 
-        DetailComponent.parameters = [[detailService.DetailService]];
+        DetailComponent.parameters = [detailService.DetailService, ngMeta.MetaService];
 
         exports.DetailComponent = DetailComponent;
     });
