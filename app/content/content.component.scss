@@ -11,16 +11,27 @@
 
         &.floatLeft {
             float: left;
-            margin-right: 1em;
-            width: 32.5%;
-            @include box-sizing(border-box)
+            margin: 0 1em 1em 0;
         }
 
         &.floatRight {
             float: right;
-            margin-left: 1em;
+            margin: 0 0 1em 1em;
+        }
+
+        &.floatLeft, &.floatRight {
             width: 32.5%;
-            @include box-sizing(border-box)
+            @include box-sizing(border-box);
+
+            @include bp-medium {
+                width: 49.5%;
+            }
+
+            @include bp-small {
+                float: none;
+                margin: 0 0 1em;
+                width: 100%;
+            }
         }
     }
 
@@ -32,7 +43,7 @@
         &.column2 {
             @include column-count(2);
 
-            @include bp-small {
+            @include bp-medium {
                 @include column-count(1);
             }
         }
