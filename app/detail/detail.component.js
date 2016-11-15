@@ -1,49 +1,50 @@
 define(['module',
         'exports',
-        '@angular/core',
-        '@angular/meta/index',
+        '../abstract.component',
         './detail.service'],
-    function (module, exports, ngCore, ngMeta, detailService) {
+    function (module, exports, abstractComponent, detailService) {
         'use strict';
 
-        function DetailComponent(detailService, metaService) {
+        function DetailComponent(metaService, detailService) {
+            abstractComponent.AbstractComponent.call(this, metaService);
             this.detailService = detailService;
-            this.metaService = metaService;
-            this.headerChange = new ngCore.EventEmitter();
         }
 
-        //noinspection JSUnusedGlobalSymbols
-        DetailComponent.prototype.ngOnChanges = function () {
-            this.detailService.getDetail({
-                type: this.route.configuration.type,
-                parameters: this.route.parameters
-            }).then(function (detail) {
-                this.detail = detail;
-                if (detail) {
-                    if (detail.title) {
-                        this.metaService.setTag('description', detail.title);
+        abstractComponent.inherit(DetailComponent, {
+            ngOnChanges: function () {
+                this.detailService.getDetail({
+                    type: this.route.configuration.type,
+                    parameters: this.route.parameters
+                }).then(function (detail) {
+                    var desc;
+                    this.detail = detail;
+                    if (detail) {
+                        if (detail.title) {
+                            desc = detail.title;
+                        }
+                        if (detail.header) {
+                            if (desc) {
+                                desc += ", ";
+                            } else {
+                                desc = '';
+                            }
+                            desc += detail.header.pageTitle;
+                            desc += ", ";
+                            desc += detail.header.content.replace(new RegExp('\n', 'g'), ', ');
+
+                        }
+
+                        if (this.detail.content) {
+                            desc = this.getDescriptionFromContent(desc, this.detail.content);
+                        }
+
+                        this.setSEODescription(desc);
+                        this.setSEOImage(this.getFirstImageFromContent(this.detail.content));
+                        this.headerChange.emit(this.detail.header);
                     }
-                    if (detail.header) {
-                        this.metaService.setTag('description', detail.header.pageTitle + '\n' + detail.header.content);
-                    }
+                }.bind(this));
+            }
+        }, [detailService.DetailService]);
 
-                    this.headerChange.emit(this.detail.header);
-                }
-            }.bind(this));
-        };
-
-        DetailComponent.annotations = [
-            new ngCore.Component({
-                moduleId: module.id,
-                selector: 'detail-view',
-                templateUrl: 'detail.component.html',
-                styleUrls: ['detail.component.css'],
-                inputs: ['route'],
-                outputs: ['headerChange']
-            })
-        ];
-
-        DetailComponent.parameters = [detailService.DetailService, ngMeta.MetaService];
-
-        exports.DetailComponent = DetailComponent;
+        exports.DetailComponent = abstractComponent.component(DetailComponent, module, 'detail-view', 'detail.component');
     });

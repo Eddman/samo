@@ -1,35 +1,24 @@
-define(['module', 'exports',
-        '@angular/core',
+define(['module',
+        'exports',
+        '../abstract.component',
         './list.service'],
-    function (module, exports, ngCore, listService) {
+    function (module, exports, abstractComponent, listService) {
         'use strict';
 
-        function ListComponent(listService) {
+        function ListComponent(metaService, listService) {
+            abstractComponent.AbstractComponent.call(this, metaService);
             this.listService = listService;
         }
 
-        //noinspection JSUnusedGlobalSymbols
-        ListComponent.prototype.ngOnChanges = function () {
-            this.listService.getListItems({
-                type: this.route.configuration.type
-            }).then(function (listItems) {
-                this.listItems = listItems;
-            }.bind(this));
-        };
+        abstractComponent.inherit(ListComponent, {
+            ngOnChanges: function () {
+                this.listService.getListItems({
+                    type: this.route.configuration.type
+                }).then(function (listItems) {
+                    this.listItems = listItems;
+                }.bind(this));
+            }
+        }, [listService.ListService]);
 
-        ListComponent.annotations = [
-            new ngCore.Component({
-                moduleId: module.id,
-                selector: 'list-view',
-                templateUrl: 'list.component.html',
-                styleUrls: ['list.component.css'],
-                inputs: ['route']
-            })
-        ];
-
-        ListComponent.parameters = [
-            listService.ListService
-        ];
-
-        exports.ListComponent = ListComponent;
+        exports.ListComponent = abstractComponent.component(ListComponent, module, 'list-view', 'list.component');
     });
