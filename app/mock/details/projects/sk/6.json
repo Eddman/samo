@@ -5,7 +5,8 @@
                 "type": "slider",
                 "configuration": {
                     "images": "kriz_ticha_foto",
-                    "duration": 700
+                    "duration": 700,
+                    "primary": true
                 }
             },
             {

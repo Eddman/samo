@@ -5,7 +5,8 @@
                 "type": "slider",
                 "configuration": {
                     "images": "mudra_stena",
-                    "duration": 700
+                    "duration": 700,
+                    "primary": true
                 }
             },
             {

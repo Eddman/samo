@@ -5,7 +5,8 @@
                 "type": "slider",
                 "configuration": {
                     "images": "kaplnka_sv_jakuba_foto",
-                    "duration": 700
+                    "duration": 700,
+                    "primary": true
                 }
             },
             {

@@ -5,7 +5,8 @@
         "config": {
             "images": "home",
             "duration": 700,
-            "autoSlide": 10000
+            "autoSlide": 10000,
+            "description": "SAMUEL NETOČNÝ, architekt, Poprad - Tatry, Wien"
         },
         "routes": [
             {

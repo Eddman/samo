@@ -21,10 +21,8 @@ define(['exports',
         }
 
         metaConfig = {
-            useTitleSuffix: true,
             defaults: {
-                title: 'SAMUEL NETOČNÝ, architekt',
-                'og:image': window.location.origin + '/images/kvetnica_kaplnka/thumb.png'
+                title: 'SAMUEL NETOČNÝ, architekt'
             }
         };
 

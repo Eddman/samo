@@ -5,7 +5,8 @@
                 "type": "slider",
                 "configuration": {
                     "images": "dom_velka",
-                    "duration": 700
+                    "duration": 700,
+                    "primary": true
                 }
             },
             {

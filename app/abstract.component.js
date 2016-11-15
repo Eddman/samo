@@ -56,7 +56,7 @@ define(['exports',
             if (imageUrl) {
                 this.metaService.setTag('og:image', window.location.origin + imageUrl);
             } else {
-                this.metaService.setTag('og:image');
+                this.metaService.setTag('og:image', window.location.origin + '/seo/thumb.png');
             }
         };
 

@@ -5,7 +5,8 @@
                 "type": "slider",
                 "configuration": {
                     "images": "kezmarska_chata_foto",
-                    "duration": 700
+                    "duration": 700,
+                    "primary": true
                 }
             },
             {

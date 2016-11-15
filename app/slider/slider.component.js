@@ -11,7 +11,7 @@ define(['module',
         }
 
         abstractComponent.inherit(SliderComponent, {
-            ngOnInit: function () {
+            ngOnChanges: function () {
                 // Check if auto-slide is available
                 if (this.route.configuration.autoSlide) {
                     this.autoSlide = this.route.configuration.autoSlide;
@@ -27,8 +27,15 @@ define(['module',
                     this.pageNumber = 0;
                     this.pageCount = this.pages.length;
 
-                    if (slides && slides.length) {
-                        this.setSEOImage(slides[0].url);
+                    if(this.keysEnabled || this.route.configuration.primary) {
+                        if(!this.route.configuration.primary) {
+                            this.setSEODescription(this.route.configuration.description);
+                        }
+                        if (slides && slides.length) {
+                            this.setSEOImage(slides[0].url);
+                        } else {
+                            this.setSEOImage();
+                        }
                     }
 
                     // Start sliding

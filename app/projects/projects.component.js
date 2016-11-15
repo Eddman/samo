@@ -18,11 +18,16 @@ define(['module',
                     Object.keys(projects).forEach(function (i) {
                         projects[i].index = +i;
                     });
+
                     this.setSEODescription();
-                    if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
-                        this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
-                    } else {
-                        this.setSEOImage(projects[0].thumbUrl);
+                    this.setSEOImage();
+
+                    if (projects) {
+                        if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
+                            this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
+                        } else {
+                            this.setSEOImage(projects[0].thumbUrl);
+                        }
                     }
                     this.projects = projects;
                 }.bind(this));

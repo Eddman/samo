@@ -18,6 +18,10 @@ define(['module',
                 }).then(function (detail) {
                     var desc;
                     this.detail = detail;
+
+                    this.setSEODescription();
+                    this.setSEOImage();
+
                     if (detail) {
                         if (detail.title) {
                             desc = detail.title;
@@ -31,7 +35,6 @@ define(['module',
                             desc += detail.header.pageTitle;
                             desc += ", ";
                             desc += detail.header.content.replace(new RegExp('\n', 'g'), ', ');
-
                         }
 
                         if (this.detail.content) {
