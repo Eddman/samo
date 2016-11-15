@@ -104,10 +104,6 @@ module.exports = function (grunt) {
                 src: 'favicon.ico',
                 dest: destination
             },
-            bootstrap: {
-                src: '/node_modules/bootstrap/dist/css/bootstrap.min.css',
-                dest: destination
-            },
             mock: {
                 src: mockFiles,
                 dest: destination

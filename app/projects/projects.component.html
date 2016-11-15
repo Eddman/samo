@@ -5,7 +5,12 @@
         <div class="thumbnail"></div>
         <div class="thumbnail"></div>
     </div>
-    <a *ngIf="isLoggedIn() && !isEdit" class="btn btn-primary" (click)="isEdit = true">Edit</a>
-    <a *ngIf="isLoggedIn() && isEdit" class="btn btn-danger" (click)="isEdit = false">Cancel</a>
+    <div *ngIf="isLoggedIn()" class="bootstrap">
+        <a *ngIf="!isEdit" class="btn btn-primary" (click)="isEdit = true">Edit</a>
+        <template [ngIf]="isEdit">
+            <a class="btn btn-primary" (click)="isEdit = false">Save</a>
+            <a class="btn btn-danger" (click)="isEdit = false">Cancel</a>
+        </template>
+    </div>
 </template>
 <detail-view *ngIf="route.parameters" (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>
