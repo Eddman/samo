@@ -18,7 +18,7 @@ define(['module', 'exports',
         }
 
         ThumbnailComponent.prototype.navigate = function () {
-            if (this.hover) {
+            if (this.hover && !this.isEdit) {
                 this.router.navigate([this.thumbnail.index + 1], {relativeTo: this.route});
             }
         };

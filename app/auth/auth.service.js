@@ -10,9 +10,9 @@ define(['exports',
             this.loggedIn = new behaviorSubject.BehaviorSubject(false);
             this.storage = storage;
 
-            if (!!this.storage.getAuthToken()) {
+            //if (!!this.storage.getAuthToken()) {
                 this.loggedIn.next(true);
-            }
+            //}
         }
 
         exports.AuthService = httpService.inherit(AuthService, {
