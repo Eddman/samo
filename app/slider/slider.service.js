@@ -3,8 +3,8 @@ define(['exports',
     function (exports, httpService) {
         'use strict';
 
-        function SliderService(http) {
-            httpService.AbstractHttpService.call(this, http);
+        function SliderService() {
+            httpService.AbstractHttpService.apply(this, arguments);
         }
 
         exports.SliderService = httpService.inherit(SliderService, {

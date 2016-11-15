@@ -3,8 +3,8 @@ define(['exports',
     function (exports, httpService) {
         'use strict';
 
-        function ProjectsService(http) {
-            httpService.AbstractHttpService.call(this, http);
+        function ProjectsService() {
+            httpService.AbstractHttpService.apply(this, arguments);
         }
 
         exports.ProjectsService = httpService.inherit(ProjectsService, {

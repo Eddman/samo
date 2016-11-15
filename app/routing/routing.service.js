@@ -10,8 +10,8 @@ define(['exports',
         };
         exports.ERRORS = errors;
 
-        function RoutingService(http) {
-            httpService.AbstractHttpService.call(this, http);
+        function RoutingService() {
+            httpService.AbstractHttpService.apply(this, arguments);
         }
 
         exports.RoutingService = httpService.inherit(RoutingService, {

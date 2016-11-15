@@ -3,8 +3,8 @@ define(['exports',
     function (exports, httpService) {
         'use strict';
 
-        function DetailService(http) {
-            httpService.AbstractHttpService.call(this, http);
+        function DetailService() {
+            httpService.AbstractHttpService.apply(this, arguments);
         }
 
         exports.DetailService = httpService.inherit(DetailService, {

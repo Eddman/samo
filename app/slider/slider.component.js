@@ -5,8 +5,8 @@ define(['module',
     function (module, exports, abstractComponent, sliderService) {
         'use strict';
 
-        function SliderComponent(metaService, sliderService) {
-            abstractComponent.AbstractComponent.call(this, metaService);
+        function SliderComponent(metaService, authService, sliderService) {
+            abstractComponent.AbstractComponent.apply(this, arguments);
             this.sliderService = sliderService;
         }
 
@@ -27,8 +27,8 @@ define(['module',
                     this.pageNumber = 0;
                     this.pageCount = this.pages.length;
 
-                    if(this.keysEnabled || this.route.configuration.primary) {
-                        if(!this.route.configuration.primary) {
+                    if (this.keysEnabled || this.route.configuration.primary) {
+                        if (!this.route.configuration.primary) {
                             this.setSEODescription(this.route.configuration.description);
                         }
                         if (slides && slides.length) {

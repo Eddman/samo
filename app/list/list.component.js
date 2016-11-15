@@ -5,8 +5,8 @@ define(['module',
     function (module, exports, abstractComponent, listService) {
         'use strict';
 
-        function ListComponent(metaService, listService) {
-            abstractComponent.AbstractComponent.call(this, metaService);
+        function ListComponent(metaService, authService, listService) {
+            abstractComponent.AbstractComponent.apply(this, arguments);
             this.listService = listService;
         }
 

@@ -5,8 +5,8 @@ define(['module',
     function (module, exports, abstractComponent, projectService) {
         'use strict';
 
-        function ProjectsComponent(metaService, projectService) {
-            abstractComponent.AbstractComponent.call(this, metaService);
+        function ProjectsComponent(metaService, authService, projectService) {
+            abstractComponent.AbstractComponent.apply(this, arguments);
             this.projectService = projectService;
             this.isEdit = false;
         }

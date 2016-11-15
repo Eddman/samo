@@ -1,13 +1,20 @@
 define(['exports',
         '@angular/core',
-        '@angular/meta/index', './content/content'],
-    function (exports, ngCore, ngMeta, cnt) {
+        '@angular/meta/index',
+        './auth/auth.service',
+        './content/content'],
+    function (exports, ngCore, ngMeta, authService, cnt) {
         'use strict';
 
-        function AbstractComponent(metaService) {
+        function AbstractComponent(metaService, authService) {
             this.metaService = metaService;
+            this.authService = authService;
             this.headerChange = new ngCore.EventEmitter();
         }
+
+        AbstractComponent.prototype.isLoggedIn = function () {
+            return this.authService.isLoggedIn();
+        };
 
         AbstractComponent.prototype.getDescriptionFromContent = function (desc, content) {
             var description = desc;
@@ -62,7 +69,7 @@ define(['exports',
 
         exports.AbstractComponent = AbstractComponent;
         exports.inherit = function (obj, prototype, additionalParams) {
-            obj.parameters = [ngMeta.MetaService].concat(additionalParams);
+            obj.parameters = [ngMeta.MetaService, authService.AuthService].concat(additionalParams);
             obj.prototype = Object.create(AbstractComponent.prototype);
             if (prototype) {
                 Object.keys(prototype).forEach(function (k) {
