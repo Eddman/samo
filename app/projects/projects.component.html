@@ -1,16 +1,23 @@
 <template [ngIf]="!route.parameters">
-    <div class="grid" [class.jiggle]="isEdit">
-        <thumbnail *ngFor="let project of projects; let i = index" [thumbnail]="project"></thumbnail>
-        <div class="thumbnail"></div>
-        <div class="thumbnail"></div>
-        <div class="thumbnail"></div>
-    </div>
-    <div *ngIf="isLoggedIn()" class="bootstrap">
-        <a *ngIf="!isEdit" class="btn btn-primary" (click)="isEdit = true">Edit</a>
+    <div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
+        <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit</a>
         <template [ngIf]="isEdit">
-            <a class="btn btn-primary" (click)="isEdit = false">Save</a>
-            <a class="btn btn-danger" (click)="isEdit = false">Cancel</a>
+            <a class="btn btn-primary" (click)="save()">Save</a>
+            <a class="btn btn-danger" (click)="cancel()">Cancel</a>
         </template>
+    </div>
+    <div class="grid" [class.jiggle]="isEdit">
+        <thumbnail *ngFor="let project of projects; let i = index" [thumbnail]="project" [isEdit]="isEdit"></thumbnail>
+        <div *ngIf="isEdit" class="thumbnail new_project">
+            <a (click)="addNewProject()">
+                <div class="title">New project</div>
+                <div class="add_button"></div>
+                <img src="/images/icons/broken_image.svg">
+            </a>
+        </div>
+        <div class="thumbnail"></div>
+        <div class="thumbnail"></div>
+        <div class="thumbnail"></div>
     </div>
 </template>
 <detail-view *ngIf="route.parameters" (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>

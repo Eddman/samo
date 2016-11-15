@@ -13,6 +13,9 @@ define(['module',
 
         abstractComponent.inherit(ProjectsComponent, {
             ngOnChanges: function () {
+                this.loadProjects();
+            },
+            loadProjects: function () {
                 this.projectService.getProject({
                     type: this.route.configuration.type
                 }).then(function (projects) {
@@ -30,8 +33,21 @@ define(['module',
                             this.setSEOImage(projects[0].thumbUrl);
                         }
                     }
-                    this.projects = projects;
+                    this.projects = [].concat(projects);
                 }.bind(this));
+            },
+            edit: function () {
+                this.isEdit = true;
+            },
+            save: function () {
+                this.isEdit = false;
+            },
+            cancel: function () {
+                this.isEdit = false;
+                this.loadProjects();
+            },
+            addNewProject: function () {
+                this.projects.push({});
             }
         }, [projectService.ProjectsService]);
 

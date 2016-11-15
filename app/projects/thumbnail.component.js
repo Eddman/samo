@@ -42,7 +42,7 @@ define(['module', 'exports',
                 moduleId: module.id,
                 selector: 'thumbnail',
                 templateUrl: 'thumbnail.component.html',
-                inputs: ['thumbnail'],
+                inputs: ['thumbnail', 'isEdit'],
                 host: {
                     '[class.hover]': 'hover'
                 },

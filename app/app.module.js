@@ -22,7 +22,7 @@ define(['exports',
 
         metaConfig = {
             defaults: {
-                title: 'SAMUEL NETOČNÝ'
+                title: 'SAMUEL NETOČNÝ, architekt'
             }
         };
 

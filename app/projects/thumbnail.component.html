@@ -1,4 +1,7 @@
 <a [@state]="state" (click)="navigate()" (mouseenter)="setHover()" (mouseleave)="unsetHover()">
-    <div class="title">{{thumbnail.title}}</div>
-    <img (load)="state='loaded'" [src]="thumbnail.thumbUrl">
+    <img *ngIf="isEdit" class="remove_project" src="/images/icons/remove_circle.svg">
+    <div *ngIf="thumbnail.title" class="title">{{thumbnail.title}}</div>
+    <div *ngIf="!thumbnail.title" class="title">No title</div>
+    <img *ngIf="thumbnail.thumbUrl" (load)="state='loaded'" [src]="thumbnail.thumbUrl">
+    <img *ngIf="!thumbnail.thumbUrl" (load)="state='loaded'" src="/images/icons/broken_image.svg">
 </a>
