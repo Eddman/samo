@@ -7,11 +7,9 @@ define(['exports',
             httpService.AbstractHttpService.call(this, http);
         }
 
-        httpService.inherit(SliderService);
-
-        SliderService.prototype.getSlides = function (config) {
-            return this.getWithCache('/app/mock/slides/:0.json', [config.images]);
-        };
-
-        exports.SliderService = SliderService;
+        exports.SliderService = httpService.inherit(SliderService, {
+            getSlides: function (config) {
+                return this.getWithCache('/app/mock/slides/:0.json', [config.images]);
+            }
+        });
     });

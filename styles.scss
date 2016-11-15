@@ -52,10 +52,7 @@ body {
                 top: 1.7em;
                 left: 1.7em;
                 border-left: .25em solid black;
-                -webkit-transform: rotate(45deg);
-                -moz-transform: rotate(45deg);
-                -ms-transform: rotate(45deg);
-                transform: rotate(45deg);
+                @include transform(rotate(45deg));
             }
 
             .hill:after {
@@ -74,14 +71,11 @@ body {
                 height: 1em;
                 border: .25em solid black;
                 border-radius: 15%;
-                -webkit-transform: translate(0, -1em) rotate(-45deg);
-                -moz-transform: translate(0, -1em) rotate(-45deg);
-                -ms-transform: translate(0, -1em) rotate(-45deg);
-                transform: translate(0, -1em) rotate(-45deg);
-                animation: pushBox 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+                @include transform(translate(0, -1em) rotate(-45deg));
+                @include animation(pushBox 2.5s cubic-bezier(.79, 0, .47, .97) infinite);
             }
 
-            @keyframes pushBox {
+            @include keyframes(pushBox) {
                 0% {
                     transform: translate(0, -1em) rotate(-45deg);
                 }

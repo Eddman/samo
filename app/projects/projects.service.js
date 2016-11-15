@@ -7,11 +7,9 @@ define(['exports',
             httpService.AbstractHttpService.call(this, http);
         }
 
-        httpService.inherit(ProjectsService);
-
-        ProjectsService.prototype.getProjects = function (config) {
-            return this.getWithCache('/app/mock/:0/:1.json', config.type);
-        };
-
-        exports.ProjectsService = ProjectsService;
+        exports.ProjectsService = httpService.inherit(ProjectsService, {
+            getProject: function (config) {
+                return this.getWithCache('/app/mock/:0/:1.json', config.type);
+            }
+        });
     });

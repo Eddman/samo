@@ -64,9 +64,11 @@ define(['exports',
         exports.inherit = function (obj, prototype, additionalParams) {
             obj.parameters = [ngMeta.MetaService].concat(additionalParams);
             obj.prototype = Object.create(AbstractComponent.prototype);
-            Object.keys(prototype).forEach(function (k) {
-                obj.prototype[k] = prototype[k];
-            });
+            if (prototype) {
+                Object.keys(prototype).forEach(function (k) {
+                    obj.prototype[k] = prototype[k];
+                });
+            }
             obj.prototype.constructor = obj;
         };
         exports.component = function (obj, module, selector, filename, additionalInputs) {

@@ -1,4 +1,4 @@
-<div *ngIf="!route.parameters" class="grid">
+<div *ngIf="!route.parameters" class="grid" [class.jiggle]="isEdit">
     <thumbnail *ngFor="let project of projects; let i = index" [thumbnail]="project"></thumbnail>
     <div class="thumbnail"></div>
     <div class="thumbnail"></div>

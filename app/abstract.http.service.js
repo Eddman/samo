@@ -56,9 +56,15 @@ define(['exports',
         };
 
         exports.AbstractHttpService = AbstractHttpService;
-        exports.inherit = function (obj) {
+        exports.inherit = function (obj, prototype) {
             obj.parameters = [ngHttp.Http];
             obj.prototype = Object.create(AbstractHttpService.prototype);
+            if(prototype) {
+                Object.keys(prototype).forEach(function (k) {
+                    obj.prototype[k] = prototype[k];
+                });
+            }
             obj.prototype.constructor = obj;
+            return obj;
         };
     });

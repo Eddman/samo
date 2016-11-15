@@ -7,11 +7,9 @@ define(['exports',
             httpService.AbstractHttpService.call(this, http);
         }
 
-        httpService.inherit(ListService);
-
-        ListService.prototype.getListItems = function (config) {
-            return this.getWithCache('/app/mock/list/:0/:1.json', config.type);
-        };
-
-        exports.ListService = ListService;
+        exports.ListService = httpService.inherit(ListService, {
+            getListItems: function (config) {
+                return this.getWithCache('/app/mock/list/:0/:1.json', config.type);
+            }
+        });
     });

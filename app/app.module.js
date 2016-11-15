@@ -5,12 +5,12 @@ define(['exports',
         '@angular/http',
         '@angular/meta/index',
         './routing/routing.service',
+        './auth.service',
         './routing/routing.module',
         './app.component',
-        './menu/menu.component',
-        '../admin/admin.module'],
-    function (exports, ngCore, ngBrowser, ngRouter, ngHttp, ngMeta, routingService, appRouting, appComponent,
-              menuComponent, adminModule) {
+        './menu/menu.component'],
+    function (exports, ngCore, ngBrowser, ngRouter, ngHttp, ngMeta, routingService, authService, appRouting, appComponent,
+              menuComponent) {
         'use strict';
 
         var metaConfig;
@@ -35,7 +35,6 @@ define(['exports',
                     ngBrowser.BrowserModule,
                     ngRouter.RouterModule.forRoot({}),
                     ngMeta.MetaModule.forRoot(metaConfig),
-                    adminModule.AdminModule,
                     appRouting.AppRoutingModule,
                     ngHttp.HttpModule,
                     ngHttp.JsonpModule
@@ -44,7 +43,7 @@ define(['exports',
                     appComponent.AppComponent,
                     menuComponent.MenuComponent
                 ],
-                providers: [routingService.RoutingService],
+                providers: [routingService.RoutingService, authService.AuthService],
                 bootstrap: [appComponent.AppComponent]
             })
         ];

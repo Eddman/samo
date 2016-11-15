@@ -8,11 +8,12 @@ define(['module',
         function ProjectsComponent(metaService, projectService) {
             abstractComponent.AbstractComponent.call(this, metaService);
             this.projectService = projectService;
+            this.isEdit = false;
         }
 
         abstractComponent.inherit(ProjectsComponent, {
             ngOnChanges: function () {
-                this.projectService.getProjects({
+                this.projectService.getProject({
                     type: this.route.configuration.type
                 }).then(function (projects) {
                     Object.keys(projects).forEach(function (i) {
