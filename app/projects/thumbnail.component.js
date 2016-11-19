@@ -1,7 +1,9 @@
-define(['module', 'exports',
+define(['module',
+        'exports',
         '@angular/core',
-        '@angular/router'],
-    function (module, exports, ngCore, ngRouter) {
+        '@angular/router',
+        '../abstract.component'],
+    function (module, exports, ngCore, ngRouter, abstractComponent) {
         'use strict';
 
         var trigger = ngCore.trigger,
@@ -10,32 +12,37 @@ define(['module', 'exports',
             transition = ngCore.transition,
             animate = ngCore.animate;
 
-        function ThumbnailComponent(router, route) {
+        function ThumbnailComponent(metaService, authService, router, route) {
+            abstractComponent.AbstractComponent.apply(this, arguments);
             this.state = 'init';
             this.hover = false;
             this.router = router;
             this.route = route;
+            this.removeChange = new ngCore.EventEmitter();
         }
 
-        ThumbnailComponent.prototype.navigate = function () {
-            if (this.hover && !this.isEdit) {
-                this.router.navigate([this.thumbnail.index + 1], {relativeTo: this.route});
+        abstractComponent.inherit(ThumbnailComponent, {
+            navigate: function () {
+                if (this.hover && !this.isEdit) {
+                    this.router.navigate([this.thumbnail.index + 1], {relativeTo: this.route});
+                }
+            },
+            setHover: function () {
+                setTimeout(function () {
+                    this.hover = true;
+                }.bind(this), 100);
+                return false;
+            },
+            unsetHover: function () {
+                setTimeout(function () {
+                    this.hover = false;
+                }.bind(this), 100);
+                return false;
+            },
+            remove: function () {
+                this.removeChange.emit(this.thumbnail);
             }
-        };
-
-        ThumbnailComponent.prototype.setHover = function () {
-            setTimeout(function () {
-                this.hover = true;
-            }.bind(this), 100);
-            return false;
-        };
-
-        ThumbnailComponent.prototype.unsetHover = function () {
-            setTimeout(function () {
-                this.hover = false;
-            }.bind(this), 100);
-            return false;
-        };
+        }, [ngRouter.Router, ngRouter.ActivatedRoute]);
 
         ThumbnailComponent.annotations = [
             new ngCore.Component({
@@ -43,6 +50,7 @@ define(['module', 'exports',
                 selector: 'thumbnail',
                 templateUrl: 'thumbnail.component.html',
                 inputs: ['thumbnail', 'isEdit'],
+                outputs: ['removeChange'],
                 host: {
                     '[class.hover]': 'hover'
                 },
@@ -61,8 +69,6 @@ define(['module', 'exports',
                 ]
             })
         ];
-
-        ThumbnailComponent.parameters = [ngRouter.Router, ngRouter.ActivatedRoute];
 
         exports.ThumbnailComponent = ThumbnailComponent;
     });

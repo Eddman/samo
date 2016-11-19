@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         sassPattern, sassPatternWatch,
         cssPattern, htmlPattern, jsPattern, mockFiles,
         images = ['images/**'],
-        appFolders = ['app', 'admin'];
+        appFolders = ['app', 'admin'], dragula;
 
     function providedJS(file) {
         return [file, file + ".map"];
@@ -33,6 +33,19 @@ module.exports = function (grunt) {
     jsPattern = addAppFolders('**/*.js', 'systemjs.config.js');
     mockFiles = addAppFolders('**/*.json');
 
+    dragula = [
+        'node_modules/atoa/atoa.js',
+        'node_modules/ticky/ticky.js',
+        'node_modules/crossvent/dist/crossvent.min.js',
+        'node_modules/contra/emitter.js',
+        'node_modules/contra/debounce.js',
+        'node_modules/dragula/classes.js',
+        'node_modules/dragula/dragula.js',
+        'node_modules/ng2-dragula/ng2-dragula.js',
+        'node_modules/ng2-dragula/components/dragula.directive.js',
+        'node_modules/ng2-dragula/components/dragula.provider.js'
+    ];
+
     grunt.initConfig({
         clean: {
             all: {
@@ -41,7 +54,7 @@ module.exports = function (grunt) {
         },
         uglify: {
             files: {
-                src: jsPattern,
+                src: jsPattern.concat(dragula),
                 dest: destination,
                 expand: true
             }

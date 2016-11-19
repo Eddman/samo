@@ -7,7 +7,11 @@
         </template>
     </div>
     <div class="grid" [class.jiggle]="isEdit">
-        <thumbnail *ngFor="let project of projects; let i = index" [thumbnail]="project" [isEdit]="isEdit"></thumbnail>
+        <thumbnail *ngFor="let project of projects; let i = index"
+                   [thumbnail]="project"
+                   [isEdit]="isEdit"
+                   (removeChange)="delete($event)">
+        </thumbnail>
         <div *ngIf="isEdit" class="thumbnail new_project">
             <a (click)="addNewProject()">
                 <div class="title">New project</div>

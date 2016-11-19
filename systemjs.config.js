@@ -25,7 +25,15 @@ function initApp() {
             '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-            '@angular/meta': 'npm:ng2-meta/dist',
+            // ng2-meta
+            '@meta': 'npm:ng2-meta/dist',
+            // ng2-gragula
+            '@dragula': 'npm:ng2-dragula',
+            'dragula': 'npm:dragula',
+            'contra': 'npm:contra',
+            'crossvent': 'npm:crossvent/dist/crossvent.min.js',
+            'atoa': 'npm:atoa/atoa.js',
+            'ticky': 'npm:ticky/ticky.js',
             // other libraries
             'rxjs': 'npm:rxjs'
         },
@@ -38,7 +46,17 @@ function initApp() {
             rxjs: {
                 defaultExtension: 'js'
             },
-            '@angular/meta': {
+            '@meta': {
+                defaultExtension: 'js'
+            },
+            '@dragula': {
+                defaultExtension: 'js'
+            },
+            'dragula': {
+                main: './dragula.js',
+                defaultExtension: 'js'
+            },
+            'contra': {
                 defaultExtension: 'js'
             }
         }

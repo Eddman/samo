@@ -1,6 +1,6 @@
 define(['exports',
         '@angular/core',
-        '@angular/meta/index',
+        '@meta/index',
         './auth/auth.service',
         './content/content'],
     function (exports, ngCore, ngMeta, authService, cnt) {

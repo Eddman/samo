@@ -1,4 +1,4 @@
-define(['module', 'exports', '@angular/core', '@angular/meta/index'], function (module, exports, ngCore, ngMeta) {
+define(['module', 'exports', '@angular/core', '@meta/index'], function (module, exports, ngCore, ngMeta) {
     'use strict';
 
     function AppComponent(metaService) {

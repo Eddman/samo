@@ -1,10 +1,11 @@
 define(['exports',
         '@angular/core',
+        '@dragula/ng2-dragula',
         './projects.component',
         './thumbnail.component',
         './projects.service',
         '../detail/detail.module'],
-    function (exports, ngCore, projectsComponent, thumbnailComponent, projectsService, detailModule) {
+    function (exports, ngCore, ngDragula, projectsComponent, thumbnailComponent, projectsService, detailModule) {
         'use strict';
 
         function ProjectsModule() {
@@ -13,6 +14,7 @@ define(['exports',
         ProjectsModule.annotations = [
             new ngCore.NgModule({
                 imports: [
+                    ngDragula.DragulaModule,
                     detailModule.DetailModule
                 ],
                 exports: [
