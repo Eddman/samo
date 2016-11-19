@@ -11,7 +11,7 @@ define(['exports',
             this.storage = storage;
 
             //if (!!this.storage.getAuthToken()) {
-                this.loggedIn.next(true);
+            this.loggedIn.next(true);
             //}
         }
 

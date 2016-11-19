@@ -1,0 +1,13 @@
+<modal #popup
+       class="bootstrap"
+       [hideCloseButton]="true"
+       [closeOnEscape]="false"
+       [closeOnOutsideClick]="false">
+    <modal-content>
+        <ng-content></ng-content>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-danger" (click)="yesClick();popup.close()">Yes</button>
+        <button class="btn btn-primary" (click)="noClick();popup.close()">No</button>
+    </modal-footer>
+</modal>

@@ -1,11 +1,12 @@
 define(['exports',
         '@angular/core',
         '@dragula/ng2-dragula',
+        '../common/modal/modal.module',
         './projects.component',
         './thumbnail.component',
         './projects.service',
         '../detail/detail.module'],
-    function (exports, ngCore, ngDragula, projectsComponent, thumbnailComponent, projectsService, detailModule) {
+    function (exports, ngCore, ngDragula, modalModule, projectsComponent, thumbnailComponent, projectsService, detailModule) {
         'use strict';
 
         function ProjectsModule() {
@@ -15,7 +16,8 @@ define(['exports',
             new ngCore.NgModule({
                 imports: [
                     ngDragula.DragulaModule,
-                    detailModule.DetailModule
+                    detailModule.DetailModule,
+                    modalModule.ModalModule
                 ],
                 exports: [
                     projectsComponent.ProjectsComponent

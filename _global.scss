@@ -1,10 +1,4 @@
-// Core variables and mixins
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-
-.bootstrap {
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
-}
 
 $optimal_width: 900px;
 $page_margin: 15px;

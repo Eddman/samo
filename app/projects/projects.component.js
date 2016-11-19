@@ -14,6 +14,7 @@ define(['module',
             this.projectService = projectService;
             this.dragulaService = dragulaService;
             this.isEdit = false;
+            this.jigglePaused = false;
             this.el = el.nativeElement;
         }
 
@@ -50,6 +51,7 @@ define(['module',
                         break;
                     }
                 }
+                this.jigglePaused = false;
                 this.isEdit = true;
                 this.dragulaService.setOptions(dragAndDropBag, {
                     containers: [this.bagEl],
@@ -66,17 +68,31 @@ define(['module',
                 });
                 this.dragulaService.find(dragAndDropBag).drake.models = [this.projects];
             },
+            confirmSave: function (saveConfirmation) {
+                this.jigglePaused = true;
+                saveConfirmation.open();
+            },
             save: function () {
                 this.isEdit = false;
                 this.dragulaService.destroy(dragAndDropBag);
+            },
+            confirmCancel: function (cancelConfirmation) {
+                this.jigglePaused = true;
+                cancelConfirmation.open();
             },
             cancel: function () {
                 this.isEdit = false;
                 this.dragulaService.destroy(dragAndDropBag);
                 this.loadProjects();
             },
-            delete: function(project) {
-                this.projects.splice(this.projects.indexOf(project), 1);
+            confirmDelete: function (deleteConfirmation, project) {
+                this.jigglePaused = true;
+                this.projectToDelete = project;
+                deleteConfirmation.open();
+            },
+            delete: function () {
+                this.jigglePaused = false;
+                this.projects.splice(this.projects.indexOf(this.projectToDelete), 1);
             },
             addNewProject: function () {
                 this.projects.push({});

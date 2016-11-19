@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                 dest: destination
             },
             ZoneJS: {
-                src: providedJS('node_modules/zone.js/dist/zone.js'),
+                src: 'node_modules/zone.js/dist/zone.min.js',
                 dest: destination
             },
             ReflectJS: {
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
                 dest: destination
             },
             SystemJS: {
-                src: providedJS('node_modules/systemjs/dist/system.src.js'),
+                src: providedJS('node_modules/systemjs/dist/system.js'),
                 dest: destination
             },
             rxjs: {
@@ -85,16 +85,16 @@ module.exports = function (grunt) {
                 dest: destination
             },
             angular: {
-                src: [].concat(
-                    providedJS('node_modules/@angular/core/bundles/core.umd.js')).concat(
-                    providedJS('node_modules/@angular/common/bundles/common.umd.js')).concat(
-                    providedJS('node_modules/@angular/compiler/bundles/compiler.umd.js')).concat(
-                    providedJS('node_modules/@angular/platform-browser/bundles/platform-browser.umd.js')).concat(
-                    providedJS('node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js')).concat(
-                    providedJS('node_modules/@angular/http/bundles/http.umd.js')).concat(
-                    providedJS('node_modules/@angular/router/bundles/router.umd.js')).concat(
-                    providedJS('node_modules/@angular/forms/bundles/forms.umd.js'))
-                ,
+                src: [
+                    'node_modules/@angular/core/bundles/core.umd.min.js',
+                    'node_modules/@angular/common/bundles/common.umd.min.js',
+                    'node_modules/@angular/compiler/bundles/compiler.umd.min.js',
+                    'node_modules/@angular/platform-browser/bundles/platform-browser.umd.min.js',
+                    'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
+                    'node_modules/@angular/http/bundles/http.umd.min.js',
+                    'node_modules/@angular/router/bundles/router.umd.min.js',
+                    'node_modules/@angular/forms/bundles/forms.umd.min.js'
+                ],
                 dest: destination
             },
             'ng2-page-slider': {
@@ -103,6 +103,10 @@ module.exports = function (grunt) {
             },
             'ng2-meta': {
                 src: providedJS('node_modules/ng2-meta/dist/*.js'),
+                dest: destination
+            },
+            'ng2-modal': {
+                src: providedJS('node_modules/ng2-modal/*.js'),
                 dest: destination
             },
             html: {

@@ -2,15 +2,15 @@
     <div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
         <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit</a>
         <template [ngIf]="isEdit">
-            <a class="btn btn-primary" (click)="save()">Save</a>
-            <a class="btn btn-danger" (click)="cancel()">Cancel</a>
+            <a class="btn btn-primary" (click)="confirmSave(saveConfirmation)">Save</a>
+            <a class="btn btn-danger" (click)="confirmCancel(cancelConfirmation)">Cancel</a>
         </template>
     </div>
-    <div class="grid" [class.jiggle]="isEdit">
+    <div class="grid" [class.jiggle]="isEdit && !jigglePaused">
         <thumbnail *ngFor="let project of projects; let i = index"
                    [thumbnail]="project"
                    [isEdit]="isEdit"
-                   (removeChange)="delete($event)">
+                   (removeChange)="confirmDelete(deleteConfirmation, $event)">
         </thumbnail>
         <div *ngIf="isEdit" class="thumbnail new_project">
             <a (click)="addNewProject()">
@@ -23,5 +23,20 @@
         <div class="thumbnail"></div>
         <div class="thumbnail"></div>
     </div>
+
+    <modal-confirm #deleteConfirmation (yes)="delete()" (no)="jigglePaused=false">
+        Do you really want to remove the project?
+    </modal-confirm>
+
+    <modal-confirm #saveConfirmation (yes)="save()" (no)="jigglePaused=false">
+        Do you really want to save all changes?<br>
+        <b>Note that all removed projects will be lost.</b>
+    </modal-confirm>
+
+    <modal-confirm #cancelConfirmation (yes)="cancel()" (no)="jigglePaused=false">
+        Do you really want to cancel all changes?<br>
+        <b>Note that all your changes will be lost.</b>
+    </modal-confirm>
+
 </template>
 <detail-view *ngIf="route.parameters" (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>
