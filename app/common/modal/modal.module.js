@@ -1,9 +1,10 @@
 define(['exports',
         '@angular/core',
-        '@dragula/ng2-dragula',
+        '@angular/forms',
         '@modal',
-        './modal.confirmation.component'],
-    function (exports, ngCore, ngDragula, ngModal, modalComponent) {
+        './modal.confirmation.component',
+        './modal.login.component'],
+    function (exports, ngCore, ngForms, ngModal, modalComponent, modalLoginComponent) {
         'use strict';
 
         function ModalModule() {
@@ -12,13 +13,16 @@ define(['exports',
         ModalModule.annotations = [
             new ngCore.NgModule({
                 imports: [
+                    ngForms.FormsModule,
                     ngModal.ModalModule
                 ],
                 exports: [
-                    modalComponent.ModalConfirmationComponent
+                    modalComponent.ModalConfirmationComponent,
+                    modalLoginComponent.ModalLoginComponent
                 ],
                 declarations: [
-                    modalComponent.ModalConfirmationComponent
+                    modalComponent.ModalConfirmationComponent,
+                    modalLoginComponent.ModalLoginComponent
                 ]
             })
         ];

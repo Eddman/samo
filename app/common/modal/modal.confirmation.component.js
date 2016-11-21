@@ -19,9 +19,11 @@ define(['module',
             },
             yesClick: function () {
                 this.yes.emit();
+                this.modal.close();
             },
             noClick: function () {
                 this.no.emit();
+                this.modal.close();
             }
         }, []);
 

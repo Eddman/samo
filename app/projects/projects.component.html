@@ -28,7 +28,7 @@
         Do you really want to remove the project?
     </modal-confirm>
 
-    <modal-confirm #saveConfirmation (yes)="save()" (no)="jigglePaused=false">
+    <modal-confirm #saveConfirmation (yes)="save(modalLogin)" (no)="jigglePaused=false">
         Do you really want to save all changes?<br>
         <b>Note that all removed projects will be lost.</b>
     </modal-confirm>
@@ -38,5 +38,8 @@
         <b>Note that all your changes will be lost.</b>
     </modal-confirm>
 
+    <modal-login #modalLogin></modal-login>
 </template>
-<detail-view *ngIf="route.parameters" (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>
+<template [ngIf]="route.parameters">
+    <detail-view (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>
+</template>

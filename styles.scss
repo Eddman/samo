@@ -4,6 +4,21 @@
 
 .bootstrap {
     @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+
+    .form-control {
+        @include box-sizing(border-box);
+    }
+
+    .form-signin {
+        input + label {
+            padding-top: 10px;
+        }
+
+        input + button {
+            margin-top: 10px;
+        }
+    }
 }
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/modals";
@@ -16,6 +31,10 @@
 
     modal-content {
         @include font-size(20);
+    }
+
+    .modal-footer {
+        text-align: left;
     }
 }
 

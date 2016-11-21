@@ -1,0 +1,23 @@
+<modal #popup
+       class="bootstrap"
+       [hideCloseButton]="true"
+       [closeOnEscape]="false"
+       [closeOnOutsideClick]="false">
+    <modal-content>
+        Please sign in
+    </modal-content>
+    <modal-footer>
+        <div class="container">
+            <form name="login-form" class="form-signin">
+                <label for="userName">User name</label>
+                <input [(ngModel)]="username" type="text" name="username" id="userName" class="form-control"
+                       placeholder="User name" required autofocus>
+                <label for="inputPassword">Password</label>
+                <input [(ngModel)]="password" type="password" name="password" id="inputPassword" class="form-control"
+                       placeholder="Password" required>
+                <button class="btn btn-primary btn-block" (click)="loginClick()">Sign in</button>
+                <button class="btn btn-danger btn-block" (click)="cancelClick()">Cancel</button>
+            </form>
+        </div>
+    </modal-footer>
+</modal>

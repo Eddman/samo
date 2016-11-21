@@ -73,18 +73,31 @@ define(['module',
                 this.jigglePaused = true;
                 saveConfirmation.open();
             },
-            save: function () {
+            save: function (modalLogin) {
                 this.isEdit = false;
-                this.dragulaService.destroy(dragAndDropBag);
+                if (this.dragulaService.find(dragAndDropBag)) {
+                    this.dragulaService.destroy(dragAndDropBag);
+                }
                 this.projectService.saveProjects({
                     type: this.route.configuration.type
                 }, this.projects)
                     .then(this.processProjects.bind(this))
                     .catch(function (err) {
-                        if(err === 401) {
-                            console.log("Not logged in"); // TODO login
+                        var loginSubscription, cancelSubscription;
+                        if (err === 401) {
+                            loginSubscription = modalLogin.login.subscribe(function () {
+                                loginSubscription.unsubscribe();
+                                cancelSubscription.unsubscribe();
+                                this.save(modalLogin); //Restart
+                            }.bind(this));
+                            cancelSubscription = modalLogin.cancel.subscribe(function () {
+                                loginSubscription.unsubscribe();
+                                cancelSubscription.unsubscribe();
+                                this.loadProjects(); //Reset
+                            }.bind(this));
+                            modalLogin.open();
                         }
-                    });
+                    }.bind(this));
             },
             confirmCancel: function (cancelConfirmation) {
                 this.jigglePaused = true;
