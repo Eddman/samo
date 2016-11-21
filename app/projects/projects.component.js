@@ -79,7 +79,12 @@ define(['module',
                 this.projectService.saveProjects({
                     type: this.route.configuration.type
                 }, this.projects)
-                    .then(this.processProjects.bind(this));
+                    .then(this.processProjects.bind(this))
+                    .catch(function (err) {
+                        if(err === 401) {
+                            console.log("Not logged in"); // TODO login
+                        }
+                    });
             },
             confirmCancel: function (cancelConfirmation) {
                 this.jigglePaused = true;

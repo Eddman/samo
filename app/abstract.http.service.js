@@ -9,6 +9,7 @@ define(['exports',
     function (exports, abstractService, ngHttp, requestService, observable) {
         'use strict';
 
+        var defaultURL = window.location.origin;
 
         function AbstractHttpService(http, requestService) {
             abstractService.AbstractService.apply(this, arguments);
@@ -30,7 +31,7 @@ define(['exports',
                         resourceURL = resourceURL.replace(':' + index++, subParams[i]);
                     });
                 }
-                return resourceURL;
+                return defaultURL + resourceURL;
             },
             getRequestOptions: function () {
                 return new ngHttp.RequestOptions({
@@ -44,17 +45,26 @@ define(['exports',
             handleError: function (error) {
                 // In a real world app, we might use a remote logging infrastructure
                 var errMsg, err, body;
-                if (error instanceof ngHttp.Response) {
-                    body = error.json() || '';
-                    err = body.error || JSON.stringify(body);
-                    errMsg = error.status + ' - ' + (error.statusText || '') + err;
+                if (error.status === 401) {
+                    // Not logged in - login first
+                    return observable.Observable.throw(401);
                 } else {
-                    errMsg = error.message || error.toString();
+                    if (error instanceof ngHttp.Response) {
+                        try {
+                            body = error.json() || '';
+                            err = body.error || JSON.stringify(body);
+                        } catch (e) {
+                            err = error.text();
+                        }
+                        errMsg = error.status + ' - ' + (error.statusText || '') + ' ' + err;
+                    } else {
+                        errMsg = error.message || error.toString();
+                    }
+                    if (window.console) {
+                        window.console.error(errMsg);
+                    }
+                    return observable.Observable.throw(errMsg);
                 }
-                if (window.console) {
-                    window.console.error(errMsg);
-                }
-                return observable.Observable.throw(errMsg);
             },
             get: function (resourceURL, mapFunction) {
                 var request = this.http.get(resourceURL, this.getRequestOptions())
@@ -93,7 +103,7 @@ define(['exports',
             },
             clearCache: function (params, subParams) {
                 var cache = this.findCache(params, subParams);
-                Object.keys(cache).forEach(function(k) {
+                Object.keys(cache).forEach(function (k) {
                     delete cache[k];
                 });
             },
@@ -101,18 +111,18 @@ define(['exports',
                 var cache = this.cache;
                 if (params) {
                     Object.keys(params).forEach(function (i) {
-                        if(!cache[params[i]]) {
+                        if (!cache[params[i]]) {
                             cache[params[i]] = {};
                         }
-                        cache =  cache[params[i]];
+                        cache = cache[params[i]];
                     });
                 }
                 if (subParams) {
                     Object.keys(subParams).forEach(function (i) {
-                        if(!cache[subParams[i]]) {
+                        if (!cache[subParams[i]]) {
                             cache[subParams[i]] = {};
                         }
-                        cache =  cache[subParams[i]];
+                        cache = cache[subParams[i]];
                     });
                 }
                 return cache;
