@@ -7,7 +7,8 @@ module.exports = function (grunt) {
         sassPattern, sassPatternWatch,
         cssPattern, htmlPattern, jsPattern, mockFiles,
         images = ['images/**'],
-        appFolders = ['app', 'admin'], dragula;
+        appFolders = ['app', 'admin'], dragula,
+        distTask = ['uglify', 'copy', 'sass', 'cssmin'];
 
     function providedJS(file) {
         return [file, file + ".map"];
@@ -150,9 +151,17 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            sass: {
+            dev: {
                 files: sassPatternWatch,
                 tasks: ['sass'],
+                options: {
+                    interrupt: true,
+                    spawn: false
+                }
+            },
+            dist: {
+                files: sassPatternWatch,
+                tasks: distTask,
                 options: {
                     interrupt: true,
                     spawn: false
@@ -169,6 +178,30 @@ module.exports = function (grunt) {
                     ui: false,
                     server: {
                         baseDir: './',
+                        middleware: [
+                            log({format: '%date %status %method %url'}),
+                            fallback({
+                                index: '/index.html',
+                                htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'] // systemjs workaround
+                            })
+                        ]
+                    },
+                    browser: [
+                        'chrome',
+                        'google chrome'
+                    ],
+                    watchTask: true
+                }
+            },
+            dist: {
+                bsFiles: {
+                    src: destination + '**/*'
+                },
+                options: {
+                    injectChanges: false, // workaround for Angular 2 styleUrls loading
+                    ui: false,
+                    server: {
+                        baseDir: './' + destination,
                         middleware: [
                             log({format: '%date %status %method %url'}),
                             fallback({
@@ -201,6 +234,7 @@ module.exports = function (grunt) {
 
     // register at least this one task
     grunt.registerTask('cleanBuild', ['clean', 'sass']);
-    grunt.registerTask('dev', ['sass', 'browserSync', 'watch']);
-    grunt.registerTask('dist', ['clean', 'uglify', 'copy', 'sass', 'cssmin']);
+    grunt.registerTask('dev', ['cleanBuild', 'browserSync:dev', 'watch:dev']);
+    grunt.registerTask('testDist', ['clean'].concat(distTask).concat(['browserSync:dist', 'watch:dist']));
+    grunt.registerTask('dist', ['clean'].concat(distTask));
 };
