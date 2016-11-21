@@ -18,28 +18,24 @@ define(['exports',
         }
 
         exports.AbstractHttpService = abstractService.inherit(AbstractHttpService, {
-            getWithCache: function (resourceURL, params) {
+            constructURL: function (resourceURL, params, subParams) {
+                var index = 0;
                 if (params) {
                     Object.keys(params).forEach(function (i) {
-                        resourceURL = resourceURL.replace(':' + i, params[i]);
+                        resourceURL = resourceURL.replace(':' + index++, params[i]);
                     });
                 }
-                if (!this.cache[resourceURL]) {
-                    //noinspection AmdModulesDependencies
-                    return new Promise(function (resolve, reject) {
-                        this.http.get(resourceURL, {headers: this.requestService.getAuthHeaders()})
-                            .map(this.extractData)
-                            .catch(this.handleError).subscribe(
-                            function (data) {
-                                this.cache[resourceURL] = data;
-                                resolve(data);
-                            }.bind(this),
-                            reject
-                        );
-                    }.bind(this));
+                if (subParams) {
+                    Object.keys(subParams).forEach(function (i) {
+                        resourceURL = resourceURL.replace(':' + index++, subParams[i]);
+                    });
                 }
-                //noinspection AmdModulesDependencies
-                return Promise.resolve(this.cache[resourceURL]);
+                return resourceURL;
+            },
+            getRequestOptions: function () {
+                return new ngHttp.RequestOptions({
+                    headers: this.requestService.getAuthHeaders()
+                });
             },
             extractData: function (res) {
                 var body = res.json();
@@ -53,10 +49,73 @@ define(['exports',
                     err = body.error || JSON.stringify(body);
                     errMsg = error.status + ' - ' + (error.statusText || '') + err;
                 } else {
-                    errMsg = error.message ? error.message : error.toString();
+                    errMsg = error.message || error.toString();
                 }
-                console.error(errMsg);
+                if (window.console) {
+                    window.console.error(errMsg);
+                }
                 return observable.Observable.throw(errMsg);
+            },
+            get: function (resourceURL, mapFunction) {
+                var request = this.http.get(resourceURL, this.getRequestOptions())
+                    .map(this.extractData);
+                if (mapFunction) {
+                    request.map(mapFunction);
+                }
+                return request.catch(this.handleError);
+            },
+            post: function (resourceURL, data, mapFunction) {
+                var request = this.http.post(resourceURL, JSON.stringify(data), this.getRequestOptions())
+                    .map(this.extractData);
+                if (mapFunction) {
+                    request.map(mapFunction);
+                }
+                return request.catch(this.handleError);
+            },
+            getWithCache: function (resourceURLTemplate, params, subParams) {
+                var resourceURL = this.constructURL(resourceURLTemplate, params, subParams);
+                if (!this.getCache(params, subParams)) {
+                    return new Promise(function (resolve, reject) {
+                        this.get(resourceURL).subscribe(
+                            function (data) {
+                                this.setCache(params, subParams, data);
+                                resolve(data);
+                            }.bind(this), reject);
+                    }.bind(this));
+                }
+                return Promise.resolve(this.getCache(params, subParams));
+            },
+            getCache: function (params, subParams) {
+                return this.findCache(params, subParams).value;
+            },
+            setCache: function (params, subParams, data) {
+                return this.findCache(params, subParams).value = data;
+            },
+            clearCache: function (params, subParams) {
+                var cache = this.findCache(params, subParams);
+                Object.keys(cache).forEach(function(k) {
+                    delete cache[k];
+                });
+            },
+            findCache: function (params, subParams) {
+                var cache = this.cache;
+                if (params) {
+                    Object.keys(params).forEach(function (i) {
+                        if(!cache[params[i]]) {
+                            cache[params[i]] = {};
+                        }
+                        cache =  cache[params[i]];
+                    });
+                }
+                if (subParams) {
+                    Object.keys(subParams).forEach(function (i) {
+                        if(!cache[subParams[i]]) {
+                            cache[subParams[i]] = {};
+                        }
+                        cache =  cache[subParams[i]];
+                    });
+                }
+                return cache;
             }
         });
 

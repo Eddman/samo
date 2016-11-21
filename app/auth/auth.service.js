@@ -5,6 +5,9 @@ define(['exports',
     function (exports, httpService, storageService, behaviorSubject) {
         'use strict';
 
+        var loginURL = '/login',
+            logoutURL = '/logout';
+
         function AuthService(http, requestService, storage) {
             httpService.AbstractHttpService.apply(this, arguments);
             this.loggedIn = new behaviorSubject.BehaviorSubject(false);
@@ -17,29 +20,25 @@ define(['exports',
 
         exports.AuthService = httpService.inherit(AuthService, {
             login: function (credentials) {
-                return this.http
-                    .post('/login', JSON.stringify(credentials), {headers: this.requestService.getJsonHeaders()})
-                    .map(function (res) {
-                        return res.json()
-                    })
-                    .map(function (res) {
-                        if (res.success) {
-                            this.storage.setAuthToken(res.auth_token);
-                            this.loggedIn.next(true);
-                        }
-
-                        return res.success;
-                    }.bind(this));
-            },
-            logout: function () {
                 this.storage.removeAuthToken();
                 this.loggedIn.next(false);
+                return this.post(loginURL, credentials, function (res) {
+                    if (res.success) {
+                        this.storage.setAuthToken(res.auth_token);
+                        this.loggedIn.next(true);
+                    }
+
+                    return res.success;
+                }.bind(this));
+            },
+            logout: function () {
+                var request = this.post(logoutURL, {});
+                this.storage.removeAuthToken();
+                this.loggedIn.next(false);
+                return request;
             },
             isLoggedIn: function () {
                 return this.loggedIn.getValue();
-            },
-            getLoggedIn: function () {
-                return this.loggedIn;
             }
         }, [storageService.StorageService]);
     });

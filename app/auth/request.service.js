@@ -22,6 +22,7 @@ define(['exports',
             },
             getJsonHeaders: function () {
                 var headers = new ngHttp.Headers();
+                headers.append('Accept', 'application/json');
                 headers.append('Content-Type', 'application/json');
                 return headers;
             }

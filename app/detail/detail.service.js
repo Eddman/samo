@@ -3,25 +3,22 @@ define(['exports',
     function (exports, httpService) {
         'use strict';
 
+        var getURL = '/app/mock/details{params}.json'
+
         function DetailService() {
             httpService.AbstractHttpService.apply(this, arguments);
         }
 
         exports.DetailService = httpService.inherit(DetailService, {
             getDetail: function (config) {
-                var detailParams;
+                var detailParams = config.type.length, i, parameters = '';
                 if (config.parameters) {
-                    detailParams = [];
-                    Object.keys(config.type).forEach(function (i) {
-                        detailParams.push(config.type[i]);
-                    });
-                    Object.keys(config.parameters).forEach(function (i) {
-                        detailParams.push(config.parameters[i]);
-                    });
-                    return this.getWithCache('/app/mock/details/:0.json', [detailParams.join('/')]);
-                } else {
-                    return this.getWithCache('/app/mock/details/:0/:1.json', config.type);
+                    detailParams += config.parameters.length;
                 }
+                for (i = 0; i < detailParams; i += 1) {
+                    parameters += '/:' + i;
+                }
+                return this.getWithCache(getURL.replace('{params}', parameters), config.type, config.parameters);
             }
         });
     });

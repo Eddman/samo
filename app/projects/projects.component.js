@@ -25,23 +25,24 @@ define(['module',
             loadProjects: function () {
                 this.projectService.getProject({
                     type: this.route.configuration.type
-                }).then(function (projects) {
-                    Object.keys(projects).forEach(function (i) {
-                        projects[i].index = +i;
-                    });
+                }).then(this.processProjects.bind(this));
+            },
+            processProjects: function (projects) {
+                Object.keys(projects).forEach(function (i) {
+                    projects[i].index = +i;
+                });
 
-                    this.setSEODescription();
-                    this.setSEOImage();
+                this.setSEODescription();
+                this.setSEOImage();
 
-                    if (projects) {
-                        if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
-                            this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
-                        } else {
-                            this.setSEOImage(projects[0].thumbUrl);
-                        }
+                if (projects) {
+                    if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
+                        this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
+                    } else {
+                        this.setSEOImage(projects[0].thumbUrl);
                     }
-                    this.projects = [].concat(projects);
-                }.bind(this));
+                }
+                this.projects = [].concat(projects);
             },
             edit: function () {
                 var i;
@@ -75,6 +76,10 @@ define(['module',
             save: function () {
                 this.isEdit = false;
                 this.dragulaService.destroy(dragAndDropBag);
+                this.projectService.saveProjects({
+                    type: this.route.configuration.type
+                }, this.projects)
+                    .then(this.processProjects.bind(this));
             },
             confirmCancel: function (cancelConfirmation) {
                 this.jigglePaused = true;

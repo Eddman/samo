@@ -1,15 +1,32 @@
 define(['exports',
-        '../abstract.http.service'],
-    function (exports, httpService) {
+        '../abstract.http.service',
+        '../detail/detail.service'],
+    function (exports, httpService, detailService) {
         'use strict';
 
-        function ProjectsService() {
+        var getURL = '/app/mock/:0/:1.json',
+            postURL = '/projects/:0/:1/save';
+
+        function ProjectsService(http, requestService, detailService) {
             httpService.AbstractHttpService.apply(this, arguments);
+            this.detailService = detailService;
         }
 
         exports.ProjectsService = httpService.inherit(ProjectsService, {
             getProject: function (config) {
-                return this.getWithCache('/app/mock/:0/:1.json', config.type);
+                return this.getWithCache(getURL, config.type);
+            },
+            saveProjects: function (config, projects) {
+                var resourceURL = this.constructURL(postURL, config.type)
+                this.clearCache(config.type);
+                this.detailService.clearCache(config.type);
+                return new Promise(function (resolve, reject) {
+                    this.post(resourceURL, {data: projects}).subscribe(
+                        function (data) {
+                            this.setCache(config.type, null, data);
+                            resolve(data);
+                        }.bind(this), reject);
+                }.bind(this));
             }
-        });
+        }, [detailService.DetailService]);
     });
