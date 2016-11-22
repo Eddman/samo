@@ -3,7 +3,7 @@ define(['exports',
     function (exports, httpService) {
         'use strict';
 
-        var getURL = '/app/mock/details{params}.json'
+        var getURL = '/app/mock/details{params}.json';
 
         function DetailService() {
             httpService.AbstractHttpService.apply(this, arguments);

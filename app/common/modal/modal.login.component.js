@@ -16,7 +16,7 @@ define(['module',
 
         abstractComponent.inherit(ModalLoginComponent, {
             open: function () {
-                this.modal.open();
+                this.loginModal.open();
             },
             loginClick: function () {
                 this.loggingIn = true;
@@ -35,7 +35,7 @@ define(['module',
                 }.bind(this));
             },
             cancelClick: function () {
-                this.modal.close();
+                this.loginModal.close();
                 this.cancelConfirmation.open();
             },
             confirmCancelation: function () {
@@ -50,7 +50,7 @@ define(['module',
                 templateUrl: 'modal.login.component.html',
                 outputs: ['login', 'cancel'],
                 queries: {
-                    'modal': new ngCore.ViewChild(ngModal.Modal),
+                    'loginModal': new ngCore.ViewChild(ngModal.Modal),
                     'cancelConfirmation': new ngCore.ViewChild(confirmationModal.ModalConfirmationComponent)
                 }
             })

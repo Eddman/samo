@@ -3,8 +3,9 @@ define(['module',
         '@angular/core',
         '../abstract.component',
         './projects.service',
-        '@dragula/components/dragula.provider'],
-    function (module, exports, ngCore, abstractComponent, projectService, dragulaService) {
+        '@dragula/components/dragula.provider',
+        '../common/modal/modal.login.component'],
+    function (module, exports, ngCore, abstractComponent, projectService, dragulaService, loginModal) {
         'use strict';
 
         var dragAndDropBag = 'thumbnails-bag';
@@ -20,21 +21,32 @@ define(['module',
 
         abstractComponent.inherit(ProjectsComponent, {
             ngOnChanges: function () {
+                // Load initial projects list
                 this.loadProjects();
             },
             loadProjects: function () {
+                // Load projects
                 this.projectService.getProject({
                     type: this.route.configuration.type
-                }).then(this.processProjects.bind(this));
+                })
+                // Process if OK
+                    .then(this.processProjects.bind(this))
+                    // Display error if there is some problem
+                    .catch(function (err) {
+                        this.error = err;
+                    }.bind(this));
             },
             processProjects: function (projects) {
+                // Setup indexes
                 Object.keys(projects).forEach(function (i) {
                     projects[i].index = +i;
                 });
 
+                // Remove SEO information from the screen
                 this.setSEODescription();
                 this.setSEOImage();
 
+                // Setup new SEO image.
                 if (projects) {
                     if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
                         this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
@@ -42,18 +54,29 @@ define(['module',
                         this.setSEOImage(projects[0].thumbUrl);
                     }
                 }
+
+                // Copy projects array
                 this.projects = [].concat(projects);
             },
-            edit: function () {
-                var i;
-                for (i = 0; i < this.el.childNodes.length; i++) {
-                    if (this.el.childNodes[i].className == "grid") {
-                        this.bagEl = this.el.childNodes[i];
-                        break;
-                    }
-                }
+            pauseJiggle: function () {
+                this.jigglePaused = true;
+            },
+            unpauseJiggle: function () {
                 this.jigglePaused = false;
+            },
+            edit: function () {
+                // Unpause Jiggle effect
+                this.unpauseJiggle();
+
+                // Enable edit
                 this.isEdit = true;
+
+                // Get the bag element
+                this.bagEl = this.el.childNodes.find(function (child) {
+                    return child.className === "grid";
+                });
+
+                // Setup dragula for the bag above
                 this.dragulaService.setOptions(dragAndDropBag, {
                     containers: [this.bagEl],
                     revertOnSpill: true,
@@ -67,57 +90,106 @@ define(['module',
                         return true;
                     }
                 });
+
+                // Setup models for dragula
                 this.dragulaService.find(dragAndDropBag).drake.models = [this.projects];
             },
-            confirmSave: function (saveConfirmation) {
-                this.jigglePaused = true;
-                saveConfirmation.open();
+            confirmSave: function () {
+                //Pause Jiggle effect
+                this.pauseJiggle();
+
+                // Open confirmation popup
+                this.saveConfirmation.open();
             },
-            save: function (modalLogin) {
+            save: function () {
+                // Disable edit mode
                 this.isEdit = false;
+
+                // Destroy dragula
                 if (this.dragulaService.find(dragAndDropBag)) {
                     this.dragulaService.destroy(dragAndDropBag);
                 }
+
+                // Save projects
                 this.projectService.saveProjects({
                     type: this.route.configuration.type
                 }, this.projects)
+                // On save refresh
                     .then(this.processProjects.bind(this))
+                    // On error
                     .catch(function (err) {
                         var loginSubscription, cancelSubscription;
+                        // 401 Unauthorized
                         if (err === 401) {
-                            loginSubscription = modalLogin.login.subscribe(function () {
+                            // Subscribe for login
+                            loginSubscription = this.loginModal.login.subscribe(function () {
+                                // Unsubscribe
                                 loginSubscription.unsubscribe();
                                 cancelSubscription.unsubscribe();
-                                this.save(modalLogin); //Restart
+
+                                // Restart save
+                                this.save();
                             }.bind(this));
-                            cancelSubscription = modalLogin.cancel.subscribe(function () {
+
+                            // Subscribe for cancel
+                            cancelSubscription = this.loginModal.cancel.subscribe(function () {
+                                // Unsubscribe
                                 loginSubscription.unsubscribe();
                                 cancelSubscription.unsubscribe();
-                                this.loadProjects(); //Reset
+
+                                // Reset form
+                                this.loadProjects();
                             }.bind(this));
-                            modalLogin.open();
+
+                            // Open login popup
+                            this.loginModal.open();
+                        } else {
+                            // Show error
+                            this.error = err;
+
+                            // Restart edit mode
+                            this.edit();
                         }
                     }.bind(this));
             },
-            confirmCancel: function (cancelConfirmation) {
-                this.jigglePaused = true;
-                cancelConfirmation.open();
+            confirmCancel: function () {
+                //Pause Jiggle effect
+                this.pauseJiggle();
+
+                // Open confirmation popup
+                this.cancelConfirmation.open();
             },
             cancel: function () {
+                // Disable edit mode
                 this.isEdit = false;
-                this.dragulaService.destroy(dragAndDropBag);
+
+                // Destroy dragula
+                if (this.dragulaService.find(dragAndDropBag)) {
+                    this.dragulaService.destroy(dragAndDropBag);
+                }
+
+                // Reload from service
                 this.loadProjects();
             },
-            confirmDelete: function (deleteConfirmation, project) {
-                this.jigglePaused = true;
+            confirmDelete: function (project) {
+                // Pause Jiggle effect
+                this.pauseJiggle();
+
+                // Set project to be removed
                 this.projectToDelete = project;
-                deleteConfirmation.open();
+
+                // Open confirmation popup
+                this.deleteConfirmation.open();
             },
             delete: function () {
-                this.jigglePaused = false;
+                // Unpause Jiggle effect
+                this.unpauseJiggle();
+
+                // Remove the selected project
                 this.projects.splice(this.projects.indexOf(this.projectToDelete), 1);
             },
             addNewProject: function () {
+                // Add empty object
                 this.projects.push({});
             }
         }, [
@@ -127,4 +199,12 @@ define(['module',
         ]);
 
         exports.ProjectsComponent = abstractComponent.component(ProjectsComponent, module, 'projects-view', 'projects.component');
+
+        // Queries for modal popups
+        ProjectsComponent.annotations[0].queries = {
+            'loginModal': new ngCore.ViewChild(loginModal.ModalLoginComponent),
+            'deleteConfirmation': new ngCore.ViewChild('deleteConfirmation'),
+            'saveConfirmation': new ngCore.ViewChild('saveConfirmation'),
+            'cancelConfirmation': new ngCore.ViewChild('cancelConfirmation')
+        };
     });

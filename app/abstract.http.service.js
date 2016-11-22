@@ -19,16 +19,19 @@ define(['exports',
         }
 
         exports.AbstractHttpService = abstractService.inherit(AbstractHttpService, {
-            constructURL: function (resourceURL, params, subParams) {
+            constructURL: function (templateURL, params, subParams) {
+                var resourceURL = templateURL;
                 var index = 0;
                 if (params) {
                     Object.keys(params).forEach(function (i) {
-                        resourceURL = resourceURL.replace(':' + index++, params[i]);
+                        resourceURL = resourceURL.replace(':' + index, params[i]);
+                        index += 1;
                     });
                 }
                 if (subParams) {
                     Object.keys(subParams).forEach(function (i) {
-                        resourceURL = resourceURL.replace(':' + index++, subParams[i]);
+                        resourceURL = resourceURL.replace(':' + index, subParams[i]);
+                        index += 1;
                     });
                 }
                 return defaultURL + resourceURL;

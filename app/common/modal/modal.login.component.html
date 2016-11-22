@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<modal-confirm #cancelConfirmation (yes)="confirmCancelation()" (no)="open()">
+<modal-confirm (yes)="confirmCancelation()" (no)="open()">
     Do you really want to cancel login?<br>
     <b>All your modifications will be discarded.</b>
 </modal-confirm>

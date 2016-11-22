@@ -1,4 +1,4 @@
-define(['exports',],
+define(['exports'],
     function (exports) {
         'use strict';
 
