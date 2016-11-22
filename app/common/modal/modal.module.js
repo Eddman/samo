@@ -1,10 +1,11 @@
 define(['exports',
         '@angular/core',
+        '@angular/platform-browser',
         '@angular/forms',
         '@modal',
         './modal.confirmation.component',
         './modal.login.component'],
-    function (exports, ngCore, ngForms, ngModal, modalComponent, modalLoginComponent) {
+    function (exports, ngCore, ngBrowser, ngForms, ngModal, modalComponent, modalLoginComponent) {
         'use strict';
 
         function ModalModule() {
@@ -13,6 +14,7 @@ define(['exports',
         ModalModule.annotations = [
             new ngCore.NgModule({
                 imports: [
+                    ngBrowser.BrowserModule,
                     ngForms.FormsModule,
                     ngModal.ModalModule
                 ],

@@ -3,8 +3,9 @@ define(['module',
         '@angular/core',
         '@angular/router',
         '@modal',
+        './modal.confirmation.component',
         '../../abstract.component'],
-    function (module, exports, ngCore, ngRouter, ngModal, abstractComponent) {
+    function (module, exports, ngCore, ngRouter, ngModal, confirmationModal, abstractComponent) {
         'use strict';
 
         function ModalLoginComponent(metaService, authService) {
@@ -18,9 +19,26 @@ define(['module',
                 this.modal.open();
             },
             loginClick: function () {
-                this.login.emit();
+                this.loggingIn = true;
+                delete this.err;
+                this.authService.login({
+                    user: this.username,
+                    password: this.password
+                }).subscribe(function (success) {
+                    if (success) {
+                        this.login.emit();
+                    }
+                    this.loggingIn = false;
+                }.bind(this), function (err) {
+                    this.error = err;
+                    this.loggingIn = false;
+                }.bind(this));
             },
             cancelClick: function () {
+                this.modal.close();
+                this.cancelConfirmation.open();
+            },
+            confirmCancelation: function () {
                 this.cancel.emit();
             }
         }, []);
@@ -32,7 +50,8 @@ define(['module',
                 templateUrl: 'modal.login.component.html',
                 outputs: ['login', 'cancel'],
                 queries: {
-                    'modal': new ngCore.ViewChild(ngModal.Modal)
+                    'modal': new ngCore.ViewChild(ngModal.Modal),
+                    'cancelConfirmation': new ngCore.ViewChild(confirmationModal.ModalConfirmationComponent)
                 }
             })
         ];

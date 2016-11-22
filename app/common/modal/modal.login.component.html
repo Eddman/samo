@@ -1,10 +1,12 @@
-<modal #popup
-       class="bootstrap"
+<modal class="bootstrap"
        [hideCloseButton]="true"
        [closeOnEscape]="false"
        [closeOnOutsideClick]="false">
     <modal-content>
         Please sign in
+        <div *ngIf="error" class="alert alert-danger">
+            <strong>Error!</strong> {{error}}
+        </div>
     </modal-content>
     <modal-footer>
         <div class="container">
@@ -21,3 +23,15 @@
         </div>
     </modal-footer>
 </modal>
+
+<div *ngIf="loggingIn" class="modal in fade" role="dialog" tabindex="-1" style="display: block;">
+    <div class="animatedLoader">
+        <div class="box"></div>
+        <div class="hill"></div>
+    </div>
+</div>
+
+<modal-confirm #cancelConfirmation (yes)="confirmCancelation()" (no)="open()">
+    Do you really want to cancel login?<br>
+    <b>All your modifications will be discarded.</b>
+</modal-confirm>

@@ -99,7 +99,7 @@ define(['exports',
                 return this.findCache(params, subParams).value;
             },
             setCache: function (params, subParams, data) {
-                return this.findCache(params, subParams).value = data;
+                this.findCache(params, subParams).value = data;
             },
             clearCache: function (params, subParams) {
                 var cache = this.findCache(params, subParams);
