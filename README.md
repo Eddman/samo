@@ -1,4 +1,4 @@
-# Angular2 based simple CMS for Samuel Netocny (samuelnetocny.eu)
+# Angular2 based simple CMS for Samuel Netocny (samuel.netocny.com)
 
 ## Installation
 
