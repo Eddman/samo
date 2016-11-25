@@ -1,7 +1,12 @@
-<a [@state]="state" (click)="navigate()" (mouseenter)="setHover()" (mouseleave)="unsetHover()">
+<a [@state]="thumbnail.state"
+   (@state.done)="removed($event)"
+   [class.broken]="!thumbnail.thumbUrl"
+   (click)="navigate()"
+   (mouseenter)="setHover()"
+   (mouseleave)="unsetHover()">
     <img *ngIf="isEdit" class="remove_project" src="/images/icons/remove_circle.svg" (click)="remove()">
     <div *ngIf="thumbnail.title" class="title">{{thumbnail.title}}</div>
     <div *ngIf="!thumbnail.title" class="title">No title</div>
-    <img *ngIf="thumbnail.thumbUrl" (load)="state='loaded'" [src]="thumbnail.thumbUrl">
-    <img *ngIf="!thumbnail.thumbUrl" (load)="state='loaded'" src="/images/icons/broken_image.svg">
+    <img *ngIf="thumbnail.thumbUrl" (load)="thumbnail.state='loaded'" [src]="thumbnail.thumbUrl">
+    <img *ngIf="!thumbnail.thumbUrl" (load)="thumbnail.state='loaded'" src="/images/icons/broken_image.svg">
 </a>

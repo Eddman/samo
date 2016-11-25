@@ -1,0 +1,23 @@
+@import "../../global";
+@import "../../component";
+
+$space_between: 5px;
+
+$thumb_title_margin: 10px;
+$thumb_title_position: 5px;
+
+$hover_scale: 1.04;
+
+%tile {
+    flex: 1 33%;
+    @include box-sizing(border-box);
+    display: block;
+
+    @include bp-medium {
+        flex-basis: 50%;
+    }
+
+    @include bp-small {
+        flex-basis: 100%;
+    }
+}

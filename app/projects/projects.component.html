@@ -11,17 +11,20 @@
             <strong>Error!</strong> {{error}}
         </div>
     </div>
-    <div class="grid" [class.jiggle]="isEdit && !jigglePaused">
+    <div class="grid">
         <thumbnail *ngFor="let project of projects; let i = index"
                    [thumbnail]="project"
                    [isEdit]="isEdit"
-                   (removeChange)="confirmDelete($event)">
+                   [class.jiggle]="isEdit && !jigglePaused"
+                   (removeChange)="confirmDelete($event)"
+                   (removedChange)="delete()">
         </thumbnail>
         <div *ngIf="isEdit" class="thumbnail new_project">
             <a (click)="addNewProject()">
                 <div class="title">New project</div>
-                <div class="add_button"></div>
-                <img src="/images/icons/broken_image.svg">
+                <div class="add_button">
+                    <img src="/images/icons/broken_image.svg">
+                </div>
             </a>
         </div>
         <div class="thumbnail"></div>
@@ -30,7 +33,7 @@
     </div>
 
     <template [ngIf]="isEdit">
-        <modal-confirm #deleteConfirmation (yes)="delete()" (no)="unpauseJiggle()">
+        <modal-confirm #deleteConfirmation (yes)="startDelete()" (no)="unpauseJiggle()">
             Do you really want to remove the project?
         </modal-confirm>
 

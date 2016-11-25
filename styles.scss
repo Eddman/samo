@@ -53,6 +53,10 @@
     }
 }
 
+.gu-unselectable {
+    @include user-select(none !important);
+}
+
 body {
     margin: $page_margin;
     display: flex;

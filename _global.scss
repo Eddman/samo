@@ -3,12 +3,6 @@
 $optimal_width: 900px;
 $page_margin: 15px;
 
-@mixin box-sizing($box-model) {
-    -webkit-box-sizing: $box-model; // Safari <= 5
-    -moz-box-sizing: $box-model; // Firefox <= 19
-    box-sizing: $box-model;
-}
-
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
     -moz-border-radius: $radius;

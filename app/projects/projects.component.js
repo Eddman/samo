@@ -72,7 +72,7 @@ define(['module',
                 this.isEdit = true;
 
                 // Get the bag element
-                this.bagEl = this.el.childNodes.find(function (child) {
+                this.bagEl = Array.prototype.slice.call(this.el.childNodes).find(function (child) {
                     return child.className === "grid";
                 });
 
@@ -163,6 +163,9 @@ define(['module',
                 // Disable edit mode
                 this.isEdit = false;
 
+                // Remove error message
+                delete this.error;
+
                 // Destroy dragula
                 if (this.dragulaService.find(dragAndDropBag)) {
                     this.dragulaService.destroy(dragAndDropBag);
@@ -180,6 +183,9 @@ define(['module',
 
                 // Open confirmation popup
                 this.deleteConfirmation.open();
+            },
+            startDelete: function () {
+                this.projectToDelete.state = 'removed';
             },
             delete: function () {
                 // Unpause Jiggle effect
