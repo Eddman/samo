@@ -10,14 +10,11 @@ define(['module',
 
         var dragAndDropBag = 'thumbnails-bag';
 
-        function ProjectsComponent(metaService, authService, routingService,
-                                   projectService, dragulaService, el) {
-            abstractComponent.AbstractComponent.apply(this, arguments);
+        function ProjectsComponent(projectService, dragulaService) {
+            abstractComponent.AbstractComponent.apply(this, Array.prototype.slice.call(arguments, 2));
             this.projectService = projectService;
             this.dragulaService = dragulaService;
-            this.isEdit = false;
             this.jigglePaused = false;
-            this.el = el.nativeElement;
         }
 
         abstractComponent.inherit(ProjectsComponent, {
@@ -64,14 +61,6 @@ define(['module',
             },
             unpauseJiggle: function () {
                 this.jigglePaused = false;
-            },
-            startEdit: function () {
-                this.isEdit = true;
-                this.routingService.disabled = true;
-            },
-            stopEdit: function () {
-                this.isEdit = false;
-                delete this.routingService.disabled;
             },
             edit: function () {
                 // Unpause Jiggle effect
@@ -209,8 +198,7 @@ define(['module',
             }
         }, [
             projectService.ProjectsService,
-            dragulaService.DragulaService,
-            ngCore.ElementRef
+            dragulaService.DragulaService
         ]);
 
         exports.ProjectsComponent = abstractComponent.component(ProjectsComponent, module, 'projects-view', 'projects.component');

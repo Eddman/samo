@@ -1,16 +1,21 @@
 define(['exports',
         '@angular/core',
+        '@angular/router',
         '@meta/index',
         './auth/auth.service',
         './routing/routing.service',
         './content/content'],
-    function (exports, ngCore, ngMeta, authService, routingService, cnt) {
+    function (exports, ngCore, ngRouter, ngMeta, authService, routingService, cnt) {
         'use strict';
 
-        function AbstractComponent(metaService, authService, routingService) {
+        function AbstractComponent(metaService, authService, routingService, router, route, el) {
             this.metaService = metaService;
             this.authService = authService;
             this.routingService = routingService;
+            this.router = router;
+            this.route = route;
+            this.isEdit = false;
+            this.el = el.nativeElement;
             this.headerChange = new ngCore.EventEmitter();
         }
 
@@ -69,13 +74,26 @@ define(['exports',
             }
         };
 
+        AbstractComponent.prototype.startEdit = function () {
+            this.isEdit = true;
+            this.routingService.disabled = true;
+        };
+
+        AbstractComponent.prototype.stopEdit = function () {
+            this.isEdit = false;
+            delete this.routingService.disabled;
+        };
+
         exports.AbstractComponent = AbstractComponent;
         exports.inherit = function (obj, prototype, additionalParams) {
-            obj.parameters = [
+            obj.parameters = additionalParams.concat([
                 ngMeta.MetaService,
                 authService.AuthService,
-                routingService.RoutingService
-            ].concat(additionalParams);
+                routingService.RoutingService,
+                ngRouter.Router,
+                ngRouter.ActivatedRoute,
+                ngCore.ElementRef
+            ]);
             obj.prototype = Object.create(AbstractComponent.prototype);
             if (prototype) {
                 Object.keys(prototype).forEach(function (k) {

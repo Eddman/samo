@@ -1,9 +1,8 @@
 define(['module',
         'exports',
         '@angular/core',
-        '@angular/router',
         '../abstract.component'],
-    function (module, exports, ngCore, ngRouter, abstractComponent) {
+    function (module, exports, ngCore, abstractComponent) {
         'use strict';
 
         var trigger = ngCore.trigger,
@@ -13,11 +12,9 @@ define(['module',
             animate = ngCore.animate,
             keyframes = ngCore.keyframes;
 
-        function ThumbnailComponent(metaService, authService, routingService, router, route) {
+        function ThumbnailComponent() {
             abstractComponent.AbstractComponent.apply(this, arguments);
             this.hover = false;
-            this.router = router;
-            this.route = route;
             this.removeChange = new ngCore.EventEmitter();
             this.removedChange = new ngCore.EventEmitter();
         }
@@ -48,7 +45,7 @@ define(['module',
                     this.removedChange.emit(this.thumbnail);
                 }
             }
-        }, [ngRouter.Router, ngRouter.ActivatedRoute]);
+        }, []);
 
         ThumbnailComponent.annotations = [
             new ngCore.Component({

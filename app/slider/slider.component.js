@@ -5,8 +5,8 @@ define(['module',
     function (module, exports, abstractComponent, sliderService) {
         'use strict';
 
-        function SliderComponent(metaService, authService, routingService, sliderService) {
-            abstractComponent.AbstractComponent.apply(this, arguments);
+        function SliderComponent(sliderService) {
+            abstractComponent.AbstractComponent.apply(this, Array.prototype.slice.call(arguments, 1));
             this.sliderService = sliderService;
         }
 

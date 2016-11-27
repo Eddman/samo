@@ -1,11 +1,10 @@
 define(['module',
         'exports',
         '@angular/core',
-        '@angular/router',
         '@modal',
         './modal.confirmation.component',
         '../../abstract.component'],
-    function (module, exports, ngCore, ngRouter, ngModal, confirmationModal, abstractComponent) {
+    function (module, exports, ngCore, ngModal, confirmationModal, abstractComponent) {
         'use strict';
 
         function ModalLoginComponent() {

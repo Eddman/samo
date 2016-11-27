@@ -1,8 +1,7 @@
 define(['module', 'exports',
         '@angular/core',
-        '../abstract.component',
-        '../routing/routing.service'],
-    function (module, exports, ngCore, abstractComponent, routingService) {
+        '../abstract.component'],
+    function (module, exports, ngCore, abstractComponent) {
         'use strict';
 
         function MenuComponent() {
