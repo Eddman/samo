@@ -91,5 +91,6 @@ define(['module',
             }
         }, [sliderService.SliderService]);
 
-        exports.SliderComponent = abstractComponent.component(SliderComponent, module, 'slider-view', 'slider.component', ['keysEnabled']);
+        exports.SliderComponent = abstractComponent.viewComponent(SliderComponent, module,
+            'slider-view', 'slider.component', ['keysEnabled']);
     });

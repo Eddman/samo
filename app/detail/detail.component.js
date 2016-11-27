@@ -49,5 +49,6 @@ define(['module',
             }
         }, [detailService.DetailService]);
 
-        exports.DetailComponent = abstractComponent.component(DetailComponent, module, 'detail-view', 'detail.component');
+        exports.DetailComponent = abstractComponent.viewComponent(DetailComponent, module, 'detail-view',
+            'detail.component');
     });

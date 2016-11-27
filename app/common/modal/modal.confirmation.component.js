@@ -26,17 +26,10 @@ define(['module',
             }
         }, []);
 
-        ModalConfirmationComponent.annotations = [
-            new ngCore.Component({
-                moduleId: module.id,
-                selector: 'modal-confirm',
-                templateUrl: 'modal.confirmation.component.html',
-                outputs: ['yes', 'no'],
-                queries: {
-                    'modal': new ngCore.ViewChild(ngModal.Modal)
-                }
-            })
-        ];
-
-        exports.ModalConfirmationComponent = ModalConfirmationComponent;
+        abstractComponent.simpleComponent(ModalConfirmationComponent, module, 'modal-confirm',
+            'modal.confirmation.component', true);
+        abstractComponent.addOutputs(ModalConfirmationComponent, ['yes', 'no']);
+        exports.ModalConfirmationComponent = abstractComponent.addQueries(ModalConfirmationComponent, {
+            'modal': new ngCore.ViewChild(ngModal.Modal)
+        });
     });

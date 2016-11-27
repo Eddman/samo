@@ -51,5 +51,5 @@ define(['module',
             }
         }, [listService.ListService]);
 
-        exports.ListComponent = abstractComponent.component(ListComponent, module, 'list-view', 'list.component');
+        exports.ListComponent = abstractComponent.viewComponent(ListComponent, module, 'list-view', 'list.component');
     });

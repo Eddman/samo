@@ -38,14 +38,9 @@ define(['module', 'exports',
             }
         }, []);
 
-        MenuComponent.annotations = [
-            new ngCore.Component({
-                moduleId: module.id,
-                selector: 'app-menu',
-                templateUrl: 'menu.component.html',
-                styleUrls: ['menu.component.css']
-            })
-        ];
+
+        exports.MenuComponent = abstractComponent.simpleComponent(MenuComponent, module, 'app-menu',
+            'menu.component');
 
         exports.MenuComponent = MenuComponent;
     });

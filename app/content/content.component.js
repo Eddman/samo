@@ -1,20 +1,15 @@
-define(['module', 'exports', '@angular/core', './content'], function (module, exports, ngCore, content) {
-    'use strict';
+define(['module', 'exports',
+        '@angular/core',
+        './content',
+        '../abstract.component'],
+    function (module, exports, ngCore, content, abstractComponent) {
+        'use strict';
 
-    function ContentComponent() {
-        //noinspection JSUnusedGlobalSymbols
-        this.types = content.contentPartsTypes;
-    }
+        function ContentComponent() {
+            //noinspection JSUnusedGlobalSymbols
+            this.types = content.contentPartsTypes;
+        }
 
-    ContentComponent.annotations = [
-        new ngCore.Component({
-            moduleId: module.id,
-            selector: 'content',
-            templateUrl: 'content.component.html',
-            styleUrls: ['content.component.css'],
-            inputs: ['contentParts']
-        })
-    ];
-
-    exports.ContentComponent = ContentComponent;
-});
+        abstractComponent.simpleComponent(ContentComponent, module, 'content', 'content.component');
+        exports.ContentComponent = abstractComponent.addInputs(ContentComponent, ['contentParts']);
+    });

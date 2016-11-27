@@ -22,6 +22,15 @@ define(['module',
                 // Load initial projects list
                 this.loadProjects();
             },
+            ngOnDestroy: function () {
+                // Destroy dragula
+                if (this.dragulaService.find(dragAndDropBag)) {
+                    this.dragulaService.destroy(dragAndDropBag);
+                }
+
+                // Enable edit
+                this.stopEdit();
+            },
             loadProjects: function () {
                 // Load projects
                 this.projectService.getProject({
@@ -201,13 +210,13 @@ define(['module',
             dragulaService.DragulaService
         ]);
 
-        exports.ProjectsComponent = abstractComponent.component(ProjectsComponent, module, 'projects-view', 'projects.component');
+        abstractComponent.viewComponent(ProjectsComponent, module, 'projects-view', 'projects.component');
 
         // Queries for modal popups
-        ProjectsComponent.annotations[0].queries = {
+        exports.ProjectsComponent = abstractComponent.addQueries(ProjectsComponent, {
             'loginModal': new ngCore.ViewChild(loginModal.ModalLoginComponent),
             'deleteConfirmation': new ngCore.ViewChild('deleteConfirmation'),
             'saveConfirmation': new ngCore.ViewChild('saveConfirmation'),
             'cancelConfirmation': new ngCore.ViewChild('cancelConfirmation')
-        };
+        });
     });

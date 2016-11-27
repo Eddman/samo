@@ -42,18 +42,10 @@ define(['module',
             }
         }, []);
 
-        ModalLoginComponent.annotations = [
-            new ngCore.Component({
-                moduleId: module.id,
-                selector: 'modal-login',
-                templateUrl: 'modal.login.component.html',
-                outputs: ['login', 'cancel'],
-                queries: {
-                    'loginModal': new ngCore.ViewChild(ngModal.Modal),
-                    'cancelConfirmation': new ngCore.ViewChild(confirmationModal.ModalConfirmationComponent)
-                }
-            })
-        ];
-
-        exports.ModalLoginComponent = ModalLoginComponent;
+        abstractComponent.simpleComponent(ModalLoginComponent, module, 'modal-login', 'modal.login.component', true);
+        abstractComponent.addOutputs(ModalLoginComponent, ['login', 'cancel']);
+        exports.ModalLoginComponent = abstractComponent.addQueries(ModalLoginComponent, {
+            'loginModal': new ngCore.ViewChild(ngModal.Modal),
+            'cancelConfirmation': new ngCore.ViewChild(confirmationModal.ModalConfirmationComponent)
+        });
     });

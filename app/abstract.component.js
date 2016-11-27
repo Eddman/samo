@@ -102,21 +102,52 @@ define(['exports',
             }
             obj.prototype.constructor = obj;
         };
-        exports.component = function (obj, module, selector, filename, additionalInputs) {
-            var inputs = ['route'];
-            if (additionalInputs) {
-                inputs = inputs.concat(additionalInputs);
-            }
+
+        exports.simpleComponent = function (obj, module, selector, filename, noCSS) {
             obj.annotations = [
                 new ngCore.Component({
                     moduleId: module.id,
                     selector: selector,
                     templateUrl: filename + '.html',
-                    styleUrls: [filename + '.css'],
-                    inputs: inputs,
-                    outputs: ['headerChange']
+                    styleUrls: noCSS ? undefined : [filename + '.css']
                 })
             ];
+            return obj;
+        };
+
+        exports.addInputs = function (obj, inputs) {
+            obj.annotations[0].inputs = inputs;
+            return obj;
+        };
+
+        exports.addOutputs = function (obj, outputs) {
+            obj.annotations[0].outputs = outputs;
+            return obj;
+        };
+
+        exports.addHost = function (obj, host) {
+            obj.annotations[0].host = host;
+            return obj;
+        };
+
+        exports.addAnimations = function (obj, animations) {
+            obj.annotations[0].animations = animations;
+            return obj;
+        };
+
+        exports.addQueries = function (obj, queries) {
+            obj.annotations[0].queries = queries;
+            return obj;
+        };
+
+        exports.viewComponent = function (obj, module, selector, filename, additionalInputs) {
+            var inputs = ['route'];
+            if (additionalInputs) {
+                inputs = inputs.concat(additionalInputs);
+            }
+            exports.simpleComponent(obj, module, selector, filename);
+            exports.addInputs(obj, inputs);
+            exports.addOutputs(obj, ['headerChange']);
             return obj;
         };
     });
