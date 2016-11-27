@@ -2,13 +2,15 @@ define(['exports',
         '@angular/core',
         '@meta/index',
         './auth/auth.service',
+        './routing/routing.service',
         './content/content'],
-    function (exports, ngCore, ngMeta, authService, cnt) {
+    function (exports, ngCore, ngMeta, authService, routingService, cnt) {
         'use strict';
 
-        function AbstractComponent(metaService, authService) {
+        function AbstractComponent(metaService, authService, routingService) {
             this.metaService = metaService;
             this.authService = authService;
+            this.routingService = routingService;
             this.headerChange = new ngCore.EventEmitter();
         }
 
@@ -69,7 +71,11 @@ define(['exports',
 
         exports.AbstractComponent = AbstractComponent;
         exports.inherit = function (obj, prototype, additionalParams) {
-            obj.parameters = [ngMeta.MetaService, authService.AuthService].concat(additionalParams);
+            obj.parameters = [
+                ngMeta.MetaService,
+                authService.AuthService,
+                routingService.RoutingService
+            ].concat(additionalParams);
             obj.prototype = Object.create(AbstractComponent.prototype);
             if (prototype) {
                 Object.keys(prototype).forEach(function (k) {

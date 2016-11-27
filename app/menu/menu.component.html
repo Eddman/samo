@@ -1,5 +1,6 @@
 <div *ngIf="rootItem">
-    <h1><a [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
+    <h1><a [class.disabled]="isDisabled()"
+           [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
 </div>
 <div class="sizer"></div>
 
@@ -8,10 +9,12 @@
         <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
             <div class="sizer"></div>
             <a *ngIf="!isRootExpanded(menuLocale)"
+               [class.disabled]="isDisabled()"
                [routerLink]="menuLocale.routeLink"
                routerLinkActive="active">{{menuLocale.title}}</a>
             <template [ngIf]="isRootExpanded(menuLocale)">
                 <a *ngFor="let menuItem of menuLocale.subItems"
+                   [class.disabled]="isDisabled()"
                    [routerLink]="menuItem.routeLink"
                    routerLinkActive="active">{{menuItem.title}}</a>
             </template>
@@ -28,7 +31,8 @@
         </div>
         <div class="menu-block right">
             <div class="sizer"></div>
-            <a [routerLink]="getHomeLink()">Home</a>
+            <a [class.disabled]="isDisabled()"
+               [routerLink]="getHomeLink()">Home</a>
         </div>
     </template>
 </div>

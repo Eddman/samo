@@ -71,7 +71,7 @@
     }
 
     &.jiggle {
-        @include animation(jiggle 0.2s infinite);
+        @include animation(jiggle 0.3s infinite);
 
         &.hover {
             @include animation(none);
@@ -84,6 +84,9 @@
             }
             50% {
                 @include transform(rotate(1deg));
+            }
+            100% {
+                @include transform(rotate(-1deg));
             }
         }
     }

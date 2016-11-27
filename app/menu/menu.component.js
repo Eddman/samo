@@ -1,42 +1,43 @@
 define(['module', 'exports',
         '@angular/core',
+        '../abstract.component',
         '../routing/routing.service'],
-    function (module, exports, ngCore, routingService) {
+    function (module, exports, ngCore, abstractComponent, routingService) {
         'use strict';
 
-        function MenuComponent(routingService) {
-            this.routingService = routingService;
+        function MenuComponent() {
+            abstractComponent.AbstractComponent.apply(this, arguments);
         }
 
-        //noinspection JSUnusedGlobalSymbols
-        MenuComponent.prototype.ngOnInit = function () {
-            this.routingService.getMenuRoutes().then(function (rootItem) {
-                this.rootItem = rootItem;
-                document.title = rootItem.title;
-            }.bind(this), function (error) {
-                this.error = error;
-                delete this.rootItem;
-            }.bind(this));
-        };
-
-        MenuComponent.prototype.isRootExpanded = function (menuLocale) {
-            var selected = this.routingService.selectedRoutePathParams;
-            return selected && selected.length && selected[0] === menuLocale.realURL;
-        };
-
-        MenuComponent.prototype.isMenuHidden = function () {
-            var selected = this.routingService.selectedRoute;
-            return selected && (selected.parameters || selected.additionalHeader);
-        };
-
-        MenuComponent.prototype.getHomeLink = function () {
-            var selected = this.routingService.selectedRoutePathParams;
-            return selected ? '/' + selected.slice(0, selected.length - 1).join('/') : '/';
-        };
-
-        MenuComponent.prototype.getPageHeader = function () {
-            return this.routingService.selectedRoute.additionalHeader;
-        };
+        abstractComponent.inherit(MenuComponent, {
+            ngOnInit: function () {
+                this.routingService.getMenuRoutes().then(function (rootItem) {
+                    this.rootItem = rootItem;
+                    document.title = rootItem.title;
+                }.bind(this), function (error) {
+                    this.error = error;
+                    delete this.rootItem;
+                }.bind(this));
+            },
+            isDisabled: function () {
+                return this.routingService.disabled;
+            },
+            isRootExpanded: function (menuLocale) {
+                var selected = this.routingService.selectedRoutePathParams;
+                return selected && selected.length && selected[0] === menuLocale.realURL;
+            },
+            isMenuHidden: function () {
+                var selected = this.routingService.selectedRoute;
+                return selected && (selected.parameters || selected.additionalHeader);
+            },
+            getHomeLink: function () {
+                var selected = this.routingService.selectedRoutePathParams;
+                return selected ? '/' + selected.slice(0, selected.length - 1).join('/') : '/';
+            },
+            getPageHeader: function () {
+                return this.routingService.selectedRoute.additionalHeader;
+            }
+        }, []);
 
         MenuComponent.annotations = [
             new ngCore.Component({
@@ -45,9 +46,6 @@ define(['module', 'exports',
                 templateUrl: 'menu.component.html',
                 styleUrls: ['menu.component.css']
             })
-        ];
-        MenuComponent.parameters = [
-            routingService.RoutingService
         ];
 
         exports.MenuComponent = MenuComponent;

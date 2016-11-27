@@ -7,7 +7,7 @@ define(['module',
     function (module, exports, ngCore, ngRouter, ngModal, abstractComponent) {
         'use strict';
 
-        function ModalConfirmationComponent(metaService, authService) {
+        function ModalConfirmationComponent() {
             abstractComponent.AbstractComponent.apply(this, arguments);
             this.yes = new ngCore.EventEmitter();
             this.no = new ngCore.EventEmitter();

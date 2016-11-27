@@ -13,7 +13,7 @@ define(['module',
             animate = ngCore.animate,
             keyframes = ngCore.keyframes;
 
-        function ThumbnailComponent(metaService, authService, router, route) {
+        function ThumbnailComponent(metaService, authService, routingService, router, route) {
             abstractComponent.AbstractComponent.apply(this, arguments);
             this.hover = false;
             this.router = router;

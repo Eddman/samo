@@ -5,7 +5,7 @@ define(['module',
     function (module, exports, abstractComponent, detailService) {
         'use strict';
 
-        function DetailComponent(metaService, authService, detailService) {
+        function DetailComponent(metaService, authService, routingService, detailService) {
             abstractComponent.AbstractComponent.apply(this, arguments);
             this.detailService = detailService;
         }

@@ -10,7 +10,8 @@ define(['module',
 
         var dragAndDropBag = 'thumbnails-bag';
 
-        function ProjectsComponent(metaService, authService, projectService, dragulaService, el) {
+        function ProjectsComponent(metaService, authService, routingService,
+                                   projectService, dragulaService, el) {
             abstractComponent.AbstractComponent.apply(this, arguments);
             this.projectService = projectService;
             this.dragulaService = dragulaService;
@@ -56,7 +57,7 @@ define(['module',
                 }
 
                 // Copy projects array
-                this.projects = [].concat(projects);
+                this.projects = JSON.parse(JSON.stringify(projects));
             },
             pauseJiggle: function () {
                 this.jigglePaused = true;
@@ -64,12 +65,20 @@ define(['module',
             unpauseJiggle: function () {
                 this.jigglePaused = false;
             },
+            startEdit: function () {
+                this.isEdit = true;
+                this.routingService.disabled = true;
+            },
+            stopEdit: function () {
+                this.isEdit = false;
+                delete this.routingService.disabled;
+            },
             edit: function () {
                 // Unpause Jiggle effect
                 this.unpauseJiggle();
 
                 // Enable edit
-                this.isEdit = true;
+                this.startEdit();
 
                 // Get the bag element
                 this.bagEl = Array.prototype.slice.call(this.el.childNodes).find(function (child) {
@@ -103,7 +112,7 @@ define(['module',
             },
             save: function () {
                 // Disable edit mode
-                this.isEdit = false;
+                this.stopEdit();
 
                 // Destroy dragula
                 if (this.dragulaService.find(dragAndDropBag)) {
@@ -161,7 +170,7 @@ define(['module',
             },
             cancel: function () {
                 // Disable edit mode
-                this.isEdit = false;
+                this.stopEdit();
 
                 // Remove error message
                 delete this.error;
