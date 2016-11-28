@@ -3,10 +3,11 @@ define(['exports',
         '@angular/platform-browser',
         '@angular/router',
         '@angular/forms',
+        '@dragula/ng2-dragula',
         '../common/modal/modal.module',
         './menu.component',
         './item.editor.component'],
-    function (exports, ngCore, ngBrowser, ngRouter, ngForms, modalModules, menuComponent, itemEditorComponent) {
+    function (exports, ngCore, ngBrowser, ngRouter, ngForms, ngDragula, modalModules, menuComponent, itemEditorComponent) {
         'use strict';
 
         function MenuModule() {
@@ -15,6 +16,7 @@ define(['exports',
         MenuModule.annotations = [
             new ngCore.NgModule({
                 imports: [
+                    ngDragula.DragulaModule,
                     ngBrowser.BrowserModule,
                     ngRouter.RouterModule,
                     ngForms.FormsModule,

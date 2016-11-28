@@ -38,5 +38,7 @@
         <a class="btn btn-primary" (click)="addChild()">Add new child</a>
     </template>
     <hr/>
-    <item-editor *ngFor="let child of item.routes" [item]="child"></item-editor>
+    <div class="dragulaBag">
+        <item-editor *ngFor="let child of item.routes" [item]="child"></item-editor>
+    </div>
 </div>

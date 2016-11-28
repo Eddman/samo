@@ -1,12 +1,13 @@
 define(['module', 'exports',
         '@angular/core',
         '../abstract.component',
-        '../routing/route'],
-    function (module, exports, ngCore, abstractComponent, route) {
+        '@dragula/components/dragula.provider'],
+    function (module, exports, ngCore, abstractComponent, dragulaService) {
         'use strict';
 
-        function MenuItemEditorComponent() {
-            abstractComponent.AbstractComponent.apply(this, arguments);
+        function MenuItemEditorComponent(dragulaService) {
+            abstractComponent.AbstractComponent.apply(this, Array.prototype.slice.call(arguments, 1));
+            this.dragulaService = dragulaService;
             this.routeTypes = [
                 {
                     technical: 'slider',
@@ -35,6 +36,29 @@ define(['module', 'exports',
                             return true;
                         }
                     }.bind(this));
+                }
+                this.setupDragAndDrop();
+            },
+            setupDragAndDrop: function () {
+                this.dragAndDropBag = this.item.url;
+                // Get the bag element
+                this.bagEl = Array.prototype.slice.call(this.el.childNodes[0].childNodes).find(function (child) {
+                    return child.className === 'dragulaBag';
+                });
+
+                // Setup dragula for the bag above
+                this.dragulaService.setOptions(this.dragAndDropBag, {
+                    containers: [this.bagEl],
+                    revertOnSpill: true
+                });
+
+                // Setup models for dragula
+                this.dragulaService.find(this.dragAndDropBag).drake.models = [this.item.routes];
+            },
+            ngOnDestroy: function () {
+                // Destroy dragula
+                if (this.dragAndDropBag && this.dragulaService.find(this.dragAndDropBag)) {
+                    this.dragulaService.destroy(this.dragAndDropBag);
                 }
             },
             getGroupItems: function () {
@@ -81,7 +105,7 @@ define(['module', 'exports',
                 return true;
             },
             addChild: function () {
-                if(!this.item.routes) {
+                if (!this.item.routes) {
                     this.item.routes = [];
                 }
                 delete this.children;
@@ -94,7 +118,9 @@ define(['module', 'exports',
                     type: this.routeTypes[0].technical
                 })
             }
-        }, []);
+        }, [
+            dragulaService.DragulaService
+        ]);
 
 
         abstractComponent.simpleComponent(MenuItemEditorComponent, module,
