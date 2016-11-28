@@ -1,4 +1,3 @@
-@import "../../global";
 @import "../../component";
 
 $padding_side: 95px;
@@ -15,6 +14,10 @@ $link_line_height: 18;
     display: flex;
     flex-direction: column;
     padding: 0 $padding_side $padding_bottom;
+
+    &.editMode {
+        height: auto;
+    }
 
     @include bp-large {
         height: auto;

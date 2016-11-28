@@ -4,7 +4,10 @@
 
 .bootstrap {
     @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
     @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
+    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
     @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 
     .form-control {

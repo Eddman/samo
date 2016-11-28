@@ -7,10 +7,10 @@ define(['exports',
         './routing/routing.service',
         './auth/auth.module',
         './routing/routing.module',
-        './app.component',
-        './menu/menu.component'],
-    function (exports, ngCore, ngBrowser, ngRouter, ngHttp, ngMeta, routingService, authModule, appRouting, appComponent,
-              menuComponent) {
+        './menu/menu.module',
+        './app.component'],
+    function (exports, ngCore, ngBrowser, ngRouter, ngHttp, ngMeta, routingService, authModule, appRouting, menuModule,
+              appComponent) {
         'use strict';
 
         var metaConfig;
@@ -38,11 +38,11 @@ define(['exports',
                     appRouting.AppRoutingModule,
                     authModule.AuthModule,
                     ngHttp.HttpModule,
-                    ngHttp.JsonpModule
+                    ngHttp.JsonpModule,
+                    menuModule.MenuModule
                 ],
                 declarations: [
-                    appComponent.AppComponent,
-                    menuComponent.MenuComponent
+                    appComponent.AppComponent
                 ],
                 providers: [routingService.RoutingService],
                 bootstrap: [appComponent.AppComponent]

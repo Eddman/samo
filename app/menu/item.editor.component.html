@@ -1,0 +1,42 @@
+<div class="bootstrap">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="item.title">
+            <span class="input-group-addon">Type:</span>
+            <div class="input-group-addon">
+                <select [(ngModel)]="item.type" *ngIf="item.type !== 'group'">
+                    <option *ngFor="let type of routeTypes" [value]="type.technical"
+                            [selected]="item.type === type.technical">
+                        {{type.hr}}
+                    </option>
+                </select>
+                <span *ngIf="item.type === 'group'">Parent group</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="item.url">
+        <label for="url">Item URL</label>
+        <input type="text" class="form-control" id="url" [(ngModel)]="item.url" placeholder="Please enter an URL">
+        <small class="form-text text-muted">
+            Parts from parent level will be prepended, eg. URL is "projects",
+            parent URL is "sk" and result URL will be /sk/projects
+        </small>
+    </div>
+    <template [ngIf]="item.type === 'group'">
+        <div class="form-group">
+            <label for="redirect">Redirect to</label>
+            <select class="form-control" [(ngModel)]="item.redirect">
+                <option *ngFor="let type of getGroupItems()" [ngValue]="type.technical">
+                    {{type.hr}}
+                </option>
+            </select>
+            <small class="form-text text-muted">
+                Select page to which the application is redirected when the URL above is entered.
+            </small>
+        </div>
+
+        <a class="btn btn-primary" (click)="addChild()">Add new child</a>
+    </template>
+    <hr/>
+    <item-editor *ngFor="let child of item.routes" [item]="child"></item-editor>
+</div>

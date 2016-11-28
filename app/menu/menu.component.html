@@ -1,10 +1,27 @@
-<div *ngIf="rootItem">
+{{rootItem|json}}
+<item-editor *ngIf="isEdit" [item]="rootItem"></item-editor>
+<div *ngIf="!isEdit && rootItem">
     <h1><a [class.disabled]="isDisabled()"
            [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
 </div>
+<div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
+    <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit</a>
+    <template [ngIf]="isEdit">
+        <a class="btn btn-primary" (click)="addGroup()">Add new group</a>
+        <br>
+        <br>
+        <a class="btn btn-primary" (click)="confirmSave()">Save</a>
+        <a class="btn btn-danger" (click)="confirmCancel()">Cancel</a>
+    </template>
+</div>
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
+    </div>
+</div>
 <div class="sizer"></div>
 
-<div class="menu" *ngIf="rootItem">
+<div class="menu" *ngIf="!isEdit && rootItem">
     <template [ngIf]="!isMenuHidden()">
         <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
             <div class="sizer"></div>
@@ -36,4 +53,18 @@
         </div>
     </template>
 </div>
+
+<template [ngIf]="isEdit">
+    <modal-confirm #saveConfirmation (yes)="save()">
+        Do you really want to save all changes?<br>
+        <b>Note that all removed items will be lost. Content of all items with modified type will be lost as well.</b>
+    </modal-confirm>
+
+    <modal-confirm #cancelConfirmation (yes)="cancel()">
+        Do you really want to cancel all changes?<br>
+        <b>Note that all your changes will be lost.</b>
+    </modal-confirm>
+
+    <modal-login></modal-login>
+</template>
 
