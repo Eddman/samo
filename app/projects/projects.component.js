@@ -87,6 +87,7 @@ define(['module',
                 this.dragulaService.setOptions(dragAndDropBag, {
                     containers: [this.bagEl],
                     revertOnSpill: true,
+                    direction: 'horizontal',
                     moves: function (el) {
                         return el.tagName.toLowerCase() === 'thumbnail';
                     },

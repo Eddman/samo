@@ -1,11 +1,10 @@
-{{rootItem|json}}
 <item-editor *ngIf="isEdit" [item]="rootItem"></item-editor>
 <div *ngIf="!isEdit && rootItem">
     <h1><a [class.disabled]="isDisabled()"
            [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
 </div>
-<div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
-    <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit</a>
+<div *ngIf="isLoggedIn() && !isDisabled()" class="bootstrap edit_buttons">
+    <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit menu structure</a>
     <template [ngIf]="isEdit">
         <a class="btn btn-primary" (click)="addGroup()">Add new group</a>
         <br>
@@ -57,7 +56,7 @@
 <template [ngIf]="isEdit">
     <modal-confirm #saveConfirmation (yes)="save()">
         Do you really want to save all changes?<br>
-        <b>Note that all removed items will be lost. Content of all items with modified type will be lost as well.</b>
+        <b>Note that all removed items will be lost. Content of all removed items will be lost as well.</b>
     </modal-confirm>
 
     <modal-confirm #cancelConfirmation (yes)="cancel()">

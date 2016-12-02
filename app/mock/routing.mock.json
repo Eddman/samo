@@ -3,20 +3,17 @@
         "title": "SAMUEL NETOČNÝ, architekt",
         "type": "slider",
         "config": {
-            "images": "home",
-            "duration": 700,
-            "autoSlide": 10000,
-            "description": "architekt ~ poprad ~ wien"
+            "type": [
+                "home",
+                "home"
+            ]
         },
         "routes": [
             {
                 "title": "/SK/ Poprad-Tatry",
                 "url": "sk",
                 "type": "group",
-                "redirect": [
-                    "sk",
-                    "projects"
-                ],
+                "redirect": "projects",
                 "routes": [
                     {
                         "title": "Práce",

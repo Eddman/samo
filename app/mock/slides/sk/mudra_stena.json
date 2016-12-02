@@ -1,0 +1,32 @@
+{
+    "data": {
+        "duration": 700,
+        "primary": true,
+        "images": [
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B1.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B3.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B5.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B7.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B8.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B9.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B10.jpg"
+            },
+            {
+                "url": "/images/mudra_stena/foto/Netocny Interier B11.jpg"
+            }
+        ]
+    }
+}

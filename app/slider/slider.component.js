@@ -12,35 +12,39 @@ define(['module',
 
         abstractComponent.inherit(SliderComponent, {
             ngOnChanges: function () {
-                // Check if auto-slide is available
-                if (this.route.configuration.autoSlide) {
-                    this.autoSlide = this.route.configuration.autoSlide;
-                }
-
                 // Pause previous sliding
                 this.startAutoSlide(false);
 
                 this.sliderService.getSlides({
-                    images: this.route.configuration.images
+                    type: this.route.configuration.type
                 }).then(function (slides) {
-                    this.pages = slides;
+                    this.pages = slides.images;
                     this.pageNumber = 0;
                     this.pageCount = this.pages.length;
 
-                    if (this.keysEnabled || this.route.configuration.primary) {
-                        if (!this.route.configuration.primary) {
-                            this.setSEODescription(this.route.configuration.description);
+                    if (this.keysEnabled || slides.primary) {
+                        if (!slides.primary) {
+                            this.setSEODescription(slides.description);
                         }
-                        if (slides && slides.length) {
-                            this.setSEOImage(slides[0].url);
+                        if (slides && slides.images && slides.images.length) {
+                            this.setSEOImage(slides.images[0].url);
                         } else {
                             this.setSEOImage();
                         }
                     }
 
+                    this.defaultDuration = slides.duration;
+
+                    // Check if auto-slide is available
+                    if (slides.autoSlide) {
+                        this.autoSlide = slides.autoSlide;
+                    }
+
                     // Start sliding
                     if (this.autoSlide) {
-                        this.startAutoSlide();
+                        this.startAutoSlide(true);
+                    } else {
+                        this.startAutoSlide(false);
                     }
                 }.bind(this));
             },
@@ -75,14 +79,14 @@ define(['module',
             startAutoSlide: function (sliding) {
                 if (this.autoSlide) {
                     if (arguments.length === 0 || sliding) {
-                        this.transitionDuration = this.route.configuration.duration || 500;
+                        this.transitionDuration = this.defaultDuration || 500;
                         this.interval = setInterval(this.autoSlideFunction.bind(this), this.autoSlide + this.transitionDuration);
                     } else {
                         clearInterval(this.interval);
                         delete this.interval;
                     }
                 } else {
-                    this.transitionDuration = this.route.configuration.duration || 500;
+                    this.transitionDuration = this.defaultDuration || 500;
                 }
             },
             ngOnDestroy: function () {

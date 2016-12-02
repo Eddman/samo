@@ -4,9 +4,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "kriz_ticha_foto",
-                    "duration": 700,
-                    "primary": true
+                    "type": [
+                        "sk",
+                        "kriz_ticha_foto"
+                    ]
                 }
             },
             {
@@ -34,8 +35,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "kriz_ticha_vykresy",
-                    "duration": 700
+                    "type": [
+                        "sk",
+                        "kriz_ticha_vykresy"
+                    ]
                 }
             }
         ],

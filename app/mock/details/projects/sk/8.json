@@ -4,9 +4,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "holandsky_kriz_foto",
-                    "duration": 700,
-                    "primary": true
+                    "type": [
+                        "sk",
+                        "holandsky_kriz_foto"
+                    ]
                 }
             },
             {
@@ -18,8 +19,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "holandsky_kriz_vykresy",
-                    "duration": 700
+                    "type": [
+                        "sk",
+                        "holandsky_kriz_vykresy"
+                    ]
                 }
             }
         ]

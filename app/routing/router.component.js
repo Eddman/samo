@@ -26,7 +26,7 @@ define([
                         this.routingService.selectedRoutePathParams = params;
 
                         if (route.redirectPath) {
-                            this.router.navigate(route.redirectPath);
+                            this.router.navigate([route.redirectPath], {relativeTo: this.route});
                         }
                     }.bind(this),
                     function () {

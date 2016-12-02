@@ -91,8 +91,7 @@ define(['exports',
                                             '/' + config.url + '/' + config.routes[i].url));
                                     });
                                     menuLocales.push(new menuClass.MenuItem(config.title,
-                                        '/' + config.url + '/' + config.routes[0].url,
-                                        menuRoutes, config.url));
+                                        '/' + config.url, menuRoutes, config.url));
                                 }
                             }
                         });

@@ -4,9 +4,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "kaplnka_photo",
-                    "duration": 700,
-                    "primary": true
+                    "type": [
+                        "sk",
+                        "kaplnka_photo"
+                    ]
                 }
             },
             {
@@ -23,8 +24,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "kaplnka_vykresy",
-                    "duration": 700
+                    "type": [
+                        "sk",
+                        "kaplnka_vykresy"
+                    ]
                 }
             }
         ],

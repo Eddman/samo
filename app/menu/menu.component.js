@@ -84,12 +84,10 @@ define(['module', 'exports',
             },
             addGroup: function () {
                 this.rootItem.routes.push({
-                    url: {
-                        toString: function () {
-                            return '';
-                        }
-                    },
-                    type: 'group'
+                    title: 'No name',
+                    url: '',
+                    type: 'group',
+                    routes: []
                 });
             }
         }, []);

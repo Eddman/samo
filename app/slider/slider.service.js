@@ -9,7 +9,7 @@ define(['exports',
 
         exports.SliderService = httpService.inherit(SliderService, {
             getSlides: function (config) {
-                return this.getWithCache('/app/mock/slides/:0.json', [config.images]);
+                return this.getWithCache('/app/mock/slides/:0/:1.json', config.type);
             }
         });
     });

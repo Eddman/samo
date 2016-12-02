@@ -4,9 +4,10 @@
             {
                 "type": "slider",
                 "configuration": {
-                    "images": "slnecne_hodiny",
-                    "duration": 700,
-                    "primary": true
+                    "type": [
+                        "sk",
+                        "slnecne_hodiny"
+                    ]
                 }
             }
         ],

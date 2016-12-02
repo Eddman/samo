@@ -1,5 +1,79 @@
 @import "../../component";
 
-.bootstrap .bootstrap {
-    padding-left: 20px;
+:host {
+
+    .bootstrap {
+        display: flex;
+    }
+
+    .handle {
+        padding: 0 10px;
+        margin: -5px 0;
+
+        img {
+            cursor: move;
+            transition: transform 300ms;
+
+            &:hover {
+                @include transform(rotate(-180deg));
+            }
+        }
+
+        & + div {
+            flex: 1;
+        }
+    }
+
+    .remove_item {
+        padding: 0 10px;
+
+        a {
+            cursor: pointer;
+            display: block;
+
+            img {
+                transition: transform 300ms;
+
+                &:hover {
+                    @include transform(rotate(-180deg));
+                }
+            }
+        }
+    }
+
+    item-editor {
+        padding-left: 30px;
+    }
+
+    .placeItem {
+        color: gray;
+        text-align: center;
+
+        border: 1px dashed gray;
+        @include border-radius(5px);
+
+        padding: 20px;
+        margin: 10px;
+    }
+
+    &.gu-hide {
+        display: none !important;
+    }
+
+    &.gu-transit, &.gu-mirror {
+        .dragulaBag {
+            display: none !important;
+        }
+    }
+
+    &.gu-transit {
+        @include opacity(0.4);
+    }
+
+    &.gu-mirror {
+        position: fixed !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+        @include opacity(0.8);
+    }
 }
