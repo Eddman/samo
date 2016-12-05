@@ -6,8 +6,10 @@ define(['exports',
         'use strict';
 
         var errors = {
-            NOT_FOUND: 'Route not found for given path!'
-        };
+                NOT_FOUND: 'Route not found for given path!'
+            },
+            getURL = '/app/mock/routing.mock.json', // TODO change after a BE is available
+            postURL = '/routing/save';
         exports.ERRORS = errors;
 
         function RoutingService() {
@@ -16,7 +18,16 @@ define(['exports',
 
         exports.RoutingService = httpService.inherit(RoutingService, {
             getRootConfiguration: function () { // override
-                return this.getWithCache("/app/mock/routing.mock.json");
+                return this.getWithCache(getURL);
+            },
+            saveRootConfiguration: function (rootItem) {
+                return new Promise(function (resolve, reject) {
+                    this.post(postURL, {data: rootItem}).subscribe(
+                        function (data) {
+                            this.setCache(null, null, data);
+                            resolve(data);
+                        }.bind(this), reject);
+                }.bind(this));
             },
             getRouteConfig: function (routeParams) {
                 //noinspection AmdModulesDependencies

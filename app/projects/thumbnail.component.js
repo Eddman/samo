@@ -22,7 +22,7 @@ define(['module',
         abstractComponent.inherit(ThumbnailComponent, {
             navigate: function () {
                 if (this.hover && !this.isEdit) {
-                    this.router.navigate([this.thumbnail.index + 1], {relativeTo: this.route});
+                    this.router.navigate([this.thumbnail.parameter], {relativeTo: this.route});
                 }
             },
             setHover: function () {

@@ -7,7 +7,8 @@
         </div>
         <div class="form-group" *ngIf="parentLevel">
             <label for="url">Title</label>
-            <input type="text" class="form-control" id="url" [(ngModel)]="item.url" placeholder="Please enter an URL">
+            <input type="text" class="form-control" id="url" [ngModel]="item.url" (ngModelChange)="changedURL($event)"
+                   placeholder="Please enter an URL">
             <small class="form-text text-muted">
                 Parts from parent level will be prepended, eg. URL is "projects",
                 parent URL is "sk" and result URL will be /sk/projects

@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="grid">
-        <thumbnail *ngFor="let project of projects; let i = index"
+        <thumbnail *ngFor="let project of projects"
                    [thumbnail]="project"
                    [isEdit]="isEdit"
                    [class.jiggle]="isEdit && !jigglePaused"

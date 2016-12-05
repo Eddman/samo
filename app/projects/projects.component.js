@@ -23,13 +23,17 @@ define(['module',
                 this.loadProjects();
             },
             ngOnDestroy: function () {
+                // Enable edit
+                this.stopEdit();
+            },
+            stopEdit: function () {
                 // Destroy dragula
                 if (this.dragulaService.find(dragAndDropBag)) {
                     this.dragulaService.destroy(dragAndDropBag);
                 }
 
-                // Enable edit
-                this.stopEdit();
+                // Call super
+                abstractComponent.AbstractComponent.prototype.stopEdit.apply(this);
             },
             loadProjects: function () {
                 // Load projects
@@ -44,17 +48,12 @@ define(['module',
                     }.bind(this));
             },
             processProjects: function (projects) {
-                // Setup indexes
-                Object.keys(projects).forEach(function (i) {
-                    projects[i].index = +i;
-                });
-
                 // Remove SEO information from the screen
                 this.setSEODescription();
                 this.setSEOImage();
 
                 // Setup new SEO image.
-                if (projects) {
+                if (projects && projects.length) {
                     if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
                         this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
                     } else {
@@ -83,6 +82,11 @@ define(['module',
                     return child.className === "grid";
                 });
 
+                // Destroy previous dragula
+                if (this.dragulaService.find(dragAndDropBag)) {
+                    this.dragulaService.destroy(dragAndDropBag);
+                }
+
                 // Setup dragula for the bag above
                 this.dragulaService.setOptions(dragAndDropBag, {
                     containers: [this.bagEl],
@@ -110,54 +114,30 @@ define(['module',
                 this.saveConfirmation.open();
             },
             save: function () {
-                // Disable edit mode
-                this.stopEdit();
+                var projects = this.projects;
 
-                // Destroy dragula
-                if (this.dragulaService.find(dragAndDropBag)) {
-                    this.dragulaService.destroy(dragAndDropBag);
-                }
+                // Remove so they will be not visible until saved
+                this.processProjects([]);
 
                 // Save projects
                 this.projectService.saveProjects({
                     type: this.route.configuration.type
-                }, this.projects)
+                }, projects)
                 // On save refresh
-                    .then(this.processProjects.bind(this))
+                    .then(function (projects) {
+                        // Disable edit mode
+                        this.stopEdit();
+
+                        // Reload
+                        this.processProjects(projects);
+                    }.bind(this))
                     // On error
                     .catch(function (err) {
-                        var loginSubscription, cancelSubscription;
-                        // 401 Unauthorized
-                        if (err === 401) {
-                            // Subscribe for login
-                            loginSubscription = this.loginModal.login.subscribe(function () {
-                                // Unsubscribe
-                                loginSubscription.unsubscribe();
-                                cancelSubscription.unsubscribe();
+                        // Restore projects
+                        this.processProjects(projects);
 
-                                // Restart save
-                                this.save();
-                            }.bind(this));
-
-                            // Subscribe for cancel
-                            cancelSubscription = this.loginModal.cancel.subscribe(function () {
-                                // Unsubscribe
-                                loginSubscription.unsubscribe();
-                                cancelSubscription.unsubscribe();
-
-                                // Reset form
-                                this.loadProjects();
-                            }.bind(this));
-
-                            // Open login popup
-                            this.loginModal.open();
-                        } else {
-                            // Show error
-                            this.error = err;
-
-                            // Restart edit mode
-                            this.edit();
-                        }
+                        // Process error
+                        this.onHttpError(err, this.save, this.edit, this.loadProjects);
                     }.bind(this));
             },
             confirmCancel: function () {
@@ -170,14 +150,6 @@ define(['module',
             cancel: function () {
                 // Disable edit mode
                 this.stopEdit();
-
-                // Remove error message
-                delete this.error;
-
-                // Destroy dragula
-                if (this.dragulaService.find(dragAndDropBag)) {
-                    this.dragulaService.destroy(dragAndDropBag);
-                }
 
                 // Reload from service
                 this.loadProjects();
@@ -204,7 +176,9 @@ define(['module',
             },
             addNewProject: function () {
                 // Add empty object
-                this.projects.push({});
+                this.projects.push({
+                    parameter: (1 + Math.random()) * 0x10000
+                });
             }
         }, [
             projectService.ProjectsService,

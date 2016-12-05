@@ -76,12 +76,63 @@ define(['exports',
 
         AbstractComponent.prototype.startEdit = function () {
             this.isEdit = true;
+
+            // Disable navigation
             this.routingService.disabled = true;
         };
 
         AbstractComponent.prototype.stopEdit = function () {
             this.isEdit = false;
+
+            // Enable navigation
             delete this.routingService.disabled;
+
+            // Remove error message
+            delete this.error;
+        };
+
+        AbstractComponent.prototype.onHttpError = function (err, restartSave, restartEdit, resetForm) {
+            var loginSubscription, cancelSubscription;
+            // 401 Unauthorized
+            if (err === 401) {
+                // Subscribe for login
+                loginSubscription = this.loginModal.login.subscribe(function () {
+                    // Unsubscribe
+                    loginSubscription.unsubscribe();
+                    cancelSubscription.unsubscribe();
+
+                    // Restart save
+                    if (restartSave) {
+                        restartSave.bind(this)();
+                    }
+                }.bind(this));
+
+                // Subscribe for cancel
+                cancelSubscription = this.loginModal.cancel.subscribe(function () {
+                    // Unsubscribe
+                    loginSubscription.unsubscribe();
+                    cancelSubscription.unsubscribe();
+
+                    // Canceled - stop edit
+                    this.stopEdit();
+
+                    // Reset form
+                    if (resetForm) {
+                        resetForm.bind(this)();
+                    }
+                }.bind(this));
+
+                // Open login popup
+                this.loginModal.open();
+            } else {
+                // Show error
+                this.error = err;
+
+                // Restart edit mode
+                if (restartEdit) {
+                    restartEdit.bind(this)();
+                }
+            }
         };
 
         exports.AbstractComponent = AbstractComponent;
@@ -95,6 +146,15 @@ define(['exports',
                 ngCore.ElementRef
             ]);
             obj.prototype = Object.create(AbstractComponent.prototype);
+            if (prototype) {
+                Object.keys(prototype).forEach(function (k) {
+                    obj.prototype[k] = prototype[k];
+                });
+            }
+            obj.prototype.constructor = obj;
+        };
+
+        exports.extend = function (obj, prototype) {
             if (prototype) {
                 Object.keys(prototype).forEach(function (k) {
                     obj.prototype[k] = prototype[k];

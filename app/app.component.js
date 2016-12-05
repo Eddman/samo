@@ -10,8 +10,18 @@ define(['module', 'exports',
         }
 
         abstractComponent.inherit(AppComponent, {
+            ngOnInit: function () {
+                this.active = true;
+            },
             deactivateRouter: function (deactivate) {
                 var resolved;
+
+                if (this.active !== deactivate) {
+                    return;
+                }
+
+                this.active = !deactivate;
+
                 if (deactivate) {
                     this.previousRoute = this.routerOutlet.activatedRoute;
                     this.routerOutlet.deactivate();

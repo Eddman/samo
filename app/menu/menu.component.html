@@ -1,9 +1,16 @@
+{{rootItem|json}}
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
+    </div>
+</div>
+
 <item-editor *ngIf="isEdit" [item]="rootItem"></item-editor>
 <div *ngIf="!isEdit && rootItem">
     <h1><a [class.disabled]="isDisabled()"
            [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
 </div>
-<div *ngIf="isLoggedIn() && !isDisabled()" class="bootstrap edit_buttons">
+<div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
     <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit menu structure</a>
     <template [ngIf]="isEdit">
         <a class="btn btn-primary" (click)="addGroup()">Add new group</a>
@@ -13,22 +20,17 @@
         <a class="btn btn-danger" (click)="confirmCancel()">Cancel</a>
     </template>
 </div>
-<div *ngIf="error" class="bootstrap">
-    <div class="alert alert-danger">
-        <strong>Error!</strong> {{error}}
-    </div>
-</div>
 <div class="sizer"></div>
 
 <div class="menu" *ngIf="!isEdit && rootItem">
-    <template [ngIf]="!isMenuHidden()">
+    <template [ngIf]="isPageHeaderVisible()">
         <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
             <div class="sizer"></div>
-            <a *ngIf="!isRootExpanded(menuLocale)"
+            <a *ngIf="!isGroupExpanded(menuLocale)"
                [class.disabled]="isDisabled()"
                [routerLink]="menuLocale.routeLink"
                routerLinkActive="active">{{menuLocale.title}}</a>
-            <template [ngIf]="isRootExpanded(menuLocale)">
+            <template [ngIf]="isGroupExpanded(menuLocale)">
                 <a *ngFor="let menuItem of menuLocale.subItems"
                    [class.disabled]="isDisabled()"
                    [routerLink]="menuItem.routeLink"
@@ -37,7 +39,7 @@
         </div>
     </template>
 
-    <template [ngIf]="isMenuHidden()">
+    <template [ngIf]="!isPageHeaderVisible()">
         <div class="menu-block">
             <div class="sizer"></div>
             <div *ngIf="getPageHeader()">
