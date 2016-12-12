@@ -16,8 +16,8 @@
                    [thumbnail]="project"
                    [isEdit]="isEdit"
                    [class.jiggle]="isEdit && !jigglePaused"
-                   (removeChange)="confirmDelete($event)"
-                   (removedChange)="delete()">
+                   (removeChange)="confirmRemove($event)"
+                   (removedChange)="remove()">
         </thumbnail>
         <div *ngIf="isEdit" class="thumbnail new_project">
             <a (click)="addNewProject()">
@@ -33,7 +33,7 @@
     </div>
 
     <template [ngIf]="isEdit">
-        <modal-confirm #deleteConfirmation (yes)="startDelete()" (no)="unpauseJiggle()">
+        <modal-confirm #deleteConfirmation (yes)="startRemove()" (no)="unpauseJiggle()">
             Do you really want to remove the project?
         </modal-confirm>
 

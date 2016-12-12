@@ -1,34 +1,41 @@
-define(['exports',
-        '@angular/core',
-        '@angular/platform-browser',
-        '@angular/router',
-        '../slider/slider.module',
-        './content.component',
-        './img.directive',
-        './columns.directive'],
-    function (exports, ngCore, ngBrowser, ngRouter, sliderModule, contentComponent, imgDirective, columnsDirective) {
-        'use strict';
-
-        function ContentModule() {
-        }
-
-        ContentModule.annotations = [
-            new ngCore.NgModule({
-                imports: [
-                    ngBrowser.BrowserModule,
-                    ngRouter.RouterModule,
-                    sliderModule.SliderModule
-                ],
-                exports: [
-                    contentComponent.ContentComponent,
-                    ngBrowser.BrowserModule,
-                    ngRouter.RouterModule
-                ],
-                declarations: [
-                    contentComponent.ContentComponent, imgDirective.ImageDirective, columnsDirective.ColumnsDirective
-                ]
-            })
-        ];
-
-        exports.ContentModule = ContentModule;
-    });
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var platform_browser_1 = require("@angular/platform-browser");
+var slider_module_1 = require("../slider/slider.module");
+var columns_directive_1 = require("./columns.directive");
+var img_directive_1 = require("./img.directive");
+var content_component_1 = require("./content.component");
+var ContentModule = (function () {
+    function ContentModule() {
+    }
+    return ContentModule;
+}());
+ContentModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            platform_browser_1.BrowserModule,
+            router_1.RouterModule,
+            slider_module_1.SliderModule
+        ],
+        exports: [
+            content_component_1.ContentComponent,
+            platform_browser_1.BrowserModule,
+            router_1.RouterModule
+        ],
+        declarations: [
+            content_component_1.ContentComponent, img_directive_1.ImageDirective, columns_directive_1.ColumnsDirective
+        ]
+    }),
+    __metadata("design:paramtypes", [])
+], ContentModule);
+exports.ContentModule = ContentModule;

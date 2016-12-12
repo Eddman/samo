@@ -1,15 +1,11 @@
-define(['exports'], function (exports) {
-    'use strict';
-
-    function MenuItem(title, url, items, realURL) {
+"use strict";
+var MenuItem = (function () {
+    function MenuItem(title, routeLink, subItems, realURL) {
         this.title = title;
-        //noinspection JSUnusedGlobalSymbols
-        this.routeLink = url;
-        //noinspection JSUnusedGlobalSymbols
-        this.subItems = items;
-        //noinspection JSUnusedGlobalSymbols
+        this.routeLink = routeLink;
+        this.subItems = subItems;
         this.realURL = realURL;
     }
-
-    exports.MenuItem = MenuItem;
-});
+    return MenuItem;
+}());
+exports.MenuItem = MenuItem;

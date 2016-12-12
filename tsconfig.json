@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es2016",
+            "dom"
+        ],
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "allowJs": false,
+        "baseUrl": ".",
+        "paths": {
+            "@meta/*": ["node_modules/ng2-meta/dist/*"],
+            "@modal": ["node_modules/ng2-modal/index"],
+            "@dragula/*": ["node_modules/ng2-dragula/*"],
+            "index": ["node_modules/ng2-page-slider/ng2-page-slider"]
+        }
+    },
+    "files": [
+        "app/app.module.ts",
+        "app/main.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

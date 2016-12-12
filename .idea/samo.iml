@@ -7,8 +7,10 @@
       <sourceFolder url="file://$MODULE_DIR$/images" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="tsconfig$roots" level="project" />
   </component>
 </module>

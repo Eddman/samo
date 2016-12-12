@@ -1,23 +1,31 @@
-define(['exports',
-        '../abstract.service'],
-    function (exports, abstractService) {
-        'use strict';
-
-        var STORAGE_KEY = 'auth_token';
-
-        function StorageService() {
-            abstractService.AbstractService.call(this);
-        }
-
-        exports.StorageService = abstractService.inherit(StorageService, {
-            getAuthToken: function () {
-                return localStorage.getItem(STORAGE_KEY);
-            },
-            setAuthToken: function (token) {
-                localStorage.setItem(STORAGE_KEY, token);
-            },
-            removeAuthToken: function () {
-                localStorage.removeItem(STORAGE_KEY);
-            }
-        });
-    });
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require("@angular/core");
+var STORAGE_KEY = 'auth_token';
+var StorageService = (function () {
+    function StorageService() {
+    }
+    StorageService.getAuthToken = function () {
+        return localStorage.getItem(STORAGE_KEY);
+    };
+    StorageService.setAuthToken = function (token) {
+        localStorage.setItem(STORAGE_KEY, token);
+    };
+    StorageService.removeAuthToken = function () {
+        localStorage.removeItem(STORAGE_KEY);
+    };
+    return StorageService;
+}());
+StorageService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], StorageService);
+exports.StorageService = StorageService;

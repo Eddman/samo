@@ -1,30 +1,37 @@
-define(['exports',
-        '@angular/http',
-        '../abstract.service',
-        './storage.service'],
-    function (exports, ngHttp, abstractService, storageService) {
-        'use strict';
-
-        function RequestService(storage) {
-            abstractService.AbstractService.call(this);
-            this.storage = storage;
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var storage_service_1 = require("./storage.service");
+var http_1 = require("@angular/http");
+var core_1 = require("@angular/core");
+var RequestService = RequestService_1 = (function () {
+    function RequestService() {
+    }
+    RequestService.prototype.getAuthHeaders = function () {
+        var headers = RequestService_1.getJsonHeaders(), authToken = storage_service_1.StorageService.getAuthToken();
+        if (authToken) {
+            headers.append('Authorization', 'Bearer ' + authToken);
         }
-
-        exports.RequestService = abstractService.inherit(RequestService, {
-            getAuthHeaders: function () {
-                var headers = this.getJsonHeaders(),
-                    authToken = this.storage.getAuthToken();
-
-                if (authToken) {
-                    headers.append('Authorization', 'Bearer ' + authToken);
-                }
-                return headers;
-            },
-            getJsonHeaders: function () {
-                var headers = new ngHttp.Headers();
-                headers.append('Accept', 'application/json');
-                headers.append('Content-Type', 'application/json');
-                return headers;
-            }
-        }, [storageService.StorageService]);
-    });
+        return headers;
+    };
+    RequestService.getJsonHeaders = function () {
+        var headers = new http_1.Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+        return headers;
+    };
+    return RequestService;
+}());
+RequestService = RequestService_1 = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], RequestService);
+exports.RequestService = RequestService;
+var RequestService_1;

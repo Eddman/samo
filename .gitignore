@@ -4,6 +4,8 @@
 .idea/workspace.xml
 node_modules/
 *.css
+*.js
+*.js.map
 npm-debug.log
 dist/
 .idea/terminal.xml
