@@ -5,6 +5,8 @@
 node_modules/
 *.css
 *.js
+!gruntfile.js
+!systemjs.config.js
 *.js.map
 npm-debug.log
 dist/
