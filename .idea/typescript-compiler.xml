@@ -3,7 +3,6 @@
   <component name="TypeScriptCompiler">
     <option name="isCompilerEnabled" value="true" />
     <option name="typeScriptCompilerParams" value="--p $MODULE_DIR$/tsconfig.json" />
-    <option name="generateSourceMap" value="false" />
     <option name="showAllErrors" value="true" />
   </component>
 </project>
