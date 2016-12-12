@@ -13,21 +13,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var _modal_1 = require("@modal");
-var index_1 = require("@meta/index");
-var modal_confirmation_component_1 = require("./modal.confirmation.component");
-var auth_service_1 = require("../../auth/auth.service");
-var abstract_component_1 = require("../../abstract.component");
-var routing_service_1 = require("../../routing/routing.service");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var _modal_1 = require('@modal');
+var index_1 = require('@meta/index');
+var modal_confirmation_component_1 = require('./modal.confirmation.component');
+var auth_service_1 = require('../../auth/auth.service');
+var abstract_component_1 = require('../../abstract.component');
+var routing_service_1 = require('../../routing/routing.service');
 var ModalLoginComponent = (function (_super) {
     __extends(ModalLoginComponent, _super);
     function ModalLoginComponent(metaService, authService, routingService, router, route, el) {
-        var _this = _super.call(this, metaService, authService, routingService, router, route, el) || this;
-        _this.login = new core_1.EventEmitter();
-        _this.cancel = new core_1.EventEmitter();
-        return _this;
+        _super.call(this, metaService, authService, routingService, router, route, el);
+        this.login = new core_1.EventEmitter();
+        this.cancel = new core_1.EventEmitter();
     }
     ModalLoginComponent.prototype.open = function () {
         this.loginComponent.open();
@@ -56,34 +55,30 @@ var ModalLoginComponent = (function (_super) {
     ModalLoginComponent.prototype.confirmCancelation = function () {
         this.cancel.emit();
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ModalLoginComponent.prototype, "login", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ModalLoginComponent.prototype, "cancel", void 0);
+    __decorate([
+        core_1.ViewChild(_modal_1.Modal), 
+        __metadata('design:type', _modal_1.Modal)
+    ], ModalLoginComponent.prototype, "loginComponent", void 0);
+    __decorate([
+        core_1.ViewChild(modal_confirmation_component_1.ModalConfirmationComponent), 
+        __metadata('design:type', modal_confirmation_component_1.ModalConfirmationComponent)
+    ], ModalLoginComponent.prototype, "cancelConfirmation", void 0);
+    ModalLoginComponent = __decorate([
+        abstract_component_1.IComponent({
+            moduleId: module.id,
+            selector: 'modal-login',
+            templateUrl: 'modal.login.component.html'
+        }), 
+        __metadata('design:paramtypes', [index_1.MetaService, auth_service_1.AuthService, routing_service_1.RoutingService, router_1.Router, router_1.ActivatedRoute, core_1.ElementRef])
+    ], ModalLoginComponent);
     return ModalLoginComponent;
 }(abstract_component_1.AbstractComponent));
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], ModalLoginComponent.prototype, "login", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], ModalLoginComponent.prototype, "cancel", void 0);
-__decorate([
-    core_1.ViewChild(_modal_1.Modal),
-    __metadata("design:type", _modal_1.Modal)
-], ModalLoginComponent.prototype, "loginComponent", void 0);
-__decorate([
-    core_1.ViewChild(modal_confirmation_component_1.ModalConfirmationComponent),
-    __metadata("design:type", modal_confirmation_component_1.ModalConfirmationComponent)
-], ModalLoginComponent.prototype, "cancelConfirmation", void 0);
-ModalLoginComponent = __decorate([
-    core_1.Component({
-        selector: 'modal-login',
-        templateUrl: 'modal.login.component.html'
-    }),
-    __metadata("design:paramtypes", [index_1.MetaService,
-        auth_service_1.AuthService,
-        routing_service_1.RoutingService,
-        router_1.Router,
-        router_1.ActivatedRoute,
-        core_1.ElementRef])
-], ModalLoginComponent);
 exports.ModalLoginComponent = ModalLoginComponent;

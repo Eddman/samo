@@ -2,16 +2,16 @@
   <library name="tsconfig$roots" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/node_modules/ng2-page-slider/ng2-page-slider.d.ts" />
-        <item url="file://$PROJECT_DIR$/node_modules/ng2-meta/dist" />
         <item url="file://$PROJECT_DIR$/node_modules/ng2-modal/index.d.ts" />
+        <item url="file://$PROJECT_DIR$/node_modules/ng2-meta/dist" />
+        <item url="file://$PROJECT_DIR$/node_modules/ng2-page-slider/ng2-page-slider.d.ts" />
         <item url="file://$PROJECT_DIR$/node_modules/ng2-dragula" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/node_modules/ng2-page-slider/ng2-page-slider.d.ts" />
-      <root url="file://$PROJECT_DIR$/node_modules/ng2-meta/dist" />
       <root url="file://$PROJECT_DIR$/node_modules/ng2-modal/index.d.ts" />
+      <root url="file://$PROJECT_DIR$/node_modules/ng2-meta/dist" />
+      <root url="file://$PROJECT_DIR$/node_modules/ng2-page-slider/ng2-page-slider.d.ts" />
       <root url="file://$PROJECT_DIR$/node_modules/ng2-dragula" />
     </CLASSES>
     <JAVADOC />

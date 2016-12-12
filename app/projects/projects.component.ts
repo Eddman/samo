@@ -1,4 +1,4 @@
-import {ElementRef, Component, ViewChild, OnChanges, OnDestroy, SimpleChanges} from "@angular/core";
+import {ElementRef, ViewChild, OnChanges, OnDestroy, SimpleChanges} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {DragulaService} from '@dragula/components/dragula.provider';
@@ -8,16 +8,18 @@ import {MetaService} from '@meta/index';
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
+import {IComponent} from "../abstract.component";
+import {AbstractViewComponent} from "../abstract.view.component";
+import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
+
 import {ProjectsService} from "./projects.service";
 
-import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
-import {AbstractViewComponent} from "../abstract.view.component";
 import {Project} from "./project";
 import {removedState} from "./thumbnail.component";
 
 const dragAndDropBag = 'thumbnails-bag';
 
-@Component({
+@IComponent({
     moduleId: module.id,
     selector: 'projects-view',
     templateUrl: 'projects.component.html',

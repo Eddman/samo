@@ -11,30 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
-var _modal_1 = require("@modal");
+var _modal_1 = require('@modal');
 var modal_confirmation_component_1 = require("./modal.confirmation.component");
 var modal_login_component_1 = require("./modal.login.component");
 var ModalModule = (function () {
     function ModalModule() {
     }
+    ModalModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
+                _modal_1.ModalModule
+            ],
+            exports: [
+                modal_confirmation_component_1.ModalConfirmationComponent,
+                modal_login_component_1.ModalLoginComponent
+            ],
+            declarations: [
+                modal_confirmation_component_1.ModalConfirmationComponent,
+                modal_login_component_1.ModalLoginComponent
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ModalModule);
     return ModalModule;
 }());
-ModalModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            platform_browser_1.BrowserModule,
-            forms_1.FormsModule,
-            _modal_1.ModalModule
-        ],
-        exports: [
-            modal_confirmation_component_1.ModalConfirmationComponent,
-            modal_login_component_1.ModalLoginComponent
-        ],
-        declarations: [
-            modal_confirmation_component_1.ModalConfirmationComponent,
-            modal_login_component_1.ModalLoginComponent
-        ]
-    }),
-    __metadata("design:paramtypes", [])
-], ModalModule);
 exports.ModalModule = ModalModule;

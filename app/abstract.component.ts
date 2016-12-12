@@ -1,4 +1,4 @@
-import {EventEmitter, ElementRef, Component, Output, ViewChild} from '@angular/core';
+import {ElementRef, Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {MetaService} from '@meta/index';
@@ -6,13 +6,32 @@ import {MetaService} from '@meta/index';
 import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
 import {contentPartsTypes, ContentPart} from './content/content';
-import {ModalLoginComponent} from './common/modal/modal.login.component';
 
-import {SubjectSubscription} from 'rxjs/SubjectSubscription';
+export function IComponent(annotation: any) {
+    return function (target: Function) {
+        let parentTarget = Object.getPrototypeOf(target.prototype).constructor,
+            parentAnnotations = Reflect.getMetadata('annotations', parentTarget) || {},
+            parentPropMetadata = Reflect.getOwnMetadata("propMetadata", parentTarget) || {},
+            propMetadata = Reflect.getOwnMetadata("propMetadata", target) || {},
+            parentAnnotation: any;
 
-@Component({
-    moduleId: module.id,
-})
+        parentAnnotation = parentAnnotations.length ? parentAnnotations[0] : {};
+
+        Object.keys(parentAnnotation).forEach(function (key) {
+            if (!annotation[key] && parentAnnotation[key] && parentAnnotation[key] != null) {
+                annotation[key] = parentAnnotation[key];
+            }
+        });
+        Object.keys(parentPropMetadata).forEach(function (key) {
+            if (!propMetadata[key] && parentPropMetadata[key] && parentPropMetadata[key] != null) {
+                propMetadata[key] = parentPropMetadata[key];
+            }
+        });
+        Reflect.defineMetadata('annotations', [new Component(annotation)], target);
+        Reflect.defineMetadata("propMetadata", propMetadata, target)
+    }
+}
+
 export class AbstractComponent {
 
     protected el: Element;

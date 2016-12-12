@@ -1,8 +1,9 @@
-import {ElementRef, Component, OnChanges, SimpleChanges} from "@angular/core";
+import {ElementRef, OnChanges, SimpleChanges} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
 import {MetaService} from '@meta/index';
 
+import {IComponent} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
@@ -10,7 +11,7 @@ import {AuthService} from "../auth/auth.service";
 import {DetailService} from "./detail.service";
 import {Detail} from "./detail";
 
-@Component({
+@IComponent({
     moduleId: module.id,
     selector: 'detail-view',
     templateUrl: 'detail.component.html',

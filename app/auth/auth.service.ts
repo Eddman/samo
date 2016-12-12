@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 import {AbstractHttpService} from '../abstract.http.service';
 import {RequestService} from "./request.service";

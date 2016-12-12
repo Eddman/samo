@@ -1,4 +1,4 @@
-import {ElementRef, Component, ViewChild, EventEmitter, Output, OnInit} from "@angular/core";
+import {ElementRef, ViewChild, EventEmitter, Output, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {MetaService} from '@meta/index';
@@ -8,6 +8,7 @@ import {AuthService} from "../auth/auth.service";
 
 import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
 import {AbstractViewComponent} from "../abstract.view.component";
+import {IComponent} from "../abstract.component";
 
 import {MenuItem} from "../routing/menu";
 import {Route} from "../routing/route";
@@ -17,7 +18,7 @@ import {ViewHeader} from "../detail/detail";
 
 const dragAndDropBag = 'thumbnails-bag';
 
-@Component({
+@IComponent({
     moduleId: module.id,
     selector: 'app-menu',
     templateUrl: 'menu.component.html',

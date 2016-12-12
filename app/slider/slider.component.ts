@@ -6,12 +6,13 @@ import {MetaService} from '@meta/index';
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
+import {IComponent} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
 
 import {SliderService} from "./slider.service";
 import {SliderConfiguration, SliderImage} from "./slider.configuration";
 
-@Component({
+@IComponent({
     moduleId: module.id,
     selector: 'slider-view',
     templateUrl: 'slider.component.html',

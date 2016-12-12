@@ -1,4 +1,4 @@
-import {ViewChild, Component, EventEmitter, Output, ElementRef} from '@angular/core';
+import {ViewChild, EventEmitter, Output, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {Modal} from '@modal';
@@ -7,10 +7,11 @@ import {MetaService} from '@meta/index';
 import {ModalConfirmationComponent} from './modal.confirmation.component';
 
 import {AuthService} from '../../auth/auth.service';
-import {AbstractComponent} from '../../abstract.component';
+import {AbstractComponent, IComponent} from '../../abstract.component';
 import {RoutingService} from '../../routing/routing.service';
 
-@Component({
+@IComponent({
+    moduleId: module.id,
     selector: 'modal-login',
     templateUrl: 'modal.login.component.html'
 })
