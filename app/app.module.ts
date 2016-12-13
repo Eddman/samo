@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {HttpModule, JsonpModule} from '@angular/http';
 
-import {MetaModule} from 'ng2-meta';
+import {MetaModule} from 'ng2-meta/src';
 
 import {RoutingService} from './routing/routing.service';
 import {AuthModule} from './auth/auth.module';

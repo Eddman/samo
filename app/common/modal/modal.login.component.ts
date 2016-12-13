@@ -2,7 +2,7 @@ import {ViewChild, EventEmitter, Output, ElementRef, Component} from '@angular/c
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {Modal} from 'ng2-modal';
-import {MetaService} from 'ng2-meta';
+import {MetaService} from 'ng2-meta/src';
 
 import {ModalConfirmationComponent} from './modal.confirmation.component';
 

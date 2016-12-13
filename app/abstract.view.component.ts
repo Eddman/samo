@@ -1,7 +1,7 @@
 import {EventEmitter, ElementRef, Output, ViewChild, Input} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import {MetaService} from 'ng2-meta';
+import {MetaService} from 'ng2-meta/src';
 
 import {ErrorResponse} from "./abstract.http.service";
 import {AuthService} from './auth/auth.service';

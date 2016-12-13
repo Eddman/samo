@@ -18,9 +18,6 @@
         "app/app.module.ts",
         "app/main.aot.ts"
     ],
-    "exclude": [
-        "node_modules"
-    ],
     "angularCompilerOptions": {
         "genDir": "ngFactories/",
         "skipMetadataEmit" : true

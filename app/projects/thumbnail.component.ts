@@ -4,7 +4,7 @@ import {
 } from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
-import {MetaService} from 'ng2-meta';
+import {MetaService} from 'ng2-meta/src';
 
 import {Project} from "./project";
 import {AuthService} from "../auth/auth.service";

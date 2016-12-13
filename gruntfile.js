@@ -119,7 +119,15 @@ module.exports = function (grunt) {
                     return [
                         nodeResolve({jsnext: true, module: true}),
                         commonjs({
-                            include: 'node_modules/rxjs/**'
+                            include: 'node_modules/rxjs/**',
+                            namedExports: {
+                                'node_modules/ng2-dragula/components/dragula.provider.js': ['DragulaService'],
+                                'node_modules/ng2-meta/src/meta.service.js': ['MetaService'],
+                                'node_modules/ng2-meta/src/meta.module.js': ['MetaModule', 'META_CONFIG'],
+                                'node_modules/ng2-page-slider/index.js': ['PageSliderModule'],
+                                'node_modules/ng2-dragula/ng2-dragula.js': ['DragulaModule'],
+                                'node_modules/ng2-modal/index.js': ['ModalModule']
+                            }
                         }),
                         uglify()
                     ];

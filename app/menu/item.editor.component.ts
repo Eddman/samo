@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 import {DragulaService} from 'ng2-dragula/components/dragula.provider';
 
-import {MetaService} from 'ng2-meta';
+import {MetaService} from 'ng2-meta/src';
 
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";

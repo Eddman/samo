@@ -28,7 +28,7 @@ function initApp() {
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.min.js',
 
             // ng2-meta
-            'ng2-meta': 'npm:ng2-meta/dist',
+            'ng2-meta/src': 'npm:ng2-meta/dist',
 
             // ng2-gragula
             'ng2-dragula': 'npm:ng2-dragula',
@@ -57,7 +57,7 @@ function initApp() {
             rxjs: {
                 defaultExtension: 'js'
             },
-            'ng2-meta': {
+            'ng2-meta/src': {
                 main: './index.js',
                 defaultExtension: 'js'
             },
