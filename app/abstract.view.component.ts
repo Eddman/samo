@@ -13,7 +13,7 @@ import {ViewHeader} from "./detail/detail";
 
 import {SubjectSubscription} from 'rxjs/SubjectSubscription';
 
-export class AbstractViewComponent extends AbstractComponent {
+export abstract class AbstractViewComponent extends AbstractComponent {
 
     @Output()
     public headerChange: EventEmitter<ViewHeader>;

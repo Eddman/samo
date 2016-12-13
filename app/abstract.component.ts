@@ -32,7 +32,7 @@ export function IComponent(annotation: any) {
     }
 }
 
-export class AbstractComponent {
+export abstract class AbstractComponent {
 
     protected el: Element;
 

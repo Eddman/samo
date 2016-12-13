@@ -1,4 +1,4 @@
-import {ViewChild, EventEmitter, Output, ElementRef} from '@angular/core';
+import {ViewChild, EventEmitter, Output, ElementRef, Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {Modal} from '@modal';
@@ -7,10 +7,10 @@ import {MetaService} from '@meta/index';
 import {ModalConfirmationComponent} from './modal.confirmation.component';
 
 import {AuthService} from '../../auth/auth.service';
-import {AbstractComponent, IComponent} from '../../abstract.component';
+import {AbstractComponent} from '../../abstract.component';
 import {RoutingService} from '../../routing/routing.service';
 
-@IComponent({
+@Component({
     moduleId: module.id,
     selector: 'modal-login',
     templateUrl: 'modal.login.component.html'
@@ -29,8 +29,8 @@ export class ModalLoginComponent extends AbstractComponent {
     @ViewChild(ModalConfirmationComponent)
     private cancelConfirmation: ModalConfirmationComponent;
 
-    private username:string;
-    private password:string;
+    private username: string;
+    private password: string;
 
     private loggingIn: boolean;
 
@@ -66,7 +66,7 @@ export class ModalLoginComponent extends AbstractComponent {
         });
     }
 
-    public cancelClick () {
+    public cancelClick() {
         this.loginComponent.close();
         this.cancelConfirmation.open();
     }

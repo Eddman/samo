@@ -1,8 +1,8 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 
-import {PageSliderModule} from  'index';
-import {KBPageSliderComponent} from 'src/components/pageslider.component';
+import {PageSliderModule} from 'ng2-page-slider/index'
+import {KBPageSliderComponent} from 'ng2-page-slider/src/components/pageslider.component'
 
 import {SliderService} from "./slider.service";
 import {SliderComponent} from "./slider.component";

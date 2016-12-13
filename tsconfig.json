@@ -3,11 +3,11 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "sourceMap": false,
+        "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
-            "es2015",
+            "es2016",
             "dom"
         ],
         "noImplicitAny": true,
@@ -16,9 +16,9 @@
         "paths": {
             "@meta/*": ["node_modules/ng2-meta/dist/*"],
             "@modal": ["node_modules/ng2-modal/index"],
-            "@dragula/*": ["node_modules/ng2-dragula/*"],
-            "index": ["node_modules/ng2-page-slider/ng2-page-slider"]
-        }
+            "@dragula/*": ["node_modules/ng2-dragula/*"]
+        },
+        "outDir": "."
     },
     "files": [
         "node_modules/reflect-metadata/Reflect.d.ts",

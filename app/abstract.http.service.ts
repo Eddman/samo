@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 const defaultURL = window.location.origin;
 
-export class AbstractHttpService<T> {
+export abstract class AbstractHttpService<T> {
 
     private cache: any = {};
 
