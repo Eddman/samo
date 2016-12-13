@@ -7,7 +7,7 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
-            "es2016",
+            "es6",
             "dom"
         ],
         "noImplicitAny": false,
@@ -16,7 +16,12 @@
     },
     "files": [
         "app/app.module.ts",
-        "app/main.aot.ts"
+        "app/main.aot.ts",
+        "node_modules/ng2-meta/src/index.ts",
+        "node_modules/ng2-page-slider/index.ts"
+    ],
+    "exclude": [
+        "node_modules"
     ],
     "angularCompilerOptions": {
         "genDir": "ngFactories/",
