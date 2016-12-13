@@ -12,4 +12,4 @@ npm-debug.log
 dist/
 .idea/terminal.xml
 .DS_Store
-app/ngFactories/
+ngFactories/

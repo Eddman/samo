@@ -12,16 +12,9 @@
         ],
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
-        "baseUrl": ".",
-        "paths": {
-            "@meta/*": ["node_modules/ng2-meta/dist/*"],
-            "@modal": ["node_modules/ng2-modal/index"],
-            "@dragula/*": ["node_modules/ng2-dragula/*"]
-        },
-        "outDir": "."
+        "outDir": "dist/"
     },
     "files": [
-        "node_modules/reflect-metadata/Reflect.d.ts",
         "app/app.module.ts",
         "app/main.aot.ts"
     ],
@@ -29,7 +22,7 @@
         "node_modules"
     ],
     "angularCompilerOptions": {
-        "genDir": "app/ngFactories",
+        "genDir": "ngFactories/",
         "skipMetadataEmit" : true
     }
 }

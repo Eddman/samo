@@ -5,10 +5,71 @@ module.exports = function (grunt) {
         log = require('connect-logger'),
         destination = 'dist/',
         sassPattern, sassPatternWatch,
-        cssPattern, htmlPattern, jsPattern, mockFiles,
+        cssPattern, htmlPattern, tsPattern, compiledJSPattern, jsPattern, mockFiles,
         images = ['images/**'],
-        appFolders = ['app', 'admin'], dragula,
-        distTask = ['uglify', 'copy', 'sass', 'cssmin'];
+        appFolders = ['app'],
+        distTask,
+        nodeResolve = require('rollup-plugin-node-resolve'),
+        commonjs = require('rollup-plugin-commonjs'),
+        uglify = require('rollup-plugin-uglify');
+
+    //<editor-fold desc="Task and function definition" defaultstate="collapsed">
+    function runProcess(command, args) {
+        return function () {
+            var done = this.async(), start = Date.now(), src = command + ' ' + args.join(' ');
+
+            grunt.log.writeln('-> '.cyan + 'executing ' + src.cyan);
+
+
+            //use spawn so we don't have to depend on process.exit();
+            function tsc(callback) {
+
+                var child = grunt.util.spawn(
+                    {
+                        cmd: command,
+                        args: args
+                    },
+                    function (error, result, code) {
+                        if (error) {
+                            grunt.fail.warn('-> '.cyan + 'error '.red + ('' + code).red + ' ' + src.cyan + ' (' + (Date.now() - start) + 'ms)');
+                            callback(error);
+                        } else if (code !== 0) {
+                            grunt.fail.warn('-> '.cyan + 'exitcode '.red + ('' + code).red + ' ' + src.cyan + ' (' + (Date.now() - start) + 'ms)');
+                            callback(new Error('bad exit code ' + code), code);
+                        } else {
+                            grunt.log.writeln('-> '.cyan + 'completed ' + src.cyan + ' (' + (Date.now() - start) + 'ms)');
+                            callback();
+                        }
+                    }
+                );
+
+                child.stdout.on('data', function (data) {
+                    grunt.log.write(data);
+                });
+                child.stderr.on('data', function (data) {
+                    grunt.log.write(('' + data).red);
+                });
+
+            }
+
+            grunt.util.async.series([
+                    tsc
+                ],
+                function (err) {
+                    grunt.log.writeln('');
+                    if (err) {
+                        grunt.log.writeln(err);
+                        done(false);
+                    }
+                    else {
+                        done();
+                    }
+                });
+        };
+    }
+
+    grunt.registerMultiTask('ts', 'Run TypeScript compiler', runProcess('tsc', ['-p', './tsconfig.json']));
+    grunt.registerMultiTask('ngc', 'Run Angular 2 compiler', runProcess('npm', ['run', 'ngc']));
 
     function providedJS(file) {
         return [file, file + ".map"];
@@ -27,37 +88,47 @@ module.exports = function (grunt) {
         return paths;
     }
 
+    //</editor-fold>
+
     sassPattern = addAppFolders('**/*.scss', 'styles.scss');
     sassPatternWatch = sassPattern.concat(['_global.scss', '_component.scss']);
     cssPattern = addAppFolders('**/*.css', 'styles.css');
     htmlPattern = addAppFolders('**/*.html', 'index.html');
     jsPattern = addAppFolders('**/*.js', 'systemjs.config.js');
+    compiledJSPattern = addAppFolders('**/*.js').concat(addAppFolders('**/*.js.map'));
+    tsPattern = addAppFolders('**/*.ts');
     mockFiles = addAppFolders('**/*.json');
-
-    dragula = [
-        'node_modules/atoa/atoa.js',
-        'node_modules/ticky/ticky.js',
-        'node_modules/crossvent/dist/crossvent.min.js',
-        'node_modules/contra/emitter.js',
-        'node_modules/contra/debounce.js',
-        'node_modules/dragula/classes.js',
-        'node_modules/dragula/dragula.js',
-        'node_modules/ng2-dragula/ng2-dragula.js',
-        'node_modules/ng2-dragula/components/dragula.directive.js',
-        'node_modules/ng2-dragula/components/dragula.provider.js'
-    ];
 
     grunt.initConfig({
         clean: {
             all: {
-                src: [destination].concat(cssPattern)
+                src: [destination, 'ngFactories/'].concat(cssPattern).concat(compiledJSPattern)
             }
         },
-        uglify: {
-            files: {
-                src: jsPattern.concat(dragula),
-                dest: destination,
-                expand: true
+        ts: {
+            default: {}
+        },
+        ngc: {
+            default: {}
+        },
+        rollup: {
+            options: {
+                sourceMap: false,
+                format: 'iife',
+                plugins: function () {
+                    return [
+                        nodeResolve({jsnext: true, module: true}),
+                        commonjs({
+                            include: 'node_modules/rxjs/**'
+                        }),
+                        uglify()
+                    ];
+                }
+            },
+            default: {
+                files: {
+                    'dist/samo.js': [destination + 'app/main.aot.js'] // Only one source file is permitted
+                }
             }
         },
         copy: {
@@ -65,54 +136,17 @@ module.exports = function (grunt) {
                 src: providedJS('node_modules/core-js/client/shim.min.js'),
                 dest: destination
             },
-            ZoneJS: {
-                src: 'node_modules/zone.js/dist/zone.min.js',
-                dest: destination
-            },
-            ReflectJS: {
-                src: providedJS('node_modules/reflect-metadata/Reflect.js'),
-                dest: destination
-            },
-            SystemJS: {
-                src: providedJS('node_modules/systemjs/dist/system.js'),
-                dest: destination
-            },
-            rxjs: {
-                src: providedJS('node_modules/rxjs/**/*.js'),
-                dest: destination
-            },
             "web-animations-js": {
                 src: providedJS('node_modules/web-animations-js/web-animations.min.js'),
                 dest: destination
             },
-            angular: {
-                src: [
-                    'node_modules/@angular/core/bundles/core.umd.min.js',
-                    'node_modules/@angular/common/bundles/common.umd.min.js',
-                    'node_modules/@angular/compiler/bundles/compiler.umd.min.js',
-                    'node_modules/@angular/platform-browser/bundles/platform-browser.umd.min.js',
-                    'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
-                    'node_modules/@angular/http/bundles/http.umd.min.js',
-                    'node_modules/@angular/router/bundles/router.umd.min.js',
-                    'node_modules/@angular/forms/bundles/forms.umd.min.js'
-                ],
-                dest: destination
-            },
-            'ng2-page-slider': {
-                src: providedJS('node_modules/ng2-page-slider/ng2-page-slider.js'),
-                dest: destination
-            },
-            'ng2-meta': {
-                src: providedJS('node_modules/ng2-meta/dist/*.js'),
-                dest: destination
-            },
-            'ng2-modal': {
-                src: providedJS('node_modules/ng2-modal/*.js'),
+            ZoneJS: {
+                src: 'node_modules/zone.js/dist/zone.min.js',
                 dest: destination
             },
             html: {
-                src: htmlPattern,
-                dest: destination
+                src: 'index.aot.html',
+                dest: destination + 'index.html'
             },
             images: {
                 src: images,
@@ -146,21 +180,25 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     src: cssPattern,
-                    dest: destination
+                    dest: '.'
                 }]
             }
         },
         watch: {
-            dev: {
+            options: {
+                interrupt: true,
+                spawn: false
+            },
+            devSass: {
                 files: sassPatternWatch,
-                tasks: ['sass'],
-                options: {
-                    interrupt: true,
-                    spawn: false
-                }
+                tasks: ['sass']
+            },
+            devTs: {
+                files: tsPattern,
+                tasks: ['ts']
             },
             dist: {
-                files: sassPatternWatch,
+                files: sassPatternWatch.concat(tsPattern),
                 tasks: distTask,
                 options: {
                     interrupt: true,
@@ -169,28 +207,27 @@ module.exports = function (grunt) {
             }
         },
         browserSync: {
+            options: {
+                injectChanges: false, // workaround for Angular 2 styleUrls loading
+                ui: false,
+                server: {
+                    baseDir: './',
+                    middleware: [
+                        log({format: '%date %status %method %url'}),
+                        fallback({
+                            index: '/index.html',
+                            htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'] // systemjs workaround
+                        })
+                    ]
+                },
+                browser: [
+                    'chrome',
+                    'google chrome'
+                ]
+            },
             dev: {
                 bsFiles: {
                     src: cssPattern.concat(htmlPattern).concat(jsPattern).concat(images).concat(mockFiles)
-                },
-                options: {
-                    injectChanges: false, // workaround for Angular 2 styleUrls loading
-                    ui: false,
-                    server: {
-                        baseDir: './',
-                        middleware: [
-                            log({format: '%date %status %method %url'}),
-                            fallback({
-                                index: '/index.html',
-                                htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'] // systemjs workaround
-                            })
-                        ]
-                    },
-                    browser: [
-                        'chrome',
-                        'google chrome'
-                    ],
-                    watchTask: true
                 }
             },
             dist: {
@@ -198,24 +235,21 @@ module.exports = function (grunt) {
                     src: destination + '**/*'
                 },
                 options: {
-                    injectChanges: false, // workaround for Angular 2 styleUrls loading
-                    ui: false,
                     server: {
-                        baseDir: './' + destination,
-                        middleware: [
-                            log({format: '%date %status %method %url'}),
-                            fallback({
-                                index: '/index.html',
-                                htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'] // systemjs workaround
-                            })
-                        ]
-                    },
-                    browser: [
-                        'chrome',
-                        'google chrome'
-                    ],
-                    watchTask: true
+                        baseDir: './' + destination
+                    }
                 }
+            }
+        },
+        concurrent: {
+            options: {
+                logConcurrentOutput: true
+            },
+            dev: {
+                target: ['browserSync:dev', 'watch:devSass', 'watch:devTs']
+            },
+            dist: {
+                target: ['browserSync:dist', 'watch:dist']
             }
         }
     });
@@ -223,8 +257,9 @@ module.exports = function (grunt) {
     // Build tools
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-sass');
 
     // Dev run tools
@@ -233,8 +268,9 @@ module.exports = function (grunt) {
 
 
     // register at least this one task
-    grunt.registerTask('cleanBuild', ['clean', 'sass']);
-    grunt.registerTask('dev', ['cleanBuild', 'browserSync:dev', 'watch:dev']);
-    grunt.registerTask('testDist', ['clean'].concat(distTask).concat(['browserSync:dist', 'watch:dist']));
-    grunt.registerTask('dist', ['clean'].concat(distTask));
+    distTask = ['clean', 'sass', 'cssmin', 'ngc', 'copy', 'rollup'];
+    grunt.registerTask('cleanBuild', ['clean', 'sass', 'ts']);
+    grunt.registerTask('dev', ['cleanBuild', 'concurrent:dev']);
+    grunt.registerTask('testDist', distTask.concat(['concurent:dist']));
+    grunt.registerTask('dist', distTask);
 };

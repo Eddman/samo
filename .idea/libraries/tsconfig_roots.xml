@@ -1,17 +1,6 @@
 <component name="libraryTable">
   <library name="tsconfig$roots" type="javaScript">
-    <properties>
-      <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/node_modules/ng2-dragula" />
-        <item url="file://$PROJECT_DIR$/node_modules/ng2-meta/dist" />
-        <item url="file://$PROJECT_DIR$/node_modules/ng2-modal/index.d.ts" />
-      </sourceFilesUrls>
-    </properties>
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/node_modules/ng2-dragula" />
-      <root url="file://$PROJECT_DIR$/node_modules/ng2-meta/dist" />
-      <root url="file://$PROJECT_DIR$/node_modules/ng2-modal/index.d.ts" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

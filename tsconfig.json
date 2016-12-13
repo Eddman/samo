@@ -12,16 +12,9 @@
         ],
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
-        "baseUrl": ".",
-        "paths": {
-            "@meta/*": ["node_modules/ng2-meta/dist/*"],
-            "@modal": ["node_modules/ng2-modal/index"],
-            "@dragula/*": ["node_modules/ng2-dragula/*"]
-        },
         "outDir": "."
     },
     "files": [
-        "node_modules/reflect-metadata/Reflect.d.ts",
         "app/app.module.ts",
         "app/main.ts"
     ],

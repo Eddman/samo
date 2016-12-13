@@ -1,9 +1,9 @@
 import {ElementRef, Component, ViewChild, OnDestroy, OnInit, Input} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
-import {DragulaService} from '@dragula/components/dragula.provider';
+import {DragulaService} from 'ng2-dragula/components/dragula.provider';
 
-import {MetaService} from '@meta/index';
+import {MetaService} from 'ng2-meta';
 
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";

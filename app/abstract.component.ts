@@ -1,7 +1,7 @@
 import {ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import {MetaService} from '@meta/index';
+import {MetaService} from 'ng2-meta';
 
 import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';

@@ -3,7 +3,7 @@ import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 
-import {DragulaModule} from '@dragula/ng2-dragula';
+import {DragulaModule} from 'ng2-dragula/ng2-dragula';
 
 import {ModalModule} from "../common/modal/modal.module";
 

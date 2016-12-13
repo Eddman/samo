@@ -1,7 +1,7 @@
 import {ElementRef, ViewChild, EventEmitter, Output, OnInit, Component, Input} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
-import {MetaService} from '@meta/index';
+import {MetaService} from 'ng2-meta';
 
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";

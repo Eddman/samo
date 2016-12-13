@@ -1,7 +1,7 @@
 import {ElementRef, OnChanges, SimpleChanges, Component, Input, ViewChild, EventEmitter, Output} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
-import {MetaService} from '@meta/index';
+import {MetaService} from 'ng2-meta';
 
 import {AbstractViewComponent} from "../abstract.view.component";
 import {ModalLoginComponent} from "../common/modal/modal.login.component";
