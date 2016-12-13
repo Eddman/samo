@@ -1,4 +1,4 @@
-import {ElementRef, ViewChild, OnChanges, OnDestroy, SimpleChanges} from "@angular/core";
+import {ElementRef, ViewChild, OnChanges, OnDestroy, SimpleChanges, Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {DragulaService} from '@dragula/components/dragula.provider';
@@ -8,7 +8,7 @@ import {MetaService} from '@meta/index';
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
-import {IComponent} from "../abstract.component";
+import {InheritAnnotations} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
 import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
 
@@ -19,12 +19,13 @@ import {removedState} from "./thumbnail.component";
 
 const dragAndDropBag = 'thumbnails-bag';
 
-@IComponent({
+@Component({
     moduleId: module.id,
     selector: 'projects-view',
     templateUrl: 'projects.component.html',
     styleUrls: ['projects.component.css']
 })
+@InheritAnnotations()
 export class ProjectsComponent extends AbstractViewComponent implements OnChanges, OnDestroy {
 
     private jigglePaused: boolean;

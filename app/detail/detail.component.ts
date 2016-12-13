@@ -1,9 +1,9 @@
-import {ElementRef, OnChanges, SimpleChanges} from "@angular/core";
+import {ElementRef, OnChanges, SimpleChanges, Component} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
 import {MetaService} from '@meta/index';
 
-import {IComponent} from "../abstract.component";
+import {InheritAnnotations} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
@@ -11,12 +11,13 @@ import {AuthService} from "../auth/auth.service";
 import {DetailService} from "./detail.service";
 import {Detail} from "./detail";
 
-@IComponent({
+@Component({
     moduleId: module.id,
     selector: 'detail-view',
     templateUrl: 'detail.component.html',
     styleUrls: ['detail.component.css']
 })
+@InheritAnnotations()
 export class DetailComponent extends AbstractViewComponent implements OnChanges {
 
     private detail: Detail;

@@ -1,4 +1,4 @@
-import {ElementRef, Component} from '@angular/core';
+import {ElementRef, Component, ComponentDecorator} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {MetaService} from '@meta/index';
@@ -7,13 +7,14 @@ import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
 import {contentPartsTypes, ContentPart} from './content/content';
 
-export function IComponent(annotation: any) {
+export function InheritAnnotations() {
     return function (target: Function) {
         let parentTarget = Object.getPrototypeOf(target.prototype).constructor,
             parentAnnotations = Reflect.getMetadata('annotations', parentTarget) || {},
             parentPropMetadata = Reflect.getOwnMetadata("propMetadata", parentTarget) || {},
             propMetadata = Reflect.getOwnMetadata("propMetadata", target) || {},
-            parentAnnotation: any;
+            parentAnnotation: any,
+            annotation: any[] = [];
 
         parentAnnotation = parentAnnotations.length ? parentAnnotations[0] : {};
 
@@ -28,7 +29,7 @@ export function IComponent(annotation: any) {
             }
         });
         Reflect.defineMetadata('annotations', [new Component(annotation)], target);
-        Reflect.defineMetadata("propMetadata", propMetadata, target)
+        Reflect.defineMetadata("propMetadata", propMetadata, target);
     }
 }
 
