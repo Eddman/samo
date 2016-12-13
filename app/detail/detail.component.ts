@@ -1,15 +1,18 @@
-import {ElementRef, OnChanges, SimpleChanges, Component} from "@angular/core";
+import {ElementRef, OnChanges, SimpleChanges, Component, Output, EventEmitter, ViewChild, Input} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
 import {MetaService} from '@meta/index';
 
-import {InheritAnnotations} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
+import {ModalLoginComponent} from "../common/modal/modal.login.component";
+
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
 import {DetailService} from "./detail.service";
-import {Detail} from "./detail";
+
+import {Detail, ViewHeader} from "./detail";
+import {Route} from "../routing/route";
 
 @Component({
     moduleId: module.id,
@@ -17,8 +20,16 @@ import {Detail} from "./detail";
     templateUrl: 'detail.component.html',
     styleUrls: ['detail.component.css']
 })
-@InheritAnnotations()
 export class DetailComponent extends AbstractViewComponent implements OnChanges {
+
+    @Output()
+    public headerChange: EventEmitter<ViewHeader>;
+
+    @ViewChild(ModalLoginComponent)
+    public loginModal: ModalLoginComponent;
+
+    @Input()
+    public route: Route;
 
     private detail: Detail;
 

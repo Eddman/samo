@@ -10,7 +10,7 @@
             "es2016",
             "dom"
         ],
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
         "baseUrl": ".",
         "paths": {
@@ -18,7 +18,7 @@
             "@modal": ["node_modules/ng2-modal/index"],
             "@dragula/*": ["node_modules/ng2-dragula/*"]
         },
-        "outDir": "dist"
+        "outDir": "."
     },
     "files": [
         "node_modules/reflect-metadata/Reflect.d.ts",
@@ -29,7 +29,7 @@
         "node_modules"
     ],
     "angularCompilerOptions": {
-        "genDir": "dist",
+        "genDir": "app/ngFactories",
         "skipMetadataEmit" : true
     }
 }

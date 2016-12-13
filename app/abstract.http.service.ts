@@ -1,11 +1,31 @@
 import {Http, RequestOptions, Response} from '@angular/http';
-import {RequestService} from './auth/request.service';
+
 import {Observable} from 'rxjs/Observable';
-import  'rxjs/add/operator/catch';
-import  'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 
-const defaultURL = window.location.origin;
+import {RequestService} from './auth/request.service';
+
+const defaultURL: string = window.location.origin;
+
+export interface Request<T> {
+    resourceURL: string;
+    params?: string[];
+    subParams?: string[];
+
+    mapFunction?: (value: any, index: number) => T;
+}
+
+
+export interface PostRequest<T> extends Request<T> {
+    data: any;
+}
+
+export interface ErrorResponse {
+    status: number;
+    message: string;
+}
 
 export abstract class AbstractHttpService<T> {
 
@@ -14,18 +34,18 @@ export abstract class AbstractHttpService<T> {
     constructor(private http: Http, private requestService: RequestService) {
     }
 
-    protected constructURL(templateURL: string, params?: string[], subParams?: string[]): string {
-        let resourceURL: string = templateURL;
+    protected constructURL(request: Request<T>): string {
+        let resourceURL: string = request.resourceURL;
         let index: number = 0;
-        if (params) {
-            Object.keys(params).forEach(function (i) {
-                resourceURL = resourceURL.replace(':' + index, params[i]);
+        if (request.params) {
+            Object.keys(request.params).forEach((key: string) => {
+                resourceURL = resourceURL.replace(':' + index, request.params[key]);
                 index += 1;
             });
         }
-        if (subParams) {
-            Object.keys(subParams).forEach(function (i) {
-                resourceURL = resourceURL.replace(':' + index, subParams[i]);
+        if (request.subParams) {
+            Object.keys(request.subParams).forEach((key: string) => {
+                resourceURL = resourceURL.replace(':' + index, request.subParams[key]);
                 index += 1;
             });
         }
@@ -43,12 +63,15 @@ export abstract class AbstractHttpService<T> {
         return body.data || {};
     }
 
-    private static handleError(error: Response | any): Observable<any> {
+    private static handleError(error: Response | any): Observable<ErrorResponse> {
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string, err: any, body: any;
         if (error.status === 401) {
             // Not logged in - login first
-            return Observable.throw(error.status);
+            return Observable.throw({
+                status: error.status,
+                message: error.statusText
+            });
         } else {
             if (error instanceof Response) {
                 //noinspection UnusedCatchParameterJS
@@ -65,74 +88,82 @@ export abstract class AbstractHttpService<T> {
             if (window.console) {
                 window.console.error(errMsg);
             }
-            return Observable.throw(errMsg);
+            return Observable.throw({
+                status: error.status || 500,
+                message: errMsg
+            });
         }
     }
 
-    protected get(resourceURL: string, mapFunction?: (value: any, index: number) => {}): Observable<T> {
-        let request: Observable<T> = this.http.get(resourceURL, this.getRequestOptions())
+    protected get(request: Request<T>): Observable<T | ErrorResponse> {
+        let requestObservable: Observable<T> = this.http.get(this.constructURL(request), this.getRequestOptions())
             .map(AbstractHttpService.extractData);
-        if (mapFunction) {
-            request.map(mapFunction);
+        if (request.mapFunction) {
+            requestObservable.map(request.mapFunction);
         }
-        return request.catch(AbstractHttpService.handleError);
+        return requestObservable.catch(AbstractHttpService.handleError);
     }
 
-    protected post(resourceURL: string, data: any, mapFunction?: (value: any, index: number) => {}): Observable<T> {
-        let request: Observable<T> = this.http.post(resourceURL, JSON.stringify(data), this.getRequestOptions())
+    protected post(request: PostRequest<T>): Observable<T | ErrorResponse> {
+        let requestObservable: Observable<T> = this.http.post(this.constructURL(request),
+            JSON.stringify({
+                data: request.data
+            }),
+            this.getRequestOptions())
             .map(AbstractHttpService.extractData);
-        if (mapFunction) {
-            request.map(mapFunction);
+        if (request.mapFunction) {
+            requestObservable.map(request.mapFunction);
         }
-        return request.catch(AbstractHttpService.handleError);
+        return requestObservable.catch(AbstractHttpService.handleError);
     }
 
-    protected getWithCache(resourceURLTemplate: string, params?: string[], subParams?: string[]): Promise<T> {
-        let resourceURL: string = this.constructURL(resourceURLTemplate, params, subParams);
-        if (!this.getCache(params, subParams)) {
+    protected getWithCache(request: Request<T>): Promise<T> {
+        if (!this.getCache(request)) {
             return new Promise((resolve, reject) => {
-                this.get(resourceURL).subscribe(
+                this.get(request).subscribe(
                     (data) => {
-                        this.setCache(data, params, subParams);
+                        this.setCache(data, request);
                         resolve(data);
                     }, reject);
             });
         }
-        return Promise.resolve(this.getCache(params, subParams));
+        return Promise.resolve(this.getCache(request));
     }
 
-    private getCache(params?: string[], subParams?: string[]): any {
-        return this.findCache(params, subParams).value;
+    private getCache(request?: Request<T>): any {
+        return this.findCache(request).value;
     }
 
-    protected setCache(data: any, params?: string[], subParams?: string[]): void {
-        this.findCache(params, subParams).value = data;
+    protected setCache(data: any, request?: Request<T>): void {
+        this.findCache(request).value = data;
     }
 
-    public clearCache(params?: string[], subParams?: string[]): void {
-        let cache: any = this.findCache(params, subParams);
-        Object.keys(cache).forEach(function (k) {
+    public clearCache(request?: Request<T>): void {
+        let cache: any = this.findCache(request);
+        Object.keys(cache).forEach((k: string) => {
             delete cache[k];
         });
     }
 
-    private findCache(params?: string[], subParams?: string[]): any {
+    private findCache(request?: Request<T>): any {
         let cache: any = this.cache;
-        if (params) {
-            Object.keys(params).forEach(function (i) {
-                if (!cache[params[i]]) {
-                    cache[params[i]] = {};
-                }
-                cache = cache[params[i]];
-            });
-        }
-        if (subParams) {
-            Object.keys(subParams).forEach(function (i) {
-                if (!cache[subParams[i]]) {
-                    cache[subParams[i]] = {};
-                }
-                cache = cache[subParams[i]];
-            });
+        if (request) {
+            if (request.params) {
+                Object.keys(request.params).forEach((key: string) => {
+                    if (!cache[request.params[key]]) {
+                        cache[request.params[key]] = {};
+                    }
+                    cache = cache[request.params[key]];
+                });
+            }
+            if (request.subParams) {
+                Object.keys(request.subParams).forEach((key: string) => {
+                    if (!cache[request.subParams[key]]) {
+                        cache[request.subParams[key]] = {};
+                    }
+                    cache = cache[request.subParams[key]];
+                });
+            }
         }
         return cache;
     }

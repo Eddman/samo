@@ -26,7 +26,7 @@ if (!window.location.origin) {
     imports: [
         BrowserModule,
         RouterModule.forRoot([]),
-        MetaModule.forRoot(metaConfig),
+       // TODO: not working for AOT MetaModule.forRoot(metaConfig),
         AppRoutingModule,
         AuthModule,
         HttpModule,

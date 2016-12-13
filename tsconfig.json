@@ -10,7 +10,7 @@
             "es2016",
             "dom"
         ],
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
         "baseUrl": ".",
         "paths": {

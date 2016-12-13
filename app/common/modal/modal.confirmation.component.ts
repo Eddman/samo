@@ -16,13 +16,13 @@ import {RoutingService} from '../../routing/routing.service';
 export class ModalConfirmationComponent extends AbstractComponent {
 
     @Output()
-    private yes: EventEmitter<any>;
+    public yes: EventEmitter<any>;
 
     @Output()
-    private no: EventEmitter<any>;
+    public no: EventEmitter<any>;
 
     @ViewChild(Modal)
-    private modal: Modal;
+    public modal: Modal;
 
     constructor(metaService: MetaService,
                 authService: AuthService,

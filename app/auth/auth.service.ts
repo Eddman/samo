@@ -37,18 +37,25 @@ export class AuthService extends AbstractHttpService<boolean> {
     public login(credentials: LoginData): Observable<boolean> {
         StorageService.removeAuthToken();
         this.loggedIn.next(false);
-        return this.post(loginURL, credentials, (res: LoginResponseData) => {
-            if (res.success) {
-                StorageService.setAuthToken(res.auth_token);
-                this.loggedIn.next(true);
-            }
+        return this.post({
+            resourceURL: loginURL,
+            data: credentials,
+            mapFunction: (res: LoginResponseData) => {
+                if (res.success) {
+                    StorageService.setAuthToken(res.auth_token);
+                    this.loggedIn.next(true);
+                }
 
-            return res.success;
+                return res.success;
+            }
         });
     }
 
     public logout(): Observable<boolean> {
-        let request: Observable<boolean> = this.post(logoutURL, {});
+        let request: Observable<boolean> = this.post({
+            resourceURL: logoutURL,
+            data: {}
+        });
         StorageService.removeAuthToken();
         this.loggedIn.next(false);
         return request;

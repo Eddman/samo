@@ -1,4 +1,4 @@
-import {ElementRef, ViewChild, EventEmitter, Output, OnInit, Component} from "@angular/core";
+import {ElementRef, ViewChild, EventEmitter, Output, OnInit, Component, Input} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {MetaService} from '@meta/index';
@@ -7,16 +7,13 @@ import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
 import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
+import {ModalLoginComponent} from "../common/modal/modal.login.component";
 import {AbstractViewComponent} from "../abstract.view.component";
-import {InheritAnnotations} from "../abstract.component";
 
 import {MenuItem} from "../routing/menu";
 import {Route} from "../routing/route";
 import {RouteConfiguration} from "../routing/route.configuration";
-
 import {ViewHeader} from "../detail/detail";
-
-const dragAndDropBag = 'thumbnails-bag';
 
 @Component({
     moduleId: module.id,
@@ -27,20 +24,27 @@ const dragAndDropBag = 'thumbnails-bag';
         '[class.editMode]': 'isEdit'
     }
 })
-@InheritAnnotations()
 export class MenuComponent extends AbstractViewComponent implements OnInit {
 
+    @Output()
+    public headerChange: EventEmitter<ViewHeader>;
+
+    @ViewChild(ModalLoginComponent)
+    public loginModal: ModalLoginComponent;
+
+    @Input()
+    public route: Route;
+
     @ViewChild('saveConfirmation')
-    private saveConfirmation: ModalConfirmationComponent;
+    public saveConfirmation: ModalConfirmationComponent;
 
     @ViewChild('cancelConfirmation')
-    private cancelConfirmation: ModalConfirmationComponent;
+    public cancelConfirmation: ModalConfirmationComponent;
 
     @Output()
-    private editEnabled: EventEmitter<boolean>;
+    public editEnabled: EventEmitter<boolean>;
 
-
-    private rootItem: MenuItem | RouteConfiguration;
+    public rootItem: MenuItem | RouteConfiguration;
 
     constructor(metaService: MetaService,
                 authService: AuthService,
@@ -157,7 +161,6 @@ export class MenuComponent extends AbstractViewComponent implements OnInit {
             });
         }
     }
-
 
     // Cancel edit
     public confirmCancel(): void {

@@ -1,15 +1,19 @@
-import {ElementRef, OnChanges, SimpleChanges, Component} from "@angular/core";
+import {ElementRef, OnChanges, SimpleChanges, Component, Input, ViewChild, EventEmitter, Output} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
 import {MetaService} from '@meta/index';
 
-import {InheritAnnotations} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
+import {ModalLoginComponent} from "../common/modal/modal.login.component";
+
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
 import {ListService} from "./list.service";
+
 import {ListItem} from "./list.item";
+import {Route} from "../routing/route";
+import {ViewHeader} from "../detail/detail";
 
 @Component({
     moduleId: module.id,
@@ -17,8 +21,16 @@ import {ListItem} from "./list.item";
     templateUrl: 'list.component.html',
     styleUrls: ['list.component.css']
 })
-@InheritAnnotations()
 export class ListComponent extends AbstractViewComponent implements OnChanges {
+
+    @Output()
+    public headerChange: EventEmitter<ViewHeader>;
+
+    @ViewChild(ModalLoginComponent)
+    public loginModal: ModalLoginComponent;
+
+    @Input()
+    public route: Route;
 
     private listItems: ListItem[];
 

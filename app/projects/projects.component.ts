@@ -1,4 +1,7 @@
-import {ElementRef, ViewChild, OnChanges, OnDestroy, SimpleChanges, Component} from "@angular/core";
+import {
+    ElementRef, ViewChild, OnChanges, OnDestroy, SimpleChanges, Component, Output, Input,
+    EventEmitter
+} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {DragulaService} from '@dragula/components/dragula.provider';
@@ -8,13 +11,15 @@ import {MetaService} from '@meta/index';
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
-import {InheritAnnotations} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
+import {ModalLoginComponent} from "../common/modal/modal.login.component";
 import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
 
-import {ProjectsService} from "./projects.service";
-
+import {ViewHeader} from "../detail/detail";
+import {Route} from "../routing/route";
 import {Project} from "./project";
+
+import {ProjectsService} from "./projects.service";
 import {removedState} from "./thumbnail.component";
 
 const dragAndDropBag = 'thumbnails-bag';
@@ -25,10 +30,18 @@ const dragAndDropBag = 'thumbnails-bag';
     templateUrl: 'projects.component.html',
     styleUrls: ['projects.component.css']
 })
-@InheritAnnotations()
 export class ProjectsComponent extends AbstractViewComponent implements OnChanges, OnDestroy {
 
+    @Output()
+    public headerChange: EventEmitter<ViewHeader>;
+
+    @Input()
+    public route: Route;
+
     private jigglePaused: boolean;
+
+    @ViewChild(ModalLoginComponent)
+    public loginModal: ModalLoginComponent;
 
     @ViewChild('deleteConfirmation')
     private deleteConfirmation: ModalConfirmationComponent;

@@ -1,4 +1,7 @@
-import {Component, ElementRef, OnChanges, SimpleChanges, Input, OnDestroy} from "@angular/core";
+import {
+    Component, ElementRef, OnChanges, SimpleChanges, Input, OnDestroy, Output, EventEmitter,
+    ViewChild
+} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {MetaService} from '@meta/index';
@@ -6,11 +9,14 @@ import {MetaService} from '@meta/index';
 import {RoutingService} from "../routing/routing.service";
 import {AuthService} from "../auth/auth.service";
 
-import {InheritAnnotations} from "../abstract.component";
 import {AbstractViewComponent} from "../abstract.view.component";
+import {ModalLoginComponent} from "../common/modal/modal.login.component";
 
 import {SliderService} from "./slider.service";
+
 import {SliderConfiguration, SliderImage} from "./slider.configuration";
+import {ViewHeader} from "../detail/detail";
+import {Route} from "../routing/route";
 
 @Component({
     moduleId: module.id,
@@ -18,8 +24,16 @@ import {SliderConfiguration, SliderImage} from "./slider.configuration";
     templateUrl: 'slider.component.html',
     styleUrls: ['slider.component.css']
 })
-@InheritAnnotations()
 export class SliderComponent extends AbstractViewComponent implements OnChanges, OnDestroy {
+
+    @Output()
+    public headerChange: EventEmitter<ViewHeader>;
+
+    @ViewChild(ModalLoginComponent)
+    public loginModal: ModalLoginComponent;
+
+    @Input()
+    public route: Route;
 
     @Input()
     private keysEnabled: boolean;
@@ -84,7 +98,7 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
         });
     }
 
-    autoSlideFunction() {
+    private autoSlideFunction(): void {
         if (this.pageNumber < this.pageCount - 1) {
             // Move one slide forward
             this.pageNumber += 1;
@@ -94,7 +108,7 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
         }
     }
 
-    moveToFirst() {
+    private moveToFirst(): void {
         if (this.interval) {
             // Pause sliding
             this.startAutoSlide(false);
@@ -114,7 +128,7 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
         }
     }
 
-    startAutoSlide(sliding?: boolean) {
+    private startAutoSlide(sliding?: boolean): void {
         if (this.autoSlide) {
             if (arguments.length === 0 || sliding) {
                 this.transitionDuration = this.defaultDuration || 500;

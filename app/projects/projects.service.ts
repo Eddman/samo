@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 
-import {AbstractHttpService} from "../abstract.http.service";
+import {AbstractHttpService, PostRequest} from "../abstract.http.service";
 
 import {RequestService} from "../auth/request.service";
 import {DetailService} from "../detail/detail.service";
@@ -18,18 +18,24 @@ export class ProjectsService extends AbstractHttpService<Project[]> {
         super(http, requestService);
     }
 
-
-    getProject(type: string[]): Promise<Project[]> {
-        return this.getWithCache(getURL, type);
+    public getProject(type: string[]): Promise<Project[]> {
+        return this.getWithCache({
+            resourceURL: getURL,
+            params: type
+        });
     }
 
-    saveProjects(type: string[], projects: Project[]): Promise<Project[]> {
-        let resourceURL: string = this.constructURL(postURL, type);
+    public saveProjects(type: string[], projects: Project[]): Promise<Project[]> {
+        let request: PostRequest<any> = {
+            resourceURL: postURL,
+            params: type,
+            data: projects
+        };
         return new Promise((resolve, reject) => {
-            this.post(resourceURL, {data: projects}).subscribe(
+            this.post(request).subscribe(
                 (data: Project[]) => {
-                    this.setCache(data, type);
-                    this.detailService.clearCache(type);
+                    this.setCache(data, request);
+                    this.detailService.clearCache(request);
                     resolve(data);
                 }, reject);
         });

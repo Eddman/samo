@@ -1,4 +1,4 @@
-import {ElementRef, Component, ComponentDecorator} from '@angular/core';
+import {ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {MetaService} from '@meta/index';
@@ -7,37 +7,11 @@ import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
 import {contentPartsTypes, ContentPart} from './content/content';
 
-export function InheritAnnotations() {
-    return function (target: Function) {
-        let parentTarget = Object.getPrototypeOf(target.prototype).constructor,
-            parentAnnotations = Reflect.getMetadata('annotations', parentTarget) || {},
-            parentPropMetadata = Reflect.getOwnMetadata("propMetadata", parentTarget) || {},
-            propMetadata = Reflect.getOwnMetadata("propMetadata", target) || {},
-            parentAnnotation: any,
-            annotation: any[] = [];
-
-        parentAnnotation = parentAnnotations.length ? parentAnnotations[0] : {};
-
-        Object.keys(parentAnnotation).forEach(function (key) {
-            if (!annotation[key] && parentAnnotation[key] && parentAnnotation[key] != null) {
-                annotation[key] = parentAnnotation[key];
-            }
-        });
-        Object.keys(parentPropMetadata).forEach(function (key) {
-            if (!propMetadata[key] && parentPropMetadata[key] && parentPropMetadata[key] != null) {
-                propMetadata[key] = parentPropMetadata[key];
-            }
-        });
-        Reflect.defineMetadata('annotations', [new Component(annotation)], target);
-        Reflect.defineMetadata("propMetadata", propMetadata, target);
-    }
-}
-
 export abstract class AbstractComponent {
 
     protected el: Element;
 
-    protected isEdit: boolean;
+    public isEdit: boolean;
 
     public error: string;
 
@@ -55,6 +29,23 @@ export abstract class AbstractComponent {
         return this.authService.isLoggedIn();
     }
 
+    protected startEdit(): void {
+        this.isEdit = true;
+
+        // Disable navigation
+        this.routingService.disabled = true;
+    }
+
+    protected stopEdit(): void {
+        this.isEdit = false;
+
+        // Enable navigation
+        delete this.routingService.disabled;
+
+        // Remove error message
+        delete this.error;
+    }
+
     protected getDescriptionFromContent(desc: string, content: ContentPart[]): string {
         let description: string = desc;
         if (content) {
@@ -63,9 +54,9 @@ export abstract class AbstractComponent {
             } else {
                 description = '';
             }
-            Object.keys(content).forEach((k) => {
-                if (content[k].type === contentPartsTypes.TEXT && content[k].text) {
-                    description += content[k].text;
+            Object.keys(content).forEach((key: string) => {
+                if (content[key].type === contentPartsTypes.TEXT && content[key].text) {
+                    description += content[key].text;
                 }
             });
         }
@@ -88,8 +79,8 @@ export abstract class AbstractComponent {
     protected getFirstImageFromContent(content: ContentPart[]): string {
         let img: string;
         if (content) {
-            img = Object.keys(content).find((k) => {
-                return content[k].type === contentPartsTypes.IMAGE && content[k].url;
+            img = Object.keys(content).find((key: string) => {
+                return content[key].type === contentPartsTypes.IMAGE && content[key].url;
             });
             if (img) {
                 img = content[img].url;
@@ -104,22 +95,5 @@ export abstract class AbstractComponent {
         } else {
             this.metaService.setTag('og:image', window.location.origin + '/seo/thumb.png');
         }
-    }
-
-    protected startEdit(): void {
-        this.isEdit = true;
-
-        // Disable navigation
-        this.routingService.disabled = true;
-    }
-
-    protected stopEdit(): void {
-        this.isEdit = false;
-
-        // Enable navigation
-        delete this.routingService.disabled;
-
-        // Remove error message
-        delete this.error;
     }
 }

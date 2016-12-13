@@ -22,13 +22,13 @@ import {RouteConfiguration} from "../routing/route.configuration";
 export class MenuItemEditorComponent extends AbstractComponent implements OnInit, OnDestroy {
 
     @ViewChild('deleteConfirmation')
-    private deleteConfirmation: ModalConfirmationComponent;
+    public deleteConfirmation: ModalConfirmationComponent;
 
     @Input()
-    private item: RouteConfiguration;
+    public item: RouteConfiguration;
 
     @Input()
-    private parentLevel: RouteConfiguration;
+    public parentLevel: RouteConfiguration;
 
     private bagEl: Element;
 

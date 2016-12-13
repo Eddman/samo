@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 import {MetaService} from '@meta/index';
 
+import {ErrorResponse} from "./abstract.http.service";
 import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
 import {Route} from "./routing/route";
@@ -15,14 +16,11 @@ import {SubjectSubscription} from 'rxjs/SubjectSubscription';
 
 export abstract class AbstractViewComponent extends AbstractComponent {
 
-    @Output()
-    public headerChange: EventEmitter<ViewHeader>;
+    public abstract headerChange: EventEmitter<ViewHeader>;
 
-    @ViewChild(ModalLoginComponent)
-    public loginModal: ModalLoginComponent;
+    public abstract loginModal: ModalLoginComponent;
 
-    @Input()
-    public route: Route;
+    public abstract route: Route;
 
     constructor(metaService: MetaService,
                 authService: AuthService,
@@ -31,14 +29,13 @@ export abstract class AbstractViewComponent extends AbstractComponent {
                 route: ActivatedRoute,
                 el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
-        this.el = el.nativeElement;
         this.headerChange = new EventEmitter<ViewHeader>();
     }
 
-    protected onHttpError(err: any, restartSave: Function, restartEdit: Function, resetForm: Function) {
+    protected onHttpError(err: ErrorResponse, restartSave: Function, restartEdit: Function, resetForm: Function) {
         let loginSubscription: SubjectSubscription<any>, cancelSubscription: SubjectSubscription<any>;
         // 401 Unauthorized
-        if (err === 401) {
+        if (err.status === 401) {
             // Subscribe for login
             loginSubscription = this.loginModal.login.subscribe(() => {
                 // Unsubscribe
@@ -70,7 +67,7 @@ export abstract class AbstractViewComponent extends AbstractComponent {
             this.loginModal.open();
         } else {
             // Show error
-            this.error = err;
+            this.error = err.message;
 
             // Restart edit mode
             if (restartEdit) {

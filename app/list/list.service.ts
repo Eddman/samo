@@ -6,6 +6,8 @@ import {RequestService} from "../auth/request.service";
 
 import {ListItem} from "./list.item";
 
+const getURL: string = '/app/mock/list/:0/:1.json';
+
 @Injectable()
 export class ListService extends AbstractHttpService<ListItem[]> {
 
@@ -14,6 +16,9 @@ export class ListService extends AbstractHttpService<ListItem[]> {
     }
 
     public getListItems(type: string[]): Promise<ListItem[]> {
-        return this.getWithCache('/app/mock/list/:0/:1.json', type);
+        return this.getWithCache({
+            resourceURL: getURL,
+            params: type
+        });
     }
 }

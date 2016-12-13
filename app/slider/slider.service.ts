@@ -9,12 +9,14 @@ import {SliderConfiguration} from "./slider.configuration";
 @Injectable()
 export class SliderService extends AbstractHttpService<SliderConfiguration> {
 
-
     constructor(http: Http, requestService: RequestService) {
         super(http, requestService);
     }
 
     public getSlides(type: string[]): Promise<SliderConfiguration> {
-        return this.getWithCache('/app/mock/slides/:0/:1.json', type);
+        return this.getWithCache({
+            resourceURL: '/app/mock/slides/:0/:1.json',
+            params: type
+        });
     }
 }

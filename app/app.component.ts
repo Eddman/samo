@@ -16,7 +16,7 @@ import {RoutingService} from "./routing/routing.service";
 export class AppComponent extends AbstractComponent implements OnInit {
 
     @ViewChild(RouterOutlet)
-    private routerOutlet: RouterOutlet;
+    public routerOutlet: RouterOutlet;
 
     private previousRoute: ActivatedRoute;
 

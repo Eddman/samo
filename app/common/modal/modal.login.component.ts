@@ -24,15 +24,15 @@ export class ModalLoginComponent extends AbstractComponent {
     public cancel: EventEmitter<any>;
 
     @ViewChild(Modal)
-    private loginComponent: Modal;
+    public loginComponent: Modal;
 
     @ViewChild(ModalConfirmationComponent)
-    private cancelConfirmation: ModalConfirmationComponent;
+    public cancelConfirmation: ModalConfirmationComponent;
 
-    private username: string;
-    private password: string;
+    public username: string;
+    public password: string;
 
-    private loggingIn: boolean;
+    public loggingIn: boolean;
 
     constructor(metaService: MetaService,
                 authService: AuthService,

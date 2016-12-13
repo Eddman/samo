@@ -28,12 +28,17 @@ export class RoutingService extends AbstractHttpService<RouteConfiguration> {
     }
 
     public getRootConfiguration(): Promise<RouteConfiguration> {
-        return this.getWithCache(getURL);
+        return this.getWithCache({
+            resourceURL: getURL
+        });
     }
 
     public saveRootConfiguration(rootItem: RouteConfiguration): Promise<RouteConfiguration> {
         return new Promise((resolve, reject) => {
-            this.post(postURL, {data: rootItem}).subscribe(
+            this.post({
+                resourceURL: postURL,
+                data: rootItem
+            }).subscribe(
                 (data) => {
                     this.setCache(data);
                     resolve(data);
