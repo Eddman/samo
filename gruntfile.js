@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         cssPattern, htmlPattern, tsPattern, compiledJSPattern, jsPattern, mockFiles,
         images = ['images/**'],
         appFolders = ['app'],
-        distTask,
+        distTask = ['clean', 'sass', 'cssmin', 'ngc', 'copy', 'rollup'],
         nodeResolve = require('rollup-plugin-node-resolve'),
         commonjs = require('rollup-plugin-commonjs'),
         uglify = require('rollup-plugin-uglify');
@@ -119,9 +119,21 @@ module.exports = function (grunt) {
                     return [
                         nodeResolve({jsnext: true, module: true}),
                         commonjs({
-                            include: 'node_modules/rxjs/**'
+                            include: [
+                                'node_modules/rxjs/**',
+                                'node_modules/ng2-dragula/ng2-dragula.js',
+                                'node_modules/ng2-dragula/components/**',
+                                'node_modules/ng2-modal/**',
+                                'node_modules/dragula/**',
+                                'node_modules/contra/debounce.js',
+                                'node_modules/contra/emitter.js',
+                                'node_modules/crossvent/src/**',
+                                'node_modules/custom-event/**',
+                                'node_modules/atoa/atoa.js',
+                                'node_modules/ticky/ticky.js'
+                            ]
                         }),
-                        uglify()
+                        //  uglify()
                     ];
                 }
             },
@@ -154,6 +166,10 @@ module.exports = function (grunt) {
             },
             favicon: {
                 src: 'favicon.ico',
+                dest: destination
+            },
+            styles: {
+                src: 'styles.css',
                 dest: destination
             },
             mock: {
@@ -236,7 +252,14 @@ module.exports = function (grunt) {
                 },
                 options: {
                     server: {
-                        baseDir: './' + destination
+                        baseDir: './' + destination,
+                        middleware: [
+                            log({format: '%date %status %method %url'}),
+                            fallback({
+                                index: '/index.html',
+                                htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'] // systemjs workaround
+                            })
+                        ]
                     }
                 }
             }
@@ -268,9 +291,8 @@ module.exports = function (grunt) {
 
 
     // register at least this one task
-    distTask = ['clean', 'sass', 'cssmin', 'ngc', 'copy', 'rollup'];
     grunt.registerTask('cleanBuild', ['clean', 'sass', 'ts']);
     grunt.registerTask('dev', ['cleanBuild', 'concurrent:dev']);
-    grunt.registerTask('testDist', distTask.concat(['concurent:dist']));
+    grunt.registerTask('testDist', distTask.concat(['concurrent:dist']));
     grunt.registerTask('dist', distTask);
 };

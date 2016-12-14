@@ -1,7 +1,7 @@
 import {ViewChild, Component, EventEmitter, Output, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import {Modal} from 'ng2-modal';
+import {Modal} from 'ng2-modal/Modal';
 import {MetaService} from 'ng2-meta/src';
 
 import {AuthService} from '../../auth/auth.service';
