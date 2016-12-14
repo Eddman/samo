@@ -1,4 +1,4 @@
-{{rootItem|json}}
+<pre *ngIf="isEdit">{{rootItem|json}}</pre>
 <div *ngIf="error" class="bootstrap">
     <div class="alert alert-danger">
         <strong>Error!</strong> {{error}}
@@ -6,7 +6,7 @@
 </div>
 
 <item-editor *ngIf="isEdit" [item]="rootItem"></item-editor>
-<div *ngIf="!isEdit && rootItem">
+<div *ngIf="!isEdit && !!rootItem">
     <h1><a [class.disabled]="isDisabled()"
            [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
 </div>
@@ -22,7 +22,7 @@
 </div>
 <div class="sizer"></div>
 
-<div class="menu" *ngIf="!isEdit && rootItem">
+<div class="menu" *ngIf="!isEdit && !!rootItem">
     <template [ngIf]="isPageHeaderVisible()">
         <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
             <div class="sizer"></div>

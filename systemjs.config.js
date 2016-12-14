@@ -4,8 +4,8 @@
 function initApp() {
     'use strict';
 
-    // Import ng2-page-slider
-    System.import('node_modules/ng2-page-slider/ng2-page-slider.js');
+    // Import ng2-page-slider-aot-fix
+    System.import('node_modules/ng2-page-slider-aot-fix/ng2-page-slider.js');
 
     //noinspection ES6ModulesDependencies
     System.config({
@@ -28,10 +28,10 @@ function initApp() {
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.min.js',
 
             // ng2-meta
-            '@meta': 'npm:ng2-meta/dist',
+            'ng2-meta/src': 'npm:ng2-meta/dist',
 
             // ng2-gragula
-            '@dragula': 'npm:ng2-dragula',
+            'ng2-dragula': 'npm:ng2-dragula',
             'dragula': 'npm:dragula',
             'contra': 'npm:contra',
             'crossvent': 'npm:crossvent/dist/crossvent.min.js',
@@ -39,7 +39,11 @@ function initApp() {
             'ticky': 'npm:ticky/ticky.js',
 
             // ng2-modal
-            '@modal': 'node_modules/ng2-modal',
+            'ng2-modal': 'npm:ng2-modal',
+
+            // ng2-page-slider-aot-fix
+            'ng2-page-slider-aot-fix/index': 'index',
+            'ng2-page-slider-aot-fix/src/components/pageslider.component': 'src/components/pageslider.component',
 
             // other libraries
             'rxjs': 'npm:rxjs'
@@ -53,10 +57,11 @@ function initApp() {
             rxjs: {
                 defaultExtension: 'js'
             },
-            '@meta': {
+            'ng2-meta/src': {
+                main: './index.js',
                 defaultExtension: 'js'
             },
-            '@dragula': {
+            'ng2-dragula': {
                 defaultExtension: 'js'
             },
             'dragula': {
@@ -66,8 +71,11 @@ function initApp() {
             'contra': {
                 defaultExtension: 'js'
             },
-            '@modal': {
+            'ng2-modal': {
                 main: 'index.js',
+                defaultExtension: 'js'
+            },
+            'ng2-page-slider-aot-fix': {
                 defaultExtension: 'js'
             }
         }

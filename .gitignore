@@ -4,6 +4,12 @@
 .idea/workspace.xml
 node_modules/
 *.css
+*.js
+!gruntfile.js
+!systemjs.config.js
+*.js.map
 npm-debug.log
 dist/
 .idea/terminal.xml
+.DS_Store
+ngFactories/
