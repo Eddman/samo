@@ -29,9 +29,9 @@ export class AuthService extends AbstractHttpService<boolean> {
         super(http, requestService);
         this.loggedIn = new BehaviorSubject<boolean>(false);
 
-        //if (!!this.storage.getAuthToken()) {
+        if (!!StorageService.getAuthToken()) {
         this.loggedIn.next(true);
-        //}
+        }
     }
 
     public login(credentials: LoginData): Observable<boolean> {

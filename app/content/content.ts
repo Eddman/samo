@@ -1,16 +1,19 @@
 import {RouteType} from "../routing/route.type";
 
-export let contentPartsTypes = {
-    TEXT: 'text',
-    IMAGE: 'image',
-    LINK_EXTERNAL: 'external-link',
-    LINK_INTERNAL: 'internal-link',
-    LINE_BREAK: 'break',
-    SLIDER: 'slider'
-};
+export type ContentType = 'text' | 'image' | 'external-link' | 'internal-link' | 'break' | 'slider';
+
+export abstract class ContentPartsTypes {
+    public static TEXT: ContentType = 'text';
+    public static IMAGE: ContentType = 'image';
+    public static LINK_EXTERNAL: ContentType = 'external-link';
+    public static LINK_INTERNAL: ContentType = 'internal-link';
+    public static LINE_BREAK: ContentType = 'break';
+    public static SLIDER: ContentType = 'slider';
+}
+
 
 export interface ContentPart {
-    type: string;
+    type: ContentType;
 
     text: string;
     columns: number;

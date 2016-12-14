@@ -5,7 +5,7 @@ import {MetaService} from 'ng2-meta/src';
 
 import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
-import {contentPartsTypes, ContentPart} from './content/content';
+import {ContentPartsTypes, ContentPart} from './content/content';
 
 export abstract class AbstractComponent {
 
@@ -55,7 +55,7 @@ export abstract class AbstractComponent {
                 description = '';
             }
             Object.keys(content).forEach((key: string) => {
-                if (content[key].type === contentPartsTypes.TEXT && content[key].text) {
+                if (content[key].type === ContentPartsTypes.TEXT && content[key].text) {
                     description += content[key].text;
                 }
             });
@@ -80,7 +80,7 @@ export abstract class AbstractComponent {
         let img: string;
         if (content) {
             img = Object.keys(content).find((key: string) => {
-                return content[key].type === contentPartsTypes.IMAGE && content[key].url;
+                return content[key].type === ContentPartsTypes.IMAGE && content[key].url;
             });
             if (img) {
                 img = content[img].url;

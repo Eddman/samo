@@ -82,12 +82,12 @@ export class ThumbnailComponent extends AbstractComponent {
     public isEdit: boolean;
 
     @Output()
-    private removeChange: EventEmitter<Project>;
+    public removeChange: EventEmitter<Project>;
 
     @Output()
-    private removedChange: EventEmitter<Project>;
+    public removedChange: EventEmitter<Project>;
 
-    private hover: boolean;
+    public hover: boolean;
 
     constructor(metaService: MetaService,
                 authService: AuthService,

@@ -31,7 +31,7 @@ export class DetailComponent extends AbstractViewComponent implements OnChanges 
     @Input()
     public route: Route;
 
-    private detail: Detail;
+    public detail: Detail;
 
     constructor(private detailService: DetailService,
                 metaService: MetaService,

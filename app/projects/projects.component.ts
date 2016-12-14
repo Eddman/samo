@@ -44,13 +44,13 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
     public loginModal: ModalLoginComponent;
 
     @ViewChild('deleteConfirmation')
-    private deleteConfirmation: ModalConfirmationComponent;
+    public deleteConfirmation: ModalConfirmationComponent;
 
     @ViewChild('saveConfirmation')
-    private saveConfirmation: ModalConfirmationComponent;
+    public saveConfirmation: ModalConfirmationComponent;
 
     @ViewChild('cancelConfirmation')
-    private cancelConfirmation: ModalConfirmationComponent;
+    public cancelConfirmation: ModalConfirmationComponent;
 
     private bagEl: Element;
 

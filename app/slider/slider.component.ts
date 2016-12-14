@@ -36,9 +36,9 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
     public route: Route;
 
     @Input()
-    private keysEnabled: boolean;
+    public keysEnabled: boolean;
 
-    private pages: SliderImage[];
+    public pages: SliderImage[];
 
     private pageNumber: number;
     private pageCount: number;

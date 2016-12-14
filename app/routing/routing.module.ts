@@ -8,23 +8,32 @@ import {ListModule} from "../list/list.module";
 
 import {RouterComponent} from "./router.component";
 
-let i: number, path: string = '';
-
-const routes: Route[] = [];
-
-routes.push({
-    path: path,
-    component: RouterComponent
-});
-for (i = 0; i <= 3; i += 1) {
-    path += ':p' + i;
-    routes.push({
-        path: path,
+const routes: Route[] = [
+    {
+        path: '',
+        component: RouterComponent,
+    },
+    {
+        path: ':p0',
+        pathMatch: 'full',
+        component: RouterComponent,
+    },
+    {
+        path: ':p0/:p1',
+        pathMatch: 'full',
+        component: RouterComponent,
+    },
+    {
+        path: ':p0/:p1/:p2',
+        pathMatch: 'full',
+        component: RouterComponent,
+    },
+    {
+        path: ':p0/:p1/:p2/:p3',
         pathMatch: 'full',
         component: RouterComponent
-    });
-    path += '/';
-}
+    }
+];
 
 @NgModule({
     imports: [

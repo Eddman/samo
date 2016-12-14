@@ -18,7 +18,7 @@
         "app/app.module.ts",
         "app/main.aot.ts",
         "node_modules/ng2-meta/src/index.ts",
-        "node_modules/ng2-page-slider/index.ts"
+        "node_modules/ng2-page-slider-aot-fix/index.ts"
     ],
     "exclude": [
         "node_modules"

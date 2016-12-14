@@ -12,9 +12,9 @@ import {ContentPart} from "./content";
 export class ColumnsDirective implements OnInit {
 
     @Input('columns')
-    private contentPart: ContentPart;
+    public contentPart: ContentPart;
 
-    private columnsCount: number;
+    public columnsCount: number;
 
     public ngOnInit(): void {
         if (this.contentPart) {

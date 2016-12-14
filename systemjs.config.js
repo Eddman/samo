@@ -4,8 +4,8 @@
 function initApp() {
     'use strict';
 
-    // Import ng2-page-slider
-    System.import('node_modules/ng2-page-slider/ng2-page-slider.js');
+    // Import ng2-page-slider-aot-fix
+    System.import('node_modules/ng2-page-slider-aot-fix/ng2-page-slider.js');
 
     //noinspection ES6ModulesDependencies
     System.config({
@@ -41,9 +41,9 @@ function initApp() {
             // ng2-modal
             'ng2-modal': 'npm:ng2-modal',
 
-            // ng2-page-slider
-            'ng2-page-slider/index': 'index',
-            'ng2-page-slider/src/components/pageslider.component': 'src/components/pageslider.component',
+            // ng2-page-slider-aot-fix
+            'ng2-page-slider-aot-fix/index': 'index',
+            'ng2-page-slider-aot-fix/src/components/pageslider.component': 'src/components/pageslider.component',
 
             // other libraries
             'rxjs': 'npm:rxjs'
@@ -75,7 +75,7 @@ function initApp() {
                 main: 'index.js',
                 defaultExtension: 'js'
             },
-            'ng2-page-slider': {
+            'ng2-page-slider-aot-fix': {
                 defaultExtension: 'js'
             }
         }

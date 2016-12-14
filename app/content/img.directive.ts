@@ -15,14 +15,15 @@ import {ContentPart} from "./content";
 export class ImageDirective implements OnInit {
 
     @Input('img')
-    private contentPart: ContentPart;
+    public contentPart: ContentPart;
 
-    private floatLeft: boolean;
+    public floatLeft: boolean;
 
-    private floatRight: boolean;
-    private title: string;
-    private url: string;
-    private width: any;
+    public floatRight: boolean;
+
+    public title: string;
+    public url: string;
+    public width: any;
 
     public ngOnInit(): void {
         if (this.contentPart) {

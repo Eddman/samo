@@ -1,6 +1,6 @@
 import {Component, Input} from "@angular/core";
 
-import {contentPartsTypes, ContentPart} from "./content";
+import {ContentPart, ContentPartsTypes} from "./content";
 
 @Component({
     moduleId: module.id,
@@ -10,12 +10,12 @@ import {contentPartsTypes, ContentPart} from "./content";
 })
 export class ContentComponent {
 
-    private types: any;
+    public types: any;
 
     @Input()
-    private contentParts: ContentPart[];
+    public contentParts: ContentPart[];
 
     constructor() {
-        this.types = contentPartsTypes;
+        this.types = ContentPartsTypes;
     }
 }

@@ -133,7 +133,7 @@ module.exports = function (grunt) {
                                 'node_modules/ticky/ticky.js'
                             ]
                         }),
-                        //  uglify()
+                        uglify()
                     ];
                 }
             },

@@ -32,7 +32,7 @@ export class ListComponent extends AbstractViewComponent implements OnChanges {
     @Input()
     public route: Route;
 
-    private listItems: ListItem[];
+    public listItems: ListItem[];
 
     constructor(private listService: ListService,
                 metaService: MetaService,
