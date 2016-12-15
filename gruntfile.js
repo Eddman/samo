@@ -215,11 +215,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: sassPatternWatch.concat(tsPattern),
-                tasks: distTask,
-                options: {
-                    interrupt: true,
-                    spawn: false
-                }
+                tasks: distTask
             }
         },
         browserSync: {
@@ -266,13 +262,14 @@ module.exports = function (grunt) {
         },
         concurrent: {
             options: {
+                limit: 5,
                 logConcurrentOutput: true
             },
             dev: {
-                target: ['browserSync:dev', 'watch:devSass', 'watch:devTs']
+                tasks: ['browserSync:dev', 'watch:devSass', 'watch:devTs']
             },
             dist: {
-                target: ['browserSync:dist', 'watch:dist']
+                tasks: ['browserSync:dist', 'watch:dist']
             }
         }
     });
