@@ -1,10 +1,10 @@
-<template [ngIf]="!route.parameters">
+<ng-template [ngIf]="!route.parameters">
     <div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
         <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit view</a>
-        <template [ngIf]="isEdit">
+        <ng-template [ngIf]="isEdit">
             <a class="btn btn-primary" (click)="confirmSave()">Save</a>
             <a class="btn btn-danger" (click)="confirmCancel()">Cancel</a>
-        </template>
+        </ng-template>
     </div>
     <div *ngIf="error" class="bootstrap">
         <div class="alert alert-danger">
@@ -32,7 +32,7 @@
         <div class="thumbnail"></div>
     </div>
 
-    <template [ngIf]="isEdit">
+    <ng-template [ngIf]="isEdit">
         <modal-confirm #deleteConfirmation (yes)="startRemove()" (no)="unpauseJiggle()">
             Do you really want to remove the project?
         </modal-confirm>
@@ -48,8 +48,8 @@
         </modal-confirm>
 
         <modal-login></modal-login>
-    </template>
-</template>
-<template [ngIf]="route.parameters">
+    </ng-template>
+</ng-template>
+<ng-template [ngIf]="route.parameters">
     <detail-view (headerChange)="headerChange.emit($event)" [route]="route"></detail-view>
-</template>
+</ng-template>

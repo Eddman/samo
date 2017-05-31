@@ -4,9 +4,6 @@
 function initApp() {
     'use strict';
 
-    // Import ng2-page-slider-aot-fix
-    System.import('node_modules/ng2-page-slider-aot-fix/ng2-page-slider.js');
-
     //noinspection ES6ModulesDependencies
     System.config({
         paths: {
@@ -18,14 +15,17 @@ function initApp() {
             // our app is within the app folder
             app: 'app',
             // angular bundles
-            '@angular/core': 'npm:@angular/core/bundles/core.umd.min.js',
-            '@angular/common': 'npm:@angular/common/bundles/common.umd.min.js',
-            '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.min.js',
-            '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.min.js',
-            '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
-            '@angular/http': 'npm:@angular/http/bundles/http.umd.min.js',
-            '@angular/router': 'npm:@angular/router/bundles/router.umd.min.js',
-            '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.min.js',
+            '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+            '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
+            '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
+            '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
+            '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+            '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+            '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
+            '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+            '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
+            '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+            '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
             // ng2-meta
             'ng2-meta/src': 'npm:ng2-meta/dist',
@@ -41,9 +41,8 @@ function initApp() {
             // ng2-modal
             'ng2-modal': 'npm:ng2-modal',
 
-            // ng2-page-slider-aot-fix
-            'ng2-page-slider-aot-fix/index': 'index',
-            'ng2-page-slider-aot-fix/src/components/pageslider.component': 'src/components/pageslider.component',
+            // ng2-page-slider
+            'ng2-page-slider': 'npm:ng2-page-slider/bundles/ng2-page-slider.umd.js',
 
             // other libraries
             'rxjs': 'npm:rxjs'
@@ -73,9 +72,6 @@ function initApp() {
             },
             'ng2-modal': {
                 main: 'index.js',
-                defaultExtension: 'js'
-            },
-            'ng2-page-slider-aot-fix': {
                 defaultExtension: 'js'
             }
         }

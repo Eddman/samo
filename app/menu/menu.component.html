@@ -12,34 +12,34 @@
 </div>
 <div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
     <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit menu structure</a>
-    <template [ngIf]="isEdit">
+    <ng-template [ngIf]="isEdit">
         <a class="btn btn-primary" (click)="addGroup()">Add new group</a>
         <br>
         <br>
         <a class="btn btn-primary" (click)="confirmSave()">Save</a>
         <a class="btn btn-danger" (click)="confirmCancel()">Cancel</a>
-    </template>
+    </ng-template>
 </div>
 <div class="sizer"></div>
 
 <div class="menu" *ngIf="!isEdit && !!rootItem">
-    <template [ngIf]="isPageHeaderVisible()">
+    <ng-template [ngIf]="isPageHeaderVisible()">
         <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
             <div class="sizer"></div>
             <a *ngIf="!isGroupExpanded(menuLocale)"
                [class.disabled]="isDisabled()"
                [routerLink]="menuLocale.routeLink"
                routerLinkActive="active">{{menuLocale.title}}</a>
-            <template [ngIf]="isGroupExpanded(menuLocale)">
+            <ng-template [ngIf]="isGroupExpanded(menuLocale)">
                 <a *ngFor="let menuItem of menuLocale.subItems"
                    [class.disabled]="isDisabled()"
                    [routerLink]="menuItem.routeLink"
                    routerLinkActive="active">{{menuItem.title}}</a>
-            </template>
+            </ng-template>
         </div>
-    </template>
+    </ng-template>
 
-    <template [ngIf]="!isPageHeaderVisible()">
+    <ng-template [ngIf]="!isPageHeaderVisible()">
         <div class="menu-block">
             <div class="sizer"></div>
             <div *ngIf="getPageHeader()">
@@ -52,10 +52,10 @@
             <a [class.disabled]="isDisabled()"
                [routerLink]="getHomeLink()">Home</a>
         </div>
-    </template>
+    </ng-template>
 </div>
 
-<template [ngIf]="isEdit">
+<ng-template [ngIf]="isEdit">
     <modal-confirm #saveConfirmation (yes)="save()">
         Do you really want to save all changes?<br>
         <b>Note that all removed items will be lost. Content of all removed items will be lost as well.</b>
@@ -67,5 +67,5 @@
     </modal-confirm>
 
     <modal-login></modal-login>
-</template>
+</ng-template>
 

@@ -1,4 +1,4 @@
-import {EventEmitter, ElementRef, Output, ViewChild, Input} from '@angular/core';
+import {EventEmitter, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {MetaService} from 'ng2-meta/src';

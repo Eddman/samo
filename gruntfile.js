@@ -1,83 +1,14 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var fallback = require('connect-history-api-fallback'),
-        log = require('connect-logger'),
-        destination = 'dist/',
-        sassPattern, sassPatternWatch,
-        cssPattern, htmlPattern, tsPattern, compiledJSPattern, jsPattern, mockFiles,
-        images = ['images/**'],
-        appFolders = ['app'],
-        distTask = ['clean', 'sass', 'cssmin', 'ngc', 'copy', 'rollup'],
-        nodeResolve = require('rollup-plugin-node-resolve'),
-        commonjs = require('rollup-plugin-commonjs'),
-        uglify = require('rollup-plugin-uglify');
-
-    //<editor-fold desc="Task and function definition" defaultstate="collapsed">
-    function runProcess(command, args) {
-        return function () {
-            var done = this.async(), start = Date.now(), src = command + ' ' + args.join(' ');
-
-            grunt.log.writeln('-> '.cyan + 'executing ' + src.cyan);
-
-
-            //use spawn so we don't have to depend on process.exit();
-            function tsc(callback) {
-
-                var child = grunt.util.spawn(
-                    {
-                        cmd: command,
-                        args: args
-                    },
-                    function (error, result, code) {
-                        if (error) {
-                            grunt.fail.warn('-> '.cyan + 'error '.red + ('' + code).red + ' ' + src.cyan + ' (' + (Date.now() - start) + 'ms)');
-                            callback(error);
-                        } else if (code !== 0) {
-                            grunt.fail.warn('-> '.cyan + 'exitcode '.red + ('' + code).red + ' ' + src.cyan + ' (' + (Date.now() - start) + 'ms)');
-                            callback(new Error('bad exit code ' + code), code);
-                        } else {
-                            grunt.log.writeln('-> '.cyan + 'completed ' + src.cyan + ' (' + (Date.now() - start) + 'ms)');
-                            callback();
-                        }
-                    }
-                );
-
-                child.stdout.on('data', function (data) {
-                    grunt.log.write(data);
-                });
-                child.stderr.on('data', function (data) {
-                    grunt.log.write(('' + data).red);
-                });
-
-            }
-
-            grunt.util.async.series([
-                    tsc
-                ],
-                function (err) {
-                    grunt.log.writeln('');
-                    if (err) {
-                        grunt.log.writeln(err);
-                        done(false);
-                    }
-                    else {
-                        done();
-                    }
-                });
-        };
-    }
-
-    grunt.registerMultiTask('ts', 'Run TypeScript compiler', runProcess('tsc', ['-p', './tsconfig.json']));
-    grunt.registerMultiTask('ngc', 'Run Angular 2 compiler', runProcess('npm', ['run', 'ngc']));
-
+    //<editor-fold desc="Function definitions" defaultstate="collapsed">
     function providedJS(file) {
-        return [file, file + ".map"];
+        return [file, file + '.map'];
     }
 
     function addAppFolders(pattern) {
         var i, paths = [];
-        appFolders.forEach(function (item) {
+        grunt.appFolders.forEach(function (item) {
             paths.push(item + '/' + pattern);
         });
         if (arguments.length > 1) {
@@ -90,23 +21,57 @@ module.exports = function (grunt) {
 
     //</editor-fold>
 
-    sassPattern = addAppFolders('**/*.scss', 'styles.scss');
-    sassPatternWatch = sassPattern.concat(['_global.scss', '_component.scss']);
+    var // BrowserSync plugins to make logs better and to fallback to index.html
+        fallback = require('connect-history-api-fallback'),
+        log = require('connect-logger'),
+
+        // Rollup plugins - used to create single bundle from all SystemJS
+        nodeResolve = require('rollup-plugin-node-resolve'),
+        commonjs = require('rollup-plugin-commonjs'),
+        uglify = require('rollup-plugin-uglify'),
+
+        // Project paths
+        destination = 'dist/', // Destination folder for AoT version
+        sassPattern, cssPattern, // SASS and compiled CSS
+        htmlPattern, // HTML templates
+        tsPattern, jsPattern, jsToCleanPattern, // TypeScript, JavaScript and mapping files
+        images,
+        mockFiles;
+
+    grunt.appFolders = ['app', 'testing'];
+
+    // Populate paths
+    sassPattern = addAppFolders('**/*.scss', 'styles.scss').concat(['_global.scss', '_component.scss']);
     cssPattern = addAppFolders('**/*.css', 'styles.css');
     htmlPattern = addAppFolders('**/*.html', 'index.html');
     jsPattern = addAppFolders('**/*.js', 'systemjs.config.js');
-    compiledJSPattern = addAppFolders('**/*.js').concat(addAppFolders('**/*.js.map'));
+    jsToCleanPattern = addAppFolders('**/*.js').concat(addAppFolders('**/*.js.map'));
     tsPattern = addAppFolders('**/*.ts');
+    images = 'images/**/*';
     mockFiles = addAppFolders('**/*.json');
 
     grunt.initConfig({
-        clean: {
+        cleanup: {
             all: {
-                src: [destination, 'ngFactories/'].concat(cssPattern).concat(compiledJSPattern)
+                src: [destination, 'ngFactories/', '.tscache/'].concat(cssPattern).concat(jsToCleanPattern)
+            },
+            postDist: {
+                src: [destination + 'app/', destination + 'ngFactories/', 'ngFactories/']
             }
         },
         ts: {
-            default: {}
+            compile: {
+                options: {
+                    fast: 'never'
+                },
+                tsconfig: true
+            },
+            watchTS: {
+                options: {
+                    fast: 'always'
+                },
+                tsconfig: './tsconfig.watch.json'
+            }
         },
         ngc: {
             default: {}
@@ -148,7 +113,7 @@ module.exports = function (grunt) {
                 src: providedJS('node_modules/core-js/client/shim.min.js'),
                 dest: destination
             },
-            "web-animations-js": {
+            'web-animations-js': {
                 src: providedJS('node_modules/web-animations-js/web-animations.min.js'),
                 dest: destination
             },
@@ -206,20 +171,28 @@ module.exports = function (grunt) {
                 spawn: false
             },
             devSass: {
-                files: sassPatternWatch,
+                files: sassPattern,
                 tasks: ['sass']
             },
             devTs: {
                 files: tsPattern,
-                tasks: ['ts']
+                tasks: ['ts:watchTS']
             },
             dist: {
-                files: sassPatternWatch.concat(tsPattern),
-                tasks: distTask
+                files: sassPattern.concat(tsPattern),
+                tasks: ['dist'],
+                options: {
+                    interrupt: false
+                }
             }
         },
         browserSync: {
             options: {
+                watchOptions: {
+                    awaitWriteFinish: true,
+                    usePolling: true,
+                    interval: 5000
+                },
                 injectChanges: false, // workaround for Angular 2 styleUrls loading
                 ui: false,
                 server: {
@@ -262,7 +235,6 @@ module.exports = function (grunt) {
         },
         concurrent: {
             options: {
-                limit: 5,
                 logConcurrentOutput: true
             },
             dev: {
@@ -276,20 +248,26 @@ module.exports = function (grunt) {
 
     // Build tools
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.renameTask('clean', 'cleanup'); // Renamed so we do not have name clash with our clean.
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-sass');
-
-    // Dev run tools
+    grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-browser-sync');
 
+    // Our local tasks
+    grunt.loadTasks('./tools/grunt_tasks');
 
-    // register at least this one task
-    grunt.registerTask('cleanBuild', ['clean', 'sass', 'ts']);
-    grunt.registerTask('dev', ['cleanBuild', 'concurrent:dev']);
-    grunt.registerTask('testDist', distTask.concat(['concurrent:dist']));
-    grunt.registerTask('dist', distTask);
+    // Build tasks
+    grunt.registerTask('clean', ['cleanup:all']);
+    grunt.registerTask('compile', ['sass', 'ts:compile']);
+    grunt.registerTask('build', ['cleanup:all', 'sass', 'ts:compile']);
+    grunt.registerTask('run', ['build', 'concurrent:dev']);
+
+    // Dist tasks
+    grunt.registerTask('dist', ['cleanup:all', 'sass', 'cssmin', 'ngc', 'copy', 'rollup', 'cleanup:postDist']);
+    grunt.registerTask('dist-run', ['dist', 'concurrent:dist']);
 };

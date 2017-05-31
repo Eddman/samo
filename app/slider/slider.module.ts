@@ -1,62 +1,63 @@
-import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import {PageSliderModule} from 'ng2-page-slider-aot-fix/index'
-import {KBPageSliderComponent} from 'ng2-page-slider-aot-fix/src/components/pageslider.component'
+import {PageSliderModule, KBPageSliderComponent} from 'ng2-page-slider';
 
-import {SliderService} from "./slider.service";
-import {SliderComponent} from "./slider.component";
+import {SliderService} from './slider.service';
+import {SliderComponent} from './slider.component';
 
 // Auto size heigth
-Object.defineProperty(KBPageSliderComponent.prototype, "pageHeight", {
-    get: function () {
-        let fullHeight = this.element.nativeElement.offsetHeight;
+Object.defineProperty(KBPageSliderComponent.prototype, 'pageHeight', {
+    get         : function (this: KBPageSliderComponent) {
+        let self: any = (this as any);
+        let renderer: any = (this.renderer as any);
+        let fullHeight = self.element.nativeElement.offsetHeight;
         let chin = (this.showIndicator && !this.overlayIndicator) ? 20 : 0;
-        if (!this.firstImage && this.renderer.collection) {
-            this.firstImage = new Image();
-            this.firstImage.onload = function () {
-                this.Resize();
+        if (!self.firstImage && renderer.collection) {
+            self.firstImage = new Image();
+            self.firstImage.onload = () => {
+                self.Resize();
                 this.renderer.Resize(this.pageWidth, this.pageHeight);
-            }.bind(this);
-            this.firstImage.src = this.renderer.collection[0].url;
+            };
+            self.firstImage.src = renderer.collection[0].url;
         }
-        else if (this.firstImage) {
-            if (this.firstImage.width > this.element.nativeElement.offsetWidth) {
-                this.element.nativeElement.style.height = (this.firstImage.height
-                    * this.element.nativeElement.offsetWidth) / this.firstImage.width + 'px';
+        else if (self.firstImage) {
+            if (self.firstImage.width > self.element.nativeElement.offsetWidth) {
+                self.element.nativeElement.style.height = (self.firstImage.height
+                    * self.element.nativeElement.offsetWidth) / self.firstImage.width + 'px';
             }
             else {
-                this.element.nativeElement.style.height = this.firstImage.height + 'px';
+                self.element.nativeElement.style.height = self.firstImage.height + 'px';
             }
-            fullHeight = this.element.nativeElement.offsetHeight;
+            fullHeight = self.element.nativeElement.offsetHeight;
         }
         return fullHeight - chin;
     },
-    enumerable: true,
+    enumerable  : true,
     configurable: true
 });
 
 // Corrected buttons position
-Object.defineProperty(KBPageSliderComponent.prototype, "buttonTop", {
-    get: function () {
-        return this.pageHeight / 2 - this.element.nativeElement.children[1].children[0].offsetHeight / 2 + "px";
+Object.defineProperty(KBPageSliderComponent.prototype, 'buttonTop', {
+    get         : function (this: KBPageSliderComponent) {
+        return this.pageHeight / 2 - (this as any).element.nativeElement.children[1].children[0].offsetHeight / 2 + 'px';
     },
-    enumerable: true,
+    enumerable  : true,
     configurable: true
 });
 
 @NgModule({
-    imports: [
+    imports     : [
         BrowserModule,
         PageSliderModule
     ],
-    exports: [
+    exports     : [
         SliderComponent
     ],
     declarations: [
         SliderComponent
     ],
-    providers: [
+    providers   : [
         SliderService
     ]
 })

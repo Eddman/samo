@@ -1,4 +1,4 @@
-<template ngFor let-contentPart [ngForOf]="contentParts">
+<ng-template ngFor let-contentPart [ngForOf]="contentParts">
     <p *ngIf="contentPart.type === types.TEXT"
        [columns]="contentPart">{{contentPart.text}}</p>
     <a *ngIf="contentPart.type === types.LINK_EXTERNAL" [href]="contentPart.url">{{contentPart.text}}</a>
@@ -7,4 +7,4 @@
     <br *ngIf="contentPart.type === types.LINE_BREAK">
     <slider-view *ngIf="contentPart.type === types.SLIDER"
                  [route]="contentPart" [keysEnabled]="false"></slider-view>
-</template>
+</ng-template>

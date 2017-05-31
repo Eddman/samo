@@ -108,16 +108,16 @@ export class ThumbnailComponent extends AbstractComponent {
     }
 
     setHover() {
-        setTimeout(function () {
+        setTimeout(() => {
             this.hover = true;
-        }.bind(this), 100);
+        }, 100);
         return false;
     }
 
     unsetHover() {
-        setTimeout(function () {
+        setTimeout(() => {
             this.hover = false;
-        }.bind(this), 100);
+        }, 100);
         return false;
     }
 

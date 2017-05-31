@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 
-import {AbstractHttpService} from "../abstract.http.service";
-import {RequestService} from "../auth/request.service";
+import {AbstractHttpService} from '../abstract.http.service';
+import {RequestService} from '../auth/request.service';
 
-import {MenuItem} from "./menu";
-import {RouteConfiguration} from "./route.configuration";
-import {Route} from "./route";
+import {MenuItem} from './menu';
+import {RouteConfiguration} from './route.configuration';
+import {Route} from './route';
 
 const errors = {
         NOT_FOUND: 'Route not found for given path!'
@@ -37,7 +37,7 @@ export class RoutingService extends AbstractHttpService<RouteConfiguration> {
         return new Promise((resolve, reject) => {
             this.post({
                 resourceURL: postURL,
-                data: rootItem
+                data       : rootItem
             }).subscribe(
                 (data) => {
                     this.setCache(data);
@@ -106,10 +106,10 @@ export class RoutingService extends AbstractHttpService<RouteConfiguration> {
 
     public getMenuRoutes(): Promise<MenuItem> {
         return new Promise<MenuItem>((resolve, reject) => {
-            this.getRootConfiguration().then((rootConfiguration) => {
+            this.getRootConfiguration().then((rootConfiguration: RouteConfiguration) => {
                 let menuRoutes: MenuItem[], config: any, menuLocales: MenuItem[] = [];
-                Object.keys(rootConfiguration.routes).forEach((route) => {
-                    config = rootConfiguration.routes[route];
+                rootConfiguration.routes.forEach((route: RouteConfiguration) => {
+                    config = route;
                     if (config.url) {
                         menuRoutes = [];
                         if (config.routes && config.routes.length) {

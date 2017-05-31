@@ -16,11 +16,11 @@ export abstract class AbstractComponent {
     public error: string;
 
     constructor(protected metaService: MetaService,
-                protected authService: AuthService,
-                protected routingService: RoutingService,
-                protected router: Router,
-                protected activeRoute: ActivatedRoute,
-                el: ElementRef) {
+        protected authService: AuthService,
+        protected routingService: RoutingService,
+        protected router: Router,
+        protected activeRoute: ActivatedRoute,
+        el: ElementRef) {
         this.isEdit = false;
         this.el = el.nativeElement;
     }
@@ -54,9 +54,9 @@ export abstract class AbstractComponent {
             } else {
                 description = '';
             }
-            Object.keys(content).forEach((key: string) => {
-                if (content[key].type === ContentPartsTypes.TEXT && content[key].text) {
-                    description += content[key].text;
+            content.forEach((part: ContentPart) => {
+                if (part.type === ContentPartsTypes.TEXT && part.text) {
+                    description += part.text;
                 }
             });
         }
@@ -77,16 +77,16 @@ export abstract class AbstractComponent {
     }
 
     protected getFirstImageFromContent(content: ContentPart[]): string {
-        let img: string;
+        let img: ContentPart;
         if (content) {
-            img = Object.keys(content).find((key: string) => {
-                return content[key].type === ContentPartsTypes.IMAGE && content[key].url;
+            img = content.find((part: ContentPart) => {
+                return part.type === ContentPartsTypes.IMAGE && !!part.url;
             });
-            if (img) {
-                img = content[img].url;
-            }
         }
-        return img;
+        if (img) {
+            return img.url;
+        }
+        return null;
     }
 
     protected setSEOImage(imageUrl?: string): void {

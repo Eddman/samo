@@ -1,31 +1,31 @@
-import {ElementRef, Component, OnInit} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import {ElementRef, Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 
 import {MetaService} from 'ng2-meta/src';
 
-import {AbstractComponent} from "../abstract.component";
-import {AuthService} from "../auth/auth.service";
-import {RoutingService} from "./routing.service";
+import {AbstractComponent} from '../abstract.component';
+import {AuthService} from '../auth/auth.service';
+import {RoutingService} from './routing.service';
 
-import {Route} from "./route";
-import {ViewHeader} from "../detail/detail";
+import {Route} from './route';
+import {ViewHeader} from '../detail/detail';
 
 @Component({
-    moduleId: module.id,
-    selector: 'router',
+    moduleId   : module.id,
+    selector   : 'router',
     templateUrl: 'router.component.html',
-    styleUrls: ['router.component.css']
+    styleUrls  : ['router.component.css']
 })
 export class RouterComponent extends AbstractComponent implements OnInit {
 
     public config: Route;
 
     constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                activeRoute: ActivatedRoute,
-                el: ElementRef) {
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        activeRoute: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, activeRoute, el);
     }
 
@@ -33,10 +33,10 @@ export class RouterComponent extends AbstractComponent implements OnInit {
         this.activeRoute.params.forEach(this.processRoute.bind(this));
     }
 
-    processRoute(pathParams: string[]) {
+    processRoute(pathParams: Params) {
         let params: string[] = [];
-        Object.keys(pathParams).forEach(function (p) {
-            params.push(pathParams[p]);
+        Object.keys(pathParams).forEach((paramName: string) => {
+            params.push(pathParams[paramName]);
         });
         this.routingService.getRouteConfig(params).then(
             (route) => {

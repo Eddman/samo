@@ -1,4 +1,4 @@
-<template [ngIf]="detail">
+<ng-template [ngIf]="detail">
     <h2 *ngIf="detail.title">{{detail.title}}</h2>
     <content [contentParts]="detail.content"></content>
-</template>
+</ng-template>

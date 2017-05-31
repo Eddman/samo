@@ -3,6 +3,7 @@
 .idea/misc.xml
 .idea/workspace.xml
 node_modules/
+.tscache/
 *.css
 *.js
 !gruntfile.js

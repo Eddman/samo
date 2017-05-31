@@ -180,6 +180,7 @@ export class MenuItemEditorComponent extends AbstractComponent implements OnInit
                 return route.routes;
             }
         }
+        return null;
     }
 
     private destroyDragAndDrop(): void {

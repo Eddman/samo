@@ -14,7 +14,7 @@
                 parent URL is "sk" and result URL will be /sk/projects
             </small>
         </div>
-        <template [ngIf]="item.type === 'group'">
+        <ng-template [ngIf]="item.type === 'group'">
             <div class="form-group">
                 <label for="redirect">Default child page</label>
                 <select class="form-control" [(ngModel)]="item.redirect">
@@ -29,7 +29,7 @@
             </div>
 
             <a class="btn btn-primary" (click)="addChild()">Add new child</a>
-        </template>
+        </ng-template>
     </div>
     <div *ngIf="parentLevel" class="remove_item">
         <a (click)="confirmRemove()">

@@ -17,7 +17,6 @@ export interface Request<T> {
     mapFunction?: (value: any, index: number) => T;
 }
 
-
 export interface PostRequest<T> extends Request<T> {
     data: any;
 }
@@ -38,14 +37,14 @@ export abstract class AbstractHttpService<T> {
         let resourceURL: string = request.resourceURL;
         let index: number = 0;
         if (request.params) {
-            Object.keys(request.params).forEach((key: string) => {
-                resourceURL = resourceURL.replace(':' + index, request.params[key]);
+            request.params.forEach((param: string) => {
+                resourceURL = resourceURL.replace(':' + index, param);
                 index += 1;
             });
         }
         if (request.subParams) {
-            Object.keys(request.subParams).forEach((key: string) => {
-                resourceURL = resourceURL.replace(':' + index, request.subParams[key]);
+            request.subParams.forEach((param: string) => {
+                resourceURL = resourceURL.replace(':' + index, param);
                 index += 1;
             });
         }
@@ -69,7 +68,7 @@ export abstract class AbstractHttpService<T> {
         if (error.status === 401) {
             // Not logged in - login first
             return Observable.throw({
-                status: error.status,
+                status : error.status,
                 message: error.statusText
             });
         } else {
@@ -89,7 +88,7 @@ export abstract class AbstractHttpService<T> {
                 window.console.error(errMsg);
             }
             return Observable.throw({
-                status: error.status || 500,
+                status : error.status || 500,
                 message: errMsg
             });
         }
@@ -149,19 +148,19 @@ export abstract class AbstractHttpService<T> {
         let cache: any = this.cache;
         if (request) {
             if (request.params) {
-                Object.keys(request.params).forEach((key: string) => {
-                    if (!cache[request.params[key]]) {
-                        cache[request.params[key]] = {};
+                request.params.forEach((param: string) => {
+                    if (!cache[param]) {
+                        cache[param] = {};
                     }
-                    cache = cache[request.params[key]];
+                    cache = cache[param];
                 });
             }
             if (request.subParams) {
-                Object.keys(request.subParams).forEach((key: string) => {
-                    if (!cache[request.subParams[key]]) {
-                        cache[request.subParams[key]] = {};
+                request.subParams.forEach((param: string) => {
+                    if (!cache[param]) {
+                        cache[param] = {};
                     }
-                    cache = cache[request.subParams[key]];
+                    cache = cache[param];
                 });
             }
         }
