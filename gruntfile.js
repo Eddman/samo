@@ -86,9 +86,9 @@ module.exports = function (grunt) {
                         commonjs({
                             include: [
                                 'node_modules/rxjs/**',
+                                'node_modules/@herbis/ngx-modal/**',
                                 'node_modules/ng2-dragula/ng2-dragula.js',
                                 'node_modules/ng2-dragula/components/**',
-                                'node_modules/ng2-modal/**',
                                 'node_modules/dragula/**',
                                 'node_modules/contra/debounce.js',
                                 'node_modules/contra/emitter.js',

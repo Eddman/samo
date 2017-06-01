@@ -1,23 +1,22 @@
-import {ElementRef, Component, ViewChild, OnDestroy, OnInit, Input} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ElementRef, Component, ViewChild, OnDestroy, OnInit, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
 
 import {DragulaService} from 'ng2-dragula/components/dragula.provider';
 
-import {MetaService} from 'ng2-meta/src';
+import {RoutingService} from '../routing/routing.service';
+import {AuthService} from '../auth/auth.service';
 
-import {RoutingService} from "../routing/routing.service";
-import {AuthService} from "../auth/auth.service";
+import {AbstractComponent} from '../abstract.component';
+import {ModalConfirmationComponent} from '../common/modal/modal.confirmation.component';
 
-import {AbstractComponent} from "../abstract.component";
-import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
-
-import {RouteConfiguration} from "../routing/route.configuration";
+import {RouteConfiguration} from '../routing/route.configuration';
 
 @Component({
-    moduleId: module.id,
-    selector: 'item-editor',
+    moduleId   : module.id,
+    selector   : 'item-editor',
     templateUrl: 'item.editor.component.html',
-    styleUrls: ['item.editor.component.css']
+    styleUrls  : ['item.editor.component.css']
 })
 export class MenuItemEditorComponent extends AbstractComponent implements OnInit, OnDestroy {
 
@@ -33,15 +32,14 @@ export class MenuItemEditorComponent extends AbstractComponent implements OnInit
     private bagEl: Element;
 
     constructor(private dragulaService: DragulaService,
-                metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+        metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
     }
-
 
     // Init/Destroy component
     public  ngOnInit(): void {
@@ -59,9 +57,9 @@ export class MenuItemEditorComponent extends AbstractComponent implements OnInit
             this.item.routes = [];
         }
         this.item.routes.push({
-            title: 'No name',
-            url: '',
-            type: 'unknown',
+            title : 'No name',
+            url   : '',
+            type  : 'unknown',
             config: {
                 type: [this.guid(), this.guid()]
             }
@@ -115,15 +113,15 @@ export class MenuItemEditorComponent extends AbstractComponent implements OnInit
         }
         // Setup dragula for the bag above
         this.dragulaService.setOptions(this.item.bag, {
-            containers: [this.bagEl],
+            containers   : [this.bagEl],
             revertOnSpill: true,
-            direction: 'vertical',
-            moves: (el: Element, container: Element, handle: Element) => {
+            direction    : 'vertical',
+            moves        : (el: Element, container: Element, handle: Element) => {
                 return handle.parentElement.className === 'handle'
                     && handle.parentElement.parentElement
                         .parentElement.parentElement.classList.contains(this.item.bag);
             },
-            isContainer: (el: Element) => {
+            isContainer  : (el: Element) => {
                 return (!dragElm || !dragElm.classList.contains('group'))
                     && el.classList.contains('dragulaBag')
                     && el.classList.contains('groupBag');
@@ -139,34 +137,36 @@ export class MenuItemEditorComponent extends AbstractComponent implements OnInit
             dragElm = el;
             dragIndex = domIndexOf(el, source);
         });
-        this.dragulaService.find(this.item.bag).drake.on('drop', (dropElm: Element, target: Element, source: Element) => {
-            let dropIndex: number = domIndexOf(dropElm, target),
-                sourceModel: RouteConfiguration[] = this.item.routes,
-                targetModel: RouteConfiguration[],
-                dropElmModel: RouteConfiguration,
-                notCopy: boolean;
-            if (!target) {
-                return;
-            }
-            // console.log('DROP');
-            // console.log(sourceModel);
-            if (target === source) {
-                sourceModel.splice(dropIndex, 0, sourceModel.splice(dragIndex, 1)[0]);
-            }
-            else {
-                notCopy = dragElm === dropElm;
-                targetModel = this.getTargetModel(target);
-                if (!targetModel) {
+        this.dragulaService.find(this.item.bag).drake
+            .on('drop', (dropElm: Element, target: Element, source: Element) => {
+                let dropIndex: number = domIndexOf(dropElm, target),
+                    sourceModel: RouteConfiguration[] = this.item.routes,
+                    targetModel: RouteConfiguration[],
+                    dropElmModel: RouteConfiguration,
+                    notCopy: boolean;
+                if (!target) {
                     return;
                 }
-                dropElmModel = notCopy ? sourceModel[dragIndex] : JSON.parse(JSON.stringify(sourceModel[dragIndex]));
-                if (notCopy) {
-                    sourceModel.splice(dragIndex, 1);
+                // console.log('DROP');
+                // console.log(sourceModel);
+                if (target === source) {
+                    sourceModel.splice(dropIndex, 0, sourceModel.splice(dragIndex, 1)[0]);
                 }
-                targetModel.splice(dropIndex, 0, dropElmModel);
-                target.removeChild(dropElm); // element must be removed for ngFor to apply correctly
-            }
-        });
+                else {
+                    notCopy = dragElm === dropElm;
+                    targetModel = this.getTargetModel(target);
+                    if (!targetModel) {
+                        return;
+                    }
+                    dropElmModel = notCopy ? sourceModel[dragIndex] : JSON.parse(
+                        JSON.stringify(sourceModel[dragIndex]));
+                    if (notCopy) {
+                        sourceModel.splice(dragIndex, 1);
+                    }
+                    targetModel.splice(dropIndex, 0, dropElmModel);
+                    target.removeChild(dropElm); // element must be removed for ngFor to apply correctly
+                }
+            });
     }
 
     private getTargetModel(targetBag: Element): RouteConfiguration[] {

@@ -1,28 +1,27 @@
 import {
     Component, ElementRef, OnChanges, SimpleChanges, Input, OnDestroy, Output, EventEmitter,
     ViewChild
-} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+} from '@angular/core';
+import {Meta} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import {MetaService} from 'ng2-meta/src';
+import {RoutingService} from '../routing/routing.service';
+import {AuthService} from '../auth/auth.service';
 
-import {RoutingService} from "../routing/routing.service";
-import {AuthService} from "../auth/auth.service";
+import {AbstractViewComponent} from '../abstract.view.component';
+import {ModalLoginComponent} from '../common/modal/modal.login.component';
 
-import {AbstractViewComponent} from "../abstract.view.component";
-import {ModalLoginComponent} from "../common/modal/modal.login.component";
+import {SliderService} from './slider.service';
 
-import {SliderService} from "./slider.service";
-
-import {SliderConfiguration, SliderImage} from "./slider.configuration";
-import {ViewHeader} from "../detail/detail";
-import {Route} from "../routing/route";
+import {SliderConfiguration, SliderImage} from './slider.configuration';
+import {ViewHeader} from '../detail/detail';
+import {Route} from '../routing/route';
 
 @Component({
-    moduleId: module.id,
-    selector: 'slider-view',
+    moduleId   : module.id,
+    selector   : 'slider-view',
     templateUrl: 'slider.component.html',
-    styleUrls: ['slider.component.css']
+    styleUrls  : ['slider.component.css']
 })
 export class SliderComponent extends AbstractViewComponent implements OnChanges, OnDestroy {
 
@@ -53,12 +52,12 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
     private autoSlide: number;
 
     constructor(private sliderService: SliderService,
-                metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+        metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
     }
 
@@ -132,7 +131,8 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
         if (this.autoSlide) {
             if (arguments.length === 0 || sliding) {
                 this.transitionDuration = this.defaultDuration || 500;
-                this.interval = setInterval(this.autoSlideFunction.bind(this), this.autoSlide + this.transitionDuration);
+                this.interval = setInterval(this.autoSlideFunction.bind(this),
+                    this.autoSlide + this.transitionDuration);
             } else {
                 clearInterval(this.interval);
                 delete this.interval;

@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 
-import {AbstractHttpService} from "../abstract.http.service";
-import {RequestService} from "../auth/request.service";
-import {Detail} from "./detail";
+import {AbstractHttpService} from '../abstract.http.service';
+import {RequestService} from '../auth/request.service';
+import {Detail} from './detail';
 
 const getURL: string = '/app/mock/details{params}.json';
 
@@ -26,8 +26,8 @@ export class DetailService extends AbstractHttpService<Detail> {
         }
         return this.getWithCache({
             resourceURL: getURL.replace('{params}', detailParams),
-            params: type,
-            subParams: parameters
+            params     : type,
+            subParams  : parameters
         });
     }
 }

@@ -1,22 +1,22 @@
-import {NgModule} from "@angular/core";
+import {NgModule} from '@angular/core';
 
-import {DetailService} from "./detail.service";
+import {DetailService} from './detail.service';
 
-import {ContentModule} from "../content/content.module";
-import {DetailComponent} from "./detail.component";
+import {ContentModule} from '../content/content.module';
+import {DetailComponent} from './detail.component';
 
 @NgModule({
-    imports: [
+    imports     : [
         ContentModule
     ],
-    exports: [
+    exports     : [
         ContentModule,
         DetailComponent
     ],
     declarations: [
         DetailComponent
     ],
-    providers: [DetailService]
+    providers   : [DetailService]
 })
 export class DetailModule {
 }

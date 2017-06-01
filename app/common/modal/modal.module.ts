@@ -1,19 +1,19 @@
-import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 
-import {ModalModule as ModuleModal}  from 'ng2-modal';
+import {ModalModule as ModuleModal}  from '@herbis/ngx-modal';
 
-import {ModalConfirmationComponent} from "./modal.confirmation.component";
-import {ModalLoginComponent} from "./modal.login.component";
+import {ModalConfirmationComponent} from './modal.confirmation.component';
+import {ModalLoginComponent} from './modal.login.component';
 
 @NgModule({
-    imports: [
+    imports     : [
         BrowserModule,
         FormsModule,
         ModuleModal
     ],
-    exports: [
+    exports     : [
         ModalConfirmationComponent,
         ModalLoginComponent
     ],

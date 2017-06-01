@@ -1,16 +1,16 @@
 import {ViewChild, Component, EventEmitter, Output, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
 
-import {Modal} from 'ng2-modal/Modal';
-import {MetaService} from 'ng2-meta/src';
+import {Modal} from '@herbis/ngx-modal';
 
 import {AuthService} from '../../auth/auth.service';
 import {AbstractComponent} from '../../abstract.component';
 import {RoutingService} from '../../routing/routing.service';
 
 @Component({
-    moduleId: module.id,
-    selector: 'modal-confirm',
+    moduleId   : module.id,
+    selector   : 'modal-confirm',
     templateUrl: 'modal.confirmation.component.html'
 })
 export class ModalConfirmationComponent extends AbstractComponent {
@@ -24,12 +24,12 @@ export class ModalConfirmationComponent extends AbstractComponent {
     @ViewChild(Modal)
     public modal: Modal;
 
-    constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+    constructor(metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
         this.yes = new EventEmitter<any>();
         this.no = new EventEmitter<any>();

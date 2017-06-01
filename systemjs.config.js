@@ -4,6 +4,9 @@
 function initApp() {
     'use strict';
 
+    // TODO: remove after UMD package is available
+    System.import('node_modules/@herbis/ngx-modal/@herbis/ngx-modal.system.js');
+
     //noinspection ES6ModulesDependencies
     System.config({
         paths: {
@@ -27,9 +30,6 @@ function initApp() {
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
-            // ng2-meta
-            'ng2-meta/src': 'npm:ng2-meta/dist',
-
             // ng2-gragula
             'ng2-dragula': 'npm:ng2-dragula',
             'dragula': 'npm:dragula',
@@ -38,8 +38,10 @@ function initApp() {
             'atoa': 'npm:atoa/atoa.js',
             'ticky': 'npm:ticky/ticky.js',
 
-            // ng2-modal
-            'ng2-modal': 'npm:ng2-modal',
+            // ngx-modal
+            // TODO: remove after UMD package is available
+            '@herbis/ngx-modal': 'ngx-modal',
+            //'@herbis/ngx-modal': 'npm:@herbis/ngx-modal/@herbis/ngx-modal.umd.js',
 
             // ng2-page-slider
             'ng2-page-slider': 'npm:ng2-page-slider/bundles/ng2-page-slider.umd.js',
@@ -56,10 +58,6 @@ function initApp() {
             rxjs: {
                 defaultExtension: 'js'
             },
-            'ng2-meta/src': {
-                main: './index.js',
-                defaultExtension: 'js'
-            },
             'ng2-dragula': {
                 defaultExtension: 'js'
             },
@@ -68,10 +66,6 @@ function initApp() {
                 defaultExtension: 'js'
             },
             'contra': {
-                defaultExtension: 'js'
-            },
-            'ng2-modal': {
-                main: 'index.js',
                 defaultExtension: 'js'
             }
         }

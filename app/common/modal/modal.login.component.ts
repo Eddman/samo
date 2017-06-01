@@ -1,8 +1,8 @@
 import {ViewChild, EventEmitter, Output, ElementRef, Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
 
-import {Modal} from 'ng2-modal/Modal';
-import {MetaService} from 'ng2-meta/src';
+import {Modal} from '@herbis/ngx-modal';
 
 import {ModalConfirmationComponent} from './modal.confirmation.component';
 
@@ -11,8 +11,8 @@ import {AbstractComponent} from '../../abstract.component';
 import {RoutingService} from '../../routing/routing.service';
 
 @Component({
-    moduleId: module.id,
-    selector: 'modal-login',
+    moduleId   : module.id,
+    selector   : 'modal-login',
     templateUrl: 'modal.login.component.html'
 })
 export class ModalLoginComponent extends AbstractComponent {
@@ -34,12 +34,12 @@ export class ModalLoginComponent extends AbstractComponent {
 
     public loggingIn: boolean;
 
-    constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+    constructor(metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
         this.login = new EventEmitter<any>();
         this.cancel = new EventEmitter<any>();
@@ -53,7 +53,7 @@ export class ModalLoginComponent extends AbstractComponent {
         this.loggingIn = true;
         delete this.error;
         this.authService.login({
-            user: this.username,
+            user    : this.username,
             password: this.password
         }).subscribe((success) => {
             if (success) {

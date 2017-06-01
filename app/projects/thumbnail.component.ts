@@ -1,71 +1,67 @@
-import {
-    Component, Output, Input, ElementRef, EventEmitter,
-    trigger, state, style, transition, animate, keyframes, AnimationTransitionEvent
-} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Component, Output, Input, ElementRef, EventEmitter, AnimationTransitionEvent} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
+import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 
-import {MetaService} from 'ng2-meta/src';
+import {Project} from './project';
+import {AuthService} from '../auth/auth.service';
+import {RoutingService} from '../routing/routing.service';
 
-import {Project} from "./project";
-import {AuthService} from "../auth/auth.service";
-import {RoutingService} from "../routing/routing.service";
-
-import {AbstractComponent} from "../abstract.component";
-
+import {AbstractComponent} from '../abstract.component';
 
 const loadedState: string = 'loaded';
 export const removedState: string = 'removed';
 
 @Component({
-    moduleId: module.id,
-    selector: 'thumbnail',
+    moduleId   : module.id,
+    selector   : 'thumbnail',
     templateUrl: 'thumbnail.component.html',
-    styleUrls: ['thumbnail.component.css'],
-    host: {
+    styleUrls  : ['thumbnail.component.css'],
+    host       : {
         '[class.hover]': 'hover && thumbnail.state !== "' + removedState + '"'
     },
-    animations: [
+    animations : [
         trigger('state', [
             state('*', style({
-                opacity: 0,
+                opacity  : 0,
                 transform: 'scale(0)'
             })),
             state(loadedState, style({
-                opacity: 1,
+                opacity  : 1,
                 transform: 'scale(1)'
             })),
             transition('* => ' + loadedState, animate('300ms ease')),
             transition(loadedState + ' => ' + removedState, [
                 animate(600, keyframes([
                     style({
-                        opacity: 1,
+                        opacity  : 1,
                         transform: 'scale(1.1)',
-                        offset: 0.2
+                        offset   : 0.2
                     }),
                     style({
-                        opacity: 1,
+                        opacity  : 1,
                         transform: 'scale(1.1) rotate(3deg)',
-                        offset: 0.2
+                        offset   : 0.2
                     }),
                     style({
-                        opacity: 1,
+                        opacity  : 1,
                         transform: 'scale(1.1) rotate(-3deg)',
-                        offset: 0.35
+                        offset   : 0.35
                     }),
                     style({
-                        opacity: 1,
+                        opacity  : 1,
                         transform: 'scale(1.1) rotate(3deg)',
-                        offset: 0.5
+                        offset   : 0.5
                     }),
                     style({
-                        opacity: 1,
+                        opacity  : 1,
                         transform: 'scale(1.1) rotate(-3deg)',
-                        offset: 0.65
+                        offset   : 0.65
                     }),
                     style({
-                        opacity: 0,
+                        opacity  : 0,
                         transform: 'scale(0) rotate(0)',
-                        offset: 1
+                        offset   : 1
                     })
                 ]))
             ])
@@ -89,12 +85,12 @@ export class ThumbnailComponent extends AbstractComponent {
 
     public hover: boolean;
 
-    constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                activeRoute: ActivatedRoute,
-                el: ElementRef) {
+    constructor(metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        activeRoute: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, activeRoute, el);
         this.hover = false;
         this.removeChange = new EventEmitter();

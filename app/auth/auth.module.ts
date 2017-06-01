@@ -1,7 +1,7 @@
-import {NgModule} from "@angular/core";
-import {AuthService} from "./auth.service";
-import {StorageService} from "./storage.service";
-import {RequestService} from "./request.service";
+import {NgModule} from '@angular/core';
+import {AuthService} from './auth.service';
+import {StorageService} from './storage.service';
+import {RequestService} from './request.service';
 
 @NgModule({
     providers: [

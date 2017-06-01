@@ -1,34 +1,33 @@
 import {
     ElementRef, ViewChild, OnChanges, OnDestroy, SimpleChanges, Component, Output, Input,
     EventEmitter
-} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
 
 import {DragulaService} from 'ng2-dragula/components/dragula.provider';
 
-import {MetaService} from 'ng2-meta/src';
+import {RoutingService} from '../routing/routing.service';
+import {AuthService} from '../auth/auth.service';
 
-import {RoutingService} from "../routing/routing.service";
-import {AuthService} from "../auth/auth.service";
+import {AbstractViewComponent} from '../abstract.view.component';
+import {ModalLoginComponent} from '../common/modal/modal.login.component';
+import {ModalConfirmationComponent} from '../common/modal/modal.confirmation.component';
 
-import {AbstractViewComponent} from "../abstract.view.component";
-import {ModalLoginComponent} from "../common/modal/modal.login.component";
-import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
+import {ViewHeader} from '../detail/detail';
+import {Route} from '../routing/route';
+import {Project} from './project';
 
-import {ViewHeader} from "../detail/detail";
-import {Route} from "../routing/route";
-import {Project} from "./project";
-
-import {ProjectsService} from "./projects.service";
-import {removedState} from "./thumbnail.component";
+import {ProjectsService} from './projects.service';
+import {removedState} from './thumbnail.component';
 
 const dragAndDropBag = 'thumbnails-bag';
 
 @Component({
-    moduleId: module.id,
-    selector: 'projects-view',
+    moduleId   : module.id,
+    selector   : 'projects-view',
     templateUrl: 'projects.component.html',
-    styleUrls: ['projects.component.css']
+    styleUrls  : ['projects.component.css']
 })
 export class ProjectsComponent extends AbstractViewComponent implements OnChanges, OnDestroy {
 
@@ -59,13 +58,13 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
     private projectToRemove: Project;
 
     constructor(private projectService: ProjectsService,
-                private dragulaService: DragulaService,
-                metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+        private dragulaService: DragulaService,
+        metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
         this.jigglePaused = false;
     }
@@ -136,7 +135,7 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
 
         // Get the bag element
         this.bagEl = Array.prototype.slice.call(this.el.childNodes).find((child: Element) => {
-            return child.className === "grid";
+            return child.className === 'grid';
         });
 
         // Destroy previous dragula
@@ -146,9 +145,9 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
 
         // Setup dragula for the bag above
         this.dragulaService.setOptions(dragAndDropBag, {
-            containers: [this.bagEl],
+            containers   : [this.bagEl],
             revertOnSpill: true,
-            direction: 'horizontal',
+            direction    : 'horizontal',
             moves(el: Element) {
                 return el.tagName.toLowerCase() === 'thumbnail';
             },

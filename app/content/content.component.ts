@@ -1,12 +1,12 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input} from '@angular/core';
 
-import {ContentPart, ContentPartsTypes} from "./content";
+import {ContentPart, ContentPartsTypes} from './content';
 
 @Component({
-    moduleId: module.id,
-    selector: 'content',
+    moduleId   : module.id,
+    selector   : 'content',
     templateUrl: 'content.component.html',
-    styleUrls: ['content.component.css']
+    styleUrls  : ['content.component.css']
 })
 export class ContentComponent {
 

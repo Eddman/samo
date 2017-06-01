@@ -1,26 +1,24 @@
-import {ElementRef, ViewChild, EventEmitter, Output, OnInit, Component, Input} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ElementRef, ViewChild, EventEmitter, Output, OnInit, Component, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
+import {RoutingService} from '../routing/routing.service';
+import {AuthService} from '../auth/auth.service';
 
-import {MetaService} from 'ng2-meta/src';
+import {ModalConfirmationComponent} from '../common/modal/modal.confirmation.component';
+import {ModalLoginComponent} from '../common/modal/modal.login.component';
+import {AbstractViewComponent} from '../abstract.view.component';
 
-import {RoutingService} from "../routing/routing.service";
-import {AuthService} from "../auth/auth.service";
-
-import {ModalConfirmationComponent} from "../common/modal/modal.confirmation.component";
-import {ModalLoginComponent} from "../common/modal/modal.login.component";
-import {AbstractViewComponent} from "../abstract.view.component";
-
-import {MenuItem} from "../routing/menu";
-import {Route} from "../routing/route";
-import {RouteConfiguration} from "../routing/route.configuration";
-import {ViewHeader} from "../detail/detail";
+import {MenuItem} from '../routing/menu';
+import {Route} from '../routing/route';
+import {RouteConfiguration} from '../routing/route.configuration';
+import {ViewHeader} from '../detail/detail';
 
 @Component({
-    moduleId: module.id,
-    selector: 'app-menu',
+    moduleId   : module.id,
+    selector   : 'app-menu',
     templateUrl: 'menu.component.html',
-    styleUrls: ['menu.component.css'],
-    host: {
+    styleUrls  : ['menu.component.css'],
+    host       : {
         '[class.editMode]': 'isEdit'
     }
 })
@@ -46,12 +44,12 @@ export class MenuComponent extends AbstractViewComponent implements OnInit {
 
     public rootItem: MenuItem | RouteConfiguration;
 
-    constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+    constructor(metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
         this.editEnabled = new EventEmitter<boolean>();
     }
@@ -179,9 +177,9 @@ export class MenuComponent extends AbstractViewComponent implements OnInit {
     // Adding groups
     public addGroup(): void {
         (<RouteConfiguration> this.rootItem).routes.push({
-            title: 'No name',
-            url: '',
-            type: 'group',
+            title : 'No name',
+            url   : '',
+            type  : 'group',
             routes: []
         });
     }

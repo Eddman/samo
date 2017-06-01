@@ -1,16 +1,15 @@
 import {EventEmitter, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
+import {Meta} from '@angular/platform-browser';
 
-import {MetaService} from 'ng2-meta/src';
-
-import {ErrorResponse} from "./abstract.http.service";
+import {ErrorResponse} from './abstract.http.service';
 import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
-import {Route} from "./routing/route";
+import {Route} from './routing/route';
 
 import {ModalLoginComponent} from './common/modal/modal.login.component';
-import {AbstractComponent} from "./abstract.component";
-import {ViewHeader} from "./detail/detail";
+import {AbstractComponent} from './abstract.component';
+import {ViewHeader} from './detail/detail';
 
 import {SubjectSubscription} from 'rxjs/SubjectSubscription';
 
@@ -22,12 +21,12 @@ export abstract class AbstractViewComponent extends AbstractComponent {
 
     public abstract route: Route;
 
-    constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+    constructor(metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
         this.headerChange = new EventEmitter<ViewHeader>();
     }

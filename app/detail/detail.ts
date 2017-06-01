@@ -1,4 +1,4 @@
-import {ContentPart} from "../content/content";
+import {ContentPart} from '../content/content';
 
 export interface ViewHeader {
     pageTitle: string;

@@ -1,7 +1,6 @@
 import {ElementRef, OnChanges, SimpleChanges, Component, Input, ViewChild, EventEmitter, Output} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-
-import {MetaService} from 'ng2-meta/src';
+import {Meta} from '@angular/platform-browser';
 
 import {AbstractViewComponent} from '../abstract.view.component';
 import {ModalLoginComponent} from '../common/modal/modal.login.component';
@@ -35,7 +34,7 @@ export class ListComponent extends AbstractViewComponent implements OnChanges {
     public listItems: ListItem[];
 
     constructor(private listService: ListService,
-        metaService: MetaService,
+        metaService: Meta,
         authService: AuthService,
         routingService: RoutingService,
         router: Router,

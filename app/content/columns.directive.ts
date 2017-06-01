@@ -1,10 +1,10 @@
-import {Directive, Input, OnInit} from "@angular/core";
-import {ContentPart} from "./content";
+import {Directive, Input, OnInit} from '@angular/core';
+import {ContentPart} from './content';
 
 @Directive({
     selector: '[columns]',
-    host: {
-        '[class.text]': 'true',
+    host    : {
+        '[class.text]'   : 'true',
         '[class.column2]': 'columnsCount == 2',
         '[class.column3]': 'columnsCount == 3'
     }

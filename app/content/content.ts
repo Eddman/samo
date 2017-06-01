@@ -1,4 +1,4 @@
-import {RouteType} from "../routing/route.type";
+import {RouteType} from '../routing/route.type';
 
 export type ContentType = 'text' | 'image' | 'external-link' | 'internal-link' | 'break' | 'slider';
 
@@ -10,7 +10,6 @@ export abstract class ContentPartsTypes {
     public static LINE_BREAK: ContentType = 'break';
     public static SLIDER: ContentType = 'slider';
 }
-
 
 export interface ContentPart {
     type: ContentType;

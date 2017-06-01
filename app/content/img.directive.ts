@@ -1,15 +1,15 @@
-import {Directive, Input, OnInit} from "@angular/core";
+import {Directive, Input, OnInit} from '@angular/core';
 
-import {ContentPart} from "./content";
+import {ContentPart} from './content';
 
 @Directive({
     selector: '[img]',
-    host: {
-        '[class.floatLeft]': 'floatLeft',
+    host    : {
+        '[class.floatLeft]' : 'floatLeft',
         '[class.floatRight]': 'floatRight',
-        '[title]': 'title',
-        '[src]': 'url',
-        '[style.width]': 'width'
+        '[title]'           : 'title',
+        '[src]'             : 'url',
+        '[style.width]'     : 'width'
     }
 })
 export class ImageDirective implements OnInit {

@@ -1,5 +1,5 @@
-import {RouteType} from "./route.type";
-import {ViewHeader} from "../detail/detail";
+import {RouteType} from './route.type';
+import {ViewHeader} from '../detail/detail';
 
 export class Route {
 

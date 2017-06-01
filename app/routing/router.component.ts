@@ -1,7 +1,6 @@
 import {ElementRef, Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-
-import {MetaService} from 'ng2-meta/src';
+import {Meta} from '@angular/platform-browser';
 
 import {AbstractComponent} from '../abstract.component';
 import {AuthService} from '../auth/auth.service';
@@ -20,7 +19,7 @@ export class RouterComponent extends AbstractComponent implements OnInit {
 
     public config: Route;
 
-    constructor(metaService: MetaService,
+    constructor(metaService: Meta,
         authService: AuthService,
         routingService: RoutingService,
         router: Router,

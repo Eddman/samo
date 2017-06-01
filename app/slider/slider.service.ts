@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 
-import {RequestService} from "../auth/request.service";
-import {AbstractHttpService} from "../abstract.http.service";
+import {RequestService} from '../auth/request.service';
+import {AbstractHttpService} from '../abstract.http.service';
 
-import {SliderConfiguration} from "./slider.configuration";
+import {SliderConfiguration} from './slider.configuration';
 
 @Injectable()
 export class SliderService extends AbstractHttpService<SliderConfiguration> {
@@ -16,7 +16,7 @@ export class SliderService extends AbstractHttpService<SliderConfiguration> {
     public getSlides(type: string[]): Promise<SliderConfiguration> {
         return this.getWithCache({
             resourceURL: '/app/mock/slides/:0/:1.json',
-            params: type
+            params     : type
         });
     }
 }

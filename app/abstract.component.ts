@@ -1,11 +1,14 @@
 import {ElementRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-
-import {MetaService} from 'ng2-meta/src';
+import {Meta} from '@angular/platform-browser';
 
 import {AuthService} from './auth/auth.service';
 import {RoutingService} from './routing/routing.service';
 import {ContentPartsTypes, ContentPart} from './content/content';
+
+const metaConfig = {
+    description: 'architekt ~ poprad ~ wien'
+};
 
 export abstract class AbstractComponent {
 
@@ -15,7 +18,7 @@ export abstract class AbstractComponent {
 
     public error: string;
 
-    constructor(protected metaService: MetaService,
+    constructor(protected metaService: Meta,
         protected authService: AuthService,
         protected routingService: RoutingService,
         protected router: Router,
@@ -70,10 +73,19 @@ export abstract class AbstractComponent {
             if (description.length > 250) {
                 description = description.substring(0, 247).concat('...');
             }
-            this.metaService.setTag('description', description);
         } else {
-            this.metaService.setTag('description', null);
+            description = metaConfig.description;
         }
+
+        this.metaService.updateTag({
+            property: 'og:description',
+            content : description
+        });
+
+        this.metaService.updateTag({
+            name   : 'description',
+            content: description
+        });
     }
 
     protected getFirstImageFromContent(content: ContentPart[]): string {
@@ -91,9 +103,15 @@ export abstract class AbstractComponent {
 
     protected setSEOImage(imageUrl?: string): void {
         if (imageUrl) {
-            this.metaService.setTag('og:image', window.location.origin + imageUrl);
+            this.metaService.updateTag({
+                property: 'og:image',
+                content : imageUrl
+            });
         } else {
-            this.metaService.setTag('og:image', window.location.origin + '/seo/thumb.png');
+            this.metaService.updateTag({
+                property: 'og:image',
+                content : window.location.origin + '/seo/thumb.png'
+            });
         }
     }
 }

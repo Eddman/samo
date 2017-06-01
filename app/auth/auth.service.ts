@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 
 import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 import {AbstractHttpService} from '../abstract.http.service';
-import {RequestService} from "./request.service";
-import {StorageService} from "./storage.service";
+import {RequestService} from './request.service';
+import {StorageService} from './storage.service';
 
 const loginURL = '/login',
     logoutURL = '/logout';
@@ -30,7 +30,7 @@ export class AuthService extends AbstractHttpService<boolean> {
         this.loggedIn = new BehaviorSubject<boolean>(false);
 
         if (!!StorageService.getAuthToken()) {
-        this.loggedIn.next(true);
+            this.loggedIn.next(true);
         }
     }
 
@@ -39,7 +39,7 @@ export class AuthService extends AbstractHttpService<boolean> {
         this.loggedIn.next(false);
         return this.post({
             resourceURL: loginURL,
-            data: credentials,
+            data       : credentials,
             mapFunction: (res: LoginResponseData) => {
                 if (res.success) {
                     StorageService.setAuthToken(res.auth_token);
@@ -54,7 +54,7 @@ export class AuthService extends AbstractHttpService<boolean> {
     public logout(): Observable<boolean> {
         let request: Observable<boolean> = this.post({
             resourceURL: logoutURL,
-            data: {}
+            data       : {}
         });
         StorageService.removeAuthToken();
         this.loggedIn.next(false);

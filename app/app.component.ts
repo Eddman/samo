@@ -1,17 +1,16 @@
 import {Component, ViewChild, ReflectiveInjector, ElementRef, OnInit} from '@angular/core';
 import {RouterOutlet, ActivatedRoute, RouterOutletMap, Router} from '@angular/router';
-
-import {MetaService} from 'ng2-meta/src';
+import {Meta} from '@angular/platform-browser';
 
 import {AbstractComponent} from './abstract.component';
-import {AuthService} from "./auth/auth.service";
-import {RoutingService} from "./routing/routing.service";
+import {AuthService} from './auth/auth.service';
+import {RoutingService} from './routing/routing.service';
 
 @Component({
-    moduleId: module.id,
-    selector: 'samuel-netocny',
+    moduleId   : module.id,
+    selector   : 'samuel-netocny',
     templateUrl: 'app.component.html',
-    styleUrls: ['app.component.css']
+    styleUrls  : ['app.component.css']
 })
 export class AppComponent extends AbstractComponent implements OnInit {
 
@@ -22,15 +21,14 @@ export class AppComponent extends AbstractComponent implements OnInit {
 
     private active: boolean;
 
-    constructor(metaService: MetaService,
-                authService: AuthService,
-                routingService: RoutingService,
-                router: Router,
-                route: ActivatedRoute,
-                el: ElementRef) {
+    constructor(metaService: Meta,
+        authService: AuthService,
+        routingService: RoutingService,
+        router: Router,
+        route: ActivatedRoute,
+        el: ElementRef) {
         super(metaService, authService, routingService, router, route, el);
     }
-
 
     public ngOnInit(): void {
         this.active = true;
@@ -51,11 +49,11 @@ export class AppComponent extends AbstractComponent implements OnInit {
         } else if (this.previousRoute) {
             resolved = [
                 {
-                    provide: ActivatedRoute,
+                    provide : ActivatedRoute,
                     useValue: this.previousRoute
                 },
                 {
-                    provide: RouterOutletMap,
+                    provide : RouterOutletMap,
                     useValue: this.routerOutlet.outletMap
                 }
             ];

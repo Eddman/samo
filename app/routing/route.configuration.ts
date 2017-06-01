@@ -1,4 +1,4 @@
-import {RouteType} from "./route.type";
+import {RouteType} from './route.type';
 
 export interface RouteConfiguration {
     title: string;
