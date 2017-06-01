@@ -14,3 +14,4 @@ dist/
 .idea/terminal.xml
 .DS_Store
 ngFactories/
+/package-lock.json

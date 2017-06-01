@@ -87,7 +87,7 @@ module.exports = function (grunt) {
                             include: [
                                 'node_modules/rxjs/**',
                                 'node_modules/@herbis/ngx-modal/**',
-                                'node_modules/ng2-dragula/ng2-dragula.js',
+                                'node_modules/ng2-dragula/**',
                                 'node_modules/ng2-dragula/components/**',
                                 'node_modules/dragula/**',
                                 'node_modules/contra/debounce.js',
@@ -268,6 +268,6 @@ module.exports = function (grunt) {
     grunt.registerTask('run', ['build', 'concurrent:dev']);
 
     // Dist tasks
-    grunt.registerTask('dist', ['cleanup:all', 'sass', 'cssmin', 'ngc', 'copy', 'rollup', 'cleanup:postDist']);
+    grunt.registerTask('dist', ['cleanup:all', 'sass', 'cssmin', 'ngc', 'copy', 'rollup', 'cleanup:postDist', 'copy:mock']);
     grunt.registerTask('dist-run', ['dist', 'concurrent:dist']);
 };
