@@ -6,6 +6,7 @@ node_modules/
 .tscache/
 *.css
 *.js
+!tools/**/*
 !gruntfile.js
 !systemjs.config.js
 *.js.map
