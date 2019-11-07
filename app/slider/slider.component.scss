@@ -31,21 +31,21 @@ $title_size_original: 16px;
                     font-size: $arrow_size !important;
                     width: $arrow_size !important;
                     height: $arrow_size !important;
-                    line-height: 1* $arrow_line_height;
-                    @include border-radius(0.5 * $arrow_size !important);
+                    line-height: $arrow_line_height;
+                    @include border-radius($arrow_size / 2 !important);
                     background-color: rgba(125, 125, 125, 0.4);
                     padding: 0 !important;
                 }
             }
 
             kb-dot-indicator {
-                bottom: 0.5 * $title_offset !important;
+                bottom: $title_offset / 2 !important;
 
                 .dot {
                     width: $dot_size;
                     height: $dot_size;
-                    margin: 0.33 * $dot_size;
-                    @include border-radius(0.5 * $dot_size);
+                    margin: $dot_size / 3;
+                    @include border-radius($dot_size / 2);
                 }
             }
         }
@@ -63,10 +63,10 @@ $screen_width: $optimal_width + ($page_margin * 2);
     $title_size: $title_size_original / $screen_width * 100;
 
     @include definition(
-                    $arrow_size + vw,
-                    $arrow_line_height + vw,
-                    $dot_size + vw,
-                    $title_size + vw,
-                    $dot_size / 3 + $title_size + vw
+                    $arrow_size * 1vw,
+                    $arrow_line_height * 1vw,
+                    $dot_size * 1vw,
+                    $title_size * 1vw,
+                    ($dot_size / 3 + $title_size) * 1vw
     );
 }

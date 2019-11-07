@@ -110,7 +110,7 @@ export abstract class AbstractComponent {
         } else {
             this.metaService.updateTag({
                 property: 'og:image',
-                content : window.location.origin + '/seo/thumb.png'
+                content : '/images/seo/thumb.png'
             });
         }
     }

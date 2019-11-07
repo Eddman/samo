@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": ".",
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
@@ -11,9 +13,9 @@
             "dom"
         ],
         "noImplicitAny": true,
-        "noImplicitReturns": false,
+        "noImplicitReturns": true,
         "noImplicitThis": true,
-        "noUnusedLocals": false
+        "noUnusedLocals": true
     },
     "exclude": [
         "node_modules"

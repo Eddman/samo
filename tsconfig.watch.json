@@ -4,6 +4,7 @@
         "app/**/*.ts"
     ],
     "exclude": [
+        "app/**/*.spec.ts",
         "app/main.aot.ts"
     ]
 }

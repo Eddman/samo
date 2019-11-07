@@ -259,7 +259,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
 
     // Our local tasks
-    grunt.loadTasks('./tools/grunt_tasks');
+    grunt.loadTasks('./node_modules/@dbg-riskit/dave-ui-devkit/tools/grunt/tasks');
 
     // Build tasks
     grunt.registerTask('clean', ['cleanup:all']);

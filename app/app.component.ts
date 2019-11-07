@@ -1,5 +1,5 @@
-import {Component, ViewChild, ReflectiveInjector, ElementRef, OnInit} from '@angular/core';
-import {RouterOutlet, ActivatedRoute, RouterOutletMap, Router} from '@angular/router';
+import {Component, ViewChild, ElementRef, OnInit} from '@angular/core';
+import {RouterOutlet, ActivatedRoute, Router} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
 
 import {AbstractComponent} from './abstract.component';
@@ -35,8 +35,6 @@ export class AppComponent extends AbstractComponent implements OnInit {
     }
 
     public deactivateRouter(deactivate: boolean) {
-        let resolved: any[];
-
         if (this.active !== deactivate) {
             return;
         }
@@ -47,19 +45,7 @@ export class AppComponent extends AbstractComponent implements OnInit {
             this.previousRoute = this.routerOutlet.activatedRoute;
             this.routerOutlet.deactivate();
         } else if (this.previousRoute) {
-            resolved = [
-                {
-                    provide : ActivatedRoute,
-                    useValue: this.previousRoute
-                },
-                {
-                    provide : RouterOutletMap,
-                    useValue: this.routerOutlet.outletMap
-                }
-            ];
-            this.routerOutlet.activate(this.previousRoute, (this.routerOutlet as any).resolver,
-                this.routerOutlet.locationInjector, ReflectiveInjector.resolve(resolved),
-                this.routerOutlet.outletMap);
+            this.routerOutlet.activateWith(this.previousRoute, null);
         }
     }
 }

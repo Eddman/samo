@@ -36,7 +36,7 @@ export const removedState: string = 'removed';
                     style({
                         opacity  : 1,
                         transform: 'scale(1.1)',
-                        offset   : 0.2
+                        offset   : 0
                     }),
                     style({
                         opacity  : 1,
