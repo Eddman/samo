@@ -3,7 +3,6 @@ export interface SliderImage {
 }
 
 export interface SliderConfiguration {
-    duration: number;
     images: SliderImage[];
 
     autoSlide?: number;

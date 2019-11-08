@@ -1,0 +1,39 @@
+<div class="sn-slideshow-outer-container">
+    <div (touchstart)="onSwipe($event, 'start')"
+         (touchend)="onSwipe($event, 'end')"
+         class="sn-slideshow-container">
+        <!-- slides -->
+        <a *ngFor="let slide of slides; index as i; trackBy: trackBySlide"
+           class="sn-slideshow-slide"
+           [ngStyle]="getSlideStyle(i)"
+           [class.sn-slideshow-selected]="slide?.selected"
+           [class.sn-slideshow-hide-slide]="!slide?.selected && !slide?.leftSide && !slide?.rightSide"
+           [class.sn-slideshow-left-slide]="slide?.leftSide"
+           [class.sn-slideshow-right-slide]="slide?.rightSide"
+           [class.sn-slideshow-slide-in-left]="slide?.action === 'slideInLeft'"
+           [class.sn-slideshow-slide-in-right]="slide?.action === 'slideInRight'"
+           [class.sn-slideshow-slide-out-left]="slide?.action === 'slideOutLeft'"
+           [class.sn-slideshow-slide-out-right]="slide?.action === 'slideOutRight'">
+        </a>
+        <!-- left arrow -->
+        <div (click)="onSlide(-1)"
+             class="sn-slideshow-arrow-container sn-slideshow-prev">
+            <i class="sn-slideshow-arrow sn-slideshow-prev"></i>
+        </div>
+        <!-- right arrow -->
+        <div (click)="onSlide(1)"
+             class="sn-slideshow-arrow-container sn-slideshow-next">
+            <i class="sn-slideshow-arrow sn-slideshow-next"></i>
+        </div>
+        <!-- dots -->
+        <ul class="sn-slideshow-slick-dots">
+            <li *ngFor="let slide of slides; index as i; trackBy: trackBySlide"
+                (click)="goToSlide(i)"
+                [class.sn-slideshow-slick-active]="slide.selected">
+                <button type="button">
+                    {{i}}
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

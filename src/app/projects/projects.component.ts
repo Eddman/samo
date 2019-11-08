@@ -50,6 +50,7 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
             // Display error if there is some problem
             catchError((err: ErrorResponse) => {
                 this.error = err.message;
+                this.changeDetectorRef.markForCheck();
                 return of([]);
             })
         );

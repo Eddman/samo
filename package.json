@@ -29,8 +29,7 @@
         "rxjs": "^6.5.3",
         "web-animations-js": "^2.3.2",
         "zone.js": "~0.9.1",
-        "bootstrap-sass": "^3.4.1",
-        "ng2-page-slider": "^0.10.1"
+        "bootstrap-sass": "^3.4.1"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.803.18",

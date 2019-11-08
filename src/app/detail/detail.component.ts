@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 import {EMPTY, Observable} from 'rxjs';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, shareReplay, tap} from 'rxjs/operators';
 import {ErrorResponse} from '../abstract.http.service';
 import {AbstractViewComponent} from '../abstract.view.component';
 import {RoutingService} from '../routing/routing.service';
@@ -65,9 +65,14 @@ export class DetailComponent extends AbstractViewComponent implements OnChanges 
                     this.headerChange.emit(detail.header);
                 }
             }),
+            shareReplay({
+                bufferSize: 1,
+                refCount  : true
+            }),
             // Display error if there is some problem
             catchError((err: ErrorResponse) => {
                 this.error = err.message;
+                this.changeDetectorRef.markForCheck();
                 return EMPTY;
             })
         );
