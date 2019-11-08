@@ -1,14 +1,14 @@
-@import "global";
+@import "globals";
 // Core variables and mixins
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 .bootstrap {
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms";
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
-    @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+    @import "~bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+    @import "~bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+    @import "~bootstrap-sass/assets/stylesheets/bootstrap/forms";
+    @import "~bootstrap-sass/assets/stylesheets/bootstrap/type";
+    @import "~bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+    @import "~bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 
     .form-control {
         @include box-sizing(border-box);
@@ -35,7 +35,7 @@
     }
 }
 
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/modals";
 
 .modal-dialog {
     position: absolute;

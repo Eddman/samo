@@ -1,5 +1,5 @@
 <div class="bootstrap">
-    <div class="handle"><img *ngIf="parentLevel" src="/images/icons/drag_handle.svg"></div>
+    <div class="handle"><img *ngIf="parentLevel" src="/src/assets/images/icons/drag_handle.svg"></div>
     <div>
         <div class="form-group">
             <label for="title">Item URL</label>
@@ -33,7 +33,7 @@
     </div>
     <div *ngIf="parentLevel" class="remove_item">
         <a (click)="confirmRemove()">
-            <img src="/images/icons/remove_circle.svg">
+            <img src="/src/assets/images/icons/remove_circle.svg">
         </a>
     </div>
 </div>
