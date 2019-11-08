@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
-
-import {DetailService} from './detail.service';
-
 import {ContentModule} from '../content/content.module';
 import {DetailComponent} from './detail.component';
+import {DetailService} from './detail.service';
 
 @NgModule({
     imports     : [

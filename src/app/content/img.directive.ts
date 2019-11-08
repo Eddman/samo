@@ -15,18 +15,18 @@ import {ContentPart} from './content';
 export class ImageDirective implements OnInit {
 
     @Input('img')
-    public contentPart: ContentPart;
+    public contentPart: ContentPart | undefined;
 
-    public floatLeft: boolean;
+    public floatLeft: boolean = false;
 
-    public floatRight: boolean;
+    public floatRight: boolean = false;
 
-    public title: string;
-    public url: string;
+    public title: string | undefined;
+    public url: string | undefined;
     public width: any;
 
     public ngOnInit(): void {
-        if (this.contentPart) {
+        if (this.contentPart != null) {
             if (this.contentPart.float) {
                 switch (this.contentPart.float) {
                     case 'left':

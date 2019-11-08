@@ -10,13 +10,14 @@
             "prefix": "app",
             "schematics": {
                 "@schematics/angular:component": {
-                    "style": "sass"
+                    "style": "scss"
                 }
             },
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "preserveSymlinks": true,
                         "outputPath": "dist/samuel-netocny",
                         "index": "src/index.html",
                         "main": "src/main.ts",

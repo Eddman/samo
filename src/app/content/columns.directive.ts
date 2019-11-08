@@ -2,7 +2,7 @@ import {Directive, Input, OnInit} from '@angular/core';
 import {ContentPart} from './content';
 
 @Directive({
-    selector: '[columns]',
+    selector: '[sn-columns]',
     host    : {
         '[class.text]'   : 'true',
         '[class.column2]': 'columnsCount == 2',
@@ -11,13 +11,13 @@ import {ContentPart} from './content';
 })
 export class ColumnsDirective implements OnInit {
 
-    @Input('columns')
-    public contentPart: ContentPart;
+    @Input('sn-columns')
+    public contentPart: ContentPart | undefined;
 
-    public columnsCount: number;
+    public columnsCount: number = 1;
 
     public ngOnInit(): void {
-        if (this.contentPart) {
+        if (this.contentPart != null) {
             this.columnsCount = this.contentPart.columns;
         }
     }

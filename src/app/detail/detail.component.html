@@ -1,4 +1,4 @@
-<ng-template [ngIf]="detail">
-    <h2 *ngIf="detail.title">{{detail.title}}</h2>
-    <content [contentParts]="detail.content"></content>
+<ng-template [ngIf]="detail | async" let-resolvedDetail>
+    <h2 *ngIf="resolvedDetail.title">{{resolvedDetail.title}}</h2>
+    <sn-content [contentParts]="resolvedDetail.content"></sn-content>
 </ng-template>

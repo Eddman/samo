@@ -1,69 +1,78 @@
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-
+import {Observable, of, Subject, throwError} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 import {AbstractHttpService} from '../abstract.http.service';
-import {RequestService} from '../auth/request.service';
-
 import {MenuItem} from './menu';
-import {RouteConfiguration} from './route.configuration';
 import {Route} from './route';
+import {RouteConfiguration} from './route.configuration';
 
 const errors = {
-        NOT_FOUND: 'Route not found for given path!'
-    },
-    getURL = '/app/mock/routing.mock.json', // TODO change after a BE is available
-    postURL = '/routing/save';
+    NOT_FOUND: 'Route not found for given path!'
+};
+// TODO change after a BE is available
+const getURL = '/assets/mock/routing.mock.json';
 
 @Injectable()
 export class RoutingService extends AbstractHttpService<RouteConfiguration> {
 
-    public disabled: boolean = false;
+    private _selectedRoute: Route | undefined;
 
-    public selectedRoute: Route;
+    private _selectedRoutePathParams: string[] = [];
 
-    public selectedRoutePathParams: string[];
+    private readonly _navigationOccurred = new Subject<void>();
 
-    constructor(http: Http, requestService: RequestService) {
-        super(http, requestService);
+    constructor(http: HttpClient) {
+        super(http);
     }
 
-    public getRootConfiguration(): Promise<RouteConfiguration> {
+    public getRootConfiguration(): Observable<RouteConfiguration> {
         return this.getWithCache({
             resourceURL: getURL
         });
     }
 
-    public saveRootConfiguration(rootItem: RouteConfiguration): Promise<RouteConfiguration> {
-        return new Promise((resolve, reject) => {
-            this.post({
-                resourceURL: postURL,
-                data       : rootItem
-            }).subscribe(
-                (data) => {
-                    this.setCache(data);
-                    resolve(data);
-                }, reject);
-        });
+    public get selectedRoutePathParams(): string[] {
+        return this._selectedRoutePathParams;
     }
 
-    public getRouteConfig(routeParams: string[]): Promise<Route> {
-        return new Promise((resolve, reject) => {
-            this.getRootConfiguration().then((rootConfiguration: RouteConfiguration) => {
-                let childRoutes: RouteConfiguration[], params: string[],
-                    config: RouteConfiguration = rootConfiguration,
-                    breakResolve: boolean = false;
+    public get selectedRoute(): Route | undefined {
+        return this._selectedRoute;
+    }
+
+    public get navigationOccurred(): Observable<void> {
+        return this._navigationOccurred.asObservable();
+    }
+
+    public setSelectedRoute(selectedRoute: Route | undefined, selectedRoutePathParams: string[]) {
+        this._selectedRoute = selectedRoute;
+        this._selectedRoutePathParams = selectedRoutePathParams;
+        this._navigationOccurred.next();
+    }
+
+    public getRouteConfig(routeParams: string[]): Observable<Route> {
+        return this.getRootConfiguration().pipe(
+            switchMap((rootConfiguration: RouteConfiguration) => {
+                let childRoutes: RouteConfiguration[];
+                let params: string[];
+                let config: RouteConfiguration | undefined = rootConfiguration;
+                let breakResolve: boolean = false;
+                let route: Route | undefined;
 
                 if (routeParams && routeParams.length > 0) {
                     Object.keys(routeParams).some((val, i) => {
+                        if (config == null) {
+                            return false;
+                        }
                         if (!config.routes) {
                             params = routeParams.slice(i);
                             if (config.paramsSize === params.length) {
-                                resolve(Route.forParameters(config.type,
-                                    config.config, params));
+                                route = Route.forParameters(config.type,
+                                    config.config, params);
                                 breakResolve = true;
                                 return breakResolve;
                             }
-                            reject(errors.NOT_FOUND);
+                            config = undefined;
                             breakResolve = true;
                             return breakResolve;
                         }
@@ -79,51 +88,53 @@ export class RoutingService extends AbstractHttpService<RouteConfiguration> {
                         });
 
                         if (!config) {
-                            reject(errors.NOT_FOUND);
                             breakResolve = true;
                             return breakResolve;
                         }
                         return false;
                     });
-                    if (breakResolve) {
-                        return;
+                    if (route != null) {
+                        return of(route);
                     }
                 }
 
-                if (config.redirect) {
-                    resolve(Route.forRedirect(config.redirect));
-                    return;
-                }
-                if (!config || !config.type) {
-                    reject(errors.NOT_FOUND);
-                    return;
+                if (config != null && config.redirect) {
+                    return of(Route.forRedirect(config.redirect));
                 }
 
-                resolve(new Route(config.type, config.config));
-            }).catch(reject);
-        });
+                if (!config || !config.type) {
+                    return throwError(errors.NOT_FOUND);
+                }
+
+                return of(new Route(config.type, config.config));
+            })
+        );
     }
 
-    public getMenuRoutes(): Promise<MenuItem> {
-        return new Promise<MenuItem>((resolve, reject) => {
-            this.getRootConfiguration().then((rootConfiguration: RouteConfiguration) => {
-                let menuRoutes: MenuItem[], config: any, menuLocales: MenuItem[] = [];
-                rootConfiguration.routes.forEach((route: RouteConfiguration) => {
-                    config = route;
-                    if (config.url) {
-                        menuRoutes = [];
-                        if (config.routes && config.routes.length) {
-                            Object.keys(config.routes).forEach(function (i) {
-                                menuRoutes.push(new MenuItem(config.routes[i].title,
-                                    '/' + config.url + '/' + config.routes[i].url));
-                            });
-                            menuLocales.push(new MenuItem(config.title,
-                                '/' + config.url, menuRoutes, config.url));
+    public getMenuRoutes(): Observable<MenuItem> {
+        return this.getRootConfiguration().pipe(
+            map((rootConfiguration: RouteConfiguration) => {
+                let menuRoutes: MenuItem[];
+                let config: any;
+                const menuLocales: MenuItem[] = [];
+                if (rootConfiguration.routes != null) {
+                    rootConfiguration.routes.forEach((route: RouteConfiguration) => {
+                        config = route;
+                        if (config.url) {
+                            menuRoutes = [];
+                            if (config.routes && config.routes.length) {
+                                Object.keys(config.routes).forEach((i) => {
+                                    menuRoutes.push(new MenuItem(config.routes[i].title,
+                                        '/' + config.url + '/' + config.routes[i].url));
+                                });
+                                menuLocales.push(new MenuItem(config.title,
+                                    '/' + config.url, menuRoutes, config.url));
+                            }
                         }
-                    }
-                });
-                resolve(new MenuItem(rootConfiguration.title, '/', menuLocales));
-            }).catch(reject);
-        });
+                    });
+                }
+                return new MenuItem(rootConfiguration.title, '/', menuLocales);
+            })
+        );
     }
 }

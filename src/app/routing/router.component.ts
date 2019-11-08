@@ -1,59 +1,73 @@
-import {ElementRef, Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {switchMap, takeUntil, tap} from 'rxjs/operators';
 import {AbstractComponent} from '../abstract.component';
-import {AuthService} from '../auth/auth.service';
+import {ViewHeader} from '../detail/detail';
+import {Route} from './route';
 import {RoutingService} from './routing.service';
 
-import {Route} from './route';
-import {ViewHeader} from '../detail/detail';
-
 @Component({
-    moduleId   : module.id,
-    selector   : 'router',
-    templateUrl: 'router.component.html',
-    styleUrls  : ['router.component.css']
+    selector           : 'sn-router',
+    templateUrl        : 'router.component.html',
+    styleUrls          : [
+        'router.component.scss'
+    ],
+    host               : {
+        '[class.sn-router]': 'true'
+    },
+    changeDetection    : ChangeDetectionStrategy.OnPush,
+    preserveWhitespaces: false
 })
 export class RouterComponent extends AbstractComponent implements OnInit {
 
-    public config: Route;
+    public config: Route | undefined;
 
     constructor(metaService: Meta,
-        authService: AuthService,
-        routingService: RoutingService,
-        router: Router,
-        activeRoute: ActivatedRoute,
-        el: ElementRef) {
-        super(metaService, authService, routingService, router, activeRoute, el);
+                routingService: RoutingService,
+                private readonly router: Router,
+                private readonly activeRoute: ActivatedRoute,
+                private readonly changeDetectorRef: ChangeDetectorRef) {
+        super(metaService, routingService);
     }
 
     public ngOnInit(): void {
-        this.activeRoute.params.forEach(this.processRoute.bind(this));
+        this.activeRoute.params.pipe(
+            takeUntil(this.destroyed),
+            switchMap((params) => this.processRoute(params))
+        ).subscribe();
     }
 
-    processRoute(pathParams: Params) {
-        let params: string[] = [];
+    private processRoute(pathParams: Params) {
+        const params: string[] = [];
         Object.keys(pathParams).forEach((paramName: string) => {
             params.push(pathParams[paramName]);
         });
-        this.routingService.getRouteConfig(params).then(
-            (route) => {
-                this.config = route;
-                this.routingService.selectedRoute = route;
-                this.routingService.selectedRoutePathParams = params;
+        return this.routingService.getRouteConfig(params).pipe(
+            tap((route) => {
+                    this.config = route;
+                    this.routingService.setSelectedRoute(route, params);
+                    this.changeDetectorRef.markForCheck();
 
-                if (route.redirectPath) {
-                    this.router.navigate([route.redirectPath], {relativeTo: this.activeRoute});
+                    if (route.redirectPath) {
+                        this.router.navigate([route.redirectPath], {relativeTo: this.activeRoute});
+                    }
+                },
+                () => {
+                    this.router.navigate(['/']);
                 }
-            },
-            () => {
-                this.router.navigate(['/']);
-            }
+            )
         );
     }
 
-    processHeader(header: ViewHeader) {
-        this.config.additionalHeader = header;
+    public processHeader(header: ViewHeader) {
+        if (this.config != null) {
+            this.config.additionalHeader = header;
+            this.routingService.setSelectedRoute(
+                this.routingService.selectedRoute,
+                this.routingService.selectedRoutePathParams
+            );
+            this.changeDetectorRef.markForCheck();
+        }
     }
 }

@@ -3,14 +3,15 @@
     "compilerOptions": {
         "baseUrl": "./",
         "outDir": "./dist/out-tsc",
-        "sourceMap": true,
-        "declaration": false,
         "module": "esnext",
         "moduleResolution": "node",
+        "target": "es2015",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "importHelpers": true,
-        "target": "es2015",
+        "types": [
+            "jasmine"
+        ],
         "typeRoots": [
             "node_modules/@types"
         ],
@@ -18,8 +19,29 @@
             "es2018",
             "dom"
         ],
-        "paths": {
-
-        }
-    }
+        "sourceMap": true,
+        "declaration": false,
+        "skipLibCheck": true,
+        "allowJs": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "alwaysStrict": true,
+        "pretty": true,
+        "strict": false
+    },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts"
+    ],
+    "include": [
+        "src/main.ts",
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "dist/",
+        "**/out-tsc/"
+    ]
 }

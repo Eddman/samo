@@ -1,71 +1,44 @@
-<pre *ngIf="isEdit">{{rootItem|json}}</pre>
 <div *ngIf="error" class="bootstrap">
     <div class="alert alert-danger">
         <strong>Error!</strong> {{error}}
     </div>
 </div>
 
-<item-editor *ngIf="isEdit" [item]="rootItem"></item-editor>
-<div *ngIf="!isEdit && !!rootItem">
-    <h1><a [class.disabled]="isDisabled()"
-           [routerLink]="rootItem.routeLink">{{rootItem.title}}</a></h1>
-</div>
-<div *ngIf="isLoggedIn()" class="bootstrap edit_buttons">
-    <a *ngIf="!isEdit" class="btn btn-primary" (click)="edit()">Edit menu structure</a>
-    <ng-template [ngIf]="isEdit">
-        <a class="btn btn-primary" (click)="addGroup()">Add new group</a>
-        <br>
-        <br>
-        <a class="btn btn-primary" (click)="confirmSave()">Save</a>
-        <a class="btn btn-danger" (click)="confirmCancel()">Cancel</a>
-    </ng-template>
-</div>
-<div class="sizer"></div>
+<ng-template [ngIf]="rootItem | async" let-root>
+    <div>
+        <h1><a [routerLink]="root.routeLink">{{root.title}}</a></h1>
+    </div>
 
-<div class="menu" *ngIf="!isEdit && !!rootItem">
-    <ng-template [ngIf]="isPageHeaderVisible()">
-        <div *ngFor="let menuLocale of rootItem.subItems" [ngClass]="menuLocale.realURL" class="menu-block">
-            <div class="sizer"></div>
-            <a *ngIf="!isGroupExpanded(menuLocale)"
-               [class.disabled]="isDisabled()"
-               [routerLink]="menuLocale.routeLink"
-               routerLinkActive="active">{{menuLocale.title}}</a>
-            <ng-template [ngIf]="isGroupExpanded(menuLocale)">
-                <a *ngFor="let menuItem of menuLocale.subItems"
-                   [class.disabled]="isDisabled()"
-                   [routerLink]="menuItem.routeLink"
-                   routerLinkActive="active">{{menuItem.title}}</a>
-            </ng-template>
-        </div>
-    </ng-template>
+    <div class="sizer"></div>
 
-    <ng-template [ngIf]="!isPageHeaderVisible()">
-        <div class="menu-block">
-            <div class="sizer"></div>
-            <div *ngIf="getPageHeader()">
-                <h2>{{getPageHeader().pageTitle}}</h2>
-                <pre>{{getPageHeader().content}}</pre>
+    <div class="menu">
+        <ng-template [ngIf]="isPageHeaderVisible()">
+            <div *ngFor="let menuLocale of root.subItems" [ngClass]="menuLocale.realURL"
+                 class="menu-block">
+                <div class="sizer"></div>
+                <a *ngIf="!isGroupExpanded(menuLocale)"
+                   [routerLink]="menuLocale.routeLink"
+                   routerLinkActive="active">{{menuLocale.title}}</a>
+                <ng-template [ngIf]="isGroupExpanded(menuLocale)">
+                    <a *ngFor="let menuItem of menuLocale.subItems"
+                       [routerLink]="menuItem.routeLink"
+                       routerLinkActive="active">{{menuItem.title}}</a>
+                </ng-template>
             </div>
-        </div>
-        <div class="menu-block right">
-            <div class="sizer"></div>
-            <a [class.disabled]="isDisabled()"
-               [routerLink]="getHomeLink()">Home</a>
-        </div>
-    </ng-template>
-</div>
+        </ng-template>
 
-<ng-template [ngIf]="isEdit">
-    <modal-confirm #saveConfirmation (yes)="save()">
-        Do you really want to save all changes?<br>
-        <b>Note that all removed items will be lost. Content of all removed items will be lost as well.</b>
-    </modal-confirm>
-
-    <modal-confirm #cancelConfirmation (yes)="cancel()">
-        Do you really want to cancel all changes?<br>
-        <b>Note that all your changes will be lost.</b>
-    </modal-confirm>
-
-    <modal-login></modal-login>
+        <ng-template [ngIf]="!isPageHeaderVisible()">
+            <div class="menu-block">
+                <div class="sizer"></div>
+                <div *ngIf="getPageHeader()">
+                    <h2>{{getPageHeader().pageTitle}}</h2>
+                    <pre>{{getPageHeader().content}}</pre>
+                </div>
+            </div>
+            <div class="menu-block right">
+                <div class="sizer"></div>
+                <a [routerLink]="getHomeLink()">Home</a>
+            </div>
+        </ng-template>
+    </div>
 </ng-template>
-

@@ -1,12 +1,10 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
-
+import {RouterModule} from '@angular/router';
 import {SliderModule} from '../slider/slider.module';
-
 import {ColumnsDirective} from './columns.directive';
-import {ImageDirective} from './img.directive';
 import {ContentComponent} from './content.component';
+import {ImageDirective} from './img.directive';
 
 @NgModule({
     imports     : [
@@ -20,7 +18,9 @@ import {ContentComponent} from './content.component';
         RouterModule
     ],
     declarations: [
-        ContentComponent, ImageDirective, ColumnsDirective
+        ContentComponent,
+        ImageDirective,
+        ColumnsDirective
     ]
 })
 export class ContentModule {

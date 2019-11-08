@@ -1,12 +1,12 @@
-<slider-view *ngIf="config && config.type === 'slider'"
-             [route]="config" [keysEnabled]="true"
-             (headerChange)="processHeader($event)"></slider-view>
-<projects-view *ngIf="config && config.type === 'projects'"
-               [route]="config"
-               (headerChange)="processHeader($event)"></projects-view>
-<detail-view *ngIf="config && config.type === 'detail'"
-             [route]="config"
-             (headerChange)="processHeader($event)"></detail-view>
-<list-view *ngIf="config && config.type === 'list'"
-           [route]="config"
-           (headerChange)="processHeader($event)"></list-view>
+<sn-slider-view *ngIf="config && config.type === 'slider'"
+                [route]="config" [keysEnabled]="true"
+                (headerChange)="processHeader($event)"></sn-slider-view>
+<sn-projects-view *ngIf="config && config.type === 'projects'"
+                  [route]="config"
+                  (headerChange)="processHeader($event)"></sn-projects-view>
+<sn-detail-view *ngIf="config && config.type === 'detail'"
+                [route]="config"
+                (headerChange)="processHeader($event)"></sn-detail-view>
+<sn-list-view *ngIf="config && config.type === 'list'"
+              [route]="config"
+              (headerChange)="processHeader($event)"></sn-list-view>

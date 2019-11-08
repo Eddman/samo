@@ -15,10 +15,6 @@ $link_line_height: 18;
     flex-direction: column;
     padding: 0 $padding_side $padding_bottom;
 
-    &.editMode {
-        height: auto;
-    }
-
     @include bp-large {
         height: auto;
         padding-bottom: 0.5 * $padding_bottom;

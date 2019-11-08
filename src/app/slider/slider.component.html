@@ -1,9 +1,9 @@
-<kb-page-slider *ngIf="pages" [enableArrowKeys]="keysEnabled"
+<kb-page-slider *ngIf=" pages | async; let loadedPages" [enableArrowKeys]="keysEnabled"
                 [(page)]="pageNumber"
                 (pageChange)="startAutoSlide(false); startAutoSlide()"
                 [transitionDuration]="transitionDuration">
     <!-- Pages -->
-    <div *kbPages="let page of pages" class="page">
+    <div *kbPages="let page of loadedPages" class="page">
         <img [src]="page.url">
         <span class="title">{{page.title}}</span>
     </div>

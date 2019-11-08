@@ -8,7 +8,7 @@ $title_size_original: 16px;
 @mixin definition($arrow_size, $arrow_line_height, $dot_size, $title_size, $title_offset) {
 
     kb-page-slider {
-        /deep/ {
+        ::ng-deep {
             div.page {
                 overflow: hidden;
 

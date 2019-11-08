@@ -4,13 +4,13 @@
         "primary": true,
         "images": [
             {
-                "url": "/images/kezmarska_chata/foto/Kezmarska chata_Netocny_Page_16.jpg"
+                "url": "/assets/images/kezmarska_chata/foto/Kezmarska chata_Netocny_Page_16.jpg"
             },
             {
-                "url": "/images/kezmarska_chata/foto/Kezmarska chata_Netocny_Page_17.jpg"
+                "url": "/assets/images/kezmarska_chata/foto/Kezmarska chata_Netocny_Page_17.jpg"
             },
             {
-                "url": "/images/kezmarska_chata/foto/netocny_kezmarska chata_interier.jpg"
+                "url": "/assets/images/kezmarska_chata/foto/netocny_kezmarska chata_interier.jpg"
             }
         ]
     }

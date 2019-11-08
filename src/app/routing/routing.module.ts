@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Route} from '@angular/router';
-
-import {SliderModule} from '../slider/slider.module';
-import {ProjectsModule} from '../projects/projects.module';
+import {Route, RouterModule} from '@angular/router';
 import {DetailModule} from '../detail/detail.module';
 import {ListModule} from '../list/list.module';
-
+import {ProjectsModule} from '../projects/projects.module';
+import {SliderModule} from '../slider/slider.module';
 import {RouterComponent} from './router.component';
 
 const routes: Route[] = [

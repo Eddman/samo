@@ -1,56 +1,34 @@
-import {ElementRef} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {OnDestroy} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-
-import {AuthService} from './auth/auth.service';
+import {Observable, Subject} from 'rxjs';
+import {ContentPart} from './content/content';
 import {RoutingService} from './routing/routing.service';
-import {ContentPartsTypes, ContentPart} from './content/content';
 
 const metaConfig = {
     description: 'architekt ~ poprad ~ wien'
 };
 
-export abstract class AbstractComponent {
+export abstract class AbstractComponent implements OnDestroy {
 
-    protected el: Element;
+    public error: string | undefined;
 
-    public isEdit: boolean;
-
-    public error: string;
+    private readonly _destroyed = new Subject<void>();
 
     constructor(protected metaService: Meta,
-        protected authService: AuthService,
-        protected routingService: RoutingService,
-        protected router: Router,
-        protected activeRoute: ActivatedRoute,
-        el: ElementRef) {
-        this.isEdit = false;
-        this.el = el.nativeElement;
+                protected routingService: RoutingService) {
     }
 
-    public isLoggedIn(): boolean {
-        return this.authService.isLoggedIn();
+    public ngOnDestroy(): void {
+        this._destroyed.next();
+        this._destroyed.complete();
     }
 
-    protected startEdit(): void {
-        this.isEdit = true;
-
-        // Disable navigation
-        this.routingService.disabled = true;
+    public get destroyed(): Observable<void> {
+        return this._destroyed.asObservable();
     }
 
-    protected stopEdit(): void {
-        this.isEdit = false;
-
-        // Enable navigation
-        delete this.routingService.disabled;
-
-        // Remove error message
-        delete this.error;
-    }
-
-    protected getDescriptionFromContent(desc: string, content: ContentPart[]): string {
-        let description: string = desc;
+    protected getDescriptionFromContent(desc: string | undefined, content: ContentPart[]): string | undefined {
+        let description: string | undefined = desc;
         if (content) {
             if (description) {
                 description += '\n';
@@ -58,7 +36,7 @@ export abstract class AbstractComponent {
                 description = '';
             }
             content.forEach((part: ContentPart) => {
-                if (part.type === ContentPartsTypes.TEXT && part.text) {
+                if (part.type === 'text' && part.text) {
                     description += part.text;
                 }
             });
@@ -88,17 +66,17 @@ export abstract class AbstractComponent {
         });
     }
 
-    protected getFirstImageFromContent(content: ContentPart[]): string {
-        let img: ContentPart;
+    protected getFirstImageFromContent(content: ContentPart[]): string | undefined {
+        let img: ContentPart | undefined;
         if (content) {
             img = content.find((part: ContentPart) => {
-                return part.type === ContentPartsTypes.IMAGE && !!part.url;
+                return part.type === 'image' && !!part.url;
             });
         }
         if (img) {
             return img.url;
         }
-        return null;
+        return undefined;
     }
 
     protected setSEOImage(imageUrl?: string): void {
@@ -110,7 +88,7 @@ export abstract class AbstractComponent {
         } else {
             this.metaService.updateTag({
                 property: 'og:image',
-                content : '/images/seo/thumb.png'
+                content : '/assets/images/seo/thumb.png'
             });
         }
     }

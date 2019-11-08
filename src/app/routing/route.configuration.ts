@@ -1,8 +1,9 @@
+import {RouteTypes} from './route';
 import {RouteType} from './route.type';
 
 export interface RouteConfiguration {
     title: string;
-    type: string;
+    type: RouteTypes;
     url: string;
     routes?: RouteConfiguration[];
 

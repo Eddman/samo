@@ -1,21 +1,20 @@
-import {Component, Input} from '@angular/core';
-
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {ContentPart, ContentPartsTypes} from './content';
 
 @Component({
-    moduleId   : module.id,
-    selector   : 'content',
-    templateUrl: 'content.component.html',
-    styleUrls  : ['content.component.css']
+    selector           : 'sn-content',
+    templateUrl        : 'content.component.html',
+    styleUrls          : ['content.component.scss'],
+    host               : {
+        '[class.sn-content]': 'true'
+    },
+    changeDetection    : ChangeDetectionStrategy.OnPush,
+    preserveWhitespaces: false
 })
 export class ContentComponent {
 
-    public types: any;
+    public types: ContentPartsTypes = new ContentPartsTypes();
 
     @Input()
-    public contentParts: ContentPart[];
-
-    constructor() {
-        this.types = ContentPartsTypes;
-    }
+    public contentParts: ContentPart[] = [];
 }

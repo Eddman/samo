@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
-
 import {ContentModule} from '../content/content.module';
-
-import {ListService} from './list.service';
 import {ListComponent} from './list.component';
+import {ListService} from './list.service';
 
 @NgModule({
     imports     : [

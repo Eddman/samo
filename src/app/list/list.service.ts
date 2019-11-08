@@ -1,21 +1,19 @@
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-
+import {Observable} from 'rxjs';
 import {AbstractHttpService} from '../abstract.http.service';
-import {RequestService} from '../auth/request.service';
-
 import {ListItem} from './list.item';
 
-const getURL: string = '/app/mock/list/:0/:1.json';
+const getURL: string = '/assets/mock/list/:0/:1.json';
 
 @Injectable()
 export class ListService extends AbstractHttpService<ListItem[]> {
 
-    constructor(http: Http, requestService: RequestService) {
-        super(http, requestService);
+    constructor(http: HttpClient) {
+        super(http);
     }
 
-    public getListItems(type: string[]): Promise<ListItem[]> {
+    public getListItems(type: string[]): Observable<ListItem[]> {
         return this.getWithCache({
             resourceURL: getURL,
             params     : type

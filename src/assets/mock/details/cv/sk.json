@@ -3,7 +3,7 @@
         "content": [
             {
                 "type": "image",
-                "url": "/images/profil/profil.jpg",
+                "url": "/assets/images/profil/profil.jpg",
                 "float": "left"
             },
             {

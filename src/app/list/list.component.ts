@@ -1,83 +1,87 @@
-import {ElementRef, OnChanges, SimpleChanges, Component, Input, ViewChild, EventEmitter, Output} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-
+import {EMPTY, Observable} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
+import {ErrorResponse} from '../abstract.http.service';
 import {AbstractViewComponent} from '../abstract.view.component';
-import {ModalLoginComponent} from '../common/modal/modal.login.component';
-
 import {RoutingService} from '../routing/routing.service';
-import {AuthService} from '../auth/auth.service';
-
+import {ListItem} from './list.item';
 import {ListService} from './list.service';
 
-import {ListItem} from './list.item';
-import {Route} from '../routing/route';
-import {ViewHeader} from '../detail/detail';
-
 @Component({
-    moduleId   : module.id,
-    selector   : 'list-view',
-    templateUrl: 'list.component.html',
-    styleUrls  : ['list.component.css']
+    selector           : 'sn-list-view',
+    templateUrl        : 'list.component.html',
+    styleUrls          : [
+        'list.component.scss'
+    ],
+    host               : {
+        '[class.sn-list-view]': 'true'
+    },
+    changeDetection    : ChangeDetectionStrategy.OnPush,
+    preserveWhitespaces: false
 })
 export class ListComponent extends AbstractViewComponent implements OnChanges {
+    private _listItems: Observable<ListItem[]> | undefined;
 
-    @Output()
-    public headerChange: EventEmitter<ViewHeader>;
-
-    @ViewChild(ModalLoginComponent)
-    public loginModal: ModalLoginComponent;
-
-    @Input()
-    public route: Route;
-
-    public listItems: ListItem[];
-
-    constructor(private listService: ListService,
-        metaService: Meta,
-        authService: AuthService,
-        routingService: RoutingService,
-        router: Router,
-        route: ActivatedRoute,
-        el: ElementRef) {
-        super(metaService, authService, routingService, router, route, el);
+    public constructor(private listService: ListService,
+                       metaService: Meta,
+                       routingService: RoutingService,
+                       private readonly changeDetectorRef: ChangeDetectorRef) {
+        super(metaService, routingService);
     }
 
-    public ngOnChanges(changes: SimpleChanges): void {
-        this.listService.getListItems(this.route.configuration.type).then((listItems: ListItem[]) => {
-            let desc: string;
+    public ngOnChanges(): void {
+        if (this.route == null) {
+            this._listItems = undefined;
+            this.changeDetectorRef.markForCheck();
+            return;
+        }
 
-            this.listItems = listItems;
+        this._listItems = this.listService.getListItems(this.route.configuration.type).pipe(
+            tap((listItems: ListItem[]) => {
+                this.setSEODescription();
+                this.setSEOImage();
 
-            this.setSEODescription();
-            this.setSEOImage();
-
-            if (this.listItems && this.listItems.length) {
-                this.listItems.some((item: ListItem) => {
-                    if (item.title) {
-                        desc = item.title;
-                    }
-
-                    if (item.content) {
-                        desc = this.getDescriptionFromContent(desc, item.content);
-                    }
-                    return desc && desc.length >= 250;
-                });
-
-                this.setSEODescription(desc);
-
-                this.listItems.some((item: ListItem) => {
-                    let img: string;
-                    if (item.content) {
-                        img = this.getFirstImageFromContent(item.content);
-                        if (img) {
-                            this.setSEOImage(img);
-                            return true;
+                if (listItems && listItems.length) {
+                    let desc: string | undefined;
+                    listItems.some((item: ListItem) => {
+                        if (item.title) {
+                            desc = item.title;
                         }
-                    }
-                    return false;
-                });
-            }
-        });
+
+                        if (item.content) {
+                            desc = this.getDescriptionFromContent(desc, item.content);
+                        }
+                        return desc && desc.length >= 250;
+                    });
+
+                    this.setSEODescription(desc);
+
+                    listItems.some((item: ListItem) => {
+                        let img: string | undefined;
+                        if (item.content) {
+                            img = this.getFirstImageFromContent(item.content);
+                            if (img) {
+                                this.setSEOImage(img);
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+                }
+            }),
+            // Display error if there is some problem
+            catchError((err: ErrorResponse) => {
+                this.error = err.message;
+                return EMPTY;
+            })
+        );
+
+        this.changeDetectorRef.markForCheck();
     }
+
+    public get listItems(): Observable<ListItem[]> | undefined {
+        return this._listItems;
+    }
+
 }

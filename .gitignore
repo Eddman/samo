@@ -1,4 +1,8 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Non-project files
+.DS_Store/
+.idea/workspace.xml
+.idea/misc.xml
+.idea/statistic.xml
 
 # compiled output
 /dist
@@ -7,39 +11,19 @@
 
 # dependencies
 /node_modules
+.npmrc
 
-# profiling files
-chrome-profiler-events.json
-speed-measure-plugin.json
-
-# IDEs and editors
-/.idea/*.xml
-!/.idea/codeStyles
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# BrowserStack tunel binaries
+browserStackBin/
 
 # misc
 /.sass-cache
 /connect.lock
 /coverage
+reports/
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
 /typings
 
-# System Files
-.DS_Store
-Thumbs.db

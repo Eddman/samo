@@ -1,100 +1,111 @@
 import {
-    Component, ElementRef, OnChanges, SimpleChanges, Input, OnDestroy, Output, EventEmitter,
-    ViewChild
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Input,
+    OnChanges,
+    OnDestroy,
+    SimpleChanges
 } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-import {ActivatedRoute, Router} from '@angular/router';
-
-import {RoutingService} from '../routing/routing.service';
-import {AuthService} from '../auth/auth.service';
-
+import {Observable} from 'rxjs';
+import {first, map, takeUntil} from 'rxjs/operators';
 import {AbstractViewComponent} from '../abstract.view.component';
-import {ModalLoginComponent} from '../common/modal/modal.login.component';
-
+import {RoutingService} from '../routing/routing.service';
+import {SliderConfiguration, SliderImage} from './slider.configuration';
 import {SliderService} from './slider.service';
 
-import {SliderConfiguration, SliderImage} from './slider.configuration';
-import {ViewHeader} from '../detail/detail';
-import {Route} from '../routing/route';
-
 @Component({
-    moduleId   : module.id,
-    selector   : 'slider-view',
-    templateUrl: 'slider.component.html',
-    styleUrls  : ['slider.component.css']
+    selector           : 'sn-slider-view',
+    templateUrl        : 'slider.component.html',
+    styleUrls          : [
+        'slider.component.scss'
+    ],
+    host               : {
+        '[class.sn-slider-view]': 'true'
+    },
+    changeDetection    : ChangeDetectionStrategy.OnPush,
+    preserveWhitespaces: false
 })
 export class SliderComponent extends AbstractViewComponent implements OnChanges, OnDestroy {
 
-    @Output()
-    public headerChange: EventEmitter<ViewHeader>;
-
-    @ViewChild(ModalLoginComponent)
-    public loginModal: ModalLoginComponent;
-
     @Input()
-    public route: Route;
+    public keysEnabled: boolean = true;
 
-    @Input()
-    public keysEnabled: boolean;
+    public pages: Observable<SliderImage[]> | undefined;
 
-    public pages: SliderImage[];
+    private pageNumber: number = 0;
+    private pageCount: number = 0;
 
-    private pageNumber: number;
-    private pageCount: number;
-
-    private defaultDuration: number;
-    private transitionDuration: number;
+    private defaultDuration: number | undefined;
+    private transitionDuration: number | undefined;
 
     /**
      * Autoslide interval handle
      */
-    private interval: number;
-    private autoSlide: number;
+    private interval: number | undefined;
+    private autoSlide: number | undefined;
 
-    constructor(private sliderService: SliderService,
-        metaService: Meta,
-        authService: AuthService,
-        routingService: RoutingService,
-        router: Router,
-        route: ActivatedRoute,
-        el: ElementRef) {
-        super(metaService, authService, routingService, router, route, el);
+    constructor(private readonly sliderService: SliderService,
+                metaService: Meta,
+                routingService: RoutingService,
+                private readonly changeDetectorRef: ChangeDetectorRef) {
+        super(metaService, routingService);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
         // Pause previous sliding
         this.startAutoSlide(false);
 
-        this.sliderService.getSlides(this.route.configuration.type).then((slides: SliderConfiguration) => {
-            this.pages = slides.images;
-            this.pageNumber = 0;
-            this.pageCount = this.pages.length;
+        if (this.route == null) {
+            this.pages = undefined;
 
-            if (this.keysEnabled || slides.primary) {
-                if (!slides.primary) {
-                    this.setSEODescription(slides.description);
+            // Change detection
+            this.changeDetectorRef.markForCheck();
+            return;
+        }
+
+        this.pages = this.sliderService.getSlides(this.route.configuration.type).pipe(
+            first(),
+            takeUntil(this.destroyed),
+            map((slides: SliderConfiguration) => {
+                this.pageNumber = 0;
+                this.pageCount = slides.images.length;
+
+                if (this.keysEnabled || slides.primary) {
+                    if (!slides.primary) {
+                        this.setSEODescription(slides.description);
+                    }
+                    if (slides && slides.images && slides.images.length) {
+                        this.setSEOImage(slides.images[0].url);
+                    } else {
+                        this.setSEOImage();
+                    }
                 }
-                if (slides && slides.images && slides.images.length) {
-                    this.setSEOImage(slides.images[0].url);
+
+                this.defaultDuration = slides.duration;
+
+                // Check if auto-slide is available
+                if (slides.autoSlide) {
+                    this.autoSlide = slides.autoSlide;
+                }
+
+                // Start sliding
+                if (this.autoSlide) {
+                    this.startAutoSlide(true);
                 } else {
-                    this.setSEOImage();
+                    this.startAutoSlide(false);
                 }
-            }
 
-            this.defaultDuration = slides.duration;
+                // Change detection
+                this.changeDetectorRef.markForCheck();
 
-            // Check if auto-slide is available
-            if (slides.autoSlide) {
-                this.autoSlide = slides.autoSlide;
-            }
+                return slides.images;
+            })
+        );
 
-            // Start sliding
-            if (this.autoSlide) {
-                this.startAutoSlide(true);
-            } else {
-                this.startAutoSlide(false);
-            }
-        });
+        // Change detection
+        this.changeDetectorRef.markForCheck();
     }
 
     private autoSlideFunction(): void {
@@ -113,6 +124,7 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
             this.startAutoSlide(false);
 
             // Speedup transitions
+            this.transitionDuration = this.transitionDuration || 0;
             this.transitionDuration /= 10;
 
             setTimeout(this.moveToFirst.bind(this), this.transitionDuration * 1.5);
@@ -122,7 +134,7 @@ export class SliderComponent extends AbstractViewComponent implements OnChanges,
                 // Restart auto-slide
                 this.startAutoSlide();
             } else {
-                setTimeout(this.moveToFirst.bind(this), this.transitionDuration * 1.5);
+                setTimeout(this.moveToFirst.bind(this), (this.transitionDuration || 0) * 1.5);
             }
         }
     }
