@@ -30,7 +30,7 @@
         "noUnusedLocals": true,
         "alwaysStrict": true,
         "pretty": true,
-        "strict": false
+        "strict": true
     },
     "files": [
         "src/main.ts",

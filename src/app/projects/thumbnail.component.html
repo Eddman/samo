@@ -1,4 +1,5 @@
-<a [@state]="thumbnail.state"
+<a *ngIf="thumbnail"
+   [@state]="thumbnail.state"
    [class.broken]="!thumbnail.thumbUrl"
    (click)="navigate()"
    (mouseenter)="setHover()"

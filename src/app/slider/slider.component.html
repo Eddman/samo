@@ -1,3 +1,8 @@
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
+    </div>
+</div>
 <kb-page-slider *ngIf=" pages | async; let loadedPages" [enableArrowKeys]="keysEnabled"
                 [(page)]="pageNumber"
                 (pageChange)="startAutoSlide(false); startAutoSlide()"

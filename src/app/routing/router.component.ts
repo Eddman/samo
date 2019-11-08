@@ -53,9 +53,7 @@ export class RouterComponent extends AbstractComponent implements OnInit {
                         this.router.navigate([route.redirectPath], {relativeTo: this.activeRoute});
                     }
                 },
-                () => {
-                    this.router.navigate(['/']);
-                }
+                () => this.router.navigate(['/'])
             )
         );
     }

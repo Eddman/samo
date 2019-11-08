@@ -1,9 +1,9 @@
-<ng-template [ngIf]="!route.parameters">
-    <div *ngIf="error" class="bootstrap">
-        <div class="alert alert-danger">
-            <strong>Error!</strong> {{error}}
-        </div>
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
     </div>
+</div>
+<ng-template [ngIf]="!route?.parameters">
     <div class="grid">
         <sn-thumbnail *ngFor="let project of projects | async"
                       [thumbnail]="project">
@@ -13,6 +13,6 @@
         <div class="thumbnail"></div>
     </div>
 </ng-template>
-<ng-template [ngIf]="route.parameters">
+<ng-template [ngIf]="route?.parameters">
     <sn-detail-view (headerChange)="headerChange.emit($event)" [route]="route"></sn-detail-view>
 </ng-template>

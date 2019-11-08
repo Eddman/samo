@@ -1,5 +1,5 @@
+import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 
 import {KBPageSliderComponent, PageSliderModule} from 'ng2-page-slider';
 import {SliderComponent} from './slider.component';
@@ -23,7 +23,8 @@ Object.defineProperty(KBPageSliderComponent.prototype, 'pageHeight', {
         } else if (self.firstImage) {
             if (self.firstImage.width > self.element.nativeElement.offsetWidth) {
                 self.element.nativeElement.style.height = (self.firstImage.height
-                    * self.element.nativeElement.offsetWidth) / self.firstImage.width + 'px';
+                                                           * self.element.nativeElement.offsetWidth)
+                                                          / self.firstImage.width + 'px';
             } else {
                 self.element.nativeElement.style.height = self.firstImage.height + 'px';
             }
@@ -38,7 +39,8 @@ Object.defineProperty(KBPageSliderComponent.prototype, 'pageHeight', {
 // Corrected buttons position
 Object.defineProperty(KBPageSliderComponent.prototype, 'buttonTop', {
     get(this: KBPageSliderComponent) {
-        return this.pageHeight / 2 - (this as any).element.nativeElement.children[1].children[0].offsetHeight / 2 + 'px';
+        return this.pageHeight / 2 - (this as any).element.nativeElement.children[1].children[0].offsetHeight / 2
+               + 'px';
     },
     enumerable  : true,
     configurable: true
@@ -46,7 +48,7 @@ Object.defineProperty(KBPageSliderComponent.prototype, 'buttonTop', {
 
 @NgModule({
     imports     : [
-        BrowserModule,
+        CommonModule,
         PageSliderModule
     ],
     exports     : [

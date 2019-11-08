@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {ContentPart, ContentPartsTypes} from './content';
 
+const contentPartsTypes = new ContentPartsTypes();
+
 @Component({
     selector           : 'sn-content',
     templateUrl        : 'content.component.html',
@@ -13,7 +15,7 @@ import {ContentPart, ContentPartsTypes} from './content';
 })
 export class ContentComponent {
 
-    public types: ContentPartsTypes = new ContentPartsTypes();
+    public readonly types: ContentPartsTypes = contentPartsTypes;
 
     @Input()
     public contentParts: ContentPart[] = [];

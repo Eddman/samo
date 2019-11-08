@@ -1,3 +1,4 @@
+import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {DetailModule} from '../detail/detail.module';
 import {ProjectsComponent} from './projects.component';
@@ -6,6 +7,7 @@ import {ThumbnailComponent} from './thumbnail.component';
 
 @NgModule({
     imports     : [
+        CommonModule,
         DetailModule
     ],
     exports     : [

@@ -1,3 +1,4 @@
+import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {Route, RouterModule} from '@angular/router';
 import {DetailModule} from '../detail/detail.module';
@@ -35,14 +36,16 @@ const routes: Route[] = [
 
 @NgModule({
     imports     : [
+        CommonModule,
         RouterModule.forChild(routes),
         SliderModule,
         ProjectsModule,
         DetailModule,
         ListModule
     ],
-    exports     : [RouterModule],
-    declarations: [RouterComponent]
+    declarations: [
+        RouterComponent
+    ]
 })
 export class AppRoutingModule {
 }
