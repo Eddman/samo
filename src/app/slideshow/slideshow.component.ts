@@ -116,7 +116,7 @@ export class SlideshowComponent implements OnInit {
         const slide = this.slides[index];
 
         return {
-            'background-image': 'url(' + slide.url + ')'
+            'background-image': 'url(\'' + slide.url + '\')'
         };
     }
 
