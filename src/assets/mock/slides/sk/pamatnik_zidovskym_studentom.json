@@ -4,28 +4,28 @@
         "primary": true,
         "images": [
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_1.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_1.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_2.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_2.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_3.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_3.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_4.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_4.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_5.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_5.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_6.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_6.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_7.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_7.jpg"
             },
             {
-                "url": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_8.jpg"
+                "imageURL": "/assets/images/pamatnik_zidovskym_studentom/foto/samuel netocny_WU_Page_8.jpg"
             }
         ]
     }

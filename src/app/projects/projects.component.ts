@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-import {Observable, of} from 'rxjs';
-import {catchError, first, map, shareReplay, takeUntil} from 'rxjs/operators';
+import {EMPTY, Observable} from 'rxjs';
+import {catchError, first, shareReplay, takeUntil, tap} from 'rxjs/operators';
 import {ErrorResponse} from '../abstract.http.service';
 import {AbstractViewComponent} from '../abstract.view.component';
 import {RoutingService} from '../routing/routing.service';
@@ -24,10 +24,10 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
 
     private _projects: Observable<Project[]> | undefined;
 
-    constructor(private projectService: ProjectsService,
-                metaService: Meta,
-                routingService: RoutingService,
-                private readonly changeDetectorRef: ChangeDetectorRef) {
+    public constructor(private readonly projectService: ProjectsService,
+                       metaService: Meta,
+                       routingService: RoutingService,
+                       private readonly changeDetectorRef: ChangeDetectorRef) {
         super(metaService, routingService);
     }
 
@@ -37,12 +37,22 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
             this.changeDetectorRef.markForCheck();
             return;
         }
-        // Load projects
+
         this._projects = this.projectService.getProject(this.route.configuration.type).pipe(
             first(),
             takeUntil(this.destroyed),
-            // Process if OK
-            map((projects) => this.processProjects(projects)),
+            tap((projects: Project[]) => {
+                this.setSEODescription();
+                this.setSEOImage();
+
+                if (this.route != null && projects != null && projects.length) {
+                    if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
+                        this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
+                    } else {
+                        this.setSEOImage(projects[0].thumbUrl);
+                    }
+                }
+            }),
             shareReplay({
                 bufferSize: 1,
                 refCount  : true
@@ -51,7 +61,7 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
             catchError((err: ErrorResponse) => {
                 this.error = err.message;
                 this.changeDetectorRef.markForCheck();
-                return of([]);
+                return EMPTY;
             })
         );
 
@@ -60,23 +70,5 @@ export class ProjectsComponent extends AbstractViewComponent implements OnChange
 
     public get projects(): Observable<Project[]> | undefined {
         return this._projects;
-    }
-
-    private processProjects(projects: Project[]): Project[] {
-        // Remove SEO information from the screen
-        this.setSEODescription();
-        this.setSEOImage();
-
-        // Setup new SEO image.
-        if (this.route != null && projects != null && projects.length) {
-            if (this.route.parameters && this.route.parameters.length && projects[this.route.parameters[0]]) {
-                this.setSEOImage(projects[this.route.parameters[0] - 1].thumbUrl);
-            } else {
-                this.setSEOImage(projects[0].thumbUrl);
-            }
-        }
-
-        // Copy projects array
-        return JSON.parse(JSON.stringify(projects));
     }
 }

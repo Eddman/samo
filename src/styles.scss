@@ -1,6 +1,10 @@
 @import "globals";
 // Core variables and mixins
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+// Page slider
+@import "~@netocny/ng-page-slider/ng-page-slider";
+
+@include ng-page-slider($optimal_width, $page_margin);
 
 .bootstrap {
     @import "~bootstrap-sass/assets/stylesheets/bootstrap/buttons";

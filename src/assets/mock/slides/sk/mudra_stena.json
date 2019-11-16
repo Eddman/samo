@@ -4,28 +4,28 @@
         "primary": true,
         "images": [
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B1.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B1.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B3.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B3.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B5.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B5.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B7.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B7.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B8.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B8.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B9.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B9.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B10.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B10.jpg"
             },
             {
-                "url": "/assets/images/mudra_stena/foto/Netocny Interier B11.jpg"
+                "imageURL": "/assets/images/mudra_stena/foto/Netocny Interier B11.jpg"
             }
         ]
     }

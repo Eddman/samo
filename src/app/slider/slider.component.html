@@ -3,28 +3,14 @@
         <strong>Error!</strong> {{error}}
     </div>
 </div>
-<div style="padding-left: 15%; padding-right: 15%">
-    <sn-slideshow [imageUrls]="pages | async"
-                  [autoSlide]="autoSlide != null"
-                  [autoPlayInterval]="autoSlide">
-    </sn-slideshow>
-</div>
-<!--<kb-page-slider *ngIf=" pages | async; let loadedPages" [enableArrowKeys]="keysEnabled"-->
-<!--                [(page)]="pageNumber"-->
-<!--                (pageChange)="startAutoSlide(false); startAutoSlide()"-->
-<!--                [transitionDuration]="transitionDuration">-->
-<!--    &lt;!&ndash; Pages &ndash;&gt;-->
-<!--    <div *kbPages="let page of loadedPages" class="page">-->
-<!--        <img [src]="page.url">-->
-<!--        <span class="title">{{page.title}}</span>-->
-<!--    </div>-->
+<ng-page-slider *ngIf="sliderConfiguration && (sliderConfiguration | async) as loadedPages"
+                [enableArrowKeys]="keysEnabled"
+                [transitionDuration]="loadedPages.duration"
+                [autoScrollInterval]="loadedPages.autoSlide">
 
-<!--    &lt;!&ndash; Navigation Buttons &ndash;&gt;-->
-<!--    <kb-nav-button backward [showBackground]="false"-->
-<!--                   [(page)]="pageNumber" [pageCount]="pageCount">-->
-<!--    </kb-nav-button>-->
-
-<!--    <kb-nav-button forward [showBackground]="false"-->
-<!--                   [(page)]="pageNumber" [pageCount]="pageCount">-->
-<!--    </kb-nav-button>-->
-<!--</kb-page-slider>-->
+    <!-- Pages -->
+    <div *ngSliderPages="let page of loadedPages.images" class="page">
+        <img [src]="page.imageURL">
+        <span class="title">{{page.title}}</span>
+    </div>
+</ng-page-slider>

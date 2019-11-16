@@ -1,9 +1,8 @@
-export interface SliderImage {
-    url: string;
-}
+import {SliderPage} from '@netocny/ng-page-slider';
 
 export interface SliderConfiguration {
-    images: SliderImage[];
+    duration: number;
+    images: (SliderPage & { title: string })[];
 
     autoSlide?: number;
 

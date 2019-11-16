@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 import {EMPTY, Observable} from 'rxjs';
-import {catchError, shareReplay, tap} from 'rxjs/operators';
+import {catchError, first, shareReplay, takeUntil, tap} from 'rxjs/operators';
 import {ErrorResponse} from '../abstract.http.service';
 import {AbstractViewComponent} from '../abstract.view.component';
 import {RoutingService} from '../routing/routing.service';
@@ -11,7 +11,9 @@ import {DetailService} from './detail.service';
 @Component({
     selector           : 'sn-detail-view',
     templateUrl        : 'detail.component.html',
-    styleUrls          : ['detail.component.scss'],
+    styleUrls          : [
+        'detail.component.scss'
+    ],
     host               : {
         '[class.sn-detail-view]': 'true'
     },
@@ -19,9 +21,10 @@ import {DetailService} from './detail.service';
     preserveWhitespaces: false
 })
 export class DetailComponent extends AbstractViewComponent implements OnChanges {
+
     private _detail: Observable<Detail> | undefined;
 
-    public constructor(private detailService: DetailService,
+    public constructor(private readonly detailService: DetailService,
                        metaService: Meta,
                        routingService: RoutingService,
                        private readonly changeDetectorRef: ChangeDetectorRef) {
@@ -36,6 +39,8 @@ export class DetailComponent extends AbstractViewComponent implements OnChanges 
         }
 
         this._detail = this.detailService.getDetail(this.route.configuration.type, this.route.parameters).pipe(
+            first(),
+            takeUntil(this.destroyed),
             tap((detail: Detail) => {
                 this.setSEODescription();
                 this.setSEOImage();

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 import {EMPTY, Observable} from 'rxjs';
-import {catchError, shareReplay, tap} from 'rxjs/operators';
+import {catchError, first, shareReplay, takeUntil, tap} from 'rxjs/operators';
 import {ErrorResponse} from '../abstract.http.service';
 import {AbstractViewComponent} from '../abstract.view.component';
 import {RoutingService} from '../routing/routing.service';
@@ -21,9 +21,10 @@ import {ListService} from './list.service';
     preserveWhitespaces: false
 })
 export class ListComponent extends AbstractViewComponent implements OnChanges {
+
     private _listItems: Observable<ListItem[]> | undefined;
 
-    public constructor(private listService: ListService,
+    public constructor(private readonly listService: ListService,
                        metaService: Meta,
                        routingService: RoutingService,
                        private readonly changeDetectorRef: ChangeDetectorRef) {
@@ -38,6 +39,8 @@ export class ListComponent extends AbstractViewComponent implements OnChanges {
         }
 
         this._listItems = this.listService.getListItems(this.route.configuration.type).pipe(
+            first(),
+            takeUntil(this.destroyed),
             tap((listItems: ListItem[]) => {
                 this.setSEODescription();
                 this.setSEOImage();
@@ -88,5 +91,4 @@ export class ListComponent extends AbstractViewComponent implements OnChanges {
     public get listItems(): Observable<ListItem[]> | undefined {
         return this._listItems;
     }
-
 }
