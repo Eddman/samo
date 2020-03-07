@@ -1,0 +1,94 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+$optimal_width: 900px;
+$page_margin: 15px;
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+    background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+@mixin column-count($count) {
+    -webkit-column-count: $count;
+    -moz-column-count: $count;
+    column-count: $count;
+}
+
+@mixin opacity($opacity) {
+    -moz-opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity-ie + ")";
+    filter: alpha(opacity=$opacity-ie); //IE8
+    opacity: $opacity;
+}
+
+@mixin font-size($sizeValue: 12 ) {
+    font-size: $sizeValue + px; //fallback for old browsers
+    font-size: ((1/16) * $sizeValue) + rem;
+}
+
+@mixin line-height($heightValue: 12 ) {
+    line-height: $heightValue + px; //fallback for old browsers
+    line-height: ((1/16) * $heightValue) + rem;
+}
+
+@mixin transform($trans) {
+    -webkit-transform: $trans;
+    -moz-transform: $trans;
+    -ms-transform: $trans;
+    -o-transform: $trans;
+    transform: $trans;
+}
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation: $animations;
+    -o-animation: $animations;
+    animation: $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin bp-large {
+    @media only screen and (max-width: $optimal_width + ($page_margin * 2)) {
+        @content;
+    }
+}
+
+@mixin bp-medium {
+    @media only screen and (max-width: 570px) {
+        @content;
+    }
+}
+
+@mixin bp-small {
+    @media only screen and (max-width: 390px) {
+        @content;
+    }
+}

@@ -1,18 +1,28 @@
-.idea/compiler.xml
-.idea/copyright/
-.idea/misc.xml
+# Non-project files
+.DS_Store/
 .idea/workspace.xml
-node_modules/
-.tscache/
-*.css
-*.js
-!tools/**/*
-!gruntfile.js
-!systemjs.config.js
-*.js.map
+.idea/misc.xml
+.idea/statistic.xml
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# BrowserStack tunel binaries
+browserStackBin/
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+reports/
+/libpeerconnection.log
 npm-debug.log
-dist/
-.idea/terminal.xml
-.DS_Store
-ngFactories/
-/package-lock.json
+yarn-error.log
+testem.log
+/typings
+

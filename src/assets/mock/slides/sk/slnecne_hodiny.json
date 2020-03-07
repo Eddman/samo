@@ -1,0 +1,17 @@
+{
+    "data": {
+        "duration": 700,
+        "primary": true,
+        "images": [
+            {
+                "imageURL": "/assets/images/slnecne_hodiny/foto/netocny_slnecne hodiny_spisska bela_01.jpg"
+            },
+            {
+                "imageURL": "/assets/images/slnecne_hodiny/foto/netocny_slnecne hodiny_spisska bela_02.jpg"
+            },
+            {
+                "imageURL": "/assets/images/slnecne_hodiny/foto/netocny_slnecne hodiny_spisska bela_06.jpg"
+            }
+        ]
+    }
+}

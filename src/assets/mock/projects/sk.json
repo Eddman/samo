@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "thumbUrl": "/assets/images/kvetnica_kaplnka/thumb.png",
+            "title": "Kaplnka vzkriesenia",
+            "parameter": "kaplnka_vzkriesenia"
+        },
+        {
+            "thumbUrl": "/assets/images/kvetnica_cesta/thumb.png",
+            "title": "Kvetnická krížová cesta",
+            "parameter": "krizova_cesta"
+        },
+        {
+            "thumbUrl": "/assets/images/dom_velka/thumb.png",
+            "title": "Dom vo Veľkej",
+            "parameter": "dom_velka"
+        },
+        {
+            "thumbUrl": "/assets/images/kezmarska_chata/thumb.png",
+            "title": "Kežmarská chata",
+            "parameter": "kezmarska_chata"
+        },
+        {
+            "thumbUrl": "/assets/images/mudra_stena/thumb.png",
+            "title": "Múdra stena",
+            "parameter": "mudra_stena"
+        },
+        {
+            "thumbUrl": "/assets/images/kriz_ticha/thumb.png",
+            "title": "Kríž ticha",
+            "parameter": "kriz_ticha"
+        },
+        {
+            "thumbUrl": "/assets/images/pamatnik_zidovskym_studentom/thumb.png",
+            "title": "Pamätník židovským študentom",
+            "parameter": "pamatnik_zidovskym_studentom"
+        },
+        {
+            "thumbUrl": "/assets/images/holandsky_kriz/thumb.png",
+            "title": "Hodolanský kríž",
+            "parameter": "holandsky_kriz"
+        },
+        {
+            "thumbUrl": "/assets/images/kaplnka_sv_jakuba/thumb.png",
+            "title": "Kaplnka sv. Jakuba",
+            "parameter": "kaplnka_sv_jakuba"
+        },
+        {
+            "thumbUrl": "/assets/images/slnecne_hodiny/thumb.png",
+            "title": "Slnečné hodiny",
+            "parameter": "slnecne_hodiny"
+        },
+        {
+            "thumbUrl": "/assets/images/plazova_kaplnka/thumb.png",
+            "title": "Plážová kaplnka",
+            "parameter": "plazova_kaplnka"
+        }
+    ]
+}

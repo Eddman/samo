@@ -1,0 +1,10 @@
+<ng-template ngFor let-contentPart [ngForOf]="contentParts">
+    <p *ngIf="contentPart.type === types.TEXT"
+       [sn-columns]="contentPart">{{contentPart.text}}</p>
+    <a *ngIf="contentPart.type === types.LINK_EXTERNAL" [href]="contentPart.url">{{contentPart.text}}</a>
+    <a *ngIf="contentPart.type === types.LINK_INTERNAL" [routerLink]="contentPart.routeLink">{{contentPart.text}}</a>
+    <img *ngIf="contentPart.type === types.IMAGE" [img]="contentPart">
+    <br *ngIf="contentPart.type === types.LINE_BREAK">
+    <sn-slider-view *ngIf="contentPart.type === types.SLIDER"
+                    [route]="contentPart" [keysEnabled]="false"></sn-slider-view>
+</ng-template>

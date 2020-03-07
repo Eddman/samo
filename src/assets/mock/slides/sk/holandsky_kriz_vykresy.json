@@ -1,0 +1,19 @@
+{
+    "data": {
+        "duration": 700,
+        "images": [
+            {
+                "imageURL": "/assets/images/holandsky_kriz/vykresy/KKKD Samuel Netocny_Bozia muka Hodolany_01.JPG"
+            },
+            {
+                "imageURL": "/assets/images/holandsky_kriz/vykresy/KKKD Samuel Netocny_Bozia muka Hodolany_02.JPG"
+            },
+            {
+                "imageURL": "/assets/images/holandsky_kriz/vykresy/KKKD Samuel Netocny_Bozia muka Hodolany_03.JPG"
+            },
+            {
+                "imageURL": "/assets/images/holandsky_kriz/vykresy/KKKD Samuel Netocny_Bozia muka Hodolany_04.JPG"
+            }
+        ]
+    }
+}

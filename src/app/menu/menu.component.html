@@ -1,0 +1,44 @@
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
+    </div>
+</div>
+
+<ng-template [ngIf]="rootItem | async" let-root>
+    <div>
+        <h1><a [routerLink]="root.routeLink">{{root.title}}</a></h1>
+    </div>
+
+    <div class="sizer"></div>
+
+    <div class="menu">
+        <ng-template [ngIf]="isPageHeaderVisible()">
+            <div *ngFor="let menuLocale of root.subItems" [ngClass]="menuLocale.realURL"
+                 class="menu-block">
+                <div class="sizer"></div>
+                <a *ngIf="!isGroupExpanded(menuLocale)"
+                   [routerLink]="menuLocale.routeLink"
+                   routerLinkActive="active">{{menuLocale.title}}</a>
+                <ng-template [ngIf]="isGroupExpanded(menuLocale)">
+                    <a *ngFor="let menuItem of menuLocale.subItems"
+                       [routerLink]="menuItem.routeLink"
+                       routerLinkActive="active">{{menuItem.title}}</a>
+                </ng-template>
+            </div>
+        </ng-template>
+
+        <ng-template [ngIf]="!isPageHeaderVisible()">
+            <div class="menu-block">
+                <div class="sizer"></div>
+                <div *ngIf="getPageHeader()">
+                    <h2>{{getPageHeader().pageTitle}}</h2>
+                    <pre>{{getPageHeader().content}}</pre>
+                </div>
+            </div>
+            <div class="menu-block right">
+                <div class="sizer"></div>
+                <a [routerLink]="getHomeLink()">Home</a>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>

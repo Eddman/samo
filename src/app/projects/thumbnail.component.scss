@@ -1,0 +1,45 @@
+@import "projects.common";
+
+:host {
+    @extend %tile;
+
+    padding: $space_between;
+
+    a {
+        display: block;
+        position: relative;
+        vertical-align: bottom;
+
+        img, .title {
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: bottom;
+        }
+
+        .title {
+            position: absolute;
+            bottom: $thumb_title_position;
+
+            font-weight: bold;
+            margin: $thumb_title_margin;
+
+            z-index: 1;
+            @include opacity(0);
+        }
+    }
+
+    &.hover a, a:active {
+        img {
+            @include opacity(0.2);
+            @include transform(scale($hover_scale));
+        }
+
+        .title {
+            @include opacity(1);
+            @include transform(scale($hover_scale));
+        }
+    }
+}

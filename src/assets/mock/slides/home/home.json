@@ -1,0 +1,39 @@
+{
+    "data": {
+        "duration": 700,
+        "autoSlide": 10000,
+        "description": "architekt ~ poprad ~ wien",
+        "images": [
+            {
+                "imageURL": "/assets/images/home/07.jpg"
+            },
+            {
+                "imageURL": "/assets/images/home/02.JPG"
+            },
+            {
+                "imageURL": "/assets/images/home/03.JPG"
+            },
+            {
+                "imageURL": "/assets/images/home/04.jpg"
+            },
+            {
+                "imageURL": "/assets/images/home/05.jpg"
+            },
+            {
+                "imageURL": "/assets/images/home/06.jpg"
+            },
+            {
+                "imageURL": "/assets/images/home/09.JPG"
+            },
+            {
+                "imageURL": "/assets/images/home/10.JPG"
+            },
+            {
+                "imageURL": "/assets/images/home/01.JPG"
+            },
+            {
+                "imageURL": "/assets/images/home/11.JPG"
+            }
+        ]
+    }
+}

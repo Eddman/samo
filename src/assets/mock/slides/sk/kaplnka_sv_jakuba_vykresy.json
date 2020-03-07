@@ -1,0 +1,31 @@
+{
+    "data": {
+        "duration": 700,
+        "images": [
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/03_netocny_povraznik_kaplnka_lucivna1.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/03_netocny_povraznik_kaplnka_lucivna2.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/03_netocny_povraznik_kaplnka_lucivna3.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/04_netocny_povraznik_kaplnka_lucivna.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/05_netocny_povraznik_kaplnka_lucivna.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/06_netocny_povraznik_kaplnka_lucivna.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/07_netocny_povraznik_kaplnka_lucivna.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kaplnka_sv_jakuba/vykresy/08_netocny_povraznik_kaplnka_lucivna.jpg"
+            }
+        ]
+    }
+}

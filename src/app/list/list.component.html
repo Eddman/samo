@@ -1,0 +1,12 @@
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
+    </div>
+</div>
+<div *ngFor="let listItem of listItems | async">
+    <h2 *ngIf="listItem.title">
+        <ng-template [ngIf]="!listItem.externalURL">{{listItem.title}}</ng-template>
+        <a *ngIf="listItem.externalURL" [href]="listItem.externalURL">{{listItem.title}}</a>
+    </h2>
+    <sn-content [contentParts]="listItem.content"></sn-content>
+</div>

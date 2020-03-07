@@ -1,0 +1,35 @@
+{
+    "data": {
+        "content": [
+            {
+                "type": "slider",
+                "configuration": {
+                    "type": [
+                        "sk",
+                        "mudra_stena"
+                    ]
+                }
+            },
+            {
+                "type": "break"
+            },
+            {
+                "type": "text",
+                "text": "\tPotom, čo mladá rodina vyskúšala všetky možnosti rozloženia nábytku v ich obývačke s asi najlepším výhľadom na Tatry v Poprade, nás oslovili, či im s tým pomôžeme. Program nebol zložitý: veľká skriňa pre sezónne oblečenie, knižnica, miesto pre jedálensky stôl a pracovný kút.\n\tJediným problémom bol už existujúci krb a nová kuchyňa na mieru, s ktorou sme nechceli hýbať. To nám naše možnosti dosť ohraničilo.\n\tNávrh spočíva na jasnejšom rozdelení jednotlivých plôch miestnosti na sedaciu časť, pracovňu, jedáleň a kuchyňu. Samotný priestor je veľkorysý dosť, ale nezmyselné niky ho trieštia. Rozhodli sme sa zceliť priestor novou vstavanou multifunkčnou stenou, ktorá v sebe skrýva všetko čo mladá rodina potrebovala. Tým, že skriňa vystupuje do priestoru, útulne rámuje miesto pre nedeľné obedy.\n\tPoužitý materiál je drevotriesková platňa s bielenou bukovou dýhou, ktorá ladí k stolu a stoličkám od firmy Ton.",
+                "columns": 3
+            },
+            {
+                "type": "break"
+            },
+            {
+                "type": "image",
+                "url": "/assets/images/mudra_stena/vykresy/netocny interier poprad_web_Page_3.jpg",
+                "title": "Múdra stena"
+            }
+        ],
+        "header": {
+            "pageTitle": "NÁBYTOK NA MIERU",
+            "content": "Poprad, Slovensko\n2014\nRealizácia"
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "data": {
+        "duration": 700,
+        "primary": true,
+        "images": [
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_10_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_12_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_13_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_14_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_15_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_16_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_18_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_19_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_20_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_21_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_22_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_24_WEB.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kriz_ticha/foto/KKKD_Kriz ticha_6MP_25_WEB.jpg"
+            }
+        ]
+    }
+}

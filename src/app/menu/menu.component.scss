@@ -1,0 +1,84 @@
+@import "../../component";
+
+$padding_side: 95px;
+$padding_bottom: 20px;
+$padding_top: 25px;
+$height: 210px;
+
+$header_font_size: 16;
+$link_font_size: 12;
+$link_line_height: 18;
+
+:host {
+    height: $height - $padding_bottom;
+    display: flex;
+    flex-direction: column;
+    padding: 0 $padding_side $padding_bottom;
+
+    @include bp-large {
+        height: auto;
+        padding-bottom: 0.5 * $padding_bottom;
+    }
+
+    @include bp-medium {
+        padding: 0 0 0.5 * $padding_bottom;
+    }
+
+    a.disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    h1 {
+        font-weight: normal;
+        margin: 0;
+        padding: $padding_top 0 0.5 * $padding_bottom;
+
+        @include bp-large {
+            padding-top: 0;
+        }
+
+        a {
+            @include font-size($header_font_size);
+            text-decoration: none;
+        }
+    }
+
+    .sizer {
+        flex-grow: 1;
+        display: flex;
+    }
+
+    .menu {
+        display: flex;
+        flex-grow: 1;
+        flex-wrap: wrap;
+
+        .menu-block {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+
+            * {
+                @include font-size($link_font_size);
+                @include line-height($link_line_height);
+
+                text-decoration: none;
+
+                /*noinspection CssUnusedSymbol*/
+                &.active {
+                    font-weight: bold;
+                }
+                margin: 0;
+            }
+
+            &.at, &.right {
+                text-align: right;
+            }
+
+            h2 {
+                font-weight: bold;
+            }
+        }
+    }
+}

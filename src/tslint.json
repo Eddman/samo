@@ -1,0 +1,24 @@
+{
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            [
+                "element",
+                "attribute"
+            ],
+            "sn",
+            [
+                "kebab-case",
+                "camelCase"
+            ]
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "sn",
+            "kebab-case"
+        ],
+        "no-host-metadata-property": false
+    }
+}

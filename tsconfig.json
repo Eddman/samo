@@ -1,7 +1,47 @@
 {
-    "extends": "./tsconfig.base.json",
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "es2015",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "types": [
+            "jasmine"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "sourceMap": true,
+        "declaration": false,
+        "skipLibCheck": true,
+        "allowJs": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "alwaysStrict": true,
+        "pretty": true,
+        "strict": true
+    },
     "files": [
-        "app/app.module.ts",
-        "app/main.ts"
+        "src/main.ts",
+        "src/polyfills.ts"
+    ],
+    "include": [
+        "src/main.ts",
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "dist/",
+        "**/out-tsc/"
     ]
 }

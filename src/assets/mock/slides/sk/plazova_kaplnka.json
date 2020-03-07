@@ -1,0 +1,50 @@
+{
+    "data": {
+        "duration": 700,
+        "primary": true,
+        "images": [
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_01.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_02.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_03.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_04.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_05.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_06.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_07.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_08.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_09.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_10.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_11.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_12.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_13.jpg"
+            },
+            {
+                "imageURL": "/assets/images/plazova_kaplnka/foto/netocny_beach_chapel_brighton_14.jpg"
+            }
+        ]
+    }
+}

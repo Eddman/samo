@@ -1,0 +1,20 @@
+{
+    "data": {
+        "duration": 700,
+        "primary": true,
+        "images": [
+            {
+                "imageURL": "/assets/images/kvetnica_cesta/foto/Samuel Netocny_Kaplnka_Okt_Blog_15.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_cesta/foto/Samuel Netocny_Kaplnka_Okt_Blog_16.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_cesta/foto/Samuel Netocny_Kaplnka_Okt_Blog_17.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_cesta/foto/Samuel Netocny_Kaplnka_Okt_Blog_18.jpg"
+            }
+        ]
+    }
+}

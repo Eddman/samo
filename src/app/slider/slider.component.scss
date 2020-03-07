@@ -1,0 +1,45 @@
+@import "../../component";
+
+$arrow_size_original: 44px;
+$arrow_line_height_original: 37px;
+$dot_size_original: 6px;
+$title_size_original: 16px;
+
+@mixin definition($arrow_size, $arrow_line_height, $dot_size, $title_size, $title_offset) {
+    .page {
+        overflow: hidden;
+
+        img {
+            height: 100%;
+            margin: auto;
+            display: block;
+        }
+
+        .title {
+            font-size: $title_size;
+            color: white;
+            position: absolute;
+            bottom: $title_offset;
+            left: $title_offset;
+        }
+    }
+}
+
+@include definition($arrow_size_original, $arrow_line_height_original, $dot_size_original, $title_size_original,
+    $dot_size_original / 3 + $title_size_original);
+
+$screen_width: $optimal_width + ($page_margin * 2);
+@media only screen and (max-width: $screen_width) {
+    $arrow_size: $arrow_size_original / $screen_width * 100;
+    $arrow_line_height: $arrow_line_height_original / $screen_width * 100;
+    $dot_size: $dot_size_original / $screen_width * 100;
+    $title_size: $title_size_original / $screen_width * 100;
+
+    @include definition(
+            $arrow_size * 1vw,
+            $arrow_line_height * 1vw,
+            $dot_size * 1vw,
+            $title_size * 1vw,
+            ($dot_size / 3 + $title_size) * 1vw
+    );
+}

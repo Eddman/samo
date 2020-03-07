@@ -1,0 +1,9 @@
+<div *ngIf="error" class="bootstrap">
+    <div class="alert alert-danger">
+        <strong>Error!</strong> {{error}}
+    </div>
+</div>
+<ng-template [ngIf]="detail | async" let-resolvedDetail>
+    <h2 *ngIf="resolvedDetail.title">{{resolvedDetail.title}}</h2>
+    <sn-content [contentParts]="resolvedDetail.content"></sn-content>
+</ng-template>

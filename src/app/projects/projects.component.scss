@@ -1,0 +1,13 @@
+@import "projects.common";
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin: -$space_between;
+}
+
+.thumbnail {
+    @extend %tile;
+}

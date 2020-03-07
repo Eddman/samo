@@ -1,0 +1,25 @@
+{
+    "data": {
+        "duration": 700,
+        "images": [
+            {
+                "imageURL": "/assets/images/kvetnica_kaplnka/vykresy/Samuel Netocny_Kaplnka_Okt_Blog_19.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_kaplnka/vykresy/Samuel Netocny_Kaplnka_Okt_Blog_20a.png"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_kaplnka/vykresy/Samuel Netocny_Kaplnka_Okt_Blog_20b.png"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_kaplnka/vykresy/Samuel Netocny_Kaplnka_Okt_Blog_21.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_kaplnka/vykresy/Samuel Netocny_Kaplnka_Okt_Blog_22.jpg"
+            },
+            {
+                "imageURL": "/assets/images/kvetnica_kaplnka/vykresy/Samuel Netocny_Kaplnka_Okt_Blog_23.jpg"
+            }
+        ]
+    }
+}

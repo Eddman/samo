@@ -1,0 +1,11 @@
+<a *ngIf="thumbnail"
+   [@state]="thumbnail.state"
+   [class.broken]="!thumbnail.thumbUrl"
+   (click)="navigate()"
+   (mouseenter)="setHover()"
+   (mouseleave)="unsetHover()">
+    <div *ngIf="thumbnail.title" class="title">{{thumbnail.title}}</div>
+    <div *ngIf="!thumbnail.title" class="title">No title</div>
+    <img *ngIf="thumbnail.thumbUrl" (load)="thumbnail.state='loaded'" [src]="thumbnail.thumbUrl">
+    <img *ngIf="!thumbnail.thumbUrl" (load)="thumbnail.state='loaded'" src="/assets/images/icons/broken_image.svg">
+</a>
