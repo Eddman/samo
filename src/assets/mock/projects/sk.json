@@ -3,57 +3,57 @@
         {
             "thumbUrl": "/assets/images/kvetnica_kaplnka/thumb.png",
             "title": "Kaplnka vzkriesenia",
-            "parameter": 1
+            "parameter": "kaplnka_vzkriesenia"
         },
         {
             "thumbUrl": "/assets/images/kvetnica_cesta/thumb.png",
             "title": "Kvetnická krížová cesta",
-            "parameter": 2
+            "parameter": "krizova_cesta"
         },
         {
             "thumbUrl": "/assets/images/dom_velka/thumb.png",
             "title": "Dom vo Veľkej",
-            "parameter": 3
+            "parameter": "dom_velka"
         },
         {
             "thumbUrl": "/assets/images/kezmarska_chata/thumb.png",
             "title": "Kežmarská chata",
-            "parameter": 4
+            "parameter": "kezmarska_chata"
         },
         {
             "thumbUrl": "/assets/images/mudra_stena/thumb.png",
             "title": "Múdra stena",
-            "parameter": 5
+            "parameter": "mudra_stena"
         },
         {
             "thumbUrl": "/assets/images/kriz_ticha/thumb.png",
             "title": "Kríž ticha",
-            "parameter": 6
+            "parameter": "kriz_ticha"
         },
         {
             "thumbUrl": "/assets/images/pamatnik_zidovskym_studentom/thumb.png",
             "title": "Pamätník židovským študentom",
-            "parameter": 7
+            "parameter": "pamatnik_zidovskym_studentom"
         },
         {
             "thumbUrl": "/assets/images/holandsky_kriz/thumb.png",
             "title": "Hodolanský kríž",
-            "parameter": 8
+            "parameter": "holandsky_kriz"
         },
         {
             "thumbUrl": "/assets/images/kaplnka_sv_jakuba/thumb.png",
             "title": "Kaplnka sv. Jakuba",
-            "parameter": 9
+            "parameter": "kaplnka_sv_jakuba"
         },
         {
             "thumbUrl": "/assets/images/slnecne_hodiny/thumb.png",
             "title": "Slnečné hodiny",
-            "parameter": 10
+            "parameter": "slnecne_hodiny"
         },
         {
             "thumbUrl": "/assets/images/plazova_kaplnka/thumb.png",
             "title": "Plážová kaplnka",
-            "parameter": 11
+            "parameter": "plazova_kaplnka"
         }
     ]
 }
